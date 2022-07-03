@@ -1,0 +1,48 @@
+name: 'GitHub LeetCode Bot'
+
+on:
+  push:
+  schedule:
+    - cron: '2 * * * *'
+
+jobs:
+  bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout codes'
+        uses: actions/checkout@v1
+
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.6
+          
+      - name: Configure pip cache
+        uses: actions/cache@v1
+        id: pip-cache
+        with:
+          path: venv
+          key: pip-1-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            pip-
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r build/requirements.txt
+        if: steps.pip-cache.outputs.cache-hit != 'true'
+
+
+      - name: Get LeetCode Data
+        run: python build/leetcode.py ${{ secrets.LEETCODE_EMAIL }} ${{ secrets.LEETCODE_PASSWORD }}
+
+
+      - name: commit
+        run: |
+          git config --global user.email bot
+          git config --global user.name bot
+          git add .
+          git commit -m "update leetcode stat" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.TOKEN}}

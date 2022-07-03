@@ -20,9 +20,9 @@ def login(EMAIL, PASSWORD):
         'password': PASSWORD
     }
 
-    sign_in_url = 'https://leetcode-cn.com/accounts/login/'
+    sign_in_url = 'https://leetcode.cn/accounts/login/'
     headers = {'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36",
-               'Connection': 'keep-alive', 'Referer': sign_in_url, "origin": "https://leetcode-cn.com/"}
+               'Connection': 'keep-alive', 'Referer': sign_in_url, "origin": "https://leetcode.cn/"}
 
     # 发送登录请求
     session.post(sign_in_url, headers=headers, data=login_data,
@@ -37,7 +37,7 @@ def login(EMAIL, PASSWORD):
 
 # 获取某个题目的提交记录
 def get_submission_list(slug, session):
-    url = 'https://leetcode-cn.com/graphql/'
+    url = 'https://leetcode.cn/graphql/'
 
     payload = json.dumps({
         "operationName": "submissions",
@@ -50,7 +50,7 @@ def get_submission_list(slug, session):
         "query": "query submissions($offset: Int!, $limit: Int!, $lastKey: String, $questionSlug: String!) {\n  submissionList(offset: $offset, limit: $limit, lastKey: $lastKey, questionSlug: $questionSlug) {\n    lastKey\n    hasNext\n    submissions {\n      id\n      statusDisplay\n      lang\n      runtime\n      timestamp\n      url\n      isPending\n      memory\n      __typename\n    }\n    __typename\n  }\n}\n"
     })
 
-    headers = {"content-type": "application/json", "origin": "https://leetcode-cn.com", "referer": "https://leetcode-cn.com/progress/",
+    headers = {"content-type": "application/json", "origin": "https://leetcode.cn", "referer": "https://leetcode.cn/progress/",
                "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36"}
 
     r = session.post(url, data=payload, headers=headers, verify=False)
@@ -61,7 +61,7 @@ def get_submission_list(slug, session):
 
 # 获取所有通过的题目列表
 def get_accepted_problems(session):
-    url = 'https://leetcode-cn.com/graphql/'
+    url = 'https://leetcode.cn/graphql/'
 
     payload = json.dumps({
         "operationName": "userProfileQuestions",
@@ -77,13 +77,23 @@ def get_accepted_problems(session):
         "query": "query userProfileQuestions($status: StatusFilterEnum!, $skip: Int!, $first: Int!, $sortField: SortFieldEnum!, $sortOrder: SortingOrderEnum!, $keyword: String, $difficulty: [DifficultyEnum!]) {\n  userProfileQuestions(status: $status, skip: $skip, first: $first, sortField: $sortField, sortOrder: $sortOrder, keyword: $keyword, difficulty: $difficulty) {\n    totalNum\n    questions {\n      translatedTitle\n      frontendId\n      titleSlug\n      title\n      difficulty\n      lastSubmittedAt\n      numSubmitted\n      lastSubmissionSrc {\n        sourceType\n        ... on SubmissionSrcLeetbookNode {\n          slug\n          title\n          pageId\n          __typename\n        }\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n"
     })
 
-    headers = {"content-type": "application/json", "origin": "https://leetcode-cn.com", "referer": "https://leetcode-cn.com/progress/",
+    headers = {"content-type": "application/json", "origin": "https://leetcode.cn", "referer": "https://leetcode.cn/progress/",
                "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36"}
 
     r = session.post(url, data=payload, headers=headers, verify=False)
     response_data = json.loads(r.text)
 
     return response_data
+
+
+def list_local_solution():
+    dir_name = 'lc'
+    local_su = {}
+    for filename in os.listdir(dir_name):
+        if not filename.endswith('_test.go'):
+            id = filename.split('.')[0]
+            local_su[id] = [filename, dir_name + '/' + filename]
+    return local_su
 
 
 # 生成Markdown文本
@@ -99,10 +109,11 @@ def generate_markdown_text(response_data, session):
     markdown_text += "import \"fmt\"\n"
     markdown_text += "\n"
     markdown_text += "func main() {\n"
-    markdown_text += "fmt.Println(\"Halo, leetcode\")\n"
-    markdown_text += "}"
+    markdown_text += "  fmt.Println(\"Halo, leetcode\")\n"
+    markdown_text += "}\n"
+    markdown_text += "```\n"
     markdown_text += "\n"
-    markdown_text += "| 最近提交时间 | 题目 | 题目难度 | 提交次数| 重刷次数 |\n| ---- | ---- | ---- | ---- | ---- |\n"
+    markdown_text += "| 题目 | 解法 | 题目难度 | 提交次数| 重刷次数 |\n| ---- | ---- | ---- | ---- | ---- |\n"
 
     for index, sub_data in enumerate(response_data):
 
@@ -119,8 +130,19 @@ def generate_markdown_text(response_data, session):
         titleSlug = sub_data['titleSlug']
         numSubmitted = sub_data['numSubmitted']
         numSubmitted = str(numSubmitted)
-        url = "https://leetcode-cn.com/problems/{}".format(
+        url = "https://leetcode.cn/problems/{}".format(
             sub_data['titleSlug'])
+
+        # 解法
+        localSu = list_local_solution()
+        localFile = ''
+        localLink = ''
+        if frontendId in localSu.keys():
+            localFile = localSu[frontendId][0]
+            localLink = localSu[frontendId][1]
+        localText = ''
+        if localFile != '':
+            localText = '[' + localFile + ']' + '(' + localLink + ')'
 
         # 获取重刷次数
         # 规则定义如下：提交通过的时间 与 之前提交通过的时间 不为同一天 即认为是重新刷了一遍
@@ -146,9 +168,9 @@ def generate_markdown_text(response_data, session):
             count = str(count)
 
         # 更新Markdown文本
-        markdown_text += "| " + lastSubmittedAt + " | " + \
-            "[" + translatedTitle + "]" + "(" + url + ")" + " | " + \
-            difficulty + " | " + numSubmitted + " | " + count + " |" + "\n"
+        markdown_text += "|" + "[" + translatedTitle + "]" + \
+            "(" + url + ")" + " | " + localText + " | " + difficulty + \
+            " | " + numSubmitted + " | " + count + " |" + "\n"
 
     return markdown_text
 
@@ -158,7 +180,6 @@ if __name__ == '__main__':
     response_data = get_accepted_problems(session)  # 获取所有通过的题目列表
     markdown_text = generate_markdown_text(
         response_data, session)  # 生成Markdown文本
-
     # 更新README.md文件
     with open("README.md", "w") as f:
         f.write(markdown_text)
