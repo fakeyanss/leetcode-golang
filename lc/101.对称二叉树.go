@@ -57,7 +57,44 @@ package lc
  * }
  */
 func isSymmetric(root *TreeNode) bool {
-	return false
+	// 递归
+	// if root == nil {
+	// 	return true
+	// }
+	// return checkRecursive(root.Left, root.Right)
+
+	// 迭代
+	q := []*TreeNode{}
+	q = append(q, root)
+	q = append(q, root)
+	for len(q) > 0 {
+		a, b := q[0], q[1]
+		q = q[2:]
+		if a == nil && b == nil {
+			continue
+		}
+		if a == nil || b == nil {
+			return false
+		}
+		if a.Val != b.Val {
+			return false
+		}
+		q = append(q, a.Left)
+		q = append(q, b.Right)
+		q = append(q, a.Right)
+		q = append(q, b.Left)
+	}
+	return true
+}
+
+func checkRecursive(left *TreeNode, right *TreeNode) bool {
+	if left == nil || right == nil {
+		return left == right
+	}
+	if left.Val != right.Val {
+		return false
+	}
+	return checkRecursive(left.Right, right.Left) && checkRecursive(left.Left, right.Right)
 }
 
 // @lc code=end
