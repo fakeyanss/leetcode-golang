@@ -7,14 +7,12 @@ from requests.adapters import HTTPAdapter
 requests.packages.urllib3.disable_warnings()
 
 
-# 登录
 def login(EMAIL, PASSWORD):
-    session = requests.Session()  # 建立会话
-    session.mount('http://', HTTPAdapter(max_retries=6))  # 超时重试次数
-    session.mount('https://', HTTPAdapter(max_retries=6))  # 超时重试次数
-    session.encoding = "utf-8"  # 编码格式
+    session = requests.Session()
+    session.mount('http://', HTTPAdapter(max_retries=6))
+    session.mount('https://', HTTPAdapter(max_retries=6))
+    session.encoding = "utf-8"
 
-    # 使用账号密码方式登录, 请确保账号密码正确
     login_data = {
         'login': EMAIL,
         'password': PASSWORD
@@ -24,18 +22,15 @@ def login(EMAIL, PASSWORD):
     headers = {'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36",
                'Connection': 'keep-alive', 'Referer': sign_in_url, "origin": "https://leetcode.cn/"}
 
-    # 发送登录请求
     session.post(sign_in_url, headers=headers, data=login_data,
                  timeout=10, allow_redirects=False)
     is_login = session.cookies.get('LEETCODE_SESSION') != None
     if is_login:
-        print("登录成功!")
         return session
     else:
-        raise Exception("登录失败, 请检查账号密码是否正确!")
+        raise Exception("login error")
 
 
-# 获取某个题目的提交记录
 def get_submission_list(slug, session):
     url = 'https://leetcode.cn/graphql/'
 
@@ -59,7 +54,6 @@ def get_submission_list(slug, session):
     return response_data
 
 
-# 获取所有通过的题目列表
 def get_accepted_problems(session):
     url = 'https://leetcode.cn/graphql/'
 
@@ -96,11 +90,7 @@ def list_local_solution():
     return local_su
 
 
-# 生成Markdown文本
 def generate_markdown_text(response_data, session):
-
-    # 部署方法
-    response_data = response_data['data']['userProfileQuestions']['questions']
     markdown_text = "# leetcode-golang\n"
     markdown_text += "\n"
     markdown_text += "```go\n"
@@ -114,13 +104,13 @@ def generate_markdown_text(response_data, session):
     markdown_text += "```\n"
     markdown_text += "\n"
     markdown_text += "| 题目 | 解法 | 题目难度 | 提交次数| 重刷次数 |\n| ---- | ---- | ---- | ---- | ---- |\n"
+    table_body = []
 
+    response_data = response_data['data']['userProfileQuestions']['questions']
     for index, sub_data in enumerate(response_data):
 
-        # 显示进度
         print('{}/{}'.format(index + 1, len(response_data)))
 
-        # 获取一些必要的信息
         lastSubmittedAt = time.strftime(
             "%Y-%m-%d %H:%M", time.localtime(sub_data['lastSubmittedAt']))
         translatedTitle = "#{} {}".format(
@@ -133,7 +123,6 @@ def generate_markdown_text(response_data, session):
         url = "https://leetcode.cn/problems/{}".format(
             sub_data['titleSlug'])
 
-        # 解法
         localSu = list_local_solution()
         localFile = ''
         localLink = ''
@@ -144,8 +133,6 @@ def generate_markdown_text(response_data, session):
         if localFile != '':
             localText = '[' + localFile + ']' + '(' + localLink + ')'
 
-        # 获取重刷次数
-        # 规则定义如下：提交通过的时间 与 之前提交通过的时间 不为同一天 即认为是重新刷了一遍
         submission_dict = get_submission_list(titleSlug, session)
         submission_list = submission_dict['data']['submissionList']['submissions']
         submission_accepted_dict = {}
@@ -160,26 +147,25 @@ def generate_markdown_text(response_data, session):
                 else:
                     submission_accepted_dict[submission_time] = 1
 
-        # 重刷次数
         count = len(submission_accepted_dict)
         if count > 1:
             count = "**" + str(count) + "**"
         else:
             count = str(count)
+        table_body.append("|[%s](%s)|%s|%s|%s|%s|" % (
+            translatedTitle, url, localText, difficulty, numSubmitted, count))
 
-        # 更新Markdown文本
-        markdown_text += "|" + "[" + translatedTitle + "]" + \
-            "(" + url + ")" + " | " + localText + " | " + difficulty + \
-            " | " + numSubmitted + " | " + count + " |" + "\n"
+    table_body = sorted(table_body, key=lambda ele: int(
+        ele.split('#')[1].split(' ')[0]))
+    for ele in table_body:
+        markdown_text += ele + '\n'
 
     return markdown_text
 
 
 if __name__ == '__main__':
-    session = login(sys.argv[1], sys.argv[2])  # 登录
-    response_data = get_accepted_problems(session)  # 获取所有通过的题目列表
-    markdown_text = generate_markdown_text(
-        response_data, session)  # 生成Markdown文本
-    # 更新README.md文件
+    session = login(sys.argv[1], sys.argv[2])
+    response_data = get_accepted_problems(session)
+    markdown_text = generate_markdown_text(response_data, session)
     with open("README.md", "w") as f:
         f.write(markdown_text)
