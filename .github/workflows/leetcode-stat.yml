@@ -3,7 +3,7 @@ name: 'GitHub LeetCode Bot'
 on:
   push:
   schedule:
-    - cron: '2 4 * * *'
+    - cron: '2 20 * * *'
 
 jobs:
   bot:
@@ -42,7 +42,9 @@ jobs:
           git config --global user.name bot
           git add .
           git commit -m "update leetcode stat" -a
+        continue-on-error: true
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.TOKEN}}
+        continue-on-error: true
