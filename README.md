@@ -23,6 +23,6 @@ func main() {
 |[#88 合并两个有序数组](https://leetcode.cn/problems/merge-sorted-array)|[88.合并两个有序数组.go](lc/88.合并两个有序数组.go)|EASY|3|1|
 |[#94 二叉树的中序遍历](https://leetcode.cn/problems/binary-tree-inorder-traversal)|[94.二叉树的中序遍历.go](lc/94.二叉树的中序遍历.go)|EASY|3|1|
 |[#101 对称二叉树](https://leetcode.cn/problems/symmetric-tree)|[101.对称二叉树.go](lc/101.对称二叉树.go)|EASY|1|1|
-|[#112 路径总和](https://leetcode.cn/problems/path-sum)||EASY|1|1|
+|[#112 路径总和](https://leetcode.cn/problems/path-sum)|[112.路径总和.go](lc/112.路径总和.go)|EASY|1|1|
 |[#206 反转链表](https://leetcode.cn/problems/reverse-linked-list)|[206.反转链表.go](lc/206.反转链表.go)|EASY|3|**2**|
 |[#386 字典序排数](https://leetcode.cn/problems/lexicographical-numbers)||MEDIUM|1|1|
