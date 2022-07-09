@@ -8,6 +8,10 @@ type ListNode struct {
 	Next *ListNode
 }
 
+func NewListNode(val int, next *ListNode) *ListNode {
+	return &ListNode{val, next}
+}
+
 /**
  * Definition for a binary tree node.
  */
@@ -15,4 +19,8 @@ type TreeNode struct {
 	Val   int
 	Left  *TreeNode
 	Right *TreeNode
+}
+
+func NewTreeNode(val int, l *TreeNode, r *TreeNode) *TreeNode {
+	return &TreeNode{val, l, r}
 }

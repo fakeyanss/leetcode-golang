@@ -61,6 +61,16 @@ func isSymmetric(root *TreeNode) bool {
 	// if root == nil {
 	// 	return true
 	// }
+	// var checkRecursive func(left *TreeNode, right *TreeNode) bool
+	// checkRecursive = func(left *TreeNode, right *TreeNode) bool {
+	// 	if left == nil || right == nil {
+	// 		return left == right
+	// 	}
+	// 	if left.Val != right.Val {
+	// 		return false
+	// 	}
+	// 	return checkRecursive(left.Right, right.Left) && checkRecursive(left.Left, right.Right)
+	// }
 	// return checkRecursive(root.Left, root.Right)
 
 	// 迭代
@@ -85,16 +95,6 @@ func isSymmetric(root *TreeNode) bool {
 		q = append(q, b.Left)
 	}
 	return true
-}
-
-func checkRecursive(left *TreeNode, right *TreeNode) bool {
-	if left == nil || right == nil {
-		return left == right
-	}
-	if left.Val != right.Val {
-		return false
-	}
-	return checkRecursive(left.Right, right.Left) && checkRecursive(left.Left, right.Right)
 }
 
 // @lc code=end
