@@ -24,7 +24,6 @@ func Test_hasCycle(t *testing.T) {
 		{"case3", args{h3}, false},
 	}
 	for _, tt := range tests {
-		t.Log(h1.Next.Next.Next.Next == h1)
 		t.Run(tt.name, func(t *testing.T) {
 			if got := hasCycle(tt.args.head); got != tt.want {
 				t.Errorf("hasCycle() = %v, want %v", got, tt.want)
