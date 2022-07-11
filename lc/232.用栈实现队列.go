@@ -83,7 +83,7 @@ type MyQueue struct {
 }
 
 func Constructor() MyQueue {
-	return MyQueue{[]int{}, []int{}}
+	return MyQueue{}
 }
 
 func (q *MyQueue) Push(x int) {
@@ -91,25 +91,17 @@ func (q *MyQueue) Push(x int) {
 }
 
 func (q *MyQueue) Pop() int {
-	lenS2 := len(q.s2)
-	if lenS2 == 0 {
-		q.move()
-	}
-	res := q.s2[lenS2-1]
-	q.s2 = q.s2[:lenS2-1]
+	res := q.Peek()
+	q.s2 = q.s2[:len(q.s2)-1]
 	return res
-}
-
-func (q *MyQueue) move() {
-	for len(q.s1) > 0 {
-		q.s2 = append(q.s2, q.s1[len(q.s1)-1])
-		q.s1 = q.s1[:len(q.s1)-1]
-	}
 }
 
 func (q *MyQueue) Peek() int {
 	if len(q.s2) == 0 {
-		q.move()
+		for len(q.s1) > 0 {
+			q.s2 = append(q.s2, q.s1[len(q.s1)-1])
+			q.s1 = q.s1[:len(q.s1)-1]
+		}
 	}
 	return q.s2[len(q.s2)-1]
 }
