@@ -31,4 +31,5 @@ func main() {
 |[#191 位1的个数](https://leetcode.cn/problems/number-of-1-bits)|[191.位-1-的个数.go](lc/191.位-1-的个数.go)|EASY|1|1|
 |[#206 反转链表](https://leetcode.cn/problems/reverse-linked-list)|[206.反转链表.go](lc/206.反转链表.go)|EASY|3|**2**|
 |[#232 用栈实现队列](https://leetcode.cn/problems/implement-queue-using-stacks)|[232.用栈实现队列.go](lc/232.用栈实现队列.go)|EASY|1|1|
+|[#235 二叉搜索树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree)|[235.二叉搜索树的最近公共祖先.go](lc/235.二叉搜索树的最近公共祖先.go)|EASY|4|1|
 |[#386 字典序排数](https://leetcode.cn/problems/lexicographical-numbers)||MEDIUM|1|1|
