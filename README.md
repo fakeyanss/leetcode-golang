@@ -33,5 +33,5 @@ func main() {
 |[#232 用栈实现队列](https://leetcode.cn/problems/implement-queue-using-stacks)|[232.用栈实现队列.go](lc/232.用栈实现队列.go)|EASY|1|1|
 |[#235 二叉搜索树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree)|[235.二叉搜索树的最近公共祖先.go](lc/235.二叉搜索树的最近公共祖先.go)|EASY|4|1|
 |[#237 删除链表中的节点](https://leetcode.cn/problems/delete-node-in-a-linked-list)|[237.删除链表中的节点.go](lc/237.删除链表中的节点.go)|EASY|2|1|
-|[#258 各位相加](https://leetcode.cn/problems/add-digits)||EASY|2|1|
+|[#258 各位相加](https://leetcode.cn/problems/add-digits)|[258.各位相加.go](lc/258.各位相加.go)|EASY|2|1|
 |[#386 字典序排数](https://leetcode.cn/problems/lexicographical-numbers)||MEDIUM|1|1|
