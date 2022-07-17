@@ -13,6 +13,7 @@ func main() {
 | 题目 | 解法 | 题目难度 | 提交次数| 重刷次数 |
 | ---- | ---- | ---- | ---- | ---- |
 |[#1 两数之和](https://leetcode.cn/problems/two-sum)|[1.两数之和.go](lc/1.两数之和.go)|EASY|2|**2**|
+|[#5 最长回文子串](https://leetcode.cn/problems/longest-palindromic-substring)|[5.最长回文子串.go](lc/5.最长回文子串.go)|MEDIUM|1|1|
 |[#7 整数反转](https://leetcode.cn/problems/reverse-integer)||MEDIUM|3|1|
 |[#13 罗马数字转整数](https://leetcode.cn/problems/roman-to-integer)|[13.罗马数字转整数.go](lc/13.罗马数字转整数.go)|EASY|1|1|
 |[#20 有效的括号](https://leetcode.cn/problems/valid-parentheses)|[20.有效的括号.go](lc/20.有效的括号.go)|EASY|2|1|
