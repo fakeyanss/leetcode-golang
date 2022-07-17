@@ -25,6 +25,7 @@ func main() {
 |[#101 对称二叉树](https://leetcode.cn/problems/symmetric-tree)|[101.对称二叉树.go](lc/101.对称二叉树.go)|EASY|1|1|
 |[#112 路径总和](https://leetcode.cn/problems/path-sum)|[112.路径总和.go](lc/112.路径总和.go)|EASY|1|1|
 |[#121 买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock)|[121.买卖股票的最佳时机.go](lc/121.买卖股票的最佳时机.go)|EASY|2|1|
+|[#124 二叉树中的最大路径和](https://leetcode.cn/problems/binary-tree-maximum-path-sum)|[124.二叉树中的最大路径和.go](lc/124.二叉树中的最大路径和.go)|HARD|1|1|
 |[#125 验证回文串](https://leetcode.cn/problems/valid-palindrome)|[125.验证回文串.go](lc/125.验证回文串.go)|EASY|1|1|
 |[#141 环形链表](https://leetcode.cn/problems/linked-list-cycle)|[141.环形链表.go](lc/141.环形链表.go)|EASY|5|1|
 |[#160 相交链表](https://leetcode.cn/problems/intersection-of-two-linked-lists)|[160.相交链表.go](lc/160.相交链表.go)|EASY|2|1|
