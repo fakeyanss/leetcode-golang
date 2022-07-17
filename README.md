@@ -18,6 +18,7 @@ func main() {
 |[#20 有效的括号](https://leetcode.cn/problems/valid-parentheses)|[20.有效的括号.go](lc/20.有效的括号.go)|EASY|2|1|
 |[#21 合并两个有序链表](https://leetcode.cn/problems/merge-two-sorted-lists)|[21.合并两个有序链表.go](lc/21.合并两个有序链表.go)|EASY|4|1|
 |[#26 删除有序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array)|[26.删除有序数组中的重复项.go](lc/26.删除有序数组中的重复项.go)|EASY|4|1|
+|[#27 移除元素](https://leetcode.cn/problems/remove-element)|[27.移除元素.go](lc/27.移除元素.go)|EASY|1|1|
 |[#28 实现 strStr()](https://leetcode.cn/problems/implement-strstr)|[28.实现-str-str.go](lc/28.实现-str-str.go)|EASY|3|1|
 |[#53 最大子数组和](https://leetcode.cn/problems/maximum-subarray)|[53.最大子数组和.go](lc/53.最大子数组和.go)|EASY|2|1|
 |[#83 删除排序链表中的重复元素](https://leetcode.cn/problems/remove-duplicates-from-sorted-list)|[83.删除排序链表中的重复元素.go](lc/83.删除排序链表中的重复元素.go)|EASY|3|1|
