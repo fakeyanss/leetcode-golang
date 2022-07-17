@@ -31,6 +31,7 @@ func main() {
 |[#125 验证回文串](https://leetcode.cn/problems/valid-palindrome)|[125.验证回文串.go](lc/125.验证回文串.go)|EASY|1|1|
 |[#141 环形链表](https://leetcode.cn/problems/linked-list-cycle)|[141.环形链表.go](lc/141.环形链表.go)|EASY|5|1|
 |[#160 相交链表](https://leetcode.cn/problems/intersection-of-two-linked-lists)|[160.相交链表.go](lc/160.相交链表.go)|EASY|2|1|
+|[#167 两数之和 II - 输入有序数组](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted)|[167.两数之和-ii-输入有序数组.go](lc/167.两数之和-ii-输入有序数组.go)|MEDIUM|2|1|
 |[#191 位1的个数](https://leetcode.cn/problems/number-of-1-bits)|[191.位-1-的个数.go](lc/191.位-1-的个数.go)|EASY|1|1|
 |[#206 反转链表](https://leetcode.cn/problems/reverse-linked-list)|[206.反转链表.go](lc/206.反转链表.go)|EASY|3|**2**|
 |[#232 用栈实现队列](https://leetcode.cn/problems/implement-queue-using-stacks)|[232.用栈实现队列.go](lc/232.用栈实现队列.go)|EASY|1|1|
