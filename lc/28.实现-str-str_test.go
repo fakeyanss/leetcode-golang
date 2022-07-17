@@ -22,6 +22,11 @@ func Test_strStr(t *testing.T) {
 			args{"aaaaa", "bba"},
 			-1,
 		},
+		{
+			"case3",
+			args{"aaaaa", ""},
+			0,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

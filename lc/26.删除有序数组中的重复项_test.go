@@ -13,6 +13,7 @@ func Test_removeDuplicates(t *testing.T) {
 	}{
 		{"case1", args{[]int{1, 1, 2}}, 2},
 		{"case2", args{[]int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}}, 5},
+		{"case3", args{[]int{1}}, 1},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

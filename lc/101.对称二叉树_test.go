@@ -31,7 +31,7 @@ func Test_isSymmetric(t *testing.T) {
 			true,
 		},
 		{
-			"case1",
+			"case2",
 			args{
 				&TreeNode{
 					1,
@@ -42,6 +42,25 @@ func Test_isSymmetric(t *testing.T) {
 					},
 					&TreeNode{
 						2,
+						nil,
+						&TreeNode{3, nil, nil},
+					},
+				},
+			},
+			false,
+		},
+		{
+			"case3",
+			args{
+				&TreeNode{
+					1,
+					&TreeNode{
+						2,
+						nil,
+						&TreeNode{3, nil, nil},
+					},
+					&TreeNode{
+						3,
 						nil,
 						&TreeNode{3, nil, nil},
 					},

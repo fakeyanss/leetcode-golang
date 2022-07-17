@@ -12,10 +12,11 @@ func Test_isValid(t *testing.T) {
 		want bool
 	}{
 		{"case1", args{"()"}, true},
-		{"case1", args{"()[]{}"}, true},
-		{"case1", args{"(]"}, false},
-		{"case1", args{"([)]"}, false},
-		{"case1", args{"{[]}"}, true},
+		{"case2", args{"()[]{}"}, true},
+		{"case3", args{"(]"}, false},
+		{"case4", args{"([)]"}, false},
+		{"case5", args{"{[]}"}, true},
+		{"case6", args{"{"}, false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

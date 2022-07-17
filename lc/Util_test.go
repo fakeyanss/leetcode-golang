@@ -17,6 +17,8 @@ func TestArrayEqual(t *testing.T) {
 	}{
 		{"case1", args{[]int{1}, []int{2}}, false},
 		{"case2", args{[]int{1}, []int{1}}, true},
+		{"case3", args{nil, []int{1}}, false},
+		{"case4", args{[]int{1, 2}, []int{1}}, false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

@@ -22,6 +22,7 @@ func Test_hasCycle(t *testing.T) {
 		{"case1", args{h1}, true},
 		{"case2", args{h2}, true},
 		{"case3", args{h3}, false},
+		{"case4", args{nil}, false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

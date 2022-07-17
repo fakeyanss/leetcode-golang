@@ -29,6 +29,9 @@ func Test_lowestCommonAncestor(t *testing.T) {
 	q1.Left = NewTreeNode(7, nil, nil)
 	q1.Right = NewTreeNode(9, nil, nil)
 
+	p3 := root.Right
+	q3 := root.Right.Right
+
 	tests := []struct {
 		name string
 		args args
@@ -36,6 +39,8 @@ func Test_lowestCommonAncestor(t *testing.T) {
 	}{
 		{"case1", args{root, p1, q1}, w1},
 		{"case2", args{root, p2, q2}, w2},
+		{"case3", args{root, p3, q3}, p3},
+		{"case4", args{nil, p3, q3}, nil},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
