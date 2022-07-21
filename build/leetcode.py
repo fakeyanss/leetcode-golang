@@ -159,6 +159,9 @@ def generate_markdown_text(response_data, session):
         ele.split('#')[1].split(' ')[0]))
     for ele in table_body:
         markdown_text += ele + '\n'
+    markdown_text += "\n"
+    markdown_text += "![Visualization of this repo](./diagram.svg)"
+    markdown_text += "\n"
 
     return markdown_text
 
