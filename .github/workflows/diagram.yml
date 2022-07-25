@@ -2,8 +2,8 @@ name: Create diagram
 on:
   workflow_dispatch: {}
   push:
-    branches:
-      - master
+  schedule:
+    - cron: '2 21 * * *'
 jobs:
   get_data:
     runs-on: ubuntu-latest
