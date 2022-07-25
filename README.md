@@ -34,6 +34,7 @@ func main() {
 |[#124 二叉树中的最大路径和](https://leetcode.cn/problems/binary-tree-maximum-path-sum)|[124.二叉树中的最大路径和.go](lc/124.二叉树中的最大路径和.go)|HARD|1|1|
 |[#125 验证回文串](https://leetcode.cn/problems/valid-palindrome)|[125.验证回文串.go](lc/125.验证回文串.go)|EASY|1|1|
 |[#141 环形链表](https://leetcode.cn/problems/linked-list-cycle)|[141.环形链表.go](lc/141.环形链表.go)|EASY|5|1|
+|[#142 环形链表 II](https://leetcode.cn/problems/linked-list-cycle-ii)|[142.环形链表-ii.go](lc/142.环形链表-ii.go)|MEDIUM|1|1|
 |[#160 相交链表](https://leetcode.cn/problems/intersection-of-two-linked-lists)|[160.相交链表.go](lc/160.相交链表.go)|EASY|2|1|
 |[#167 两数之和 II - 输入有序数组](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted)|[167.两数之和-ii-输入有序数组.go](lc/167.两数之和-ii-输入有序数组.go)|MEDIUM|2|1|
 |[#191 位1的个数](https://leetcode.cn/problems/number-of-1-bits)|[191.位-1-的个数.go](lc/191.位-1-的个数.go)|EASY|1|1|
@@ -47,5 +48,6 @@ func main() {
 |[#344 反转字符串](https://leetcode.cn/problems/reverse-string)|[344.反转字符串.go](lc/344.反转字符串.go)|EASY|1|1|
 |[#386 字典序排数](https://leetcode.cn/problems/lexicographical-numbers)||MEDIUM|1|1|
 |[#387 字符串中的第一个唯一字符](https://leetcode.cn/problems/first-unique-character-in-a-string)|[387.字符串中的第一个唯一字符.go](lc/387.字符串中的第一个唯一字符.go)|EASY|1|1|
+|[#876 链表的中间结点](https://leetcode.cn/problems/middle-of-the-linked-list)|[876.链表的中间结点.go](lc/876.链表的中间结点.go)|EASY|2|1|
 
 ![Visualization of this repo](./diagram.svg)
