@@ -3,8 +3,6 @@
  */
 package lc
 
-import "fmt"
-
 func ArrayEqual(a, b []int) bool {
 	if (a == nil) != (b == nil) {
 		return false
@@ -22,11 +20,12 @@ func ArrayEqual(a, b []int) bool {
 	return true
 }
 
-func PrintListNode(l *ListNode) {
+func PrintListNode(l *ListNode) []int {
 	arr := []int{}
 	for l != nil {
 		arr = append(arr, l.Val)
 		l = l.Next
 	}
-	fmt.Printf("print all ListNode Val=%d\n", arr)
+	// fmt.Printf("print all ListNode Val=%d\n", arr)
+	return arr
 }
