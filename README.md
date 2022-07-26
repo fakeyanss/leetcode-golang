@@ -20,6 +20,7 @@ func main() {
 |[#20 有效的括号](https://leetcode.cn/problems/valid-parentheses)|[20.有效的括号.go](lc/20.有效的括号.go)|EASY|2|1|
 |[#21 合并两个有序链表](https://leetcode.cn/problems/merge-two-sorted-lists)|[21.合并两个有序链表.go](lc/21.合并两个有序链表.go)|EASY|4|1|
 |[#23 合并K个升序链表](https://leetcode.cn/problems/merge-k-sorted-lists)|[23.合并k个升序链表.go](lc/23.合并k个升序链表.go)|HARD|2|1|
+|[#25 K 个一组翻转链表](https://leetcode.cn/problems/reverse-nodes-in-k-group)|[25.k-个一组翻转链表.go](lc/25.k-个一组翻转链表.go)|HARD|1|1|
 |[#26 删除有序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array)|[26.删除有序数组中的重复项.go](lc/26.删除有序数组中的重复项.go)|EASY|4|1|
 |[#27 移除元素](https://leetcode.cn/problems/remove-element)|[27.移除元素.go](lc/27.移除元素.go)|EASY|1|1|
 |[#28 实现 strStr()](https://leetcode.cn/problems/implement-strstr)|[28.实现-str-str.go](lc/28.实现-str-str.go)|EASY|3|1|
@@ -41,11 +42,13 @@ func main() {
 |[#191 位1的个数](https://leetcode.cn/problems/number-of-1-bits)|[191.位-1-的个数.go](lc/191.位-1-的个数.go)|EASY|1|1|
 |[#206 反转链表](https://leetcode.cn/problems/reverse-linked-list)|[206.反转链表.go](lc/206.反转链表.go)|EASY|3|**2**|
 |[#232 用栈实现队列](https://leetcode.cn/problems/implement-queue-using-stacks)|[232.用栈实现队列.go](lc/232.用栈实现队列.go)|EASY|1|1|
+|[#234 回文链表](https://leetcode.cn/problems/palindrome-linked-list)|[234.回文链表.go](lc/234.回文链表.go)|EASY|2|1|
 |[#235 二叉搜索树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree)|[235.二叉搜索树的最近公共祖先.go](lc/235.二叉搜索树的最近公共祖先.go)|EASY|4|1|
 |[#237 删除链表中的节点](https://leetcode.cn/problems/delete-node-in-a-linked-list)|[237.删除链表中的节点.go](lc/237.删除链表中的节点.go)|EASY|2|1|
 |[#258 各位相加](https://leetcode.cn/problems/add-digits)|[258.各位相加.go](lc/258.各位相加.go)|EASY|2|1|
 |[#268 丢失的数字](https://leetcode.cn/problems/missing-number)|[268.丢失的数字.go](lc/268.丢失的数字.go)|EASY|2|1|
 |[#283 移动零](https://leetcode.cn/problems/move-zeroes)|[283.移动零.go](lc/283.移动零.go)|EASY|1|1|
+|[#303 区域和检索 - 数组不可变](https://leetcode.cn/problems/range-sum-query-immutable)|[303.区域和检索-数组不可变.go](lc/303.区域和检索-数组不可变.go)|EASY|2|1|
 |[#344 反转字符串](https://leetcode.cn/problems/reverse-string)|[344.反转字符串.go](lc/344.反转字符串.go)|EASY|1|1|
 |[#386 字典序排数](https://leetcode.cn/problems/lexicographical-numbers)||MEDIUM|1|1|
 |[#387 字符串中的第一个唯一字符](https://leetcode.cn/problems/first-unique-character-in-a-string)|[387.字符串中的第一个唯一字符.go](lc/387.字符串中的第一个唯一字符.go)|EASY|1|1|
