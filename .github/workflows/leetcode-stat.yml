@@ -1,7 +1,6 @@
 name: 'GitHub LeetCode Bot'
 
 on:
-  push:
   schedule:
     - cron: '2 20 * * *'
 
