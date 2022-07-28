@@ -49,6 +49,7 @@ func main() {
 |[#268 丢失的数字](https://leetcode.cn/problems/missing-number)|[268.丢失的数字.go](lc/268.丢失的数字.go)|EASY|2|1|
 |[#283 移动零](https://leetcode.cn/problems/move-zeroes)|[283.移动零.go](lc/283.移动零.go)|EASY|1|1|
 |[#303 区域和检索 - 数组不可变](https://leetcode.cn/problems/range-sum-query-immutable)|[303.区域和检索-数组不可变.go](lc/303.区域和检索-数组不可变.go)|EASY|2|1|
+|[#304 二维区域和检索 - 矩阵不可变](https://leetcode.cn/problems/range-sum-query-2d-immutable)|[304.二维区域和检索-矩阵不可变.go](lc/304.二维区域和检索-矩阵不可变.go)|MEDIUM|1|1|
 |[#344 反转字符串](https://leetcode.cn/problems/reverse-string)|[344.反转字符串.go](lc/344.反转字符串.go)|EASY|1|1|
 |[#386 字典序排数](https://leetcode.cn/problems/lexicographical-numbers)||MEDIUM|1|1|
 |[#387 字符串中的第一个唯一字符](https://leetcode.cn/problems/first-unique-character-in-a-string)|[387.字符串中的第一个唯一字符.go](lc/387.字符串中的第一个唯一字符.go)|EASY|1|1|
