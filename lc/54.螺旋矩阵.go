@@ -1,0 +1,91 @@
+/*
+ * @lc app=leetcode.cn id=54 lang=golang
+ *
+ * [54] 螺旋矩阵
+ *
+ * https://leetcode.cn/problems/spiral-matrix/description/
+ *
+ * algorithms
+ * Medium (49.01%)
+ * Likes:    1165
+ * Dislikes: 0
+ * Total Accepted:    292.3K
+ * Total Submissions: 596.2K
+ * Testcase Example:  '[[1,2,3],[4,5,6],[7,8,9]]'
+ *
+ * 给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素。
+ *
+ *
+ *
+ * 示例 1：
+ *
+ *
+ * 输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
+ * 输出：[1,2,3,6,9,8,7,4,5]
+ *
+ *
+ * 示例 2：
+ *
+ *
+ * 输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+ * 输出：[1,2,3,4,8,12,11,10,9,5,6,7]
+ *
+ *
+ *
+ *
+ * 提示：
+ *
+ *
+ * m == matrix.length
+ * n == matrix[i].length
+ * 1
+ * -100
+ *
+ *
+ */
+package lc
+
+// @lc code=start
+func spiralOrder(matrix [][]int) []int {
+	res := make([]int, 0)
+	m, n := len(matrix), len(matrix[0])
+	// 上下左右4个边界
+	top, bottom, left, right := 0, m-1, 0, n-1
+	for len(res) < m*n {
+		if top <= bottom {
+			// 上边界从左到右
+			for i := left; i <= right; i++ {
+				res = append(res, matrix[top][i])
+			}
+			// 上边界下移
+			top++
+		}
+		if left <= right {
+			// 右边界从上到下遍历
+			for i := top; i <= bottom; i++ {
+				res = append(res, matrix[i][right])
+			}
+			// 右边界左移
+			right--
+		}
+		if top <= bottom {
+			// 下边界从右到左遍历
+			for i := right; i >= left; i-- {
+				res = append(res, matrix[bottom][i])
+			}
+			// 下边界上移
+			bottom--
+		}
+		if left <= right {
+			// 左边界从下到上遍历
+			for i := bottom; i >= top; i-- {
+				res = append(res, matrix[i][left])
+			}
+			// 左边界右移
+			left++
+		}
+	}
+	return res
+}
+
+// @lc code=end
