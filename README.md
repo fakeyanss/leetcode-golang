@@ -13,6 +13,7 @@ func main() {
 | 题目 | 解法 | 题目难度 | 提交次数| 重刷次数 |
 | ---- | ---- | ---- | ---- | ---- |
 |[#1 两数之和](https://leetcode.cn/problems/two-sum)|[1.两数之和.go](lc/1.两数之和.go)|EASY|2|**2**|
+|[#3 无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters)|[3.无重复字符的最长子串.go](lc/3.无重复字符的最长子串.go)|MEDIUM|1|1|
 |[#5 最长回文子串](https://leetcode.cn/problems/longest-palindromic-substring)|[5.最长回文子串.go](lc/5.最长回文子串.go)|MEDIUM|1|1|
 |[#7 整数反转](https://leetcode.cn/problems/reverse-integer)||MEDIUM|3|1|
 |[#13 罗马数字转整数](https://leetcode.cn/problems/roman-to-integer)|[13.罗马数字转整数.go](lc/13.罗马数字转整数.go)|EASY|1|1|
@@ -28,6 +29,7 @@ func main() {
 |[#53 最大子数组和](https://leetcode.cn/problems/maximum-subarray)|[53.最大子数组和.go](lc/53.最大子数组和.go)|MEDIUM|2|1|
 |[#54 螺旋矩阵](https://leetcode.cn/problems/spiral-matrix)|[54.螺旋矩阵.go](lc/54.螺旋矩阵.go)|MEDIUM|3|1|
 |[#59 螺旋矩阵 II](https://leetcode.cn/problems/spiral-matrix-ii)|[59.螺旋矩阵-ii.go](lc/59.螺旋矩阵-ii.go)|MEDIUM|5|1|
+|[#76 最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring)|[76.最小覆盖子串.go](lc/76.最小覆盖子串.go)|HARD|2|1|
 |[#83 删除排序链表中的重复元素](https://leetcode.cn/problems/remove-duplicates-from-sorted-list)|[83.删除排序链表中的重复元素.go](lc/83.删除排序链表中的重复元素.go)|EASY|3|1|
 |[#86 分隔链表](https://leetcode.cn/problems/partition-list)|[86.分隔链表.go](lc/86.分隔链表.go)|MEDIUM|1|1|
 |[#88 合并两个有序数组](https://leetcode.cn/problems/merge-sorted-array)|[88.合并两个有序数组.go](lc/88.合并两个有序数组.go)|EASY|3|1|
@@ -57,6 +59,8 @@ func main() {
 |[#344 反转字符串](https://leetcode.cn/problems/reverse-string)|[344.反转字符串.go](lc/344.反转字符串.go)|EASY|1|1|
 |[#386 字典序排数](https://leetcode.cn/problems/lexicographical-numbers)||MEDIUM|1|1|
 |[#387 字符串中的第一个唯一字符](https://leetcode.cn/problems/first-unique-character-in-a-string)|[387.字符串中的第一个唯一字符.go](lc/387.字符串中的第一个唯一字符.go)|EASY|1|1|
+|[#438 找到字符串中所有字母异位词](https://leetcode.cn/problems/find-all-anagrams-in-a-string)|[438.找到字符串中所有字母异位词.go](lc/438.找到字符串中所有字母异位词.go)|MEDIUM|2|1|
+|[#567 字符串的排列](https://leetcode.cn/problems/permutation-in-string)|[567.字符串的排列.go](lc/567.字符串的排列.go)|MEDIUM|3|1|
 |[#876 链表的中间结点](https://leetcode.cn/problems/middle-of-the-linked-list)|[876.链表的中间结点.go](lc/876.链表的中间结点.go)|EASY|2|1|
 |[#1094 拼车](https://leetcode.cn/problems/car-pooling)|[1094.拼车.go](lc/1094.拼车.go)|MEDIUM|5|1|
 |[#1109 航班预订统计](https://leetcode.cn/problems/corporate-flight-bookings)|[1109.航班预订统计.go](lc/1109.航班预订统计.go)|MEDIUM|1|1|
