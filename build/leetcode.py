@@ -103,6 +103,8 @@ def generate_markdown_text(response_data, session):
     markdown_text += "}\n"
     markdown_text += "```\n"
     markdown_text += "\n"
+    markdown_text += "# 提交总览"
+    markdown_text += "\n"
     markdown_text += "| 题目 | 解法 | 题目难度 | 提交次数| 重刷次数 |\n| ---- | ---- | ---- | ---- | ---- |\n"
     table_body = []
 
@@ -160,8 +162,13 @@ def generate_markdown_text(response_data, session):
     for ele in table_body:
         markdown_text += ele + '\n'
     markdown_text += "\n"
+    markdown_text += "# 文件结构"
+    markdown_text += "\n"
     markdown_text += "![Visualization of this repo](./diagram.svg)"
     markdown_text += "\n"
+
+    with open('Algo.md', 'r') as f:
+        markdown_text += f.read()
 
     return markdown_text
 
