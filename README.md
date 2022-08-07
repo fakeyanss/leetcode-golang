@@ -54,7 +54,7 @@ func main() {
 |[#235 二叉搜索树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree)|[235.二叉搜索树的最近公共祖先.go](lc/235.二叉搜索树的最近公共祖先.go)|EASY|4|1|
 |[#237 删除链表中的节点](https://leetcode.cn/problems/delete-node-in-a-linked-list)|[237.删除链表中的节点.go](lc/237.删除链表中的节点.go)|EASY|2|1|
 |[#258 各位相加](https://leetcode.cn/problems/add-digits)|[258.各位相加.go](lc/258.各位相加.go)|EASY|2|1|
-|[#268 丢失的数字](https://leetcode.cn/problems/missing-number)|[268.丢失的数字.go](lc/268.丢失的数字.go)|EASY|2|**2**|
+|[#268 丢失的数字](https://leetcode.cn/problems/missing-number)|[268.丢失的数字.go](lc/268.丢失的数字.go)|EASY|2|1|
 |[#283 移动零](https://leetcode.cn/problems/move-zeroes)|[283.移动零.go](lc/283.移动零.go)|EASY|1|1|
 |[#303 区域和检索 - 数组不可变](https://leetcode.cn/problems/range-sum-query-immutable)|[303.区域和检索-数组不可变.go](lc/303.区域和检索-数组不可变.go)|EASY|2|1|
 |[#304 二维区域和检索 - 矩阵不可变](https://leetcode.cn/problems/range-sum-query-2d-immutable)|[304.二维区域和检索-矩阵不可变.go](lc/304.二维区域和检索-矩阵不可变.go)|MEDIUM|1|1|
