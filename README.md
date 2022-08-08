@@ -26,6 +26,7 @@ func main() {
 |[#26 删除有序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array)|[26.删除有序数组中的重复项.go](lc/26.删除有序数组中的重复项.go)|EASY|4|1|
 |[#27 移除元素](https://leetcode.cn/problems/remove-element)|[27.移除元素.go](lc/27.移除元素.go)|EASY|1|1|
 |[#28 实现 strStr()](https://leetcode.cn/problems/implement-strstr)|[28.实现-str-str.go](lc/28.实现-str-str.go)|EASY|3|1|
+|[#34 在排序数组中查找元素的第一个和最后一个位置](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array)|[34.在排序数组中查找元素的第一个和最后一个位置.go](lc/34.在排序数组中查找元素的第一个和最后一个位置.go)|MEDIUM|2|1|
 |[#48 旋转图像](https://leetcode.cn/problems/rotate-image)|[48.旋转图像.go](lc/48.旋转图像.go)|MEDIUM|1|1|
 |[#53 最大子数组和](https://leetcode.cn/problems/maximum-subarray)|[53.最大子数组和.go](lc/53.最大子数组和.go)|MEDIUM|2|1|
 |[#54 螺旋矩阵](https://leetcode.cn/problems/spiral-matrix)|[54.螺旋矩阵.go](lc/54.螺旋矩阵.go)|MEDIUM|3|1|
@@ -62,7 +63,9 @@ func main() {
 |[#386 字典序排数](https://leetcode.cn/problems/lexicographical-numbers)||MEDIUM|1|1|
 |[#387 字符串中的第一个唯一字符](https://leetcode.cn/problems/first-unique-character-in-a-string)|[387.字符串中的第一个唯一字符.go](lc/387.字符串中的第一个唯一字符.go)|EASY|1|1|
 |[#438 找到字符串中所有字母异位词](https://leetcode.cn/problems/find-all-anagrams-in-a-string)|[438.找到字符串中所有字母异位词.go](lc/438.找到字符串中所有字母异位词.go)|MEDIUM|2|1|
+|[#528 按权重随机选择](https://leetcode.cn/problems/random-pick-with-weight)|[528.按权重随机选择.go](lc/528.按权重随机选择.go)|MEDIUM|2|1|
 |[#567 字符串的排列](https://leetcode.cn/problems/permutation-in-string)|[567.字符串的排列.go](lc/567.字符串的排列.go)|MEDIUM|3|1|
+|[#704 二分查找](https://leetcode.cn/problems/binary-search)|[704.二分查找.go](lc/704.二分查找.go)|EASY|1|1|
 |[#876 链表的中间结点](https://leetcode.cn/problems/middle-of-the-linked-list)|[876.链表的中间结点.go](lc/876.链表的中间结点.go)|EASY|2|1|
 |[#1094 拼车](https://leetcode.cn/problems/car-pooling)|[1094.拼车.go](lc/1094.拼车.go)|MEDIUM|5|1|
 |[#1109 航班预订统计](https://leetcode.cn/problems/corporate-flight-bookings)|[1109.航班预订统计.go](lc/1109.航班预订统计.go)|MEDIUM|1|1|
