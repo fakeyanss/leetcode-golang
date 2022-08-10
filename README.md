@@ -66,6 +66,7 @@ func main() {
 |[#528 按权重随机选择](https://leetcode.cn/problems/random-pick-with-weight)|[528.按权重随机选择.go](lc/528.按权重随机选择.go)|MEDIUM|2|1|
 |[#567 字符串的排列](https://leetcode.cn/problems/permutation-in-string)|[567.字符串的排列.go](lc/567.字符串的排列.go)|MEDIUM|3|1|
 |[#704 二分查找](https://leetcode.cn/problems/binary-search)|[704.二分查找.go](lc/704.二分查找.go)|EASY|1|1|
+|[#870 优势洗牌](https://leetcode.cn/problems/advantage-shuffle)|[870.优势洗牌.go](lc/870.优势洗牌.go)|MEDIUM|6|1|
 |[#876 链表的中间结点](https://leetcode.cn/problems/middle-of-the-linked-list)|[876.链表的中间结点.go](lc/876.链表的中间结点.go)|EASY|2|1|
 |[#1094 拼车](https://leetcode.cn/problems/car-pooling)|[1094.拼车.go](lc/1094.拼车.go)|MEDIUM|5|1|
 |[#1109 航班预订统计](https://leetcode.cn/problems/corporate-flight-bookings)|[1109.航班预订统计.go](lc/1109.航班预订统计.go)|MEDIUM|1|1|
