@@ -59,6 +59,7 @@ func main() {
 |[#283 移动零](https://leetcode.cn/problems/move-zeroes)|[283.移动零.go](lc/283.移动零.go)|EASY|1|1|
 |[#303 区域和检索 - 数组不可变](https://leetcode.cn/problems/range-sum-query-immutable)|[303.区域和检索-数组不可变.go](lc/303.区域和检索-数组不可变.go)|EASY|2|1|
 |[#304 二维区域和检索 - 矩阵不可变](https://leetcode.cn/problems/range-sum-query-2d-immutable)|[304.二维区域和检索-矩阵不可变.go](lc/304.二维区域和检索-矩阵不可变.go)|MEDIUM|1|1|
+|[#316 去除重复字母](https://leetcode.cn/problems/remove-duplicate-letters)|[316.去除重复字母.go](lc/316.去除重复字母.go)|MEDIUM|4|1|
 |[#344 反转字符串](https://leetcode.cn/problems/reverse-string)|[344.反转字符串.go](lc/344.反转字符串.go)|EASY|1|1|
 |[#380 O(1) 时间插入、删除和获取随机元素](https://leetcode.cn/problems/insert-delete-getrandom-o1)|[380.o-1-时间插入、删除和获取随机元素.go](lc/380.o-1-时间插入、删除和获取随机元素.go)|MEDIUM|2|1|
 |[#386 字典序排数](https://leetcode.cn/problems/lexicographical-numbers)||MEDIUM|1|1|
@@ -67,8 +68,10 @@ func main() {
 |[#528 按权重随机选择](https://leetcode.cn/problems/random-pick-with-weight)|[528.按权重随机选择.go](lc/528.按权重随机选择.go)|MEDIUM|2|1|
 |[#567 字符串的排列](https://leetcode.cn/problems/permutation-in-string)|[567.字符串的排列.go](lc/567.字符串的排列.go)|MEDIUM|3|1|
 |[#704 二分查找](https://leetcode.cn/problems/binary-search)|[704.二分查找.go](lc/704.二分查找.go)|EASY|1|1|
+|[#710 黑名单中的随机数](https://leetcode.cn/problems/random-pick-with-blacklist)|[710.黑名单中的随机数.go](lc/710.黑名单中的随机数.go)|HARD|2|1|
 |[#870 优势洗牌](https://leetcode.cn/problems/advantage-shuffle)|[870.优势洗牌.go](lc/870.优势洗牌.go)|MEDIUM|6|1|
 |[#876 链表的中间结点](https://leetcode.cn/problems/middle-of-the-linked-list)|[876.链表的中间结点.go](lc/876.链表的中间结点.go)|EASY|2|1|
+|[#1081 不同字符的最小子序列](https://leetcode.cn/problems/smallest-subsequence-of-distinct-characters)|[1081.不同字符的最小子序列.go](lc/1081.不同字符的最小子序列.go)|MEDIUM|4|1|
 |[#1094 拼车](https://leetcode.cn/problems/car-pooling)|[1094.拼车.go](lc/1094.拼车.go)|MEDIUM|5|1|
 |[#1109 航班预订统计](https://leetcode.cn/problems/corporate-flight-bookings)|[1109.航班预订统计.go](lc/1109.航班预订统计.go)|MEDIUM|1|1|
 
