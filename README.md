@@ -38,6 +38,7 @@ func main() {
 |[#92 反转链表 II](https://leetcode.cn/problems/reverse-linked-list-ii)|[92.反转链表-ii.go](lc/92.反转链表-ii.go)|MEDIUM|1|1|
 |[#94 二叉树的中序遍历](https://leetcode.cn/problems/binary-tree-inorder-traversal)|[94.二叉树的中序遍历.go](lc/94.二叉树的中序遍历.go)|EASY|3|1|
 |[#101 对称二叉树](https://leetcode.cn/problems/symmetric-tree)|[101.对称二叉树.go](lc/101.对称二叉树.go)|EASY|1|1|
+|[#104 二叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-binary-tree)|[104.二叉树的最大深度.go](lc/104.二叉树的最大深度.go)|EASY|1|1|
 |[#112 路径总和](https://leetcode.cn/problems/path-sum)|[112.路径总和.go](lc/112.路径总和.go)|EASY|1|1|
 |[#121 买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock)|[121.买卖股票的最佳时机.go](lc/121.买卖股票的最佳时机.go)|EASY|2|1|
 |[#124 二叉树中的最大路径和](https://leetcode.cn/problems/binary-tree-maximum-path-sum)|[124.二叉树中的最大路径和.go](lc/124.二叉树中的最大路径和.go)|HARD|1|1|
