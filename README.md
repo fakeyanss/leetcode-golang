@@ -45,6 +45,7 @@ func main() {
 |[#125 验证回文串](https://leetcode.cn/problems/valid-palindrome)|[125.验证回文串.go](lc/125.验证回文串.go)|EASY|1|1|
 |[#141 环形链表](https://leetcode.cn/problems/linked-list-cycle)|[141.环形链表.go](lc/141.环形链表.go)|EASY|5|1|
 |[#142 环形链表 II](https://leetcode.cn/problems/linked-list-cycle-ii)|[142.环形链表-ii.go](lc/142.环形链表-ii.go)|MEDIUM|1|1|
+|[#144 二叉树的前序遍历](https://leetcode.cn/problems/binary-tree-preorder-traversal)|[144.二叉树的前序遍历.go](lc/144.二叉树的前序遍历.go)|EASY|1|1|
 |[#151 颠倒字符串中的单词](https://leetcode.cn/problems/reverse-words-in-a-string)|[151.颠倒字符串中的单词.go](lc/151.颠倒字符串中的单词.go)|MEDIUM|2|1|
 |[#160 相交链表](https://leetcode.cn/problems/intersection-of-two-linked-lists)|[160.相交链表.go](lc/160.相交链表.go)|EASY|2|1|
 |[#167 两数之和 II - 输入有序数组](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted)|[167.两数之和-ii-输入有序数组.go](lc/167.两数之和-ii-输入有序数组.go)|MEDIUM|2|1|
@@ -67,7 +68,9 @@ func main() {
 |[#387 字符串中的第一个唯一字符](https://leetcode.cn/problems/first-unique-character-in-a-string)|[387.字符串中的第一个唯一字符.go](lc/387.字符串中的第一个唯一字符.go)|EASY|1|1|
 |[#438 找到字符串中所有字母异位词](https://leetcode.cn/problems/find-all-anagrams-in-a-string)|[438.找到字符串中所有字母异位词.go](lc/438.找到字符串中所有字母异位词.go)|MEDIUM|2|1|
 |[#528 按权重随机选择](https://leetcode.cn/problems/random-pick-with-weight)|[528.按权重随机选择.go](lc/528.按权重随机选择.go)|MEDIUM|2|1|
+|[#543 二叉树的直径](https://leetcode.cn/problems/diameter-of-binary-tree)|[543.二叉树的直径.go](lc/543.二叉树的直径.go)|EASY|2|1|
 |[#567 字符串的排列](https://leetcode.cn/problems/permutation-in-string)|[567.字符串的排列.go](lc/567.字符串的排列.go)|MEDIUM|3|1|
+|[#669 修剪二叉搜索树](https://leetcode.cn/problems/trim-a-binary-search-tree)|[669.修剪二叉搜索树.go](lc/669.修剪二叉搜索树.go)|MEDIUM|1|1|
 |[#704 二分查找](https://leetcode.cn/problems/binary-search)|[704.二分查找.go](lc/704.二分查找.go)|EASY|1|1|
 |[#710 黑名单中的随机数](https://leetcode.cn/problems/random-pick-with-blacklist)|[710.黑名单中的随机数.go](lc/710.黑名单中的随机数.go)|HARD|2|1|
 |[#870 优势洗牌](https://leetcode.cn/problems/advantage-shuffle)|[870.优势洗牌.go](lc/870.优势洗牌.go)|MEDIUM|6|1|
