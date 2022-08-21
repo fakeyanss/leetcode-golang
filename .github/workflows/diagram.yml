@@ -1,7 +1,9 @@
 name: Create diagram
 on:
-  schedule:
-    - cron: '2 21 * * *'
+  workflow_dispatch:
+  # schedule:
+    # - cron: '2 21 * * *'
+
 jobs:
   get_data:
     runs-on: ubuntu-latest
