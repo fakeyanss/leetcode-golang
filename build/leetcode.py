@@ -105,7 +105,7 @@ def generate_markdown_text(response_data, session):
     markdown_text += "\n"
     markdown_text += "# 提交总览"
     markdown_text += "\n"
-    markdown_text += "| 编号 | 题目 | 解法 | 题目难度 | 提交次数| 重刷次数 |\n| ---- | ---- | ---- | ---- | ---- |\n"
+    markdown_text += "| 编号 | 题目 | 解法 | 题目难度 | 提交次数| 重刷次数 |\n| --- | --- | --- | --- | --- | --- |\n"
     table_body = []
 
     response_data = response_data['data']['userProfileQuestions']['questions']
@@ -155,13 +155,13 @@ def generate_markdown_text(response_data, session):
             count = "**" + str(count) + "**"
         else:
             count = str(count)
-        table_body.append("|%s|[%s](%s)|%s|%s|%s|%s|" % (
-            index+1, translatedTitle, url, localText, difficulty, numSubmitted, count))
+        table_body.append("|[%s](%s)|%s|%s|%s|%s|" % (
+            translatedTitle, url, localText, difficulty, numSubmitted, count))
 
     table_body = sorted(table_body, key=lambda ele: int(
         ele.split('#')[1].split(' ')[0]))
-    for ele in table_body:
-        markdown_text += ele + '\n'
+    for idx, ele in enumerate(table_body):
+        markdown_text += "|" + str(idx+1) + ele + '\n'
     markdown_text += "\n"
     markdown_text += "# 文件结构"
     markdown_text += "\n"
