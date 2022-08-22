@@ -24,3 +24,13 @@ type TreeNode struct {
 func NewTreeNode(val int, l *TreeNode, r *TreeNode) *TreeNode {
 	return &TreeNode{val, l, r}
 }
+
+/**
+ * Definition for a Node.
+ */
+type Node struct {
+	Val   int
+	Left  *Node
+	Right *Node
+	Next  *Node
+}
