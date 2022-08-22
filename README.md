@@ -40,6 +40,8 @@ func main() {
 |[#101 对称二叉树](https://leetcode.cn/problems/symmetric-tree)|[101.对称二叉树.go](lc/101.对称二叉树.go)|EASY|1|1|
 |[#104 二叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-binary-tree)|[104.二叉树的最大深度.go](lc/104.二叉树的最大深度.go)|EASY|1|1|
 |[#112 路径总和](https://leetcode.cn/problems/path-sum)|[112.路径总和.go](lc/112.路径总和.go)|EASY|1|1|
+|[#114 二叉树展开为链表](https://leetcode.cn/problems/flatten-binary-tree-to-linked-list)|[114.二叉树展开为链表.go](lc/114.二叉树展开为链表.go)|MEDIUM|3|1|
+|[#116 填充每个节点的下一个右侧节点指针](https://leetcode.cn/problems/populating-next-right-pointers-in-each-node)|[116.填充每个节点的下一个右侧节点指针.go](lc/116.填充每个节点的下一个右侧节点指针.go)|MEDIUM|1|1|
 |[#121 买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock)|[121.买卖股票的最佳时机.go](lc/121.买卖股票的最佳时机.go)|EASY|2|1|
 |[#124 二叉树中的最大路径和](https://leetcode.cn/problems/binary-tree-maximum-path-sum)|[124.二叉树中的最大路径和.go](lc/124.二叉树中的最大路径和.go)|HARD|1|1|
 |[#125 验证回文串](https://leetcode.cn/problems/valid-palindrome)|[125.验证回文串.go](lc/125.验证回文串.go)|EASY|1|1|
@@ -52,6 +54,7 @@ func main() {
 |[#187 重复的DNA序列](https://leetcode.cn/problems/repeated-dna-sequences)|[187.重复的dna序列.go](lc/187.重复的dna序列.go)|MEDIUM|5|1|
 |[#191 位1的个数](https://leetcode.cn/problems/number-of-1-bits)|[191.位-1-的个数.go](lc/191.位-1-的个数.go)|EASY|1|1|
 |[#206 反转链表](https://leetcode.cn/problems/reverse-linked-list)|[206.反转链表.go](lc/206.反转链表.go)|EASY|3|**2**|
+|[#226 翻转二叉树](https://leetcode.cn/problems/invert-binary-tree)|[226.翻转二叉树.go](lc/226.翻转二叉树.go)|EASY|1|1|
 |[#232 用栈实现队列](https://leetcode.cn/problems/implement-queue-using-stacks)|[232.用栈实现队列.go](lc/232.用栈实现队列.go)|EASY|1|1|
 |[#234 回文链表](https://leetcode.cn/problems/palindrome-linked-list)|[234.回文链表.go](lc/234.回文链表.go)|EASY|2|1|
 |[#235 二叉搜索树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree)|[235.二叉搜索树的最近公共祖先.go](lc/235.二叉搜索树的最近公共祖先.go)|EASY|4|1|
