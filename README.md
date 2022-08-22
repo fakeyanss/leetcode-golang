@@ -12,7 +12,7 @@ func main() {
 
 # 提交总览
 | 编号 | 题目 | 解法 | 题目难度 | 提交次数| 重刷次数 |
-| ---- | ---- | ---- | ---- | ---- |
+| --- | --- | --- | --- | --- | --- |
 |1|[#1 两数之和](https://leetcode.cn/problems/two-sum)|[1.两数之和.go](lc/1.两数之和.go)|EASY|2|**2**|
 |2|[#3 无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters)|[3.无重复字符的最长子串.go](lc/3.无重复字符的最长子串.go)|MEDIUM|1|1|
 |3|[#5 最长回文子串](https://leetcode.cn/problems/longest-palindromic-substring)|[5.最长回文子串.go](lc/5.最长回文子串.go)|MEDIUM|1|1|
@@ -60,7 +60,7 @@ func main() {
 |45|[#235 二叉搜索树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree)|[235.二叉搜索树的最近公共祖先.go](lc/235.二叉搜索树的最近公共祖先.go)|EASY|4|1|
 |46|[#237 删除链表中的节点](https://leetcode.cn/problems/delete-node-in-a-linked-list)|[237.删除链表中的节点.go](lc/237.删除链表中的节点.go)|EASY|2|1|
 |47|[#258 各位相加](https://leetcode.cn/problems/add-digits)|[258.各位相加.go](lc/258.各位相加.go)|EASY|2|1|
-|48|[#268 丢失的数字](https://leetcode.cn/problems/missing-number)|[268.丢失的数字.go](lc/268.丢失的数字.go)|EASY|2|**2**|
+|48|[#268 丢失的数字](https://leetcode.cn/problems/missing-number)|[268.丢失的数字.go](lc/268.丢失的数字.go)|EASY|2|1|
 |49|[#283 移动零](https://leetcode.cn/problems/move-zeroes)|[283.移动零.go](lc/283.移动零.go)|EASY|1|1|
 |50|[#303 区域和检索 - 数组不可变](https://leetcode.cn/problems/range-sum-query-immutable)|[303.区域和检索-数组不可变.go](lc/303.区域和检索-数组不可变.go)|EASY|2|1|
 |51|[#304 二维区域和检索 - 矩阵不可变](https://leetcode.cn/problems/range-sum-query-2d-immutable)|[304.二维区域和检索-矩阵不可变.go](lc/304.二维区域和检索-矩阵不可变.go)|MEDIUM|1|1|
