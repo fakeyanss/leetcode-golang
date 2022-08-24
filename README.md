@@ -50,7 +50,7 @@ func main() {
 |35|[#141 环形链表](https://leetcode.cn/problems/linked-list-cycle)|[141.环形链表.go](lc/141.环形链表.go)|EASY|5|1|
 |36|[#142 环形链表 II](https://leetcode.cn/problems/linked-list-cycle-ii)|[142.环形链表-ii.go](lc/142.环形链表-ii.go)|MEDIUM|1|1|
 |37|[#144 二叉树的前序遍历](https://leetcode.cn/problems/binary-tree-preorder-traversal)|[144.二叉树的前序遍历.go](lc/144.二叉树的前序遍历.go)|EASY|1|1|
-|38|[#151 颠倒字符串中的单词](https://leetcode.cn/problems/reverse-words-in-a-string)|[151.颠倒字符串中的单词.go](lc/151.颠倒字符串中的单词.go)|MEDIUM|2|1|
+|38|[#151 反转字符串中的单词](https://leetcode.cn/problems/reverse-words-in-a-string)|[151.颠倒字符串中的单词.go](lc/151.颠倒字符串中的单词.go)|MEDIUM|2|1|
 |39|[#160 相交链表](https://leetcode.cn/problems/intersection-of-two-linked-lists)|[160.相交链表.go](lc/160.相交链表.go)|EASY|2|1|
 |40|[#167 两数之和 II - 输入有序数组](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted)|[167.两数之和-ii-输入有序数组.go](lc/167.两数之和-ii-输入有序数组.go)|MEDIUM|2|1|
 |41|[#187 重复的DNA序列](https://leetcode.cn/problems/repeated-dna-sequences)|[187.重复的dna序列.go](lc/187.重复的dna序列.go)|MEDIUM|5|1|
