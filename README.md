@@ -37,61 +37,67 @@ func main() {
 |22|[#88 合并两个有序数组](https://leetcode.cn/problems/merge-sorted-array)|[88.合并两个有序数组.go](lc/88.合并两个有序数组.go)|EASY|3|1|
 |23|[#92 反转链表 II](https://leetcode.cn/problems/reverse-linked-list-ii)|[92.反转链表-ii.go](lc/92.反转链表-ii.go)|MEDIUM|1|1|
 |24|[#94 二叉树的中序遍历](https://leetcode.cn/problems/binary-tree-inorder-traversal)|[94.二叉树的中序遍历.go](lc/94.二叉树的中序遍历.go)|EASY|3|1|
-|25|[#101 对称二叉树](https://leetcode.cn/problems/symmetric-tree)|[101.对称二叉树.go](lc/101.对称二叉树.go)|EASY|1|1|
-|26|[#104 二叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-binary-tree)|[104.二叉树的最大深度.go](lc/104.二叉树的最大深度.go)|EASY|1|1|
-|27|[#105 从前序与中序遍历序列构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal)|[105.从前序与中序遍历序列构造二叉树.go](lc/105.从前序与中序遍历序列构造二叉树.go)|MEDIUM|3|1|
-|28|[#106 从中序与后序遍历序列构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal)|[106.从中序与后序遍历序列构造二叉树.go](lc/106.从中序与后序遍历序列构造二叉树.go)|MEDIUM|2|1|
-|29|[#112 路径总和](https://leetcode.cn/problems/path-sum)|[112.路径总和.go](lc/112.路径总和.go)|EASY|1|1|
-|30|[#114 二叉树展开为链表](https://leetcode.cn/problems/flatten-binary-tree-to-linked-list)|[114.二叉树展开为链表.go](lc/114.二叉树展开为链表.go)|MEDIUM|3|1|
-|31|[#116 填充每个节点的下一个右侧节点指针](https://leetcode.cn/problems/populating-next-right-pointers-in-each-node)|[116.填充每个节点的下一个右侧节点指针.go](lc/116.填充每个节点的下一个右侧节点指针.go)|MEDIUM|1|1|
-|32|[#121 买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock)|[121.买卖股票的最佳时机.go](lc/121.买卖股票的最佳时机.go)|EASY|2|1|
-|33|[#124 二叉树中的最大路径和](https://leetcode.cn/problems/binary-tree-maximum-path-sum)|[124.二叉树中的最大路径和.go](lc/124.二叉树中的最大路径和.go)|HARD|1|1|
-|34|[#125 验证回文串](https://leetcode.cn/problems/valid-palindrome)|[125.验证回文串.go](lc/125.验证回文串.go)|EASY|1|1|
-|35|[#141 环形链表](https://leetcode.cn/problems/linked-list-cycle)|[141.环形链表.go](lc/141.环形链表.go)|EASY|5|1|
-|36|[#142 环形链表 II](https://leetcode.cn/problems/linked-list-cycle-ii)|[142.环形链表-ii.go](lc/142.环形链表-ii.go)|MEDIUM|1|1|
-|37|[#144 二叉树的前序遍历](https://leetcode.cn/problems/binary-tree-preorder-traversal)|[144.二叉树的前序遍历.go](lc/144.二叉树的前序遍历.go)|EASY|1|1|
-|38|[#151 反转字符串中的单词](https://leetcode.cn/problems/reverse-words-in-a-string)|[151.颠倒字符串中的单词.go](lc/151.颠倒字符串中的单词.go)|MEDIUM|2|1|
-|39|[#160 相交链表](https://leetcode.cn/problems/intersection-of-two-linked-lists)|[160.相交链表.go](lc/160.相交链表.go)|EASY|2|1|
-|40|[#167 两数之和 II - 输入有序数组](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted)|[167.两数之和-ii-输入有序数组.go](lc/167.两数之和-ii-输入有序数组.go)|MEDIUM|2|1|
-|41|[#187 重复的DNA序列](https://leetcode.cn/problems/repeated-dna-sequences)|[187.重复的dna序列.go](lc/187.重复的dna序列.go)|MEDIUM|5|1|
-|42|[#191 位1的个数](https://leetcode.cn/problems/number-of-1-bits)|[191.位-1-的个数.go](lc/191.位-1-的个数.go)|EASY|1|1|
-|43|[#206 反转链表](https://leetcode.cn/problems/reverse-linked-list)|[206.反转链表.go](lc/206.反转链表.go)|EASY|3|**2**|
-|44|[#226 翻转二叉树](https://leetcode.cn/problems/invert-binary-tree)|[226.翻转二叉树.go](lc/226.翻转二叉树.go)|EASY|1|1|
-|45|[#232 用栈实现队列](https://leetcode.cn/problems/implement-queue-using-stacks)|[232.用栈实现队列.go](lc/232.用栈实现队列.go)|EASY|1|1|
-|46|[#234 回文链表](https://leetcode.cn/problems/palindrome-linked-list)|[234.回文链表.go](lc/234.回文链表.go)|EASY|2|1|
-|47|[#235 二叉搜索树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree)|[235.二叉搜索树的最近公共祖先.go](lc/235.二叉搜索树的最近公共祖先.go)|EASY|4|1|
-|48|[#237 删除链表中的节点](https://leetcode.cn/problems/delete-node-in-a-linked-list)|[237.删除链表中的节点.go](lc/237.删除链表中的节点.go)|MEDIUM|2|1|
-|49|[#258 各位相加](https://leetcode.cn/problems/add-digits)|[258.各位相加.go](lc/258.各位相加.go)|EASY|2|1|
-|50|[#268 丢失的数字](https://leetcode.cn/problems/missing-number)|[268.丢失的数字.go](lc/268.丢失的数字.go)|EASY|2|1|
-|51|[#283 移动零](https://leetcode.cn/problems/move-zeroes)|[283.移动零.go](lc/283.移动零.go)|EASY|1|1|
-|52|[#297 二叉树的序列化与反序列化](https://leetcode.cn/problems/serialize-and-deserialize-binary-tree)|[297.二叉树的序列化与反序列化.go](lc/297.二叉树的序列化与反序列化.go)|HARD|10|1|
-|53|[#303 区域和检索 - 数组不可变](https://leetcode.cn/problems/range-sum-query-immutable)|[303.区域和检索-数组不可变.go](lc/303.区域和检索-数组不可变.go)|EASY|2|1|
-|54|[#304 二维区域和检索 - 矩阵不可变](https://leetcode.cn/problems/range-sum-query-2d-immutable)|[304.二维区域和检索-矩阵不可变.go](lc/304.二维区域和检索-矩阵不可变.go)|MEDIUM|1|1|
-|55|[#315 计算右侧小于当前元素的个数](https://leetcode.cn/problems/count-of-smaller-numbers-after-self)|[315.计算右侧小于当前元素的个数.go](lc/315.计算右侧小于当前元素的个数.go)|HARD|1|1|
-|56|[#316 去除重复字母](https://leetcode.cn/problems/remove-duplicate-letters)|[316.去除重复字母.go](lc/316.去除重复字母.go)|MEDIUM|4|1|
-|57|[#327 区间和的个数](https://leetcode.cn/problems/count-of-range-sum)|[327.区间和的个数.go](lc/327.区间和的个数.go)|HARD|2|1|
-|58|[#344 反转字符串](https://leetcode.cn/problems/reverse-string)|[344.反转字符串.go](lc/344.反转字符串.go)|EASY|1|1|
-|59|[#380 O(1) 时间插入、删除和获取随机元素](https://leetcode.cn/problems/insert-delete-getrandom-o1)|[380.o-1-时间插入、删除和获取随机元素.go](lc/380.o-1-时间插入、删除和获取随机元素.go)|MEDIUM|2|1|
-|60|[#386 字典序排数](https://leetcode.cn/problems/lexicographical-numbers)||MEDIUM|1|1|
-|61|[#387 字符串中的第一个唯一字符](https://leetcode.cn/problems/first-unique-character-in-a-string)|[387.字符串中的第一个唯一字符.go](lc/387.字符串中的第一个唯一字符.go)|EASY|1|1|
-|62|[#438 找到字符串中所有字母异位词](https://leetcode.cn/problems/find-all-anagrams-in-a-string)|[438.找到字符串中所有字母异位词.go](lc/438.找到字符串中所有字母异位词.go)|MEDIUM|2|1|
-|63|[#493 翻转对](https://leetcode.cn/problems/reverse-pairs)|[493.翻转对.go](lc/493.翻转对.go)|HARD|7|1|
-|64|[#528 按权重随机选择](https://leetcode.cn/problems/random-pick-with-weight)|[528.按权重随机选择.go](lc/528.按权重随机选择.go)|MEDIUM|2|1|
-|65|[#543 二叉树的直径](https://leetcode.cn/problems/diameter-of-binary-tree)|[543.二叉树的直径.go](lc/543.二叉树的直径.go)|EASY|2|1|
-|66|[#567 字符串的排列](https://leetcode.cn/problems/permutation-in-string)|[567.字符串的排列.go](lc/567.字符串的排列.go)|MEDIUM|3|1|
-|67|[#652 寻找重复的子树](https://leetcode.cn/problems/find-duplicate-subtrees)|[652.寻找重复的子树.go](lc/652.寻找重复的子树.go)|MEDIUM|3|1|
-|68|[#654 最大二叉树](https://leetcode.cn/problems/maximum-binary-tree)|[654.最大二叉树.go](lc/654.最大二叉树.go)|MEDIUM|2|1|
-|69|[#669 修剪二叉搜索树](https://leetcode.cn/problems/trim-a-binary-search-tree)|[669.修剪二叉搜索树.go](lc/669.修剪二叉搜索树.go)|MEDIUM|1|1|
-|70|[#687 最长同值路径](https://leetcode.cn/problems/longest-univalue-path)||MEDIUM|4|1|
-|71|[#704 二分查找](https://leetcode.cn/problems/binary-search)|[704.二分查找.go](lc/704.二分查找.go)|EASY|1|1|
-|72|[#710 黑名单中的随机数](https://leetcode.cn/problems/random-pick-with-blacklist)|[710.黑名单中的随机数.go](lc/710.黑名单中的随机数.go)|HARD|2|1|
-|73|[#870 优势洗牌](https://leetcode.cn/problems/advantage-shuffle)|[870.优势洗牌.go](lc/870.优势洗牌.go)|MEDIUM|6|1|
-|74|[#876 链表的中间结点](https://leetcode.cn/problems/middle-of-the-linked-list)|[876.链表的中间结点.go](lc/876.链表的中间结点.go)|EASY|2|1|
-|75|[#889 根据前序和后序遍历构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-postorder-traversal)|[889.根据前序和后序遍历构造二叉树.go](lc/889.根据前序和后序遍历构造二叉树.go)|MEDIUM|4|1|
-|76|[#912 排序数组](https://leetcode.cn/problems/sort-an-array)|[912.排序数组.go](lc/912.排序数组.go)|MEDIUM|4|**2**|
-|77|[#1081 不同字符的最小子序列](https://leetcode.cn/problems/smallest-subsequence-of-distinct-characters)|[1081.不同字符的最小子序列.go](lc/1081.不同字符的最小子序列.go)|MEDIUM|4|1|
-|78|[#1094 拼车](https://leetcode.cn/problems/car-pooling)|[1094.拼车.go](lc/1094.拼车.go)|MEDIUM|5|1|
-|79|[#1109 航班预订统计](https://leetcode.cn/problems/corporate-flight-bookings)|[1109.航班预订统计.go](lc/1109.航班预订统计.go)|MEDIUM|1|1|
+|25|[#98 验证二叉搜索树](https://leetcode.cn/problems/validate-binary-search-tree)|[98.验证二叉搜索树.go](lc/98.验证二叉搜索树.go)|MEDIUM|2|1|
+|26|[#101 对称二叉树](https://leetcode.cn/problems/symmetric-tree)|[101.对称二叉树.go](lc/101.对称二叉树.go)|EASY|1|1|
+|27|[#104 二叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-binary-tree)|[104.二叉树的最大深度.go](lc/104.二叉树的最大深度.go)|EASY|1|1|
+|28|[#105 从前序与中序遍历序列构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal)|[105.从前序与中序遍历序列构造二叉树.go](lc/105.从前序与中序遍历序列构造二叉树.go)|MEDIUM|3|1|
+|29|[#106 从中序与后序遍历序列构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal)|[106.从中序与后序遍历序列构造二叉树.go](lc/106.从中序与后序遍历序列构造二叉树.go)|MEDIUM|2|1|
+|30|[#112 路径总和](https://leetcode.cn/problems/path-sum)|[112.路径总和.go](lc/112.路径总和.go)|EASY|1|1|
+|31|[#114 二叉树展开为链表](https://leetcode.cn/problems/flatten-binary-tree-to-linked-list)|[114.二叉树展开为链表.go](lc/114.二叉树展开为链表.go)|MEDIUM|3|1|
+|32|[#116 填充每个节点的下一个右侧节点指针](https://leetcode.cn/problems/populating-next-right-pointers-in-each-node)|[116.填充每个节点的下一个右侧节点指针.go](lc/116.填充每个节点的下一个右侧节点指针.go)|MEDIUM|1|1|
+|33|[#121 买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock)|[121.买卖股票的最佳时机.go](lc/121.买卖股票的最佳时机.go)|EASY|2|1|
+|34|[#124 二叉树中的最大路径和](https://leetcode.cn/problems/binary-tree-maximum-path-sum)|[124.二叉树中的最大路径和.go](lc/124.二叉树中的最大路径和.go)|HARD|1|1|
+|35|[#125 验证回文串](https://leetcode.cn/problems/valid-palindrome)|[125.验证回文串.go](lc/125.验证回文串.go)|EASY|1|1|
+|36|[#141 环形链表](https://leetcode.cn/problems/linked-list-cycle)|[141.环形链表.go](lc/141.环形链表.go)|EASY|5|1|
+|37|[#142 环形链表 II](https://leetcode.cn/problems/linked-list-cycle-ii)|[142.环形链表-ii.go](lc/142.环形链表-ii.go)|MEDIUM|1|1|
+|38|[#144 二叉树的前序遍历](https://leetcode.cn/problems/binary-tree-preorder-traversal)|[144.二叉树的前序遍历.go](lc/144.二叉树的前序遍历.go)|EASY|1|1|
+|39|[#151 反转字符串中的单词](https://leetcode.cn/problems/reverse-words-in-a-string)|[151.颠倒字符串中的单词.go](lc/151.颠倒字符串中的单词.go)|MEDIUM|2|1|
+|40|[#160 相交链表](https://leetcode.cn/problems/intersection-of-two-linked-lists)|[160.相交链表.go](lc/160.相交链表.go)|EASY|2|1|
+|41|[#167 两数之和 II - 输入有序数组](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted)|[167.两数之和-ii-输入有序数组.go](lc/167.两数之和-ii-输入有序数组.go)|MEDIUM|2|1|
+|42|[#187 重复的DNA序列](https://leetcode.cn/problems/repeated-dna-sequences)|[187.重复的dna序列.go](lc/187.重复的dna序列.go)|MEDIUM|5|1|
+|43|[#191 位1的个数](https://leetcode.cn/problems/number-of-1-bits)|[191.位-1-的个数.go](lc/191.位-1-的个数.go)|EASY|1|1|
+|44|[#206 反转链表](https://leetcode.cn/problems/reverse-linked-list)|[206.反转链表.go](lc/206.反转链表.go)|EASY|3|**2**|
+|45|[#226 翻转二叉树](https://leetcode.cn/problems/invert-binary-tree)|[226.翻转二叉树.go](lc/226.翻转二叉树.go)|EASY|1|1|
+|46|[#230 二叉搜索树中第K小的元素](https://leetcode.cn/problems/kth-smallest-element-in-a-bst)|[230.二叉搜索树中第k小的元素.go](lc/230.二叉搜索树中第k小的元素.go)|MEDIUM|1|1|
+|47|[#232 用栈实现队列](https://leetcode.cn/problems/implement-queue-using-stacks)|[232.用栈实现队列.go](lc/232.用栈实现队列.go)|EASY|1|1|
+|48|[#234 回文链表](https://leetcode.cn/problems/palindrome-linked-list)|[234.回文链表.go](lc/234.回文链表.go)|EASY|2|1|
+|49|[#235 二叉搜索树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree)|[235.二叉搜索树的最近公共祖先.go](lc/235.二叉搜索树的最近公共祖先.go)|EASY|4|1|
+|50|[#237 删除链表中的节点](https://leetcode.cn/problems/delete-node-in-a-linked-list)|[237.删除链表中的节点.go](lc/237.删除链表中的节点.go)|MEDIUM|2|1|
+|51|[#258 各位相加](https://leetcode.cn/problems/add-digits)|[258.各位相加.go](lc/258.各位相加.go)|EASY|2|1|
+|52|[#268 丢失的数字](https://leetcode.cn/problems/missing-number)|[268.丢失的数字.go](lc/268.丢失的数字.go)|EASY|2|1|
+|53|[#283 移动零](https://leetcode.cn/problems/move-zeroes)|[283.移动零.go](lc/283.移动零.go)|EASY|1|1|
+|54|[#297 二叉树的序列化与反序列化](https://leetcode.cn/problems/serialize-and-deserialize-binary-tree)|[297.二叉树的序列化与反序列化.go](lc/297.二叉树的序列化与反序列化.go)|HARD|10|1|
+|55|[#303 区域和检索 - 数组不可变](https://leetcode.cn/problems/range-sum-query-immutable)|[303.区域和检索-数组不可变.go](lc/303.区域和检索-数组不可变.go)|EASY|2|1|
+|56|[#304 二维区域和检索 - 矩阵不可变](https://leetcode.cn/problems/range-sum-query-2d-immutable)|[304.二维区域和检索-矩阵不可变.go](lc/304.二维区域和检索-矩阵不可变.go)|MEDIUM|1|1|
+|57|[#315 计算右侧小于当前元素的个数](https://leetcode.cn/problems/count-of-smaller-numbers-after-self)|[315.计算右侧小于当前元素的个数.go](lc/315.计算右侧小于当前元素的个数.go)|HARD|1|1|
+|58|[#316 去除重复字母](https://leetcode.cn/problems/remove-duplicate-letters)|[316.去除重复字母.go](lc/316.去除重复字母.go)|MEDIUM|4|1|
+|59|[#327 区间和的个数](https://leetcode.cn/problems/count-of-range-sum)|[327.区间和的个数.go](lc/327.区间和的个数.go)|HARD|2|1|
+|60|[#344 反转字符串](https://leetcode.cn/problems/reverse-string)|[344.反转字符串.go](lc/344.反转字符串.go)|EASY|1|1|
+|61|[#380 O(1) 时间插入、删除和获取随机元素](https://leetcode.cn/problems/insert-delete-getrandom-o1)|[380.o-1-时间插入、删除和获取随机元素.go](lc/380.o-1-时间插入、删除和获取随机元素.go)|MEDIUM|2|1|
+|62|[#386 字典序排数](https://leetcode.cn/problems/lexicographical-numbers)||MEDIUM|1|1|
+|63|[#387 字符串中的第一个唯一字符](https://leetcode.cn/problems/first-unique-character-in-a-string)|[387.字符串中的第一个唯一字符.go](lc/387.字符串中的第一个唯一字符.go)|EASY|1|1|
+|64|[#438 找到字符串中所有字母异位词](https://leetcode.cn/problems/find-all-anagrams-in-a-string)|[438.找到字符串中所有字母异位词.go](lc/438.找到字符串中所有字母异位词.go)|MEDIUM|2|1|
+|65|[#493 翻转对](https://leetcode.cn/problems/reverse-pairs)|[493.翻转对.go](lc/493.翻转对.go)|HARD|7|1|
+|66|[#528 按权重随机选择](https://leetcode.cn/problems/random-pick-with-weight)|[528.按权重随机选择.go](lc/528.按权重随机选择.go)|MEDIUM|2|1|
+|67|[#538 把二叉搜索树转换为累加树](https://leetcode.cn/problems/convert-bst-to-greater-tree)|[538.把二叉搜索树转换为累加树.go](lc/538.把二叉搜索树转换为累加树.go)|MEDIUM|1|1|
+|68|[#543 二叉树的直径](https://leetcode.cn/problems/diameter-of-binary-tree)|[543.二叉树的直径.go](lc/543.二叉树的直径.go)|EASY|2|1|
+|69|[#567 字符串的排列](https://leetcode.cn/problems/permutation-in-string)|[567.字符串的排列.go](lc/567.字符串的排列.go)|MEDIUM|3|1|
+|70|[#652 寻找重复的子树](https://leetcode.cn/problems/find-duplicate-subtrees)|[652.寻找重复的子树.go](lc/652.寻找重复的子树.go)|MEDIUM|3|1|
+|71|[#654 最大二叉树](https://leetcode.cn/problems/maximum-binary-tree)|[654.最大二叉树.go](lc/654.最大二叉树.go)|MEDIUM|2|1|
+|72|[#669 修剪二叉搜索树](https://leetcode.cn/problems/trim-a-binary-search-tree)|[669.修剪二叉搜索树.go](lc/669.修剪二叉搜索树.go)|MEDIUM|1|1|
+|73|[#687 最长同值路径](https://leetcode.cn/problems/longest-univalue-path)||MEDIUM|4|1|
+|74|[#704 二分查找](https://leetcode.cn/problems/binary-search)|[704.二分查找.go](lc/704.二分查找.go)|EASY|1|1|
+|75|[#710 黑名单中的随机数](https://leetcode.cn/problems/random-pick-with-blacklist)|[710.黑名单中的随机数.go](lc/710.黑名单中的随机数.go)|HARD|2|1|
+|76|[#870 优势洗牌](https://leetcode.cn/problems/advantage-shuffle)|[870.优势洗牌.go](lc/870.优势洗牌.go)|MEDIUM|6|1|
+|77|[#876 链表的中间结点](https://leetcode.cn/problems/middle-of-the-linked-list)|[876.链表的中间结点.go](lc/876.链表的中间结点.go)|EASY|2|1|
+|78|[#889 根据前序和后序遍历构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-postorder-traversal)|[889.根据前序和后序遍历构造二叉树.go](lc/889.根据前序和后序遍历构造二叉树.go)|MEDIUM|4|1|
+|79|[#912 排序数组](https://leetcode.cn/problems/sort-an-array)|[912.排序数组.go](lc/912.排序数组.go)|MEDIUM|4|**2**|
+|80|[#1038 从二叉搜索树到更大和树](https://leetcode.cn/problems/binary-search-tree-to-greater-sum-tree)|[1038.从二叉搜索树到更大和树.go](lc/1038.从二叉搜索树到更大和树.go)|MEDIUM|1|1|
+|81|[#1081 不同字符的最小子序列](https://leetcode.cn/problems/smallest-subsequence-of-distinct-characters)|[1081.不同字符的最小子序列.go](lc/1081.不同字符的最小子序列.go)|MEDIUM|4|1|
+|82|[#1094 拼车](https://leetcode.cn/problems/car-pooling)|[1094.拼车.go](lc/1094.拼车.go)|MEDIUM|5|1|
+|83|[#1109 航班预订统计](https://leetcode.cn/problems/corporate-flight-bookings)|[1109.航班预订统计.go](lc/1109.航班预订统计.go)|MEDIUM|1|1|
+|84|[#6171 和相等的子数组](https://leetcode.cn/problems/find-subarrays-with-equal-sum)||EASY|4|1|
+|85|[#6172 严格回文的数字](https://leetcode.cn/problems/strictly-palindromic-number)||MEDIUM|2|1|
 
 # 文件结构
 ![Visualization of this repo](./diagram.svg)
