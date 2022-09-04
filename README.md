@@ -77,27 +77,31 @@ func main() {
 |62|[#386 字典序排数](https://leetcode.cn/problems/lexicographical-numbers)||MEDIUM|1|1|
 |63|[#387 字符串中的第一个唯一字符](https://leetcode.cn/problems/first-unique-character-in-a-string)|[387.字符串中的第一个唯一字符.go](lc/387.字符串中的第一个唯一字符.go)|EASY|1|1|
 |64|[#438 找到字符串中所有字母异位词](https://leetcode.cn/problems/find-all-anagrams-in-a-string)|[438.找到字符串中所有字母异位词.go](lc/438.找到字符串中所有字母异位词.go)|MEDIUM|2|1|
-|65|[#493 翻转对](https://leetcode.cn/problems/reverse-pairs)|[493.翻转对.go](lc/493.翻转对.go)|HARD|7|1|
-|66|[#528 按权重随机选择](https://leetcode.cn/problems/random-pick-with-weight)|[528.按权重随机选择.go](lc/528.按权重随机选择.go)|MEDIUM|2|1|
-|67|[#538 把二叉搜索树转换为累加树](https://leetcode.cn/problems/convert-bst-to-greater-tree)|[538.把二叉搜索树转换为累加树.go](lc/538.把二叉搜索树转换为累加树.go)|MEDIUM|1|1|
-|68|[#543 二叉树的直径](https://leetcode.cn/problems/diameter-of-binary-tree)|[543.二叉树的直径.go](lc/543.二叉树的直径.go)|EASY|2|1|
-|69|[#567 字符串的排列](https://leetcode.cn/problems/permutation-in-string)|[567.字符串的排列.go](lc/567.字符串的排列.go)|MEDIUM|3|1|
-|70|[#652 寻找重复的子树](https://leetcode.cn/problems/find-duplicate-subtrees)|[652.寻找重复的子树.go](lc/652.寻找重复的子树.go)|MEDIUM|3|1|
-|71|[#654 最大二叉树](https://leetcode.cn/problems/maximum-binary-tree)|[654.最大二叉树.go](lc/654.最大二叉树.go)|MEDIUM|2|1|
-|72|[#669 修剪二叉搜索树](https://leetcode.cn/problems/trim-a-binary-search-tree)|[669.修剪二叉搜索树.go](lc/669.修剪二叉搜索树.go)|MEDIUM|1|1|
-|73|[#687 最长同值路径](https://leetcode.cn/problems/longest-univalue-path)||MEDIUM|4|1|
-|74|[#704 二分查找](https://leetcode.cn/problems/binary-search)|[704.二分查找.go](lc/704.二分查找.go)|EASY|1|1|
-|75|[#710 黑名单中的随机数](https://leetcode.cn/problems/random-pick-with-blacklist)|[710.黑名单中的随机数.go](lc/710.黑名单中的随机数.go)|HARD|2|1|
-|76|[#870 优势洗牌](https://leetcode.cn/problems/advantage-shuffle)|[870.优势洗牌.go](lc/870.优势洗牌.go)|MEDIUM|6|1|
-|77|[#876 链表的中间结点](https://leetcode.cn/problems/middle-of-the-linked-list)|[876.链表的中间结点.go](lc/876.链表的中间结点.go)|EASY|2|1|
-|78|[#889 根据前序和后序遍历构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-postorder-traversal)|[889.根据前序和后序遍历构造二叉树.go](lc/889.根据前序和后序遍历构造二叉树.go)|MEDIUM|4|1|
-|79|[#912 排序数组](https://leetcode.cn/problems/sort-an-array)|[912.排序数组.go](lc/912.排序数组.go)|MEDIUM|4|**2**|
-|80|[#1038 从二叉搜索树到更大和树](https://leetcode.cn/problems/binary-search-tree-to-greater-sum-tree)|[1038.从二叉搜索树到更大和树.go](lc/1038.从二叉搜索树到更大和树.go)|MEDIUM|1|1|
-|81|[#1081 不同字符的最小子序列](https://leetcode.cn/problems/smallest-subsequence-of-distinct-characters)|[1081.不同字符的最小子序列.go](lc/1081.不同字符的最小子序列.go)|MEDIUM|4|1|
-|82|[#1094 拼车](https://leetcode.cn/problems/car-pooling)|[1094.拼车.go](lc/1094.拼车.go)|MEDIUM|5|1|
-|83|[#1109 航班预订统计](https://leetcode.cn/problems/corporate-flight-bookings)|[1109.航班预订统计.go](lc/1109.航班预订统计.go)|MEDIUM|1|1|
-|84|[#6171 和相等的子数组](https://leetcode.cn/problems/find-subarrays-with-equal-sum)||EASY|4|1|
-|85|[#6172 严格回文的数字](https://leetcode.cn/problems/strictly-palindromic-number)||MEDIUM|2|1|
+|65|[#450 删除二叉搜索树中的节点](https://leetcode.cn/problems/delete-node-in-a-bst)|[450.删除二叉搜索树中的节点.go](lc/450.删除二叉搜索树中的节点.go)|MEDIUM|2|1|
+|66|[#493 翻转对](https://leetcode.cn/problems/reverse-pairs)|[493.翻转对.go](lc/493.翻转对.go)|HARD|7|1|
+|67|[#528 按权重随机选择](https://leetcode.cn/problems/random-pick-with-weight)|[528.按权重随机选择.go](lc/528.按权重随机选择.go)|MEDIUM|2|1|
+|68|[#538 把二叉搜索树转换为累加树](https://leetcode.cn/problems/convert-bst-to-greater-tree)|[538.把二叉搜索树转换为累加树.go](lc/538.把二叉搜索树转换为累加树.go)|MEDIUM|1|1|
+|69|[#543 二叉树的直径](https://leetcode.cn/problems/diameter-of-binary-tree)|[543.二叉树的直径.go](lc/543.二叉树的直径.go)|EASY|2|1|
+|70|[#567 字符串的排列](https://leetcode.cn/problems/permutation-in-string)|[567.字符串的排列.go](lc/567.字符串的排列.go)|MEDIUM|3|1|
+|71|[#652 寻找重复的子树](https://leetcode.cn/problems/find-duplicate-subtrees)|[652.寻找重复的子树.go](lc/652.寻找重复的子树.go)|MEDIUM|3|1|
+|72|[#654 最大二叉树](https://leetcode.cn/problems/maximum-binary-tree)|[654.最大二叉树.go](lc/654.最大二叉树.go)|MEDIUM|2|1|
+|73|[#669 修剪二叉搜索树](https://leetcode.cn/problems/trim-a-binary-search-tree)|[669.修剪二叉搜索树.go](lc/669.修剪二叉搜索树.go)|MEDIUM|1|1|
+|74|[#687 最长同值路径](https://leetcode.cn/problems/longest-univalue-path)||MEDIUM|4|1|
+|75|[#700 二叉搜索树中的搜索](https://leetcode.cn/problems/search-in-a-binary-search-tree)|[700.二叉搜索树中的搜索.go](lc/700.二叉搜索树中的搜索.go)|EASY|1|1|
+|76|[#701 二叉搜索树中的插入操作](https://leetcode.cn/problems/insert-into-a-binary-search-tree)|[701.二叉搜索树中的插入操作.go](lc/701.二叉搜索树中的插入操作.go)|MEDIUM|1|1|
+|77|[#704 二分查找](https://leetcode.cn/problems/binary-search)|[704.二分查找.go](lc/704.二分查找.go)|EASY|1|1|
+|78|[#710 黑名单中的随机数](https://leetcode.cn/problems/random-pick-with-blacklist)|[710.黑名单中的随机数.go](lc/710.黑名单中的随机数.go)|HARD|2|1|
+|79|[#870 优势洗牌](https://leetcode.cn/problems/advantage-shuffle)|[870.优势洗牌.go](lc/870.优势洗牌.go)|MEDIUM|6|1|
+|80|[#876 链表的中间结点](https://leetcode.cn/problems/middle-of-the-linked-list)|[876.链表的中间结点.go](lc/876.链表的中间结点.go)|EASY|2|1|
+|81|[#889 根据前序和后序遍历构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-postorder-traversal)|[889.根据前序和后序遍历构造二叉树.go](lc/889.根据前序和后序遍历构造二叉树.go)|MEDIUM|4|1|
+|82|[#912 排序数组](https://leetcode.cn/problems/sort-an-array)|[912.排序数组.go](lc/912.排序数组.go)|MEDIUM|4|**2**|
+|83|[#1038 从二叉搜索树到更大和树](https://leetcode.cn/problems/binary-search-tree-to-greater-sum-tree)|[1038.从二叉搜索树到更大和树.go](lc/1038.从二叉搜索树到更大和树.go)|MEDIUM|1|1|
+|84|[#1081 不同字符的最小子序列](https://leetcode.cn/problems/smallest-subsequence-of-distinct-characters)|[1081.不同字符的最小子序列.go](lc/1081.不同字符的最小子序列.go)|MEDIUM|4|1|
+|85|[#1094 拼车](https://leetcode.cn/problems/car-pooling)|[1094.拼车.go](lc/1094.拼车.go)|MEDIUM|5|1|
+|86|[#1109 航班预订统计](https://leetcode.cn/problems/corporate-flight-bookings)|[1109.航班预订统计.go](lc/1109.航班预订统计.go)|MEDIUM|1|1|
+|87|[#6167 检查相同字母间的距离](https://leetcode.cn/problems/check-distances-between-same-letters)||EASY|2|1|
+|88|[#6171 和相等的子数组](https://leetcode.cn/problems/find-subarrays-with-equal-sum)||EASY|4|1|
+|89|[#6172 严格回文的数字](https://leetcode.cn/problems/strictly-palindromic-number)||MEDIUM|2|1|
 
 # 文件结构
 ![Visualization of this repo](./diagram.svg)
@@ -156,8 +160,8 @@ class NumMatrix {
     }
 }
 ```
-## 差分数组
 
+## 差分数组
 ```java
 // 差分数组工具类
 class Difference {
@@ -198,7 +202,6 @@ class Difference {
 ```
 
 ## 滑动窗口
-
 ```c++
 void slidingWindow(string s) {
     unordered_map<char, int> window;
@@ -230,7 +233,6 @@ void slidingWindow(string s) {
 ```
 
 ## Rabin-Karp 算法
-
 ```java
 // Rabin-Karp 指纹字符串查找算法
 int rabinKarp(String txt, String pat) {
@@ -717,5 +719,113 @@ func sortArray(nums []int) []int {
 		tmpNums[j]--
 	}
 	return nums
+}
+```
+
+## 二叉树
+
+### 二叉搜索树 BST
+
+定义：
+1. 对于 BST 的每一个节点 node，左子树节点的值都比 node 的值要小，右子树节点的值都比 node 的值大。
+2. 对于 BST 的每一个节点 node，它的左侧子树和右侧子树都是 BST。
+
+定义一个二叉树节点：
+```go
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+```
+
+#### 验证二叉树是否是二叉搜索树
+```go
+func isValidBST(root *TreeNode) bool {
+	return traverse(root, nil, nil)
+}
+
+func traverse(root, min, max *TreeNode) bool {
+	if root == nil {
+		return true
+	}
+	if min != nil && root.Val <= min.Val {
+		return false
+	}
+	if max != nil && root.Val >= max.Val {
+		return false
+	}
+	return traverse(root.Left, min, root) && traverse(root.Right, root, max)
+}
+```
+
+#### 搜索值
+```go
+func searchBST(root *TreeNode, val int) *TreeNode {
+	if root == nil {
+		return nil
+	}
+	if root.Val == val {
+		return root
+	} else if root.Val > val {
+		return searchBST(root.Left, val)
+	} else {
+		return searchBST(root.Right, val)
+	}
+}
+```
+
+#### 插入节点
+```go
+func insertIntoBST(root *TreeNode, val int) *TreeNode {
+	if root == nil {
+		return &TreeNode{val, nil, nil}
+	}
+	if root.Val > val {
+		root.Left = insertIntoBST(root.Left, val)
+	}
+	if root.Val < val {
+		root.Right = insertIntoBST(root.Right, val)
+	}
+	return root
+}
+```
+
+#### 删除节点
+```go
+func deleteNode(root *TreeNode, key int) *TreeNode {
+	if root == nil {
+		return nil
+	}
+	if root.Val == key {
+		// found it and delete
+		// 左右子树为空，则直接用右左子树替换此节点
+		if root.Left == nil {
+			return root.Right
+		}
+		if root.Right == nil {
+			return root.Left
+		}
+		// 左右子树都有节点，则将右子树最小值替换此节点(也可以用左子树最大值替换此节点，选一种实现即可)
+		rightMin := findRightMinInBST(root.Right)
+		// 删除rightMin节点
+		root.Right = deleteNode(root.Right, rightMin.Val)
+		// 再替换rightMin与root
+		rightMin.Left = root.Left
+		rightMin.Right = root.Right
+		root = rightMin
+	} else if root.Val > key {
+		root.Left = deleteNode(root.Left, key)
+	} else {
+		root.Right = deleteNode(root.Right, key)
+	}
+	return root
+}
+
+func findRightMinInBST(root *TreeNode) *TreeNode {
+	for root.Left != nil {
+		root = root.Left
+	}
+	return root
 }
 ```
