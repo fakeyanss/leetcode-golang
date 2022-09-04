@@ -99,7 +99,7 @@ def generate_markdown_text(response_data, session):
     markdown_text += "import \"fmt\"\n"
     markdown_text += "\n"
     markdown_text += "func main() {\n"
-    markdown_text += "  fmt.Println(\"Halo, leetcode\")\n"
+    markdown_text += "  fmt.Println(\"Hello, leetcode\")\n"
     markdown_text += "}\n"
     markdown_text += "```\n"
     markdown_text += "\n"

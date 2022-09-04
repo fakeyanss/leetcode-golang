@@ -6,7 +6,7 @@ package main
 import "fmt"
 
 func main() {
-  fmt.Println("Halo, leetcode")
+  fmt.Println("Hello, leetcode")
 }
 ```
 
