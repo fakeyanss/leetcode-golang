@@ -53,8 +53,8 @@ class NumMatrix {
     }
 }
 ```
-## 差分数组
 
+## 差分数组
 ```java
 // 差分数组工具类
 class Difference {
@@ -95,7 +95,6 @@ class Difference {
 ```
 
 ## 滑动窗口
-
 ```c++
 void slidingWindow(string s) {
     unordered_map<char, int> window;
@@ -127,7 +126,6 @@ void slidingWindow(string s) {
 ```
 
 ## Rabin-Karp 算法
-
 ```java
 // Rabin-Karp 指纹字符串查找算法
 int rabinKarp(String txt, String pat) {
@@ -614,5 +612,113 @@ func sortArray(nums []int) []int {
 		tmpNums[j]--
 	}
 	return nums
+}
+```
+
+## 二叉树
+
+### 二叉搜索树 BST
+
+定义：
+1. 对于 BST 的每一个节点 node，左子树节点的值都比 node 的值要小，右子树节点的值都比 node 的值大。
+2. 对于 BST 的每一个节点 node，它的左侧子树和右侧子树都是 BST。
+
+定义一个二叉树节点：
+```go
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+```
+
+#### 验证二叉树是否是二叉搜索树
+```go
+func isValidBST(root *TreeNode) bool {
+	return traverse(root, nil, nil)
+}
+
+func traverse(root, min, max *TreeNode) bool {
+	if root == nil {
+		return true
+	}
+	if min != nil && root.Val <= min.Val {
+		return false
+	}
+	if max != nil && root.Val >= max.Val {
+		return false
+	}
+	return traverse(root.Left, min, root) && traverse(root.Right, root, max)
+}
+```
+
+#### 搜索值
+```go
+func searchBST(root *TreeNode, val int) *TreeNode {
+	if root == nil {
+		return nil
+	}
+	if root.Val == val {
+		return root
+	} else if root.Val > val {
+		return searchBST(root.Left, val)
+	} else {
+		return searchBST(root.Right, val)
+	}
+}
+```
+
+#### 插入节点
+```go
+func insertIntoBST(root *TreeNode, val int) *TreeNode {
+	if root == nil {
+		return &TreeNode{val, nil, nil}
+	}
+	if root.Val > val {
+		root.Left = insertIntoBST(root.Left, val)
+	}
+	if root.Val < val {
+		root.Right = insertIntoBST(root.Right, val)
+	}
+	return root
+}
+```
+
+#### 删除节点
+```go
+func deleteNode(root *TreeNode, key int) *TreeNode {
+	if root == nil {
+		return nil
+	}
+	if root.Val == key {
+		// found it and delete
+		// 左右子树为空，则直接用右左子树替换此节点
+		if root.Left == nil {
+			return root.Right
+		}
+		if root.Right == nil {
+			return root.Left
+		}
+		// 左右子树都有节点，则将右子树最小值替换此节点(也可以用左子树最大值替换此节点，选一种实现即可)
+		rightMin := findRightMinInBST(root.Right)
+		// 删除rightMin节点
+		root.Right = deleteNode(root.Right, rightMin.Val)
+		// 再替换rightMin与root
+		rightMin.Left = root.Left
+		rightMin.Right = root.Right
+		root = rightMin
+	} else if root.Val > key {
+		root.Left = deleteNode(root.Left, key)
+	} else {
+		root.Right = deleteNode(root.Right, key)
+	}
+	return root
+}
+
+func findRightMinInBST(root *TreeNode) *TreeNode {
+	for root.Left != nil {
+		root = root.Left
+	}
+	return root
 }
 ```
