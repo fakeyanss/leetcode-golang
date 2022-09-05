@@ -96,14 +96,15 @@ func main() {
 |81|[#870 优势洗牌](https://leetcode.cn/problems/advantage-shuffle)|[870.优势洗牌.go](lc/870.优势洗牌.go)|MEDIUM|6|1|
 |82|[#876 链表的中间结点](https://leetcode.cn/problems/middle-of-the-linked-list)|[876.链表的中间结点.go](lc/876.链表的中间结点.go)|EASY|2|1|
 |83|[#889 根据前序和后序遍历构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-postorder-traversal)|[889.根据前序和后序遍历构造二叉树.go](lc/889.根据前序和后序遍历构造二叉树.go)|MEDIUM|4|1|
-|84|[#912 排序数组](https://leetcode.cn/problems/sort-an-array)|[912.排序数组.go](lc/912.排序数组.go)|MEDIUM|4|**2**|
+|84|[#912 排序数组](https://leetcode.cn/problems/sort-an-array)|[912.排序数组.go](lc/912.排序数组.go)|MEDIUM|5|**3**|
 |85|[#1038 从二叉搜索树到更大和树](https://leetcode.cn/problems/binary-search-tree-to-greater-sum-tree)|[1038.从二叉搜索树到更大和树.go](lc/1038.从二叉搜索树到更大和树.go)|MEDIUM|1|1|
 |86|[#1081 不同字符的最小子序列](https://leetcode.cn/problems/smallest-subsequence-of-distinct-characters)|[1081.不同字符的最小子序列.go](lc/1081.不同字符的最小子序列.go)|MEDIUM|4|1|
 |87|[#1094 拼车](https://leetcode.cn/problems/car-pooling)|[1094.拼车.go](lc/1094.拼车.go)|MEDIUM|5|1|
 |88|[#1109 航班预订统计](https://leetcode.cn/problems/corporate-flight-bookings)|[1109.航班预订统计.go](lc/1109.航班预订统计.go)|MEDIUM|1|1|
-|89|[#6167 检查相同字母间的距离](https://leetcode.cn/problems/check-distances-between-same-letters)||EASY|2|1|
-|90|[#6171 和相等的子数组](https://leetcode.cn/problems/find-subarrays-with-equal-sum)||EASY|4|1|
-|91|[#6172 严格回文的数字](https://leetcode.cn/problems/strictly-palindromic-number)||MEDIUM|2|1|
+|89|[#2395 和相等的子数组](https://leetcode.cn/problems/find-subarrays-with-equal-sum)||EASY|4|1|
+|90|[#2396 严格回文的数字](https://leetcode.cn/problems/strictly-palindromic-number)||MEDIUM|2|1|
+|91|[#2399 检查相同字母间的距离](https://leetcode.cn/problems/check-distances-between-same-letters)||EASY|2|1|
+|92|[#2400 恰好移动 k 步到达某一位置的方法数目](https://leetcode.cn/problems/number-of-ways-to-reach-a-position-after-exactly-k-steps)||MEDIUM|5|1|
 
 # 文件结构
 ![Visualization of this repo](./diagram.svg)
@@ -392,48 +393,38 @@ func sortArray(nums []int) []int {
 	// 将数组分为左右两部分，递归左右两块，最后合并，即归并
 	// 如在一个合并中，将两块部分的元素，遍历取较小值填入结果集
 	// 类似两个有序链表的合并，每次两两合并相邻的两个有序序列，直到整个序列有序
-	n := len(nums)
-	temp := make([]int, n)
-
-	var merge func([]int, int, int, int)
-	merge = func(nums []int, lo, mid, hi int) {
-		for i := lo; i <= hi; i++ {
-			temp[i] = nums[i]
-		}
-		i, j := lo, mid+1
-		for p := lo; p <= hi; p++ {
-			if i == mid+1 {
-				// 左半边数组已全部被合并
-				nums[p] = temp[j]
-				j++
-			} else if j == hi+1 {
-				// 右半边数组已全部被合并
-				nums[p] = temp[i]
-				i++
-			} else if temp[i] > temp[j] {
-				nums[p] = temp[j]
-				j++
+	merge := func(left, right []int) []int {
+		res := make([]int, len(left)+len(right))
+		var l,r,i int
+		// 通过遍历完成比较填入res中
+		for l < len(left) && r < len(right) {
+			if left[l] <= right[r] {
+				res[i] = left[l]
+				l++
 			} else {
-				nums[p] = temp[i]
-				i++
+				res[i] = right[r]
+				r++
 			}
+			i++
 		}
+		// 如果left或者right还有剩余元素，添加到结果集的尾部
+		copy(res[i:], left[l:])
+		copy(res[i+len(left)-l:], right[r:])
+		return res
 	}
-
-	var sort func([]int, int, int)
-	sort = func(nums []int, lo, hi int) {
-		if lo == hi {
-			// 单个元素不用排序
-			return
+	var sort func(nums []int) []int
+	sort = func(nums []int) []int {
+		if len(nums) <= 1 {
+			return nums
 		}
-		mid := lo + (hi-lo)/2
-		sort(nums, lo, mid)
-		sort(nums, mid+1, hi)
-		merge(nums, lo, mid, hi)
+		// 拆分递归与合并
+		// 分割点
+		mid := len(nums)/2
+		left := sort(nums[:mid])
+		right := sort(nums[mid:])
+		return merge(left, right)
 	}
-
-	sort(nums, 0, n-1)	
-	return nums
+	return sort(nums)
 }
 
 // 非递归实现归并算法
