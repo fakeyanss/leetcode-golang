@@ -122,7 +122,7 @@ func quickSort(nums []int) []int {
 				// 结束时恰好 nums[j] <= pivot
 				j--
 			}
-			// 此时 [lo, i) <= pivot && (j, hi] > pivots
+			// 此时 [lo, i) <= pivot && (j, hi] > pivot
 
 			if i >= j {
 				break
