@@ -283,38 +283,48 @@ func sortArray(nums []int) []int {
 	// 将数组分为左右两部分，递归左右两块，最后合并，即归并
 	// 如在一个合并中，将两块部分的元素，遍历取较小值填入结果集
 	// 类似两个有序链表的合并，每次两两合并相邻的两个有序序列，直到整个序列有序
-	merge := func(left, right []int) []int {
-		res := make([]int, len(left)+len(right))
-		var l,r,i int
-		// 通过遍历完成比较填入res中
-		for l < len(left) && r < len(right) {
-			if left[l] <= right[r] {
-				res[i] = left[l]
-				l++
+	n := len(nums)
+	temp := make([]int, n)
+
+	var merge func([]int, int, int, int)
+	merge = func(nums []int, lo, mid, hi int) {
+		for i := lo; i <= hi; i++ {
+			temp[i] = nums[i]
+		}
+		i, j := lo, mid+1
+		for p := lo; p <= hi; p++ {
+			if i == mid+1 {
+				// 左半边数组已全部被合并
+				nums[p] = temp[j]
+				j++
+			} else if j == hi+1 {
+				// 右半边数组已全部被合并
+				nums[p] = temp[i]
+				i++
+			} else if temp[i] > temp[j] {
+				nums[p] = temp[j]
+				j++
 			} else {
-				res[i] = right[r]
-				r++
+				nums[p] = temp[i]
+				i++
 			}
-			i++
 		}
-		// 如果left或者right还有剩余元素，添加到结果集的尾部
-		copy(res[i:], left[l:])
-		copy(res[i+len(left)-l:], right[r:])
-		return res
 	}
-	var sort func(nums []int) []int
-	sort = func(nums []int) []int {
-		if len(nums) <= 1 {
-			return nums
+
+	var sort func([]int, int, int)
+	sort = func(nums []int, lo, hi int) {
+		if lo == hi {
+			// 单个元素不用排序
+			return
 		}
-		// 拆分递归与合并
-		// 分割点
-		mid := len(nums)/2
-		left := sort(nums[:mid])
-		right := sort(nums[mid:])
-		return merge(left, right)
+		mid := lo + (hi-lo)/2
+		sort(nums, lo, mid)
+		sort(nums, mid+1, hi)
+		merge(nums, lo, mid, hi)
 	}
-	return sort(nums)
+
+	sort(nums, 0, n-1)	
+	return nums
 }
 
 // 非递归实现归并算法
