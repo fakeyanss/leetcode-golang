@@ -29,3 +29,18 @@ func PrintListNode(l *ListNode) []int {
 	// fmt.Printf("print all ListNode Val=%d\n", arr)
 	return arr
 }
+
+func PrintTreeNode(n *TreeNode) []int {
+	arr := make([]int, 0)
+	var traverse func(n *TreeNode)
+	traverse = func(n *TreeNode) {
+		if n == nil {
+			return
+		}
+		arr = append(arr, n.Val)
+		traverse(n.Left)
+		traverse(n.Right)
+	}
+	traverse(n)
+	return arr
+}
