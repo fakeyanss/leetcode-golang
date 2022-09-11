@@ -1,9 +1,17 @@
-#! /bin/bash
+#!/usr/bin/env bash
 
-# go test -coverprofile=cov.out -coverpkg=./lc ./lc
-go test -covermode=count -coverprofile=count.out -coverpkg=./lc ./lc
+echo "" > coverage.txt
 
-# go tool cover -html=cov.data -o cov.html
-go tool cover -func=count.out|grep -v '100.0%'
+modules=(helper leetcode)
 
-# open cov.html
+for mod in ${modules[@]}; do
+    cd $mod
+    go test -covermode=count -coverprofile=profile.out ./... | grep 'no test files'
+    if [ -f profile.out ]; then
+        go tool cover -func=profile.out >> ../coverage.txt
+        rm profile.out
+    fi
+    cd ..
+done
+
+cat coverage.txt|grep -v '100.0%'

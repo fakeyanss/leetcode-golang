@@ -81,12 +81,15 @@ def get_accepted_problems(session):
 
 
 def list_local_solution():
-    dir_name = 'lc'
+    dir_name = 'leetcode'
     local_su = {}
-    for filename in os.listdir(dir_name):
-        if not filename.endswith('_test.go'):
-            id = filename.split('.')[0]
-            local_su[id] = [filename, dir_name + '/' + filename]
+    for dirpath, dirname, filenames in os.walk(dir_name):
+        if filenames:
+            for file in filenames:
+                if not file.endswith('_test.go'):
+                    id = file.split('.')[0]
+                    local_su[id] = [file, dirpath + '/' + file]
+    print(local_su)
     return local_su
 
 
@@ -109,6 +112,8 @@ def generate_markdown_text(response_data, session):
     table_body = []
 
     response_data = response_data['data']['userProfileQuestions']['questions']
+
+    localSu = list_local_solution()
     
     for index, sub_data in enumerate(response_data):
 
@@ -125,8 +130,7 @@ def generate_markdown_text(response_data, session):
         numSubmitted = str(numSubmitted)
         url = "https://leetcode.cn/problems/{}".format(
             sub_data['titleSlug'])
-
-        localSu = list_local_solution()
+        
         localFile = ''
         localLink = ''
         if frontendId in localSu.keys():
