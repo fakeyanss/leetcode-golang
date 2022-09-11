@@ -69,7 +69,7 @@ func main() {
 |54|[#236 二叉树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree)|[236.二叉树的最近公共祖先.go](leetcode/lc236/236.二叉树的最近公共祖先.go)|MEDIUM|1|1|
 |55|[#237 删除链表中的节点](https://leetcode.cn/problems/delete-node-in-a-linked-list)|[237.删除链表中的节点.go](leetcode/lc237/237.删除链表中的节点.go)|MEDIUM|2|1|
 |56|[#258 各位相加](https://leetcode.cn/problems/add-digits)|[258.各位相加.go](leetcode/lc258/258.各位相加.go)|EASY|2|1|
-|57|[#268 丢失的数字](https://leetcode.cn/problems/missing-number)|[268.丢失的数字.go](leetcode/lc268/268.丢失的数字.go)|EASY|2|**2**|
+|57|[#268 丢失的数字](https://leetcode.cn/problems/missing-number)|[268.丢失的数字.go](leetcode/lc268/268.丢失的数字.go)|EASY|2|1|
 |58|[#283 移动零](https://leetcode.cn/problems/move-zeroes)|[283.移动零.go](leetcode/lc283/283.移动零.go)|EASY|1|1|
 |59|[#297 二叉树的序列化与反序列化](https://leetcode.cn/problems/serialize-and-deserialize-binary-tree)|[297.二叉树的序列化与反序列化.go](leetcode/lc297/297.二叉树的序列化与反序列化.go)|HARD|10|1|
 |60|[#300 最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence)|[300.最长递增子序列.go](leetcode/lc300/300.最长递增子序列.go)|MEDIUM|2|1|
@@ -77,7 +77,7 @@ func main() {
 |62|[#304 二维区域和检索 - 矩阵不可变](https://leetcode.cn/problems/range-sum-query-2d-immutable)|[304.二维区域和检索-矩阵不可变.go](leetcode/lc304/304.二维区域和检索-矩阵不可变.go)|MEDIUM|1|1|
 |63|[#315 计算右侧小于当前元素的个数](https://leetcode.cn/problems/count-of-smaller-numbers-after-self)|[315.计算右侧小于当前元素的个数.go](leetcode/lc315/315.计算右侧小于当前元素的个数.go)|HARD|1|1|
 |64|[#316 去除重复字母](https://leetcode.cn/problems/remove-duplicate-letters)|[316.去除重复字母.go](leetcode/lc316/316.去除重复字母.go)|MEDIUM|4|1|
-|65|[#322 零钱兑换](https://leetcode.cn/problems/coin-change)|[322.零钱兑换.go](leetcode/lc322/322.零钱兑换.go)|MEDIUM|15|**2**|
+|65|[#322 零钱兑换](https://leetcode.cn/problems/coin-change)|[322.零钱兑换.go](leetcode/lc322/322.零钱兑换.go)|MEDIUM|15|1|
 |66|[#327 区间和的个数](https://leetcode.cn/problems/count-of-range-sum)|[327.区间和的个数.go](leetcode/lc327/327.区间和的个数.go)|HARD|2|1|
 |67|[#341 扁平化嵌套列表迭代器](https://leetcode.cn/problems/flatten-nested-list-iterator)|[341.扁平化嵌套列表迭代器.go](leetcode/lc341/341.扁平化嵌套列表迭代器.go)|MEDIUM|3|1|
 |68|[#344 反转字符串](https://leetcode.cn/problems/reverse-string)|[344.反转字符串.go](leetcode/lc344/344.反转字符串.go)|EASY|1|1|
