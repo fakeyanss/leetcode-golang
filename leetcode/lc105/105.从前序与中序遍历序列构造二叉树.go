@@ -47,7 +47,7 @@
  *
  *
  */
-package lc
+package lc105
 
 import "github.com/fakeYanss/leetcode-golang/helper"
 

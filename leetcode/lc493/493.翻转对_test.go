@@ -1,4 +1,4 @@
-package lc
+package lc493
 
 import "testing"
 

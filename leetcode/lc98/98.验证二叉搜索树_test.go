@@ -1,4 +1,4 @@
-package lc
+package lc98
 
 import (
 	"testing"

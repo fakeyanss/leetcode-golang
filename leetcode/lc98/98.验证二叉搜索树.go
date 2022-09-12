@@ -50,7 +50,7 @@
  *
  *
  */
-package lc
+package lc98
 
 import "github.com/fakeYanss/leetcode-golang/helper"
 

@@ -1,4 +1,4 @@
-package lc
+package lc105
 
 import (
 	"reflect"

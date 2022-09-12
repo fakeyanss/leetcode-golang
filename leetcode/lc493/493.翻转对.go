@@ -39,7 +39,7 @@
  *
  *
  */
-package lc
+package lc493
 
 // @lc code=start
 
