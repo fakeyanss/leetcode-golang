@@ -85,8 +85,7 @@ type TreeNode = helper.TreeNode
 
 type Codec struct{}
 
-// func Constructor() (_ Codec) {
-func Constructor297() (_ Codec) {
+func Constructor() (_ Codec) {
 	return
 }
 
