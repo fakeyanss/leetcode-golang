@@ -57,10 +57,18 @@
  */
 package lc0053
 
+import "math"
+
 // @lc code=start
 func maxSubArray(nums []int) int {
+	// return dp(nums)
+	return preSum(nums)
+}
+
+// dp解法
+func dp(nums []int) int {
 	// 当前和动态规划方程 f(n)=max(f(n-1)+nums[n], nums[n])
-	// 过程中记录最大和
+	// 过程中记录最大和, 压缩dp空间
 	res, cur, n := nums[0], nums[0], len(nums)
 	for i := 1; i < n; i++ {
 		cur += nums[i]
@@ -72,6 +80,40 @@ func maxSubArray(nums []int) int {
 		}
 	}
 	return res
+
+}
+
+// 前缀和思路
+func preSum(nums []int) int {
+	// nums[j..i] = preSum[i+1] - preSum[j]
+	// 以 nums[i] 为结尾的最大子数组之和就是 preSum[i+1] - min(preSum[0..i])
+	n := len(nums)
+	preSum := make([]int, n+1)
+	preSum[0] = 0
+	for i := 1; i <= n; i++ {
+		preSum[i] = preSum[i-1] + nums[i-1]
+	}
+
+	res, minVal := math.MinInt, math.MaxInt
+	for i := 0; i < n; i++ {
+		minVal = minInt(preSum[i], minVal)
+		res = maxInt(res, preSum[i+1]-minVal)
+	}
+	return res
+}
+
+func minInt(a, b int) int {
+	if a > b {
+		return b
+	}
+	return a
+}
+
+func maxInt(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
 
 // @lc code=end
