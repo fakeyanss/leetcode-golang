@@ -740,10 +740,10 @@ func findRightMinInBST(root *TreeNode) *TreeNode {
 明确 base case -> 明确「状态」 -> 明确「选择」 -> 定义 dp 数组/函数的含义。
 
 基本思路:
-1、确定 base case。
-2、确定「状态」，也就是原问题和子问题中会变化的变量。
-3、确定「选择」，也就是导致「状态」产生变化的行为。
-4、明确 dp 函数/数组的定义。
+1. 确定 base case。
+2. 确定「状态」，也就是原问题和子问题中会变化的变量。
+3. 确定「选择」，也就是导致「状态」产生变化的行为。
+4. 明确 dp 函数/数组的定义。
 
 实现：
 - 自顶向下的带备忘录的递归解法
@@ -771,3 +771,84 @@ for i in [1..N]:
 return dp[N][W]
 ```
 
+## 回溯
+
+框架：
+
+```
+result = []
+def backtrack(路径, 选择列表):
+    if 满足结束条件:
+        result.add(路径)
+        return
+    
+    for 选择 in 选择列表:
+        做选择
+        backtrack(路径, 选择列表)
+        撤销选择
+```
+
+### N 皇后问题
+
+给你一个 N×N 的棋盘，让你放置 N 个皇后，使得它们不能互相攻击。皇后可以攻击同一行、同一列、左上左下右上右下四个方向的任意单位。
+
+```c++
+vector<vector<string>> res;
+
+/* 输入棋盘边长 n，返回所有合法的放置 */
+vector<vector<string>> solveNQueens(int n) {
+    // vector<string> 代表一个棋盘
+    // '.' 表示空，'Q' 表示皇后，初始化空棋盘
+    vector<string> board(n, string(n, '.'));
+    backtrack(board, 0);
+    return res;
+}
+
+// 路径：board 中小于 row 的那些行都已经成功放置了皇后
+// 选择列表：第 row 行的所有列都是放置皇后的选择
+// 结束条件：row 超过 board 的最后一行
+void backtrack(vector<string>& board, int row) {
+    // 触发结束条件
+    if (row == board.size()) {
+        res.push_back(board);
+        return;
+    }
+    
+    int n = board[row].size();
+    for (int col = 0; col < n; col++) {
+        // 排除不合法选择
+        if (!isValid(board, row, col)) {
+            continue;
+        }
+        // 做选择
+        board[row][col] = 'Q';
+        // 进入下一行决策
+        backtrack(board, row + 1);
+        // 撤销选择
+        board[row][col] = '.';
+    }
+}
+
+/* 是否可以在 board[row][col] 放置皇后？ */
+bool isValid(vector<string>& board, int row, int col) {
+    int n = board.size();
+    // 检查列是否有皇后互相冲突
+    for (int i = 0; i <= row; i++) {
+        if (board[i][col] == 'Q')
+            return false;
+    }
+    // 检查右上方是否有皇后互相冲突
+    for (int i = row - 1, j = col + 1; 
+            i >= 0 && j < n; i--, j++) {
+        if (board[i][j] == 'Q')
+            return false;
+    }
+    // 检查左上方是否有皇后互相冲突
+    for (int i = row - 1, j = col - 1;
+            i >= 0 && j >= 0; i--, j--) {
+        if (board[i][j] == 'Q')
+            return false;
+    }
+    return true;
+}
+```
