@@ -852,3 +852,24 @@ bool isValid(vector<string>& board, int row, int col) {
     return true;
 }
 ```
+
+## 数学公式
+
+### 最大公约数
+
+```
+func gcd(x, y int) int {
+	if y == 0 {
+		return x
+	}
+	return gcd(y, x%y)
+}
+```
+
+### 最小公倍数
+
+```
+func lcm(x, y int) int {
+	return x * y / gcd(x, y)
+}
+```
