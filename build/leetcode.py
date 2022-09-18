@@ -23,7 +23,7 @@ def login(EMAIL, PASSWORD):
                'Connection': 'keep-alive', 'Referer': sign_in_url, "origin": "https://leetcode.cn/"}
 
     session.post(sign_in_url, headers=headers, data=login_data,
-                 timeout=10, allow_redirects=False)
+                 timeout=60, allow_redirects=False)
     is_login = session.cookies.get('LEETCODE_SESSION') != None
     if is_login:
         return session
@@ -114,7 +114,7 @@ def generate_markdown_text(response_data, session):
     response_data = response_data['data']['userProfileQuestions']['questions']
 
     localSu = list_local_solution()
-    
+
     for index, sub_data in enumerate(response_data):
 
         print('{}/{}'.format(index + 1, len(response_data)))
@@ -130,7 +130,7 @@ def generate_markdown_text(response_data, session):
         numSubmitted = str(numSubmitted)
         url = "https://leetcode.cn/problems/{}".format(
             sub_data['titleSlug'])
-        
+
         localFile = ''
         localLink = ''
         if frontendId in localSu.keys():
