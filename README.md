@@ -70,7 +70,7 @@ func main() {
 |55|[#236 二叉树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree)|[236.二叉树的最近公共祖先.go](leetcode/lc236/236.二叉树的最近公共祖先.go)|MEDIUM|1|1|
 |56|[#237 删除链表中的节点](https://leetcode.cn/problems/delete-node-in-a-linked-list)|[237.删除链表中的节点.go](leetcode/lc237/237.删除链表中的节点.go)|MEDIUM|2|1|
 |57|[#258 各位相加](https://leetcode.cn/problems/add-digits)|[258.各位相加.go](leetcode/lc258/258.各位相加.go)|EASY|2|1|
-|58|[#268 丢失的数字](https://leetcode.cn/problems/missing-number)|[268.丢失的数字.go](leetcode/lc268/268.丢失的数字.go)|EASY|2|**2**|
+|58|[#268 丢失的数字](https://leetcode.cn/problems/missing-number)|[268.丢失的数字.go](leetcode/lc268/268.丢失的数字.go)|EASY|2|1|
 |59|[#283 移动零](https://leetcode.cn/problems/move-zeroes)|[283.移动零.go](leetcode/lc283/283.移动零.go)|EASY|1|1|
 |60|[#297 二叉树的序列化与反序列化](https://leetcode.cn/problems/serialize-and-deserialize-binary-tree)|[297.二叉树的序列化与反序列化.go](leetcode/lc297/297.二叉树的序列化与反序列化.go)|HARD|10|1|
 |61|[#300 最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence)|[300.最长递增子序列.go](leetcode/lc300/300.最长递增子序列.go)|MEDIUM|2|1|
@@ -78,7 +78,7 @@ func main() {
 |63|[#304 二维区域和检索 - 矩阵不可变](https://leetcode.cn/problems/range-sum-query-2d-immutable)|[304.二维区域和检索-矩阵不可变.go](leetcode/lc304/304.二维区域和检索-矩阵不可变.go)|MEDIUM|1|1|
 |64|[#315 计算右侧小于当前元素的个数](https://leetcode.cn/problems/count-of-smaller-numbers-after-self)|[315.计算右侧小于当前元素的个数.go](leetcode/lc315/315.计算右侧小于当前元素的个数.go)|HARD|1|1|
 |65|[#316 去除重复字母](https://leetcode.cn/problems/remove-duplicate-letters)|[316.去除重复字母.go](leetcode/lc316/316.去除重复字母.go)|MEDIUM|4|1|
-|66|[#322 零钱兑换](https://leetcode.cn/problems/coin-change)|[322.零钱兑换.go](leetcode/lc322/322.零钱兑换.go)|MEDIUM|15|**2**|
+|66|[#322 零钱兑换](https://leetcode.cn/problems/coin-change)|[322.零钱兑换.go](leetcode/lc322/322.零钱兑换.go)|MEDIUM|15|1|
 |67|[#327 区间和的个数](https://leetcode.cn/problems/count-of-range-sum)|[327.区间和的个数.go](leetcode/lc327/327.区间和的个数.go)|HARD|2|1|
 |68|[#341 扁平化嵌套列表迭代器](https://leetcode.cn/problems/flatten-nested-list-iterator)|[341.扁平化嵌套列表迭代器.go](leetcode/lc341/341.扁平化嵌套列表迭代器.go)|MEDIUM|3|1|
 |69|[#344 反转字符串](https://leetcode.cn/problems/reverse-string)|[344.反转字符串.go](leetcode/lc344/344.反转字符串.go)|EASY|1|1|
@@ -90,7 +90,7 @@ func main() {
 |75|[#450 删除二叉搜索树中的节点](https://leetcode.cn/problems/delete-node-in-a-bst)|[450.删除二叉搜索树中的节点.go](leetcode/lc450/450.删除二叉搜索树中的节点.go)|MEDIUM|2|1|
 |76|[#493 翻转对](https://leetcode.cn/problems/reverse-pairs)|[493.翻转对.go](leetcode/lc493/493.翻转对.go)|HARD|7|1|
 |77|[#509 斐波那契数](https://leetcode.cn/problems/fibonacci-number)|[509.斐波那契数.go](leetcode/lc509/509.斐波那契数.go)|EASY|5|1|
-|78|[#516 最长回文子序列](https://leetcode.cn/problems/longest-palindromic-subsequence)|[516.最长回文子序列.go](leetcode/lc516/516.最长回文子序列.go)|MEDIUM|4|**2**|
+|78|[#516 最长回文子序列](https://leetcode.cn/problems/longest-palindromic-subsequence)|[516.最长回文子序列.go](leetcode/lc516/516.最长回文子序列.go)|MEDIUM|4|1|
 |79|[#528 按权重随机选择](https://leetcode.cn/problems/random-pick-with-weight)|[528.按权重随机选择.go](leetcode/lc528/528.按权重随机选择.go)|MEDIUM|2|1|
 |80|[#538 把二叉搜索树转换为累加树](https://leetcode.cn/problems/convert-bst-to-greater-tree)|[538.把二叉搜索树转换为累加树.go](leetcode/lc538/538.把二叉搜索树转换为累加树.go)|MEDIUM|1|1|
 |81|[#543 二叉树的直径](https://leetcode.cn/problems/diameter-of-binary-tree)|[543.二叉树的直径.go](leetcode/lc543/543.二叉树的直径.go)|EASY|2|1|
