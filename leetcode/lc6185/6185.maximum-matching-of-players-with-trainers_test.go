@@ -1,0 +1,29 @@
+// https://ghproxy.com/https://raw.githubusercontent.com/fakeYanss/imgplace/master//2022/2022-09-18_20220918150655.png
+
+// https://leetcode.cn/problems/maximum-matching-of-players-with-trainers/
+package lc6185
+
+import "testing"
+
+func Test_matchPlayersAndTrainers(t *testing.T) {
+	type args struct {
+		players  []int
+		trainers []int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		{"case1", args{players: []int{1, 1, 1}, trainers: []int{10}}, 1},
+		{"case2", args{players: []int{4, 7, 9}, trainers: []int{8, 2, 5, 8}}, 2},
+		{"case3", args{players: []int{4, 7, 7}, trainers: []int{8, 8, 8}}, 3},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := matchPlayersAndTrainers(tt.args.players, tt.args.trainers); got != tt.want {
+				t.Errorf("matchPlayersAndTrainers() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
