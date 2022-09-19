@@ -756,6 +756,18 @@ func findRightMinInBST(root *TreeNode) *TreeNode {
 
 ### 背包问题
 
+#### 0-1 背包问题
+
+给你一个可装载重量为 W 的背包和 N 个物品，每个物品有重量和价值两个属性。其中第 i 个物品的重量为 wt[i]，价值为 val[i]，现在让你用这个背包装物品，最多能装的价值是多少？
+
+```
+输入：N = 3, W = 4, wt = [2, 1, 3], val = [4, 2, 3]
+
+输出：6
+解释：选择前两件物品装进背包，总重量 3 小于 W，可以获得最大价值 6
+```
+
+思路：
 ```
 // dp[i][w] 的定义: 对于前 i 个物品，当前背包的容量为 w，这种情况下可以装的最大价值是 dp[i][w]
 int[][] dp[N+1][W+1]
@@ -769,6 +781,83 @@ for i in [1..N]:
             不把物品 i 装进背包
         )
 return dp[N][W]
+```
+
+实现：
+```go
+func knapsack(n, w int, wt []int, val []int) int {
+	dp := make([][]int, n+1)
+	for i := range dp {
+		dp[i] = make([]int, w+1)
+	}
+
+	for i := 1; i <= n; i++ {
+		for j := 1; j <= w; j++ {
+			if j-wt[i-1] < 0 {
+				// 背包容量不足，只能选择不装入背包
+				dp[i][j] = dp[i-1][j]
+			} else {
+				dp[i][j] = maxInt(
+					dp[i-1][j],                  // 不装入背包
+					dp[i-1][j-wt[i-1]]+val[i-1], // 装入背包
+				)
+			}
+		}
+	}
+	return dp[n][w]
+}
+
+func maxInt(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+```
+
+#### 完全背包问题
+
+有一个背包，最大容量为 amount，有一系列物品 items，每个物品的重量为 items[i]，每个物品的数量无限。请问有多少种方法，能够把背包恰好装满？
+
+思路：
+```
+// dp[i][j] 的定义：若只使用前 i 个物品（可以重复使用），当背包容量为 j 时，有 dp[i][j] 种方法可以装满背包
+int dp[N+1][amount+1]
+dp[0][..] = 0
+dp[..][0] = 1
+
+for i in [1..N]:
+    for j in [1..amount]:
+        把物品 i 装进背包,
+        不把物品 i 装进背包
+return dp[N][amount]
+```
+
+实现：
+```go
+func knapsack(amount int, items []int) int {
+	n := len(items)
+	// dp[i][j] 的定义：若只使用前 i 个物品（可以重复使用），当背包容量为 j 时，有 dp[i][j] 种方法可以装满背包
+	dp := make([][]int, n+1)
+	for i := range dp {
+		dp[i] = make([]int, amount+1)
+		dp[i][0] = 1
+	}
+
+	for i := 1; i <= n; i++ {
+		for j := 1; j <= amount; j++ {
+			if j-items[i-1] < 0 {
+				// 容量不够
+				dp[i][j] = dp[i-1][j]
+			} else {
+				// 不装入+装入的方法的和
+				dp[i][j] = dp[i-1][j] + dp[i][j-items[i-1]]
+			}
+		}
+	}
+
+	return dp[n][amount]
+}
 ```
 
 ## 回溯

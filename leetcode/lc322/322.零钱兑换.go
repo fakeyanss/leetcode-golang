@@ -98,6 +98,7 @@ func coinChange(coins []int, amount int) int {
 	// return dp(amount)
 
 	// dp table
+	// 定义：要凑出金额 n，至少要 dp[n] 个硬币
 	dp := make([]int, amount+1)
 	dp[0] = 0
 	sort.Ints(coins)
