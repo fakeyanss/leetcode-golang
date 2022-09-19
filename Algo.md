@@ -851,6 +851,7 @@ func knapsack(amount int, items []int) int {
 				dp[i][j] = dp[i-1][j]
 			} else {
 				// 不装入+装入的方法的和
+				// 注意，完全背包可以装入重复的值，所以这里转入的方法，是dp[i][j-items[i-1]]
 				dp[i][j] = dp[i-1][j] + dp[i][j-items[i-1]]
 			}
 		}
