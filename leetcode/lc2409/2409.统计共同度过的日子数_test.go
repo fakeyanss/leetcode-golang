@@ -1,10 +1,6 @@
-// https://ghproxy.com/https://raw.githubusercontent.com/fakeYanss/imgplace/master//2022/2022-09-18_20220918143300.png
+package lc2409
 
-package lc6184
-
-import (
-	"testing"
-)
+import "testing"
 
 func Test_countDaysTogether(t *testing.T) {
 	type args struct {
@@ -28,6 +24,4 @@ func Test_countDaysTogether(t *testing.T) {
 			}
 		})
 	}
-	// fmt.Println(calcDays("10-31"))
-	// fmt.Println(calcDays("11-01"))
 }

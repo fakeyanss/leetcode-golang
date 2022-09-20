@@ -1,6 +1,4 @@
-// https://leetcode.cn/problems/sum-of-prefix-scores-of-strings/solution/by-lfool-w82u/
-
-package lc6183
+package lc2416
 
 import (
 	"reflect"

@@ -1,7 +1,4 @@
-// https://ghproxy.com/https://raw.githubusercontent.com/fakeYanss/imgplace/master//2022/2022-09-18_20220918150655.png
-
-// https://leetcode.cn/problems/maximum-matching-of-players-with-trainers/
-package lc6185
+package lc2410
 
 import "testing"
 
