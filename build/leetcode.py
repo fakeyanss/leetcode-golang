@@ -23,7 +23,7 @@ def login(EMAIL, PASSWORD):
                'Connection': 'keep-alive', 'Referer': sign_in_url, "origin": "https://leetcode.cn/"}
 
     session.post(sign_in_url, headers=headers, data=login_data,
-                 timeout=60, allow_redirects=False)
+                 timeout=120, allow_redirects=False)
     is_login = session.cookies.get('LEETCODE_SESSION') != None
     if is_login:
         return session
