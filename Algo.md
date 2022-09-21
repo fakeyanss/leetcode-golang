@@ -1083,3 +1083,45 @@ func lcm(x, y int) int {
 	return x * y / gcd(x, y)
 }
 ```
+
+## 系列问题
+
+### 岛屿问题
+
+二维数组 grid，其中只包含 0 或者 1，0 代表海水，1 代表陆地，且假设该矩阵四周都是被海水包围着的。连成片的陆地形成岛屿，计算这个矩阵 grid 中岛屿的个数。
+
+dfs遍历+Flood Fill算法。遍历过程修改岛屿为海水，可以避免使用visited数组，节省空间。
+
+```go
+func numIslands(grid [][]byte) int {
+	res := 0
+	m, n := len(grid), len(grid[0])
+	for i := 0; i < m; i++ {
+		for j := 0; j < n; j++ {
+			if grid[i][j] == '1' {
+				res++
+				dfs(grid, i, j)
+			}
+		}
+	}
+	return res
+}
+
+func dfs(grid [][]byte, row, col int) {
+	m, n := len(grid), len(grid[0])
+	if row >= m || row < 0 || col >= n || col < 0 {
+		return
+	}
+
+	if grid[row][col] == '0' {
+		return
+	}
+
+	grid[row][col] = '0'
+
+	dfs(grid, row-1, col)
+	dfs(grid, row+1, col)
+	dfs(grid, row, col-1)
+	dfs(grid, row, col+1)
+}
+```
