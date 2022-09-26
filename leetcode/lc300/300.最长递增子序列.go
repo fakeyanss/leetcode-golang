@@ -64,7 +64,8 @@ package lc300
 // @lc code=start
 func lengthOfLIS(nums []int) int {
 	// return dp(nums)
-	return binarySearch(nums)
+	// return binarySearch(nums)
+	return patienceSort(nums)
 }
 
 func dp(nums []int) int {
@@ -128,6 +129,42 @@ func binarySearch(nums []int) int {
 		}
 	}
 	return maxLen
+}
+
+// https://labuladong.github.io/algo/3/26/76/
+// 扑克牌排序：只能把点数小的牌压到点数比它大的牌上；如果当前牌点数较大没有可以放置的堆，则新建一个堆，把这张牌放进去；如果当前牌有多个堆可供选择，则选择最左边的那一堆放置。
+// 最终堆的个数，就是LIS的长度
+func patienceSort(nums []int) int {
+	top := make([]int, len(nums))
+	// 牌堆数初始为0
+	piles := 0
+	for i := 0; i < len(nums); i++ {
+		// 要处理的牌
+		poker := nums[i]
+
+		// 二分搜索左侧边界
+		l, r := 0, piles
+		for l < r {
+			mid := l + (r-l)/2
+			if top[mid] > poker {
+				r = mid
+			} else if top[mid] < poker {
+				l = mid + 1
+			} else {
+				r = mid
+			}
+		}
+
+		// 没找到合适的牌堆，新建
+		if l == piles {
+			piles++
+		}
+		// 这张牌放到堆顶
+		top[l] = poker
+	}
+
+	// 牌堆数就是LIS长度
+	return piles
 }
 
 // @lc code=end
