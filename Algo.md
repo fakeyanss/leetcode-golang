@@ -1063,6 +1063,80 @@ void backtrack(int[] nums) {
 }
 ```
 
+### 有限状态机与 KMP 字符匹配
+
+KMP 算法是在 txt 中查找子串 pat，如果存在，返回这个子串的起始索引，否则返回 -1。
+
+思路：
+```
+空间换时间，先依据pat构建dp数组，再对txt搜索。
+
+pat串长度为m，匹配字符的个数有256个（ascii码）
+
+dp[j][c] = next
+0 <= j < m，代表当前的状态，即当前匹配到的pat串的字符索引
+0 <= c < 256，代表遇到的字符（ASCII 码）
+0 <= next <= M，代表下一个状态
+
+比如，对于 pat = "ABABC"
+dp[4]['A'] = 3 表示：
+当前是状态 4，如果遇到字符 A，
+pat 应该转移到状态 3
+
+dp[1]['B'] = 2 表示：
+当前是状态 1，如果遇到字符 B，
+pat 应该转移到状态 2
+```
+
+实现：
+
+```go
+type kmp struct {
+	dp  [][]int
+	pat string
+}
+
+func construct(pat string) kmp {
+	m, n := len(pat), 256 // 256个ascii码
+	dp := make([][]int, m)
+	for i := range dp {
+		dp[i] = make([]int, n)
+	}
+	k := kmp{dp, pat}
+
+	// base case
+	dp[0][int(pat[0])] = 1
+	// 影子状态初始为0
+	x := 0
+	for i := 1; i < m; i++ {
+		// 遍历256个ascii码
+		for j := 0; j < n; j++ {
+			if int(pat[i]) == j {
+				dp[i][j] = i + 1
+			} else {
+				dp[i][j] = dp[x][j]
+			}
+		}
+		// 更新x为上一个与pat[i]有公共前缀的下标位置
+		x = dp[x][int(pat[i])]
+	}
+
+	return k
+}
+
+func (k kmp) search(txt string) int {
+	m, n := len(k.pat), len(txt)
+	j := 0
+	for i := 0; i < n; i++ {
+		j = k.dp[j][int(txt[i])]
+		if j == m {
+			return i - j + 1
+		}
+	}
+	return -1
+}
+```
+
 ## BFS
 
 ### 最短距离
