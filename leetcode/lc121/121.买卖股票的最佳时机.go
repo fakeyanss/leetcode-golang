@@ -50,21 +50,60 @@
  */
 package lc121
 
-import "math"
-
 // @lc code=start
 func maxProfit(prices []int) int {
-	min := math.MaxInt
-	max := 0
-	for i := 0; i < len(prices); i++ {
-		sub := prices[i] - min
-		if min > prices[i] {
-			min = prices[i]
-		} else if sub > max {
-			max = sub
-		}
+	// min := math.MaxInt
+	// max := 0
+	// for i := 0; i < len(prices); i++ {
+	// 	sub := prices[i] - min
+	// 	if min > prices[i] {
+	// 		min = prices[i]
+	// 	} else if sub > max {
+	// 		max = sub
+	// 	}
+	// }
+	// return max
+
+	return dp(prices)
+}
+
+// dp[i][k][0 or 1]
+// 0 <= i <= n - 1, 1 <= k <= K
+// n 为天数，大 K 为交易数的上限，0 和 1 代表是否持有股票。
+// 此问题共 n × K × 2 种状态，全部穷举就能搞定。
+
+// base case：
+// dp[-1][...][0] = dp[...][0][0] = 0
+// dp[-1][...][1] = dp[...][0][1] = -infinity
+
+// 状态转移方程：
+// dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
+// dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])
+
+func dp(prices []int) int {
+	// 相当于k=1
+	n := len(prices)
+	dp := make([][]int, n)
+	for i := range dp {
+		dp[i] = make([]int, 2)
 	}
-	return max
+	for i := 0; i < n; i++ {
+		if i-1 == -1 {
+			dp[i][0] = 0
+			dp[i][1] = -prices[i]
+			continue
+		}
+		dp[i][0] = maxInt(dp[i-1][0], dp[i-1][1]+prices[i])
+		dp[i][1] = maxInt(dp[i-1][1], -prices[i])
+	}
+	return dp[n-1][0]
+}
+
+func maxInt(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
 
 // @lc code=end
