@@ -50,6 +50,8 @@
  */
 package lc188
 
+import "math"
+
 // @lc code=start
 func maxProfit(k int, prices []int) int {
 	return dpWithK(k, prices)
@@ -79,6 +81,9 @@ func dpWithK(k int, prices []int) int {
 		dp[i] = make([][]int, k+1)
 		for j := range dp[i] {
 			dp[i][j] = make([]int, 2)
+			// k = 0 的base case
+			dp[i][0][0] = 0
+			dp[i][0][1] = math.MinInt
 		}
 	}
 

@@ -1239,3 +1239,93 @@ func dfs(grid [][]byte, row, col int) {
 	dfs(grid, row, col+1)
 }
 ```
+
+### 股票问题
+
+输入股票价格数组 prices，你最多进行 max_k 次交易，每次交易需要额外消耗 fee 的手续费，而且每次交易之后需要经过 cooldown 天的冷冻期才能进行下一次交易，请你计算并返回可以获得的最大利润。
+
+```go
+// dp[i][k][0 or 1]
+// 0 <= i <= n-1, 1 <= k <= K
+// n 为天数，K 为交易数的上限，0 和 1 代表是否持有股票
+// 此问题共有 n*K*2 种状态
+
+// base case：
+// dp[-1][...][0] = dp[...][0][0] = 0
+// dp[-1][...][1] = dp[...][0][1] = -infifity
+
+// 状态转移
+// dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
+// dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])
+func maxProfit(prices []int, k, cooldown, fee int) int {
+	n := len(prices)
+	// 确定k的情况下，如果k>n/2，即无论如何都用不完k的额度，等于不限制k
+	if k > n/2 {
+		return maxProfitWithInfinityK(prices, cooldown, fee)
+	}
+	dp := make([][][]int, n)
+	for i := range dp {
+		dp[i] = make([][]int, k+1)
+		for j := range dp[i] {
+			dp[i][j] = make([]int, 2)
+			dp[i][0][0] = 0
+			dp[i][0][1] = math.MinInt
+		}
+	}
+
+	for i := 0; i < n; i++ {
+		for j := k; i > 0; j-- {
+			// base case 1
+			if i-1 == -1 {
+				dp[i][j][0] = 0
+				dp[i][j][1] = -prices[i] - fee
+				continue
+			}
+			// base case 2
+			if i-cooldown-1 < 0 {
+				dp[i][j][0] = maxInt(dp[i-1][j][0], dp[i-1][j][1]+prices[i])
+				dp[i][j][1] = maxInt(dp[i-1][j][1], -prices[i]-fee)
+				continue
+			}
+			dp[i][j][0] = maxInt(dp[i-1][j][0], dp[i-1][j][1])
+			// 同时考虑 cooldown 和 fee
+			dp[i][j][1] = maxInt(dp[i-1][j][1], dp[i-cooldown-1][j-1][0]-prices[i]-fee)
+		}
+	}
+	return dp[n-1][k][0]
+}
+
+func maxProfitWithInfinityK(prices []int, cooldown, fee int) int {
+	// 相当于k正无穷，k和k-1相同
+	n := len(prices)
+	dp := make([][]int, n)
+	for i := range dp {
+		dp[i] = make([]int, 2)
+	}
+	for i := 0; i < n; i++ {
+		// base case 1
+		if i-1 == -1 {
+			dp[i][0] = 0
+			dp[i][1] = -prices[i] - fee
+			continue
+		}
+		// base case 2
+		if i-cooldown-1 < 0 {
+			dp[i][0] = maxInt(dp[i-1][0], dp[i-1][1]+prices[i])
+			dp[i][1] = maxInt(dp[i-1][1], -prices[i]-fee)
+			continue
+		}
+		dp[i][0] = maxInt(dp[i-1][0], dp[i-1][1]+prices[i])
+		// 同时考虑 cooldown 和 fee
+		dp[i][1] = maxInt(dp[i-1][1], dp[i-cooldown-1][0]-prices[i]-fee)
+	}
+	return dp[n-1][0]
+}
+
+func maxInt(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+```
