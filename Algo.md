@@ -753,6 +753,8 @@ func findRightMinInBST(root *TreeNode) *TreeNode {
 - 自顶向下，时间优化，观察状态偏移是否存在重复值，增加备忘录
 - 自底向上，空间优化，关注dp数组递推关系，是否存在某些状态不变，进行降维
 
+[四键键盘](https://labuladong.github.io/algo/3/28/94/)
+
 
 ### 背包问题
 
@@ -860,6 +862,10 @@ func knapsack(amount int, items []int) int {
 	return dp[n][amount]
 }
 ```
+
+## 贪心
+
+[会议室问题](https://labuladong.github.io/algo/3/29/100/)
 
 ## 回溯
 
