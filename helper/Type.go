@@ -68,9 +68,11 @@ func (ni NestedInteger) GetList() []*NestedInteger {
 // Definition for a Trie Tree.
 type Trie struct {
 	Val      interface{} // 存储节点的值，可记录字符串key对应的value，实现TrieSet时无用
-	Children []*Trie     // 存储指向子节点的指针
+	Children [256]*Trie  // 存储指向子节点的指针
 }
 
+// 定义TrieMap，支持对每个节点保存val
+// 如果要定义TrieSet，可直接使用TrieMap，val仅起来占位的作用
 type TrieMap struct {
 	Size int   // map中的trie键值对个数
 	Root *Trie // trie树的根节点
@@ -242,11 +244,12 @@ func (t *TrieMap) KeysWithPrefix(prefix string) []string {
 		return res
 	}
 	// dfs遍历以x为跟的这个子树
-	t.traverse(x, &[]byte{}, &res)
+	path := []byte(prefix)
+	t.traverse(x, &path, &res)
 	return res
 }
 
-// 遍历以node为根的Trie树，找到所有键
+// 额外辅助函数，遍历以node为根的Trie树，找到所有k
 func (t *TrieMap) traverse(node *Trie, path *[]byte, res *[]string) {
 	if node == nil {
 		// 到达叶子结点
@@ -267,8 +270,67 @@ func (t *TrieMap) traverse(node *Trie, path *[]byte, res *[]string) {
 
 // 在TrieMap中搜索前缀为pattern的k列表，支持 . 匹配所有字符
 func (t *TrieMap) KeysWithPattern(pattern string) []string {
-	return []string{}
+	res := []string{}
+	t.traversePattern(t.Root, &[]byte{}, pattern, 0, &res)
+	return res
+}
+
+// 额外辅助函数，遍历以node为根的Trie树，找到匹配pattern[i..]的k
+func (t *TrieMap) traversePattern(node *Trie, path *[]byte, pattern string, i int, res *[]string) {
+	if node == nil {
+		// 树枝不存在，匹配失败，返回
+		return
+	}
+	if i == len(pattern) {
+		// pattern匹配完成
+		if node.Val != nil {
+			// 如果这个节点存在val，则找到一个k
+			*res = append(*res, string(*path))
+		}
+		return
+	}
+	c := pattern[i]
+	if c == '.' {
+		// pattern[i]是通配符，可以继续查找所有子节点
+		for j := 0; j < 256; j++ {
+			*path = append(*path, byte(j))
+			t.traversePattern(node.Children[j], path, pattern, i+1, res)
+			*path = (*path)[:len(*path)-1]
+		}
+		return
+	}
+	// pattern[i]是普通字符
+	*path = append(*path, c)
+	t.traversePattern(node.Children[c], path, pattern, i+1, res)
+	*path = (*path)[:len(*path)-1]
 }
 
 // 判断TrieMap中是否存在前缀为pattern的k，支持 . 匹配所有字符
-func (t *TrieMap) HasKeyWithPattern(pattern string) bool { return false }
+func (t *TrieMap) HasKeyWithPattern(pattern string) bool {
+	return t.hasKeyWithPattern(t.Root, pattern, 0)
+}
+
+// 额外辅助函数，从node节点开始匹配pattern[i..]，返回是否成功匹配
+func (t *TrieMap) hasKeyWithPattern(node *Trie, pattern string, i int) bool {
+	if node == nil {
+		// 树枝不存在，匹配失败
+		return false
+	}
+	if i == len(pattern) {
+		// 模式串匹配完，看最终节点是否是一个k
+		return node.Val != nil
+	}
+	c := pattern[i]
+	if c != '.' {
+		// 如果不是通配符，遍历下一个指定子节点
+		return t.hasKeyWithPattern(node.Children[c], pattern, i+1)
+	}
+	// 是通配符，遍历所有子节点
+	for j := 0; j < 256; j++ {
+		// 任何一个子节点匹配成功，就返回true
+		if t.hasKeyWithPattern(node.Children[j], pattern, i+1) {
+			return true
+		}
+	}
+	return false
+}
