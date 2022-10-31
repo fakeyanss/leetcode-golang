@@ -200,10 +200,10 @@ func main() {
 |185|[#2414 最长的字母序连续子字符串的长度](https://leetcode.cn/problems/length-of-the-longest-alphabetical-continuous-substring)|[2414.最长的字母序连续子字符串的长度.go](leetcode/lc2414/2414.最长的字母序连续子字符串的长度.go)|MEDIUM|4|1|
 |186|[#2415 反转二叉树的奇数层](https://leetcode.cn/problems/reverse-odd-levels-of-binary-tree)|[2415.反转二叉树的奇数层.go](leetcode/lc2415/2415.反转二叉树的奇数层.go)|MEDIUM|20|1|
 |187|[#2416 字符串的前缀分数和](https://leetcode.cn/problems/sum-of-prefix-scores-of-strings)|[2416.字符串的前缀分数和.go](leetcode/lc2416/2416.字符串的前缀分数和.go)|HARD|8|1|
-|188|[#6220 可被三整除的偶数的平均值](https://leetcode.cn/problems/average-value-of-even-numbers-that-are-divisible-by-three)||EASY|1|1|
-|189|[#6221 最流行的视频创作者](https://leetcode.cn/problems/most-popular-video-creator)||MEDIUM|2|1|
-|190|[#6222 美丽整数的最小增量](https://leetcode.cn/problems/minimum-addition-to-make-integer-beautiful)||MEDIUM|3|1|
-|191|[#6223 移除子树后的二叉树高度](https://leetcode.cn/problems/height-of-binary-tree-after-subtree-removal-queries)||HARD|4|1|
+|188|[#2455 可被三整除的偶数的平均值](https://leetcode.cn/problems/average-value-of-even-numbers-that-are-divisible-by-three)||EASY|1|1|
+|189|[#2456 最流行的视频创作者](https://leetcode.cn/problems/most-popular-video-creator)||MEDIUM|2|1|
+|190|[#2457 美丽整数的最小增量](https://leetcode.cn/problems/minimum-addition-to-make-integer-beautiful)||MEDIUM|3|1|
+|191|[#2458 移除子树后的二叉树高度](https://leetcode.cn/problems/height-of-binary-tree-after-subtree-removal-queries)||HARD|4|1|
 
 # 文件结构
 ![Visualization of this repo](./diagram.svg)
