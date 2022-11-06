@@ -207,6 +207,8 @@ func main() {
 |192|[#2456 最流行的视频创作者](https://leetcode.cn/problems/most-popular-video-creator)|[2456.最流行的视频创作者.go](leetcode/lc2456/2456.最流行的视频创作者.go)|MEDIUM|2|1|
 |193|[#2457 美丽整数的最小增量](https://leetcode.cn/problems/minimum-addition-to-make-integer-beautiful)|[2457.美丽整数的最小增量.go](leetcode/lc2457/2457.美丽整数的最小增量.go)|MEDIUM|3|1|
 |194|[#2458 移除子树后的二叉树高度](https://leetcode.cn/problems/height-of-binary-tree-after-subtree-removal-queries)|[2458.移除子树后的二叉树高度.go](leetcode/lc2458/2458.移除子树后的二叉树高度.go)|HARD|4|1|
+|195|[#6229 对数组执行操作](https://leetcode.cn/problems/apply-operations-to-an-array)||EASY|2|1|
+|196|[#6230 长度为 K 子数组中的最大和](https://leetcode.cn/problems/maximum-sum-of-distinct-subarrays-with-length-k)||MEDIUM|5|1|
 
 # 文件结构
 ![Visualization of this repo](./diagram.svg)
