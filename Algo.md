@@ -733,6 +733,50 @@ func findRightMinInBST(root *TreeNode) *TreeNode {
 }
 ```
 
+## 二叉堆/优先级队列
+
+小顶堆 golang 实现（基于heap包）（大顶堆只用改写Less方法，或在读写元素时取相反数）：
+
+```go
+import "container/heap"
+
+type IntHeap []int
+
+func (h IntHeap) Len() int {
+	return len(h)
+}
+
+func (h IntHeap) Less(i, j int) bool {
+	return h[i] < h[j]
+}
+
+func (h IntHeap) Swap(i, j int) {
+	h[i], h[j] = h[j], h[i]
+}
+
+func (h *IntHeap) Push(x interface{}) {
+	*h = append(*h, x.(int))
+}
+
+func (h *IntHeap) Pop() interface{} {
+	old := *h
+	x := old[len(old)-1]
+	*h = old[0 : len(old)-1]
+	return x
+}
+
+func main() {
+	h := &IntHeap{}
+
+	heap.Push(h, 3) // [3]
+	heap.Push(h, 1) // [1, 3]
+	heap.Push(h, 5) // [1, 3, 5]
+
+	val := heap.Pop(h) // 1
+}
+```
+
+
 ## 动态规划
 
 动态规划解题套路框架:
