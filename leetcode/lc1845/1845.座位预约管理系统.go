@@ -100,6 +100,7 @@ type SeatManager struct {
 
 func Constructor(n int) SeatManager {
 	h := &IntHeap{}
+	heap.Init(h)
 	for i := 0; i < n; i++ {
 		heap.Push(h, i+1)
 	}

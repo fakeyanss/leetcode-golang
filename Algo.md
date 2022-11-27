@@ -767,6 +767,7 @@ func (h *IntHeap) Pop() interface{} {
 
 func main() {
 	h := &IntHeap{}
+	heap.Init(h)
 
 	heap.Push(h, 3) // [3]
 	heap.Push(h, 1) // [1, 3]
