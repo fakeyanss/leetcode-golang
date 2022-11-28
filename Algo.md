@@ -758,6 +758,8 @@ func (h *IntHeap) Push(x interface{}) {
 	*h = append(*h, x.(int))
 }
 
+// heap.Pop(h)执行时，会先执行swap(0, len(h)-1)，将堆顶元素交换到数组末尾
+// 所以这里Pop应返回数组末尾元素
 func (h *IntHeap) Pop() interface{} {
 	old := *h
 	x := old[len(old)-1]
