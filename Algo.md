@@ -1253,6 +1253,58 @@ func lcm(x, y int) int {
 
 ## 系列问题
 
+### nSum 问题
+
+本质是排序+双指针问题。
+
+```go
+func nSumTarget(nums []int, n, start, target int) [][]int {
+	ans := [][]int{}
+	if n < 2 || len(nums) < n {
+		return ans
+	}
+	if n == 2 {
+		// 2Sum 是 base case
+		lo, hi := start, len(nums)-1
+		for lo < hi {
+			sum := nums[lo] + nums[hi]
+			l, r := nums[lo], nums[hi]
+			if sum < target {
+				// 过滤重复值
+				for ;lo < hi && nums[lo] == l; lo++ {
+				}
+			} else if sum > target {
+				// 过滤重复值
+				for ;lo < hi && nums[hi] == r; hi-- {
+				}
+			} else {
+				ans = append(ans, []int{l, r})
+				// 过滤重复值
+				for ;lo < hi && nums[lo] == l; lo++ {
+				}
+				// 过滤重复值
+				for ;lo < hi && nums[hi] == r; hi-- {
+				}
+			}
+		}
+	} else {
+		// n > 2 时，递归计算 (n-1)Sum 的结果
+		for i := start; i < len(nums); i++ {
+			sub := nSumTarget(nums, n-1, i+1, target-nums[i])
+			for _, arr := range sub {
+				// (n-1)Sum 加上 nums[i] 就是 nSum
+				arr = append(arr, nums[i])
+				ans = append(ans, arr)
+			}
+			// 跳过重复值
+			for ; i < len(nums)-1 && nums[i] == nums[i+1]; i++ {
+			}
+		}
+	}
+	return ans
+}
+```
+
 ### 岛屿问题
 
 二维数组 grid，其中只包含 0 或者 1，0 代表海水，1 代表陆地，且假设该矩阵四周都是被海水包围着的。连成片的陆地形成岛屿，计算这个矩阵 grid 中岛屿的个数。
