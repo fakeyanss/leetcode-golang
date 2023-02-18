@@ -64,7 +64,7 @@
  */
 package lc341
 
-import "github.com/fakeYanss/leetcode-golang/helper"
+import "github.com/fakeyanss/leetcode-golang/helper"
 
 type NestedInteger = helper.NestedInteger
 

@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/fakeYanss/leetcode-golang/helper"
+	"github.com/fakeyanss/leetcode-golang/helper"
 )
 
 func Test_deleteNode(t *testing.T) {

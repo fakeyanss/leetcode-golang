@@ -1,3 +1,3 @@
-module github.com/fakeYanss/leetcode-golang
+module github.com/fakeyanss/leetcode-golang
 
 go 1.19

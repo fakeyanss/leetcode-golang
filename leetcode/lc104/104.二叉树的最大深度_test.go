@@ -3,7 +3,7 @@ package lc104
 import (
 	"testing"
 
-	"github.com/fakeYanss/leetcode-golang/helper"
+	"github.com/fakeyanss/leetcode-golang/helper"
 )
 
 func Test_maxDepth(t *testing.T) {

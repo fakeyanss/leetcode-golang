@@ -68,7 +68,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/fakeYanss/leetcode-golang/helper"
+	"github.com/fakeyanss/leetcode-golang/helper"
 )
 
 type TreeNode = helper.TreeNode

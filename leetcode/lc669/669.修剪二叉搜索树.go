@@ -49,7 +49,7 @@
  */
 package lc669
 
-import "github.com/fakeYanss/leetcode-golang/helper"
+import "github.com/fakeyanss/leetcode-golang/helper"
 
 type TreeNode = helper.TreeNode
 

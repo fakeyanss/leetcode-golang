@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/fakeYanss/leetcode-golang/helper"
+	"github.com/fakeyanss/leetcode-golang/helper"
 )
 
 func Test_partition(t *testing.T) {

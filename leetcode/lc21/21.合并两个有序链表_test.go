@@ -1,7 +1,7 @@
 package lc0021
 
 import (
-	"github.com/fakeYanss/leetcode-golang/helper"
+	"github.com/fakeyanss/leetcode-golang/helper"
 	"reflect"
 	"testing"
 )

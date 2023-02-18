@@ -3,7 +3,7 @@ package lc98
 import (
 	"testing"
 
-	"github.com/fakeYanss/leetcode-golang/helper"
+	"github.com/fakeyanss/leetcode-golang/helper"
 )
 
 func Test_isValidBST(t *testing.T) {

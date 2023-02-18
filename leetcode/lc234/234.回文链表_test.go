@@ -3,7 +3,7 @@ package lc234
 import (
 	"testing"
 
-	"github.com/fakeYanss/leetcode-golang/helper"
+	"github.com/fakeyanss/leetcode-golang/helper"
 )
 
 func Test_isPalindrome234(t *testing.T) {

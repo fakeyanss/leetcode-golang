@@ -57,7 +57,7 @@
  */
 package lc206
 
-import "github.com/fakeYanss/leetcode-golang/helper"
+import "github.com/fakeyanss/leetcode-golang/helper"
 
 type ListNode = helper.ListNode
 
