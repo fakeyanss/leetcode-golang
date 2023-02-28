@@ -49,6 +49,8 @@ def get_submission_list(slug, session):
                "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36"}
 
     r = session.post(url, data=payload, headers=headers, verify=False)
+    print("debug------")
+    print(r.text)
     response_data = json.loads(r.text)
 
     return response_data
