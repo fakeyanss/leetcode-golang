@@ -108,6 +108,16 @@ def generate_markdown_text(response_data, session):
     markdown_text += "}\n"
     markdown_text += "```\n"
     markdown_text += "\n"
+    markdown_text += "# 文件结构"
+    markdown_text += "\n"
+    markdown_text += "![Visualization of this repo](./diagram.svg)"
+    markdown_text += "\n"
+    # with open('Algo.md', 'r') as f:
+    #     markdown_text += f.read()
+    markdown_text += "# 算法框架"
+    markdown_text += "\n"
+    markdown_text += "See [Algo Overview](Algo.md)"
+    markdown_text += "\n"
     markdown_text += "# 提交总览"
     markdown_text += "\n"
     markdown_text += "| 编号 | 题目 | 解法 | 题目难度 | 提交次数| 重刷次数 |\n| --- | --- | --- | --- | --- | --- |\n"
@@ -169,13 +179,6 @@ def generate_markdown_text(response_data, session):
     for idx, ele in enumerate(table_body):
         markdown_text += "|" + str(idx+1) + ele + '\n'
     markdown_text += "\n"
-    markdown_text += "# 文件结构"
-    markdown_text += "\n"
-    markdown_text += "![Visualization of this repo](./diagram.svg)"
-    markdown_text += "\n"
-
-    with open('Algo.md', 'r') as f:
-        markdown_text += f.read()
 
     return markdown_text
 

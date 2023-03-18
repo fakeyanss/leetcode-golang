@@ -14,3 +14,5 @@ jobs:
         uses: githubocto/repo-visualizer@main
         with:
           excluded_paths: "ignore,.github"
+          file_colors: '{"go": "#00ADD8", "sh": "#89e051", "yml": "#cb171e", "md": "#083fa1"}'
+          max_depth: 3
