@@ -32,7 +32,7 @@ See [Algo Overview](Algo.md)
 |13|[#20 有效的括号](https://leetcode.cn/problems/valid-parentheses)|[20.有效的括号.go](leetcode/lc20/20.有效的括号.go)|EASY|2|1|
 |14|[#21 合并两个有序链表](https://leetcode.cn/problems/merge-two-sorted-lists)|[21.合并两个有序链表.go](leetcode/lc21/21.合并两个有序链表.go)|EASY|4|1|
 |15|[#22 括号生成](https://leetcode.cn/problems/generate-parentheses)|[22.括号生成.go](leetcode/lc22/22.括号生成.go)|MEDIUM|1|1|
-|16|[#23 合并K个升序链表](https://leetcode.cn/problems/merge-k-sorted-lists)|[23.合并k个升序链表.go](leetcode/lc23/23.合并k个升序链表.go)|HARD|2|1|
+|16|[#23 合并 K 个升序链表](https://leetcode.cn/problems/merge-k-sorted-lists)|[23.合并k个升序链表.go](leetcode/lc23/23.合并k个升序链表.go)|HARD|2|1|
 |17|[#25 K 个一组翻转链表](https://leetcode.cn/problems/reverse-nodes-in-k-group)|[25.k-个一组翻转链表.go](leetcode/lc25/25.k-个一组翻转链表.go)|HARD|1|1|
 |18|[#26 删除有序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array)|[26.删除有序数组中的重复项.go](leetcode/lc26/26.删除有序数组中的重复项.go)|EASY|4|1|
 |19|[#27 移除元素](https://leetcode.cn/problems/remove-element)|[27.移除元素.go](leetcode/lc27/27.移除元素.go)|EASY|1|1|
