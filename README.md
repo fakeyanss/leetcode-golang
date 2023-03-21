@@ -265,4 +265,5 @@ See [Algo Overview](Algo.md)
 |246|[#2458 移除子树后的二叉树高度](https://leetcode.cn/problems/height-of-binary-tree-after-subtree-removal-queries)|[2458.移除子树后的二叉树高度.go](leetcode/lc2458/2458.移除子树后的二叉树高度.go)|HARD|4|1|
 |247|[#2460 对数组执行操作](https://leetcode.cn/problems/apply-operations-to-an-array)||EASY|2|1|
 |248|[#2461 长度为 K 子数组中的最大和](https://leetcode.cn/problems/maximum-sum-of-distinct-subarrays-with-length-k)||MEDIUM|5|1|
+|249|[#2469 温度转换](https://leetcode.cn/problems/convert-the-temperature)|[2469.温度转换.go](leetcode/lc2469/2469.温度转换.go)|EASY|2|1|
 
