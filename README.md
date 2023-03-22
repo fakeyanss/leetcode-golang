@@ -227,43 +227,44 @@ See [Algo Overview](Algo.md)
 |208|[#1616 分割两个字符串得到回文串](https://leetcode.cn/problems/split-two-strings-to-make-palindrome)|[1616.分割两个字符串得到回文串.go](leetcode/lc1616/1616.分割两个字符串得到回文串.go)|MEDIUM|1|1|
 |209|[#1624 两个相同字符之间的最长子字符串](https://leetcode.cn/problems/largest-substring-between-two-equal-characters)||EASY|2|1|
 |210|[#1625 执行操作后字典序最小的字符串](https://leetcode.cn/problems/lexicographically-smallest-string-after-applying-operations)|[1625.执行操作后字典序最小的字符串.go](leetcode/lc1625/1625.执行操作后字典序最小的字符串.go)|MEDIUM|2|1|
-|211|[#1658 将 x 减到 0 的最小操作数](https://leetcode.cn/problems/minimum-operations-to-reduce-x-to-zero)||MEDIUM|2|1|
-|212|[#1667 修复表中的名字](https://leetcode.cn/problems/fix-names-in-a-table)||EASY|2|1|
-|213|[#1693 每天的领导和合伙人](https://leetcode.cn/problems/daily-leads-and-partners)||EASY|2|1|
-|214|[#1700 无法吃午餐的学生数量](https://leetcode.cn/problems/number-of-students-unable-to-eat-lunch)|[1700.无法吃午餐的学生数量.go](leetcode/lc1700/1700.无法吃午餐的学生数量.go)|EASY|4|1|
-|215|[#1729 求关注者的数量](https://leetcode.cn/problems/find-followers-count)||EASY|2|1|
-|216|[#1741 查找每个员工花费的总时间](https://leetcode.cn/problems/find-total-time-spent-by-each-employee)||EASY|1|1|
-|217|[#1757 可回收且低脂的产品](https://leetcode.cn/problems/recyclable-and-low-fat-products)||EASY|2|1|
-|218|[#1790 仅执行一次字符串交换能否使两个字符串相等](https://leetcode.cn/problems/check-if-one-string-swap-can-make-strings-equal)|[1790.仅执行一次字符串交换能否使两个字符串相等.go](leetcode/lc1790/1790.仅执行一次字符串交换能否使两个字符串相等.go)|EASY|6|1|
-|219|[#1795 每个产品在不同商店的价格](https://leetcode.cn/problems/rearrange-products-table)||EASY|2|1|
-|220|[#1800 最大升序子数组和](https://leetcode.cn/problems/maximum-ascending-subarray-sum)|[1800.最大升序子数组和.go](leetcode/lc1800/1800.最大升序子数组和.go)|EASY|1|1|
-|221|[#1802 有界数组中指定下标处的最大值](https://leetcode.cn/problems/maximum-value-at-a-given-index-in-a-bounded-array)|[1802.有界数组中指定下标处的最大值.go](leetcode/lc1802/1802.有界数组中指定下标处的最大值.go)|MEDIUM|1|1|
-|222|[#1803 统计异或值在范围内的数对有多少](https://leetcode.cn/problems/count-pairs-with-xor-in-a-range)|[1803.统计异或值在范围内的数对有多少.go](leetcode/lc1803/1803.统计异或值在范围内的数对有多少.go)|HARD|3|1|
-|223|[#1845 座位预约管理系统](https://leetcode.cn/problems/seat-reservation-manager)|[1845.座位预约管理系统.go](leetcode/lc1845/1845.座位预约管理系统.go)|MEDIUM|1|1|
-|224|[#1873 计算特殊奖金](https://leetcode.cn/problems/calculate-special-bonus)||EASY|2|1|
-|225|[#1890 2020年最后一次登录](https://leetcode.cn/problems/the-latest-login-in-2020)||EASY|1|1|
-|226|[#1905 统计子岛屿](https://leetcode.cn/problems/count-sub-islands)|[1905.统计子岛屿.go](leetcode/lc1905/1905.统计子岛屿.go)|MEDIUM|1|1|
-|227|[#1965 丢失信息的雇员](https://leetcode.cn/problems/employees-with-missing-information)||EASY|1|1|
-|228|[#2037 使每位学生都有座位的最少移动次数](https://leetcode.cn/problems/minimum-number-of-moves-to-seat-everyone)|[2037.使每位学生都有座位的最少移动次数.go](leetcode/lc2037/2037.使每位学生都有座位的最少移动次数.go)|EASY|1|1|
-|229|[#2042 检查句子中的数字是否递增](https://leetcode.cn/problems/check-if-numbers-are-ascending-in-a-sentence)|[2042.检查句子中的数字是否递增.go](leetcode/lc2042/2042.检查句子中的数字是否递增.go)|EASY|1|1|
-|230|[#2180 统计各位数字之和为偶数的整数个数](https://leetcode.cn/problems/count-integers-with-even-digit-sum)|[2180.统计各位数字之和为偶数的整数个数.go](leetcode/lc2180/2180.统计各位数字之和为偶数的整数个数.go)|EASY|1|1|
-|231|[#2395 和相等的子数组](https://leetcode.cn/problems/find-subarrays-with-equal-sum)||EASY|4|1|
-|232|[#2396 严格回文的数字](https://leetcode.cn/problems/strictly-palindromic-number)||MEDIUM|2|1|
-|233|[#2399 检查相同字母间的距离](https://leetcode.cn/problems/check-distances-between-same-letters)||EASY|2|1|
-|234|[#2400 恰好移动 k 步到达某一位置的方法数目](https://leetcode.cn/problems/number-of-ways-to-reach-a-position-after-exactly-k-steps)||MEDIUM|5|1|
-|235|[#2409 统计共同度过的日子数](https://leetcode.cn/problems/count-days-spent-together)|[2409.统计共同度过的日子数.go](leetcode/lc2409/2409.统计共同度过的日子数.go)|EASY|11|**2**|
-|236|[#2410 运动员和训练师的最大匹配数](https://leetcode.cn/problems/maximum-matching-of-players-with-trainers)|[2410.运动员和训练师的最大匹配数.go](leetcode/lc2410/2410.运动员和训练师的最大匹配数.go)|MEDIUM|4|1|
-|237|[#2411 按位或最大的最小子数组长度](https://leetcode.cn/problems/smallest-subarrays-with-maximum-bitwise-or)|[2411.按位或最大的最小子数组长度.go](leetcode/lc2411/2411.按位或最大的最小子数组长度.go)|MEDIUM|7|1|
-|238|[#2412 完成所有交易的初始最少钱数](https://leetcode.cn/problems/minimum-money-required-before-transactions)|[2412.完成所有交易的初始最少钱数.go](leetcode/lc2412/2412.完成所有交易的初始最少钱数.go)|HARD|3|1|
-|239|[#2413 最小偶倍数](https://leetcode.cn/problems/smallest-even-multiple)|[2413.最小偶倍数.go](leetcode/lc2413/2413.最小偶倍数.go)|EASY|2|1|
-|240|[#2414 最长的字母序连续子字符串的长度](https://leetcode.cn/problems/length-of-the-longest-alphabetical-continuous-substring)|[2414.最长的字母序连续子字符串的长度.go](leetcode/lc2414/2414.最长的字母序连续子字符串的长度.go)|MEDIUM|4|1|
-|241|[#2415 反转二叉树的奇数层](https://leetcode.cn/problems/reverse-odd-levels-of-binary-tree)|[2415.反转二叉树的奇数层.go](leetcode/lc2415/2415.反转二叉树的奇数层.go)|MEDIUM|20|1|
-|242|[#2416 字符串的前缀分数和](https://leetcode.cn/problems/sum-of-prefix-scores-of-strings)|[2416.字符串的前缀分数和.go](leetcode/lc2416/2416.字符串的前缀分数和.go)|HARD|8|1|
-|243|[#2455 可被三整除的偶数的平均值](https://leetcode.cn/problems/average-value-of-even-numbers-that-are-divisible-by-three)|[2455.可被三整除的偶数的平均值.go](leetcode/lc2455/2455.可被三整除的偶数的平均值.go)|EASY|1|1|
-|244|[#2456 最流行的视频创作者](https://leetcode.cn/problems/most-popular-video-creator)|[2456.最流行的视频创作者.go](leetcode/lc2456/2456.最流行的视频创作者.go)|MEDIUM|2|1|
-|245|[#2457 美丽整数的最小增量](https://leetcode.cn/problems/minimum-addition-to-make-integer-beautiful)|[2457.美丽整数的最小增量.go](leetcode/lc2457/2457.美丽整数的最小增量.go)|MEDIUM|3|1|
-|246|[#2458 移除子树后的二叉树高度](https://leetcode.cn/problems/height-of-binary-tree-after-subtree-removal-queries)|[2458.移除子树后的二叉树高度.go](leetcode/lc2458/2458.移除子树后的二叉树高度.go)|HARD|4|1|
-|247|[#2460 对数组执行操作](https://leetcode.cn/problems/apply-operations-to-an-array)||EASY|2|1|
-|248|[#2461 长度为 K 子数组中的最大和](https://leetcode.cn/problems/maximum-sum-of-distinct-subarrays-with-length-k)||MEDIUM|5|1|
-|249|[#2469 温度转换](https://leetcode.cn/problems/convert-the-temperature)|[2469.温度转换.go](leetcode/lc2469/2469.温度转换.go)|EASY|2|1|
+|211|[#1626 无矛盾的最佳球队](https://leetcode.cn/problems/best-team-with-no-conflicts)|[1626.无矛盾的最佳球队.go](leetcode/lc1626/1626.无矛盾的最佳球队.go)|MEDIUM|2|1|
+|212|[#1658 将 x 减到 0 的最小操作数](https://leetcode.cn/problems/minimum-operations-to-reduce-x-to-zero)||MEDIUM|2|1|
+|213|[#1667 修复表中的名字](https://leetcode.cn/problems/fix-names-in-a-table)||EASY|2|1|
+|214|[#1693 每天的领导和合伙人](https://leetcode.cn/problems/daily-leads-and-partners)||EASY|2|1|
+|215|[#1700 无法吃午餐的学生数量](https://leetcode.cn/problems/number-of-students-unable-to-eat-lunch)|[1700.无法吃午餐的学生数量.go](leetcode/lc1700/1700.无法吃午餐的学生数量.go)|EASY|4|1|
+|216|[#1729 求关注者的数量](https://leetcode.cn/problems/find-followers-count)||EASY|2|1|
+|217|[#1741 查找每个员工花费的总时间](https://leetcode.cn/problems/find-total-time-spent-by-each-employee)||EASY|1|1|
+|218|[#1757 可回收且低脂的产品](https://leetcode.cn/problems/recyclable-and-low-fat-products)||EASY|2|1|
+|219|[#1790 仅执行一次字符串交换能否使两个字符串相等](https://leetcode.cn/problems/check-if-one-string-swap-can-make-strings-equal)|[1790.仅执行一次字符串交换能否使两个字符串相等.go](leetcode/lc1790/1790.仅执行一次字符串交换能否使两个字符串相等.go)|EASY|6|1|
+|220|[#1795 每个产品在不同商店的价格](https://leetcode.cn/problems/rearrange-products-table)||EASY|2|1|
+|221|[#1800 最大升序子数组和](https://leetcode.cn/problems/maximum-ascending-subarray-sum)|[1800.最大升序子数组和.go](leetcode/lc1800/1800.最大升序子数组和.go)|EASY|1|1|
+|222|[#1802 有界数组中指定下标处的最大值](https://leetcode.cn/problems/maximum-value-at-a-given-index-in-a-bounded-array)|[1802.有界数组中指定下标处的最大值.go](leetcode/lc1802/1802.有界数组中指定下标处的最大值.go)|MEDIUM|1|1|
+|223|[#1803 统计异或值在范围内的数对有多少](https://leetcode.cn/problems/count-pairs-with-xor-in-a-range)|[1803.统计异或值在范围内的数对有多少.go](leetcode/lc1803/1803.统计异或值在范围内的数对有多少.go)|HARD|3|1|
+|224|[#1845 座位预约管理系统](https://leetcode.cn/problems/seat-reservation-manager)|[1845.座位预约管理系统.go](leetcode/lc1845/1845.座位预约管理系统.go)|MEDIUM|1|1|
+|225|[#1873 计算特殊奖金](https://leetcode.cn/problems/calculate-special-bonus)||EASY|2|1|
+|226|[#1890 2020年最后一次登录](https://leetcode.cn/problems/the-latest-login-in-2020)||EASY|1|1|
+|227|[#1905 统计子岛屿](https://leetcode.cn/problems/count-sub-islands)|[1905.统计子岛屿.go](leetcode/lc1905/1905.统计子岛屿.go)|MEDIUM|1|1|
+|228|[#1965 丢失信息的雇员](https://leetcode.cn/problems/employees-with-missing-information)||EASY|1|1|
+|229|[#2037 使每位学生都有座位的最少移动次数](https://leetcode.cn/problems/minimum-number-of-moves-to-seat-everyone)|[2037.使每位学生都有座位的最少移动次数.go](leetcode/lc2037/2037.使每位学生都有座位的最少移动次数.go)|EASY|1|1|
+|230|[#2042 检查句子中的数字是否递增](https://leetcode.cn/problems/check-if-numbers-are-ascending-in-a-sentence)|[2042.检查句子中的数字是否递增.go](leetcode/lc2042/2042.检查句子中的数字是否递增.go)|EASY|1|1|
+|231|[#2180 统计各位数字之和为偶数的整数个数](https://leetcode.cn/problems/count-integers-with-even-digit-sum)|[2180.统计各位数字之和为偶数的整数个数.go](leetcode/lc2180/2180.统计各位数字之和为偶数的整数个数.go)|EASY|1|1|
+|232|[#2395 和相等的子数组](https://leetcode.cn/problems/find-subarrays-with-equal-sum)||EASY|4|1|
+|233|[#2396 严格回文的数字](https://leetcode.cn/problems/strictly-palindromic-number)||MEDIUM|2|1|
+|234|[#2399 检查相同字母间的距离](https://leetcode.cn/problems/check-distances-between-same-letters)||EASY|2|1|
+|235|[#2400 恰好移动 k 步到达某一位置的方法数目](https://leetcode.cn/problems/number-of-ways-to-reach-a-position-after-exactly-k-steps)||MEDIUM|5|1|
+|236|[#2409 统计共同度过的日子数](https://leetcode.cn/problems/count-days-spent-together)|[2409.统计共同度过的日子数.go](leetcode/lc2409/2409.统计共同度过的日子数.go)|EASY|11|**2**|
+|237|[#2410 运动员和训练师的最大匹配数](https://leetcode.cn/problems/maximum-matching-of-players-with-trainers)|[2410.运动员和训练师的最大匹配数.go](leetcode/lc2410/2410.运动员和训练师的最大匹配数.go)|MEDIUM|4|1|
+|238|[#2411 按位或最大的最小子数组长度](https://leetcode.cn/problems/smallest-subarrays-with-maximum-bitwise-or)|[2411.按位或最大的最小子数组长度.go](leetcode/lc2411/2411.按位或最大的最小子数组长度.go)|MEDIUM|7|1|
+|239|[#2412 完成所有交易的初始最少钱数](https://leetcode.cn/problems/minimum-money-required-before-transactions)|[2412.完成所有交易的初始最少钱数.go](leetcode/lc2412/2412.完成所有交易的初始最少钱数.go)|HARD|3|1|
+|240|[#2413 最小偶倍数](https://leetcode.cn/problems/smallest-even-multiple)|[2413.最小偶倍数.go](leetcode/lc2413/2413.最小偶倍数.go)|EASY|2|1|
+|241|[#2414 最长的字母序连续子字符串的长度](https://leetcode.cn/problems/length-of-the-longest-alphabetical-continuous-substring)|[2414.最长的字母序连续子字符串的长度.go](leetcode/lc2414/2414.最长的字母序连续子字符串的长度.go)|MEDIUM|4|1|
+|242|[#2415 反转二叉树的奇数层](https://leetcode.cn/problems/reverse-odd-levels-of-binary-tree)|[2415.反转二叉树的奇数层.go](leetcode/lc2415/2415.反转二叉树的奇数层.go)|MEDIUM|20|1|
+|243|[#2416 字符串的前缀分数和](https://leetcode.cn/problems/sum-of-prefix-scores-of-strings)|[2416.字符串的前缀分数和.go](leetcode/lc2416/2416.字符串的前缀分数和.go)|HARD|8|1|
+|244|[#2455 可被三整除的偶数的平均值](https://leetcode.cn/problems/average-value-of-even-numbers-that-are-divisible-by-three)|[2455.可被三整除的偶数的平均值.go](leetcode/lc2455/2455.可被三整除的偶数的平均值.go)|EASY|1|1|
+|245|[#2456 最流行的视频创作者](https://leetcode.cn/problems/most-popular-video-creator)|[2456.最流行的视频创作者.go](leetcode/lc2456/2456.最流行的视频创作者.go)|MEDIUM|2|1|
+|246|[#2457 美丽整数的最小增量](https://leetcode.cn/problems/minimum-addition-to-make-integer-beautiful)|[2457.美丽整数的最小增量.go](leetcode/lc2457/2457.美丽整数的最小增量.go)|MEDIUM|3|1|
+|247|[#2458 移除子树后的二叉树高度](https://leetcode.cn/problems/height-of-binary-tree-after-subtree-removal-queries)|[2458.移除子树后的二叉树高度.go](leetcode/lc2458/2458.移除子树后的二叉树高度.go)|HARD|4|1|
+|248|[#2460 对数组执行操作](https://leetcode.cn/problems/apply-operations-to-an-array)||EASY|2|1|
+|249|[#2461 长度为 K 子数组中的最大和](https://leetcode.cn/problems/maximum-sum-of-distinct-subarrays-with-length-k)||MEDIUM|5|1|
+|250|[#2469 温度转换](https://leetcode.cn/problems/convert-the-temperature)|[2469.温度转换.go](leetcode/lc2469/2469.温度转换.go)|EASY|2|1|
 
