@@ -38,7 +38,7 @@ See [Algo Overview](Algo.md)
 |19|[#25 K 个一组翻转链表](https://leetcode.cn/problems/reverse-nodes-in-k-group)|[25.k-个一组翻转链表.go](leetcode/lc25/25.k-个一组翻转链表.go)|HARD|1|1|
 |20|[#26 删除有序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array)|[26.删除有序数组中的重复项.go](leetcode/lc26/26.删除有序数组中的重复项.go)|EASY|4|1|
 |21|[#27 移除元素](https://leetcode.cn/problems/remove-element)|[27.移除元素.go](leetcode/lc27/27.移除元素.go)|EASY|1|1|
-|22|[#28 找出字符串中第一个匹配项的下标](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string)|[28.找出字符串中第一个匹配项的下标.go](leetcode/lc28/28.找出字符串中第一个匹配项的下标.go)|MEDIUM|5|**2**|
+|22|[#28 找出字符串中第一个匹配项的下标](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string)|[28.找出字符串中第一个匹配项的下标.go](leetcode/lc28/28.找出字符串中第一个匹配项的下标.go)|EASY|5|**2**|
 |23|[#34 在排序数组中查找元素的第一个和最后一个位置](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array)|[34.在排序数组中查找元素的第一个和最后一个位置.go](leetcode/lc34/34.在排序数组中查找元素的第一个和最后一个位置.go)|MEDIUM|2|1|
 |24|[#37 解数独](https://leetcode.cn/problems/sudoku-solver)|[37.解数独.go](leetcode/lc37/37.解数独.go)|HARD|1|1|
 |25|[#39 组合总和](https://leetcode.cn/problems/combination-sum)|[39.组合总和.go](leetcode/lc39/39.组合总和.go)|MEDIUM|3|1|
