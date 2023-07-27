@@ -123,7 +123,7 @@ See [Algo Overview](Algo.md)
 |104|[#300 最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence)|[300.最长递增子序列.go](leetcode/lc300/300.最长递增子序列.go)|MEDIUM|3|**2**|
 |105|[#303 区域和检索 - 数组不可变](https://leetcode.cn/problems/range-sum-query-immutable)|[303.区域和检索-数组不可变.go](leetcode/lc303/303.区域和检索-数组不可变.go)|EASY|2|1|
 |106|[#304 二维区域和检索 - 矩阵不可变](https://leetcode.cn/problems/range-sum-query-2d-immutable)|[304.二维区域和检索-矩阵不可变.go](leetcode/lc304/304.二维区域和检索-矩阵不可变.go)|MEDIUM|1|1|
-|107|[#309 最佳买卖股票时机含冷冻期](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-cooldown)|[309.最佳买卖股票时机含冷冻期.go](leetcode/lc309/309.最佳买卖股票时机含冷冻期.go)|MEDIUM|2|1|
+|107|[#309 买卖股票的最佳时机含冷冻期](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-cooldown)|[309.最佳买卖股票时机含冷冻期.go](leetcode/lc309/309.最佳买卖股票时机含冷冻期.go)|MEDIUM|2|1|
 |108|[#312 戳气球](https://leetcode.cn/problems/burst-balloons)|[312.戳气球.go](leetcode/lc312/312.戳气球.go)|HARD|2|1|
 |109|[#315 计算右侧小于当前元素的个数](https://leetcode.cn/problems/count-of-smaller-numbers-after-self)|[315.计算右侧小于当前元素的个数.go](leetcode/lc315/315.计算右侧小于当前元素的个数.go)|HARD|1|1|
 |110|[#316 去除重复字母](https://leetcode.cn/problems/remove-duplicate-letters)|[316.去除重复字母.go](leetcode/lc316/316.去除重复字母.go)|MEDIUM|4|1|
