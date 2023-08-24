@@ -31,7 +31,7 @@ def login(EMAIL, PASSWORD):
         raise Exception("login error")
 
 
-def get_submission_list(slug, session):
+def get_submission_list(slug, cookie):
     url = 'https://leetcode.cn/graphql/'
 
     payload = json.dumps({
@@ -47,16 +47,15 @@ def get_submission_list(slug, session):
 
     headers = {"content-type": "application/json", "origin": "https://leetcode.cn", "referer": "https://leetcode.cn/progress/",
                "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36"}
+    headers["Cookie"] = cookie
 
-    r = session.post(url, data=payload, headers=headers, verify=False)
-    print("debug------")
-    print(r.text)
+    r = requests.post(url, data=payload, headers=headers, verify=False)
     response_data = json.loads(r.text)
 
     return response_data
 
 
-def get_accepted_problems(session):
+def get_accepted_problems(cookie):
     url = 'https://leetcode.cn/graphql/'
 
     payload = json.dumps({
@@ -75,8 +74,9 @@ def get_accepted_problems(session):
 
     headers = {"content-type": "application/json", "origin": "https://leetcode.cn", "referer": "https://leetcode.cn/progress/",
                "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36"}
+    headers["Cookie"] = cookie
 
-    r = session.post(url, data=payload, headers=headers, verify=False)
+    r = requests.post(url, data=payload, headers=headers, verify=False)
     response_data = json.loads(r.text)
 
     return response_data
@@ -95,7 +95,7 @@ def list_local_solution():
     return local_su
 
 
-def generate_markdown_text(response_data, session):
+def generate_markdown_text(response_data, cookie):
     markdown_text = "# leetcode-golang\n"
     markdown_text += "\n"
     markdown_text += "```go\n"
@@ -152,7 +152,7 @@ def generate_markdown_text(response_data, session):
         if localFile != '':
             localText = '[' + localFile + ']' + '(' + localLink + ')'
 
-        submission_dict = get_submission_list(titleSlug, session)
+        submission_dict = get_submission_list(titleSlug, cookie)
         submission_list = submission_dict['data']['submissionList']['submissions']
         submission_accepted_dict = {}
 
@@ -184,8 +184,9 @@ def generate_markdown_text(response_data, session):
 
 
 if __name__ == '__main__':
-    session = login(sys.argv[1], sys.argv[2])
-    response_data = get_accepted_problems(session)
-    markdown_text = generate_markdown_text(response_data, session)
+    # session = login(sys.argv[1], sys.argv[2])
+    cookie = sys.argv[1]
+    response_data = get_accepted_problems(cookie)
+    markdown_text = generate_markdown_text(response_data, cookie)
     with open("README.md", "w") as f:
         f.write(markdown_text)

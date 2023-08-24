@@ -33,8 +33,7 @@ jobs:
 
 
       - name: Get LeetCode Data
-        run: python build/leetcode.py ${{ secrets.LEETCODE_EMAIL }} ${{ secrets.LEETCODE_PASSWORD }}
-
+        run: python build/leetcode.py "${{ secrets.LEETCODE_COOKIE }}"
 
       - name: commit
         run: |

@@ -116,7 +116,7 @@ See [Algo Overview](Algo.md)
 |97|[#237 删除链表中的节点](https://leetcode.cn/problems/delete-node-in-a-linked-list)|[237.删除链表中的节点.go](leetcode/lc237/237.删除链表中的节点.go)|MEDIUM|2|1|
 |98|[#239 滑动窗口最大值](https://leetcode.cn/problems/sliding-window-maximum)|[239.滑动窗口最大值.go](leetcode/lc239/239.滑动窗口最大值.go)|HARD|3|1|
 |99|[#258 各位相加](https://leetcode.cn/problems/add-digits)|[258.各位相加.go](leetcode/lc258/258.各位相加.go)|EASY|2|1|
-|100|[#268 丢失的数字](https://leetcode.cn/problems/missing-number)|[268.丢失的数字.go](leetcode/lc268/268.丢失的数字.go)|EASY|2|1|
+|100|[#268 丢失的数字](https://leetcode.cn/problems/missing-number)|[268.丢失的数字.go](leetcode/lc268/268.丢失的数字.go)|EASY|2|**2**|
 |101|[#283 移动零](https://leetcode.cn/problems/move-zeroes)|[283.移动零.go](leetcode/lc283/283.移动零.go)|EASY|1|1|
 |102|[#295 数据流的中位数](https://leetcode.cn/problems/find-median-from-data-stream)|[295.数据流的中位数.go](leetcode/lc295/295.数据流的中位数.go)|HARD|3|1|
 |103|[#297 二叉树的序列化与反序列化](https://leetcode.cn/problems/serialize-and-deserialize-binary-tree)|[297.二叉树的序列化与反序列化.go](leetcode/lc297/297.二叉树的序列化与反序列化.go)|HARD|10|1|
@@ -127,7 +127,7 @@ See [Algo Overview](Algo.md)
 |108|[#312 戳气球](https://leetcode.cn/problems/burst-balloons)|[312.戳气球.go](leetcode/lc312/312.戳气球.go)|HARD|2|1|
 |109|[#315 计算右侧小于当前元素的个数](https://leetcode.cn/problems/count-of-smaller-numbers-after-self)|[315.计算右侧小于当前元素的个数.go](leetcode/lc315/315.计算右侧小于当前元素的个数.go)|HARD|1|1|
 |110|[#316 去除重复字母](https://leetcode.cn/problems/remove-duplicate-letters)|[316.去除重复字母.go](leetcode/lc316/316.去除重复字母.go)|MEDIUM|4|1|
-|111|[#322 零钱兑换](https://leetcode.cn/problems/coin-change)|[322.零钱兑换.go](leetcode/lc322/322.零钱兑换.go)|MEDIUM|15|1|
+|111|[#322 零钱兑换](https://leetcode.cn/problems/coin-change)|[322.零钱兑换.go](leetcode/lc322/322.零钱兑换.go)|MEDIUM|15|**2**|
 |112|[#327 区间和的个数](https://leetcode.cn/problems/count-of-range-sum)|[327.区间和的个数.go](leetcode/lc327/327.区间和的个数.go)|HARD|2|1|
 |113|[#337 打家劫舍 III](https://leetcode.cn/problems/house-robber-iii)|[337.打家劫舍-iii.go](leetcode/lc337/337.打家劫舍-iii.go)|MEDIUM|5|1|
 |114|[#341 扁平化嵌套列表迭代器](https://leetcode.cn/problems/flatten-nested-list-iterator)|[341.扁平化嵌套列表迭代器.go](leetcode/lc341/341.扁平化嵌套列表迭代器.go)|MEDIUM|3|1|
@@ -153,7 +153,7 @@ See [Algo Overview](Algo.md)
 |134|[#509 斐波那契数](https://leetcode.cn/problems/fibonacci-number)|[509.斐波那契数.go](leetcode/lc509/509.斐波那契数.go)|EASY|5|1|
 |135|[#511 游戏玩法分析 I](https://leetcode.cn/problems/game-play-analysis-i)||EASY|1|1|
 |136|[#514 自由之路](https://leetcode.cn/problems/freedom-trail)|[514.自由之路.go](leetcode/lc514/514.自由之路.go)|HARD|2|1|
-|137|[#516 最长回文子序列](https://leetcode.cn/problems/longest-palindromic-subsequence)|[516.最长回文子序列.go](leetcode/lc516/516.最长回文子序列.go)|MEDIUM|4|1|
+|137|[#516 最长回文子序列](https://leetcode.cn/problems/longest-palindromic-subsequence)|[516.最长回文子序列.go](leetcode/lc516/516.最长回文子序列.go)|MEDIUM|4|**2**|
 |138|[#518 零钱兑换 II](https://leetcode.cn/problems/coin-change-ii)|[518.零钱兑换-ii.go](leetcode/lc518/518.零钱兑换-ii.go)|MEDIUM|4|1|
 |139|[#528 按权重随机选择](https://leetcode.cn/problems/random-pick-with-weight)|[528.按权重随机选择.go](leetcode/lc528/528.按权重随机选择.go)|MEDIUM|2|1|
 |140|[#538 把二叉搜索树转换为累加树](https://leetcode.cn/problems/convert-bst-to-greater-tree)|[538.把二叉搜索树转换为累加树.go](leetcode/lc538/538.把二叉搜索树转换为累加树.go)|MEDIUM|1|1|
@@ -198,7 +198,7 @@ See [Algo Overview](Algo.md)
 |179|[#876 链表的中间结点](https://leetcode.cn/problems/middle-of-the-linked-list)|[876.链表的中间结点.go](leetcode/lc876/876.链表的中间结点.go)|EASY|2|1|
 |180|[#877 石子游戏](https://leetcode.cn/problems/stone-game)|[877.石子游戏.go](leetcode/lc877/877.石子游戏.go)|MEDIUM|1|1|
 |181|[#886 可能的二分法](https://leetcode.cn/problems/possible-bipartition)|[886.可能的二分法.go](leetcode/lc886/886.可能的二分法.go)|MEDIUM|2|1|
-|182|[#887 鸡蛋掉落](https://leetcode.cn/problems/super-egg-drop)|[887.鸡蛋掉落.go](leetcode/lc887/887.鸡蛋掉落.go)|HARD|5|1|
+|182|[#887 鸡蛋掉落](https://leetcode.cn/problems/super-egg-drop)|[887.鸡蛋掉落.go](leetcode/lc887/887.鸡蛋掉落.go)|HARD|5|**2**|
 |183|[#889 根据前序和后序遍历构造二叉树](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-postorder-traversal)|[889.根据前序和后序遍历构造二叉树.go](leetcode/lc889/889.根据前序和后序遍历构造二叉树.go)|MEDIUM|4|1|
 |184|[#901 股票价格跨度](https://leetcode.cn/problems/online-stock-span)|[901.股票价格跨度.go](leetcode/lc901/901.股票价格跨度.go)|MEDIUM|14|1|
 |185|[#902 最大为 N 的数字组合](https://leetcode.cn/problems/numbers-at-most-n-given-digit-set)|[902.最大为-n-的数字组合.go](leetcode/lc902/902.最大为-n-的数字组合.go)|HARD|1|1|
