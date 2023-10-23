@@ -105,7 +105,7 @@ See [Algo Overview](Algo.md)
 |86|[#211 添加与搜索单词 - 数据结构设计](https://leetcode.cn/problems/design-add-and-search-words-data-structure)|[211.添加与搜索单词-数据结构设计.go](leetcode/lc211/211.添加与搜索单词-数据结构设计.go)|MEDIUM|3|1|
 |87|[#213 打家劫舍 II](https://leetcode.cn/problems/house-robber-ii)|[213.打家劫舍-ii.go](leetcode/lc213/213.打家劫舍-ii.go)|MEDIUM|1|1|
 |88|[#215 数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array)|[215.数组中的第k个最大元素.go](leetcode/lc215/215.数组中的第k个最大元素.go)|MEDIUM|1|1|
-|89|[#222 完全二叉树的节点个数](https://leetcode.cn/problems/count-complete-tree-nodes)|[222.完全二叉树的节点个数.go](leetcode/lc222/222.完全二叉树的节点个数.go)|MEDIUM|4|1|
+|89|[#222 完全二叉树的节点个数](https://leetcode.cn/problems/count-complete-tree-nodes)|[222.完全二叉树的节点个数.go](leetcode/lc222/222.完全二叉树的节点个数.go)|EASY|4|1|
 |90|[#225 用队列实现栈](https://leetcode.cn/problems/implement-stack-using-queues)|[225.用队列实现栈.go](leetcode/lc225/225.用队列实现栈.go)|EASY|1|1|
 |91|[#226 翻转二叉树](https://leetcode.cn/problems/invert-binary-tree)|[226.翻转二叉树.go](leetcode/lc226/226.翻转二叉树.go)|EASY|1|1|
 |92|[#230 二叉搜索树中第K小的元素](https://leetcode.cn/problems/kth-smallest-element-in-a-bst)|[230.二叉搜索树中第k小的元素.go](leetcode/lc230/230.二叉搜索树中第k小的元素.go)|MEDIUM|1|1|
