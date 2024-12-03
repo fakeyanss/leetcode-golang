@@ -59,8 +59,17 @@
  */
 package lc1
 
+import "sort"
+
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 func twoSum(nums []int, target int) []int {
+	return hash(nums, target)
+}
+
+func hash(nums []int, target int) []int {
 	dic := make(map[int]int)
 	for i, val := range nums {
 		if p, ok := dic[target-val]; ok {
@@ -69,6 +78,25 @@ func twoSum(nums []int, target int) []int {
 		dic[val] = i
 	}
 	return nil
+}
+
+func twoPoint(nums []int, target int) []int {
+	// 先对数组排序
+	sort.Ints(nums)
+	// 左右指针
+	lo, hi := 0, len(nums)-1
+	for lo < hi {
+		sum := nums[lo] + nums[hi]
+		// 根据 sum 和 target 的比较，移动左右指针
+		if sum < target {
+			lo++
+		} else if sum > target {
+			hi--
+		} else if sum == target {
+			return []int{lo, hi}
+		}
+	}
+	return []int{}
 }
 
 // @lc code=end

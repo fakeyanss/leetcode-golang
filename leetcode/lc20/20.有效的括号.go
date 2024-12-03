@@ -70,34 +70,30 @@
  */
 package lc0020
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 func isValid(s string) bool {
-	n := len(s)
-	if n%2 != 0 {
+	if len(s)%2 != 0 {
 		return false
 	}
-
 	pairs := map[byte]byte{
 		')': '(',
 		']': '[',
 		'}': '{',
 	}
-
-	stack := []byte{}
-	for i := 0; i < n; i++ {
-		// 三种括号的 ASCII 编码数值 > 0
-		if pairs[s[i]] > 0 {
-			// 数组末尾和当前遍历到的元素配对
-			if len(stack) != 0 && pairs[s[i]] == stack[len(stack)-1] {
-				stack = stack[:len(stack)-1]
-			} else {
+	var stack []byte
+	for i := 0; i < len(s); i++ {
+		if _, ok := pairs[s[i]]; ok {
+			if len(stack) == 0 || pairs[s[i]] != stack[len(stack)-1] {
 				return false
 			}
+			stack = stack[:len(stack)-1]
 		} else {
 			stack = append(stack, s[i])
 		}
 	}
-
 	return len(stack) == 0
 }
 

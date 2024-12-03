@@ -56,10 +56,14 @@
  */
 package lc2
 
-import "github.com/fakeyanss/leetcode-golang/helper"
+// @lcpr-template-start
 
-type ListNode = helper.ListNode
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
 
+// @lcpr-template-end
 // @lc code=start
 /**
  * Definition for singly-linked list.
@@ -76,11 +80,9 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 		return l1
 	}
 	sum := l1.Val + l2.Val
-	head := &ListNode{
-		Val: sum % 10,
-	}
+	head := &ListNode{Val: sum % 10}
 	head.Next = addTwoNumbers(l1.Next, l2.Next)
-	if sum > 9 {
+	if sum >= 10 {
 		head.Next = addTwoNumbers(head.Next, &ListNode{Val: 1})
 	}
 	return head

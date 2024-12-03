@@ -61,6 +61,9 @@
  */
 package lc300
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 func lengthOfLIS(nums []int) int {
 	// return dp(nums)

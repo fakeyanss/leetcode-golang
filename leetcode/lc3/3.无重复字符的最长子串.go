@@ -54,26 +54,24 @@
  */
 package lc0001
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 func lengthOfLongestSubstring(s string) int {
 	window := make(map[byte]int)
-	left, right := 0, 0
+	l, r := 0, 0
 	res := 0
-	for right < len(s) {
-		c := s[right]
-		right++
+	for r < len(s) {
+		c := s[r]
+		r++
 		window[c]++
-
 		for window[c] > 1 {
-			d := s[left]
-			left++
+			d := s[l]
+			l++
 			window[d]--
 		}
-
-		tmp := right - left
-		if res < tmp {
-			res = tmp
-		}
+		res = max(res, r-l)
 	}
 	return res
 }

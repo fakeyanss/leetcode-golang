@@ -1,16 +1,9 @@
 package lc0021
 
 import (
-	"github.com/fakeyanss/leetcode-golang/helper"
 	"reflect"
 	"testing"
 )
-
-type TreeNode = helper.ListNode
-
-func TestMergeTwoLists(t *testing.T) {
-
-}
 
 func Test_mergeTwoLists(t *testing.T) {
 	type args struct {

@@ -44,9 +44,49 @@
  */
 package lc5
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 func longestPalindrome(s string) string {
-	// 中心扩散
+	// return longestPalindrome1(s)
+	return longestPalindrome2(s)
+}
+
+// 动态规划
+func longestPalindrome1(s string) string {
+	n := len(s)
+	if n <= 1 {
+		return s
+	}
+	// dp[i][j] 表示 s[i...j] 是否是回文子串
+	dp := make([][]bool, n)
+	for i := 0; i < n; i++ {
+		dp[i] = make([]bool, n)
+		dp[i][i] = true
+	}
+	begin, maxLen := 0, 1
+	for l := 2; l <= n; l++ {
+		for i := 0; i <= n-l; i++ {
+			j := i + l - 1
+			if s[i] == s[j] {
+				if j-i < 3 {
+					dp[i][j] = true
+				} else {
+					dp[i][j] = dp[i+1][j-1]
+				}
+			}
+
+			if dp[i][j] && l > maxLen {
+				begin, maxLen = i, l
+			}
+		}
+	}
+	return s[begin : begin+maxLen]
+}
+
+// 中心扩散
+func longestPalindrome2(s string) string {
 	res := ""
 	for i := 0; i < len(s); i++ {
 		// 以 s[i] 为中心的最长回文子串

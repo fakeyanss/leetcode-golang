@@ -67,6 +67,9 @@ package lc15
 
 import "sort"
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 //
 // 排序+双指针问题
@@ -76,49 +79,50 @@ func threeSum(nums []int) [][]int {
 }
 
 func nSumTarget(nums []int, n, start, target int) [][]int {
-	ans := [][]int{}
-	if n < 2 || len(nums) < n {
-		return ans
+	var res [][]int
+
+	// 基本边界条件
+	if n < 2 || len(nums)-start < n {
+		return res
 	}
+
+	// Base case: 2Sum
 	if n == 2 {
-		// 2Sum 是 base case
-		lo, hi := start, len(nums)-1
-		for lo < hi {
-			sum := nums[lo] + nums[hi]
-			l, r := nums[lo], nums[hi]
-			if sum < target {
-				// 过滤重复值
-				for ; lo < hi && nums[lo] == l; lo++ {
+		l, r := start, len(nums)-1
+		for l < r {
+			sum := nums[l] + nums[r]
+			if sum == target {
+				res = append(res, []int{nums[l], nums[r]})
+				l++
+				r--
+				// 跳过重复元素
+				for ; l < r && nums[l] == nums[l-1]; l++ {
 				}
-			} else if sum > target {
-				// 过滤重复值
-				for ; lo < hi && nums[hi] == r; hi-- {
+				for ; l < r && nums[r] == nums[r+1]; r-- {
 				}
+			} else if sum < target {
+				l++
 			} else {
-				ans = append(ans, []int{l, r})
-				// 过滤重复值
-				for ; lo < hi && nums[lo] == l; lo++ {
-				}
-				// 过滤重复值
-				for ; lo < hi && nums[hi] == r; hi-- {
-				}
+				r--
 			}
 		}
-	} else {
-		// n > 2 时，递归计算 (n-1)Sum 的结果
-		for i := start; i < len(nums); i++ {
-			sub := nSumTarget(nums, n-1, i+1, target-nums[i])
-			for _, arr := range sub {
-				// (n-1)Sum 加上 nums[i] 就是 nSum
-				arr = append(arr, nums[i])
-				ans = append(ans, arr)
-			}
-			// 跳过重复值
-			for ; i < len(nums)-1 && nums[i] == nums[i+1]; i++ {
-			}
+		return res
+	}
+
+	// Recursive case: n > 2
+	for i := start; i < len(nums); i++ {
+		// 跳过重复元素
+		if i > start && nums[i] == nums[i-1] {
+			continue
+		}
+		subRes := nSumTarget(nums, n-1, i+1, target-nums[i])
+		for _, subset := range subRes {
+			// 将当前数字加入 (n-1) 的结果中
+			res = append(res, append(subset, nums[i]))
 		}
 	}
-	return ans
+
+	return res
 }
 
 // @lc code=end

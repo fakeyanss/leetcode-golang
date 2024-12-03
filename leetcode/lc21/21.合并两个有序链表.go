@@ -51,10 +51,13 @@
  */
 package lc0021
 
-import "github.com/fakeyanss/leetcode-golang/helper"
+// @lcpr-template-start
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
 
-type ListNode = helper.ListNode
-
+// @lcpr-template-end
 // @lc code=start
 /**
  * Definition for singly-linked list.
@@ -65,39 +68,48 @@ type ListNode = helper.ListNode
  */
 func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 	// 递归
-	// if list1 == nil {
-	// 	return list2
-	// }
-	// if list2 == nil {
-	// 	return list1
-	// }
-	// if list1.Val < list2.Val {
-	// 	list1.Next = mergeTwoLists(list1.Next, list2)
-	// 	return list1
-	// }
-	// list2.Next = mergeTwoLists(list1, list2.Next)
-	// return list2
+	// return recursion(list1, list2)
 
 	// 迭代
-	res := &ListNode{}
-	cursor := res
+	return iteration(list1, list2)
+}
+
+func recursion(list1 *ListNode, list2 *ListNode) *ListNode {
+	if list1 == nil {
+		return list2
+	}
+	if list2 == nil {
+		return list1
+	}
+	if list1.Val <= list2.Val {
+		list1.Next = recursion(list1.Next, list2)
+		return list1
+	} else {
+		list2.Next = recursion(list1, list2.Next)
+		return list2
+	}
+}
+
+func iteration(list1 *ListNode, list2 *ListNode) *ListNode {
+	dummy := &ListNode{-1, nil}
+	p := dummy
 	for list1 != nil && list2 != nil {
-		if list1.Val < list2.Val {
-			cursor.Next = list1
-			cursor = list1
+		if list1.Val <= list2.Val {
+			p.Next = list1
 			list1 = list1.Next
 		} else {
-			cursor.Next = list2
-			cursor = list2
+			p.Next = list2
 			list2 = list2.Next
 		}
+		p = p.Next
 	}
 	if list1 == nil {
-		cursor.Next = list2
-	} else {
-		cursor.Next = list1
+		p.Next = list2
 	}
-	return res.Next
+	if list2 == nil {
+		p.Next = list1
+	}
+	return dummy.Next
 }
 
 // @lc code=end

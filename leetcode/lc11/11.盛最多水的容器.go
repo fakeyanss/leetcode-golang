@@ -52,6 +52,9 @@
  */
 package lc11
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 //
 // 双指针问题
@@ -60,31 +63,16 @@ package lc11
 // 相反，如果移动较高的那一边，矩形的高度是无论如何都不会变大的，所以不可能使矩形的面积变得更大
 func maxArea(height []int) int {
 	l, r := 0, len(height)-1
-	ans := 0
+	res := 0
 	for l < r {
-		area := min(height[l], height[r]) * (r - l)
-		ans = max(ans, area)
+		res = max(res, min(height[l], height[r])*(r-l))
 		if height[l] < height[r] {
 			l++
 		} else {
 			r--
 		}
 	}
-	return ans
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
+	return res
 }
 
 // @lc code=end
