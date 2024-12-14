@@ -49,6 +49,9 @@ package lc0028
 
 // 本题即实现strStr()
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 func strStr(haystack string, needle string) int {
 	if needle == "" {

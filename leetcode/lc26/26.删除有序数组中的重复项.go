@@ -72,6 +72,9 @@
  */
 package lc0026
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 func removeDuplicates(nums []int) int {
 	length := len(nums)
@@ -80,6 +83,14 @@ func removeDuplicates(nums []int) int {
 	}
 	i, j := 0, 1
 	for j < length {
+		// if nums[i] == nums[j] {
+		// 	j++
+		// } else {
+		// 	i++
+		// 	nums[i] = nums[j]
+		// 	j++
+		// }
+		// clean code
 		if nums[i] != nums[j] {
 			i++
 			nums[i] = nums[j]

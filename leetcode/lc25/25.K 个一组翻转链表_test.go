@@ -3,9 +3,11 @@ package lc0025
 import (
 	"reflect"
 	"testing"
-
-	"github.com/fakeyanss/leetcode-golang/helper"
 )
+
+func newListNode(val int, next *ListNode) *ListNode {
+	return &ListNode{val, next}
+}
 
 func Test_reverseKGroup(t *testing.T) {
 	type args struct {
@@ -13,10 +15,10 @@ func Test_reverseKGroup(t *testing.T) {
 		k    int
 	}
 
-	h1 := helper.NewListNode(1, nil)
-	r1 := helper.NewListNode(2, nil)
+	h1 := newListNode(1, nil)
+	r1 := newListNode(2, nil)
 	h1.Next = r1
-	r1.Next = helper.NewListNode(3, helper.NewListNode(4, helper.NewListNode(5, nil)))
+	r1.Next = newListNode(3, newListNode(4, newListNode(5, nil)))
 
 	tests := []struct {
 		name string

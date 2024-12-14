@@ -42,42 +42,40 @@
  */
 package lc22
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
-var (
-	res   []string
-	track []byte
-)
 
 func generateParenthesis(n int) []string {
-	res = make([]string, 0)
-	track = make([]byte, 0)
+	var res []string
+	var track []byte
 	if n == 0 {
 		return res
 	}
+	var backtrack func(int, int)
+	backtrack = func(left, right int) {
+		if left > right {
+			return
+		}
+		if left < 0 || right < 0 {
+			return
+		}
+		if left == 0 && right == 0 {
+			res = append(res, string(track))
+			return
+		}
+
+		track = append(track, '(')
+		backtrack(left-1, right)
+		track = track[:len(track)-1]
+
+		track = append(track, ')')
+		backtrack(left, right-1)
+		track = track[:len(track)-1]
+	}
 	backtrack(n, n)
 	return res
-}
-
-func backtrack(left, right int) {
-	// 生成括号过程中，剩余的 { 一定比 } 少
-	if left > right {
-		return
-	}
-	if left < 0 || right < 0 {
-		return
-	}
-	if left == 0 && right == 0 {
-		res = append(res, string(track))
-		return
-	}
-
-	track = append(track, '(')
-	backtrack(left-1, right)
-	track = track[:len(track)-1]
-
-	track = append(track, ')')
-	backtrack(left, right-1)
-	track = track[:len(track)-1]
 }
 
 // @lc code=end

@@ -53,6 +53,9 @@
  */
 package lc0034
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 func searchRange(nums []int, target int) []int {
 	return []int{binaryLeft(nums, target), binaryRight(nums, target)}

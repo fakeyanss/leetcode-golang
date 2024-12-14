@@ -73,11 +73,13 @@
  */
 package lc0027
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 func removeElement(nums []int, val int) int {
 	slow, fast := 0, 0
-	length := len(nums)
-	for fast < length {
+	for fast < len(nums) {
 		if nums[fast] != val {
 			nums[slow] = nums[fast]
 			slow++

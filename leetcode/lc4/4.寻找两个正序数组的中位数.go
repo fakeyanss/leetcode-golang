@@ -53,6 +53,9 @@
  */
 package lc4
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 //
 // 根据中位数的定义，当 m+n 是奇数时，中位数是两个有序数组中的第 (m+n)/2 个元素，当 m+n 是偶数时，

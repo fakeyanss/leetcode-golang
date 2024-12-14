@@ -1,16 +1,17 @@
 /*
  * @lc app=leetcode.cn id=25 lang=golang
+ * @lcpr version=20004
  *
  * [25] K 个一组翻转链表
  *
  * https://leetcode.cn/problems/reverse-nodes-in-k-group/description/
  *
  * algorithms
- * Hard (67.58%)
- * Likes:    1729
+ * Hard (68.75%)
+ * Likes:    2440
  * Dislikes: 0
- * Total Accepted:    372.5K
- * Total Submissions: 551.1K
+ * Total Accepted:    700K
+ * Total Submissions: 1M
  * Testcase Example:  '[1,2,3,4,5]\n2'
  *
  * 给你链表的头节点 head ，每 k 个节点一组进行翻转，请你返回修改后的链表。
@@ -23,13 +24,11 @@
  *
  * 示例 1：
  *
- *
  * 输入：head = [1,2,3,4,5], k = 2
  * 输出：[2,1,4,3,5]
  *
  *
  * 示例 2：
- *
  *
  *
  *
@@ -56,10 +55,13 @@
  */
 package lc0025
 
-import "github.com/fakeyanss/leetcode-golang/helper"
+// @lcpr-template-start
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
 
-type ListNode = helper.ListNode
-
+// @lcpr-template-end
 // @lc code=start
 /**
  * Definition for singly-linked list.
@@ -70,31 +72,39 @@ type ListNode = helper.ListNode
  */
 func reverseKGroup(head *ListNode, k int) *ListNode {
 	start, end := head, head
-	for cnt := 0; cnt < k; cnt++ {
-		// 不足 k 个，不需要反转，base case
+	for i := 0; i < k; i++ {
 		if end == nil {
-			return head
+			return start
 		}
 		end = end.Next
 	}
-	// 反转前 k 个元素
-	newHead := reverseBetweenListNode(start, end)
-	// 递归反转后续链表并连接起来
+
+	reverseBetween := func(start, end *ListNode) *ListNode {
+		var prev *ListNode
+		cur, next := start, start
+		for cur != end {
+			next = cur.Next
+			cur.Next = prev
+			prev = cur
+			cur = next
+		}
+		return prev
+	}
+
+	newHead := reverseBetween(start, end)
 	start.Next = reverseKGroup(end, k)
 	return newHead
 }
 
-// 反转区间 [start, end) 的元素，注意是左闭右开
-func reverseBetweenListNode(start *ListNode, end *ListNode) *ListNode {
-	var pre *ListNode
-	cur, next := start, start
-	for cur != end {
-		next = cur.Next
-		cur.Next = pre
-		pre = cur
-		cur = next
-	}
-	return pre
-}
-
 // @lc code=end
+
+/*
+// @lcpr case=start
+// [1,2,3,4,5]\n2\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [1,2,3,4,5]\n3\n
+// @lcpr case=end
+
+*/
