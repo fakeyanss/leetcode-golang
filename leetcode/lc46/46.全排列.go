@@ -1,16 +1,17 @@
 /*
  * @lc app=leetcode.cn id=46 lang=golang
+ * @lcpr version=20004
  *
  * [46] 全排列
  *
  * https://leetcode.cn/problems/permutations/description/
  *
  * algorithms
- * Medium (78.75%)
- * Likes:    2220
+ * Medium (79.83%)
+ * Likes:    3004
  * Dislikes: 0
- * Total Accepted:    722.5K
- * Total Submissions: 917.4K
+ * Total Accepted:    1.2M
+ * Total Submissions: 1.5M
  * Testcase Example:  '[1,2,3]'
  *
  * 给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。
@@ -19,20 +20,17 @@
  *
  * 示例 1：
  *
- *
  * 输入：nums = [1,2,3]
  * 输出：[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
  *
  *
  * 示例 2：
  *
- *
  * 输入：nums = [0,1]
  * 输出：[[0,1],[1,0]]
  *
  *
  * 示例 3：
- *
  *
  * 输入：nums = [1]
  * 输出：[[1]]
@@ -51,40 +49,49 @@
  */
 package lc46
 
-// @lc code=start
-var (
-	res   [][]int
-	track []int
-	used  []bool
-)
+// @lcpr-template-start
 
+// @lcpr-template-end
+// @lc code=start
 func permute(nums []int) [][]int {
-	res = make([][]int, 0)
-	track = make([]int, 0)
-	used = make([]bool, len(nums))
-	backtrack(nums)
+	var res [][]int
+	var track []int
+	used := make([]bool, len(nums))
+	var backtrack func()
+	backtrack = func() {
+		if len(track) == len(nums) {
+			tmp := []int{}
+			res = append(res, append(tmp, track...))
+			return
+		}
+		for i := 0; i < len(nums); i++ {
+			if used[i] {
+				continue
+			}
+			track = append(track, nums[i])
+			used[i] = true
+			backtrack()
+			used[i] = false
+			track = track[:len(track)-1]
+		}
+	}
+	backtrack()
 	return res
 }
 
-func backtrack(nums []int) {
-	// base case
-	if len(track) == len(nums) {
-		t := make([]int, len(track))
-		copy(t, track)
-		res = append(res, t)
-		return
-	}
-
-	for i := 0; i < len(nums); i++ {
-		if used[i] {
-			continue
-		}
-		track = append(track, nums[i])
-		used[i] = true
-		backtrack(nums)
-		track = track[:len(track)-1]
-		used[i] = false
-	}
-}
-
 // @lc code=end
+
+/*
+// @lcpr case=start
+// [1,2,3]\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [0,1]\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [1]\n
+// @lcpr case=end
+
+*/

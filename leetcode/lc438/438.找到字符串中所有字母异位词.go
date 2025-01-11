@@ -52,43 +52,32 @@
  */
 package lc438
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 func findAnagrams(s string, p string) []int {
-	need, window := make(map[byte]int), make(map[byte]int)
-	for i := range p {
-		need[p[i]]++
+	// 与49题思路类似
+	count := [26]byte{}
+	for _, c := range p {
+		count[c-'a']++
 	}
 
-	left, right := 0, 0
-	valid := 0
+	l, r := 0, 0
+	compare := [26]byte{}
 	var res []int
-
-	for right < len(s) {
-		c := s[right]
-		right++
-		if _, ok := need[c]; ok {
-			window[c]++
-			if window[c] == need[c] {
-				valid++
-			}
+	for ; r < len(s); r++ {
+		compare[s[r]-'a']++
+		if r < len(p)-1 {
+			continue
 		}
 
-		for right-left >= len(p) {
-			if valid == len(need) {
-				res = append(res, left)
-			}
-			d := s[left]
-			left++
-
-			if _, ok := need[d]; ok {
-				if window[d] == need[d] {
-					valid--
-				}
-				window[d]--
-			}
+		if count == compare {
+			res = append(res, l)
 		}
+		compare[s[l]-'a']--
+		l++
 	}
-
 	return res
 }
 

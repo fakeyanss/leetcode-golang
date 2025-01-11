@@ -1,16 +1,17 @@
 /*
  * @lc app=leetcode.cn id=39 lang=golang
+ * @lcpr version=20004
  *
  * [39] 组合总和
  *
  * https://leetcode.cn/problems/combination-sum/description/
  *
  * algorithms
- * Medium (72.62%)
- * Likes:    2169
+ * Medium (73.28%)
+ * Likes:    2938
  * Dislikes: 0
- * Total Accepted:    607.4K
- * Total Submissions: 836.4K
+ * Total Accepted:    1.1M
+ * Total Submissions: 1.5M
  * Testcase Example:  '[2,3,6,7]\n7'
  *
  * 给你一个 无重复元素 的整数数组 candidates 和一个目标整数 target ，找出 candidates 中可以使数字和为目标数 target
@@ -24,7 +25,6 @@
  *
  * 示例 1：
  *
- *
  * 输入：candidates = [2,3,6,7], target = 7
  * 输出：[[2,2,3],[7]]
  * 解释：
@@ -34,12 +34,10 @@
  *
  * 示例 2：
  *
- *
  * 输入: candidates = [2,3,5], target = 8
  * 输出: [[2,2,2,2],[2,3,3],[3,5]]
  *
  * 示例 3：
- *
  *
  * 输入: candidates = [2], target = 1
  * 输出: []
@@ -51,50 +49,72 @@
  *
  *
  * 1 <= candidates.length <= 30
- * 1 <= candidates[i] <= 200
- * candidate 中的每个元素都 互不相同
- * 1 <= target <= 500
+ * 2 <= candidates[i] <= 40
+ * candidates 的所有元素 互不相同
+ * 1 <= target <= 40
  *
  *
  */
 package lc39
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
-var (
-	res      [][]int
-	track    []int
-	trackSum int
-)
-
 func combinationSum(candidates []int, target int) [][]int {
-	res = make([][]int, 0)
-	track = make([]int, 0)
-	trackSum = 0
-	backtrack(candidates, target, 0)
+	var res [][]int
+	var track []int
+	var trackSum int
+	var backtrack func(start int)
+	backtrack = func(start int) {
+		if trackSum > target {
+			return
+		}
+		if trackSum == target {
+			tmp := append([]int{}, track...)
+			res = append(res, tmp)
+		}
+		for i := start; i < len(candidates); i++ {
+			trackSum += candidates[i]
+			track = append(track, candidates[i])
+			backtrack(i) // 元素可重复选，回溯下一个仍然是当前下标
+			track = track[:len(track)-1]
+			trackSum -= candidates[i]
+		}
+	}
+
+	backtrack(0)
+
 	return res
-}
 
-func backtrack(nums []int, target, start int) {
-	if trackSum == target {
-		t := make([]int, len(track))
-		copy(t, track)
-		res = append(res, t)
-		return
-	}
-
-	// base case
-	if trackSum > target {
-		return
-	}
-
-	for i := start; i < len(nums); i++ {
-		track = append(track, nums[i])
-		trackSum += nums[i]
-		// 元素可重复选, 下一个穷举仍然从nums[i]开始
-		backtrack(nums, target, i)
-		track = track[:len(track)-1]
-		trackSum -= nums[i]
-	}
+	// 完全背包，dp[i]的含义从容量为i的背包有几种装法变成具体装什么
+	// dp := make([][][]int, target+1)
+	// dp[0] = [][]int{{}}
+	// for i := 0; i < len(candidates); i++ {
+	// 	for j := candidates[i]; j < len(dp); j++ {
+	// 		for _, group := range dp[j-candidates[i]] {
+	// 			newGroup := append([]int{}, group...)
+	// 			newGroup = append(newGroup, candidates[i])
+	// 			dp[j] = append(dp[j], newGroup)
+	// 		}
+	// 	}
+	// }
+	// return dp[target]
 }
 
 // @lc code=end
+
+/*
+// @lcpr case=start
+// [2,3,6,7]\n7\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [2,3,5]\n8\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [2]\n1\n
+// @lcpr case=end
+
+*/

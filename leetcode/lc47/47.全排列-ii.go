@@ -56,39 +56,34 @@ var (
 )
 
 func permuteUnique(nums []int) [][]int {
-	res = make([][]int, 0)
-	track = make([]int, 0)
-	used = make([]bool, len(nums))
+	var res [][]int
+	var track []int
+	used := make([]bool, len(nums))
 	sort.Ints(nums)
-	backtrack(nums)
+	var backtrack func()
+	backtrack = func() {
+		if len(track) == len(nums) {
+			tmp := []int{}
+			res = append(res, append(tmp, track...))
+			return
+		}
+		for i := 0; i < len(nums); i++ {
+			if used[i] {
+				continue
+			}
+			// 剪枝, 相邻相同的元素，!used[i-1] 表示只有在前一个元素没被使用时，才继续穷举
+			if i > 0 && nums[i] == nums[i-1] && !used[i-1] {
+				continue
+			}
+			track = append(track, nums[i])
+			used[i] = true
+			backtrack()
+			used[i] = false
+			track = track[:len(track)-1]
+		}
+	}
+	backtrack()
 	return res
-}
-
-func backtrack(nums []int) {
-	if len(track) == len(nums) {
-		t := make([]int, len(track))
-		copy(t, track)
-		res = append(res, t)
-		return
-	}
-
-	for i := 0; i < len(nums); i++ {
-		if used[i] {
-			continue
-		}
-		// 剪枝, 相邻相同的元素，!used[i-1] 表示只有在前一个元素被使用时，才继续穷举
-		// 实际上使用 used[i-1] 也可以，但是剪枝效率低一些
-		// if i > 0 && nums[i] == nums[i-1] && used[i-1] {
-		if i > 0 && nums[i] == nums[i-1] && !used[i-1] {
-			continue
-		}
-
-		track = append(track, nums[i])
-		used[i] = true
-		backtrack(nums)
-		track = track[:len(track)-1]
-		used[i] = false
-	}
 }
 
 // @lc code=end

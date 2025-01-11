@@ -1,16 +1,17 @@
 /*
  * @lc app=leetcode.cn id=76 lang=golang
+ * @lcpr version=20004
  *
  * [76] 最小覆盖子串
  *
  * https://leetcode.cn/problems/minimum-window-substring/description/
  *
  * algorithms
- * Hard (44.62%)
- * Likes:    2047
+ * Hard (46.66%)
+ * Likes:    3085
  * Dislikes: 0
- * Total Accepted:    325.1K
- * Total Submissions: 728.7K
+ * Total Accepted:    690.1K
+ * Total Submissions: 1.5M
  * Testcase Example:  '"ADOBECODEBANC"\n"ABC"'
  *
  * 给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 ""
@@ -29,20 +30,19 @@
  *
  * 示例 1：
  *
- *
  * 输入：s = "ADOBECODEBANC", t = "ABC"
  * 输出："BANC"
+ * 解释：最小覆盖子串 "BANC" 包含来自字符串 t 的 'A'、'B' 和 'C'。
  *
  *
  * 示例 2：
  *
- *
  * 输入：s = "a", t = "a"
  * 输出："a"
+ * 解释：整个字符串 s 是最小覆盖子串。
  *
  *
  * 示例 3:
- *
  *
  * 输入: s = "a", t = "aa"
  * 输出: ""
@@ -54,50 +54,46 @@
  * 提示：
  *
  *
- * 1
+ * ^m == s.length
+ * ^n == t.length
+ * 1 <= m, n <= 10^5
  * s 和 t 由英文字母组成
  *
  *
  *
- * 进阶：你能设计一个在 o(n) 时间内解决此问题的算法吗？
+ * 进阶：你能设计一个在 o(m+n) 时间内解决此问题的算法吗？
  */
 package lc0076
 
 import "math"
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 func minWindow(s string, t string) string {
-	// 存储t的每个字符出现个数
 	need := make(map[byte]int)
-	for c := range t {
-		need[t[c]]++
+	for i := range t {
+		need[t[i]]++
 	}
 	left, right := 0, 0
-	// 存储窗口中字符出现个数
-	window := make(map[byte]int)
-	// 记录窗口中满足need条件的字符个数
-	valid := 0
-	// 记录最小子串的起始索引和长度
-	start, length := 0, math.MaxInt
+	window := make(map[byte]int)    // 存储窗口中字符出现个数
+	valid := 0                      // 记录窗口中满足need条件的字符个数
+	start, length := 0, math.MaxInt // 记录最小子串的起始索引和长度
 	for right < len(s) {
 		c := s[right]
 		right++
-		// 如果当前字符是need包含的，就加入到window
 		if _, ok := need[c]; ok {
 			window[c]++
-			// 如果出现次数满足了，valid记录一次
 			if window[c] == need[c] {
 				valid++
 			}
 		}
 
-		// valid次数与need长度一致，说明所有字符都找到了
 		// 开始收缩窗口
 		for valid == len(need) {
-			// 更新最小覆盖子串
 			if right-left < length {
-				start = left
-				length = right - left
+				start, length = left, right-left
 			}
 			d := s[left]
 			left++
@@ -109,7 +105,6 @@ func minWindow(s string, t string) string {
 			}
 		}
 	}
-
 	if length == math.MaxInt {
 		return ""
 	}
@@ -117,3 +112,18 @@ func minWindow(s string, t string) string {
 }
 
 // @lc code=end
+
+/*
+// @lcpr case=start
+// "ADOBECODEBANC"\n"ABC"\n
+// @lcpr case=end
+
+// @lcpr case=start
+// "a"\n"a"\n
+// @lcpr case=end
+
+// @lcpr case=start
+// "a"\n"aa"\n
+// @lcpr case=end
+
+*/

@@ -60,55 +60,49 @@
 package lc37
 
 // @lc code=start
+// 和36题场景相反。
 func solveSudoku(board [][]byte) {
 	backtrack(board, 0, 0)
 }
 
+// 原地修改board
+// 回溯，从左到右，从上到下
 func backtrack(board [][]byte, i, j int) bool {
-	m, n := 9, 9
-	if j == n {
-		// 穷举到最后一列，换下一行再来
-		return backtrack(board, i+1, 0)
-	}
-	// base case, 找到可行解
-	if i == m {
+	if i == 9 { // 整个9行已经遍历完
 		return true
 	}
-
-	if board[i][j] != '.' {
-		// 跳过已有数字的格子
+	if j == 9 { // 遍历到最右边，跳到下一行
+		return backtrack(board, i+1, 0)
+	}
+	if board[i][j] != '.' { // 非空，跳过
 		return backtrack(board, i, j+1)
 	}
-
-	for ch := byte('1'); ch <= byte('9'); ch++ {
-		if !isValid(board, i, j, ch) {
+	for k := byte('1'); k <= byte('9'); k++ {
+		if !isValid(board, i, j, k) {
 			continue
 		}
 
-		board[i][j] = ch
-		if backtrack(board, i, j+1) {
-			// 找到可行解，直接结束
+		board[i][j] = k
+
+		if backtrack(board, i, j+1) { // 找到可行解，直接结束
 			return true
 		}
+
 		board[i][j] = '.'
 	}
-
 	// 穷举完1-9，仍然没找到解
 	return false
 }
 
-func isValid(board [][]byte, row, col int, n byte) bool {
-	for i := 0; i < 9; i++ {
-		// 判断行是否有重复
-		if board[row][i] == n {
+func isValid(board [][]byte, i, j int, ch byte) bool {
+	for k := 0; k < 9; k++ {
+		if board[i][k] == ch {
 			return false
 		}
-		// 判断列是否有重复
-		if board[i][col] == n {
+		if board[k][j] == ch {
 			return false
 		}
-		// 判断3*3方格是否有重复
-		if board[(row/3)*3+i/3][col/3*3+i%3] == n {
+		if board[i/3*3+k/3][j/3*3+k%3] == ch { // 妙哇，判断3*3方格是否有重复
 			return false
 		}
 	}

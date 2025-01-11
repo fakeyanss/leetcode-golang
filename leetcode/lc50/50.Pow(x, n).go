@@ -1,6 +1,6 @@
 /*
  * @lc app=leetcode.cn id=50 lang=golang
- * @lcpr version=20002
+ * @lcpr version=20004
  *
  * [50] Pow(x, n)
  *
@@ -52,28 +52,23 @@
  */
 
 // @lcpr-template-start
-
-// @lcpr-template-end
 package lc50
 
+// @lcpr-template-end
 // @lc code=start
 func myPow(x float64, n int) float64 {
-	var quickPow func(a float64, k int) float64
-	quickPow = func(a float64, k int) float64 {
-		if k == 0 {
-			return 1.0
-		}
-		y := quickPow(a, k/2)
-		if k%2 == 0 {
-			return y * y
-		}
-		return y * y * a
+	if n == 0 {
+		return 1
 	}
-
-	if n >= 0 {
-		return quickPow(x, n)
+	if n < 0 {
+		return 1 / myPow(x, -n)
 	}
-	return 1.0 / quickPow(x, -n)
+	sub := myPow(x, n/2)
+	if n%2 == 0 {
+		return sub * sub
+	} else {
+		return x * sub * sub
+	}
 }
 
 // @lc code=end

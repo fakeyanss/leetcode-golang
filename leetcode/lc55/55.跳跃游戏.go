@@ -51,22 +51,14 @@ package lc55
 
 // @lc code=start
 func canJump(nums []int) bool {
-	n, farthest := len(nums), 0
-	for i := 0; i < n-1; i++ {
-		farthest = maxInt(farthest, i+nums[i])
-		// 可能是遇到0，卡住不能跳了，比如 [3,2,1,0,4]
+	farthest := 0
+	for i := 0; i < len(nums)-1; i++ {
+		farthest = max(i+nums[i], farthest)
 		if farthest <= i {
 			return false
 		}
 	}
-	return farthest >= n-1
-}
-
-func maxInt(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
+	return farthest >= len(nums)-1
 }
 
 // @lc code=end

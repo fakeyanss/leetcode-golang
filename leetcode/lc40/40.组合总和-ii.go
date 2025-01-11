@@ -59,44 +59,36 @@ package lc40
 import "sort"
 
 // @lc code=start
-var (
-	res      [][]int
-	track    []int
-	trackSum int
-)
 
 func combinationSum2(candidates []int, target int) [][]int {
-	res = make([][]int, 0)
-	track = make([]int, 0)
-	trackSum = 0
+	var res [][]int
+	var track []int
+	var trackSum int
+	var backtrack func(start int)
 	sort.Ints(candidates)
-	backtrack(candidates, target, 0)
-	return res
-}
-
-func backtrack(nums []int, target, start int) {
-	if trackSum == target {
-		t := make([]int, len(track))
-		copy(t, track)
-		res = append(res, t)
-		return
-	}
-
-	// 剪枝
-	if trackSum > target {
-		return
-	}
-
-	for i := start; i < len(nums); i++ {
-		if i > start && nums[i] == nums[i-1] {
-			continue
+	backtrack = func(start int) {
+		if trackSum > target {
+			return
 		}
-		track = append(track, nums[i])
-		trackSum += nums[i]
-		backtrack(nums, target, i+1)
-		track = track[:len(track)-1]
-		trackSum -= nums[i]
+		if trackSum == target {
+			tmp := append([]int{}, track...)
+			res = append(res, tmp)
+		}
+		for i := start; i < len(candidates); i++ {
+			if i != start && candidates[i] == candidates[i-1] {
+				continue
+			}
+			trackSum += candidates[i]
+			track = append(track, candidates[i])
+			backtrack(i + 1) // 元素不可重复选，回溯下一个仍然是当前下标
+			track = track[:len(track)-1]
+			trackSum -= candidates[i]
+		}
 	}
+
+	backtrack(0)
+
+	return res
 }
 
 // @lc code=end
