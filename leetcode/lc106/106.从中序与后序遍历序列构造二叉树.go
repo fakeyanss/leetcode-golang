@@ -1,16 +1,17 @@
 /*
  * @lc app=leetcode.cn id=106 lang=golang
+ * @lcpr version=20004
  *
  * [106] 从中序与后序遍历序列构造二叉树
  *
  * https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/
  *
  * algorithms
- * Medium (72.51%)
- * Likes:    821
+ * Medium (72.60%)
+ * Likes:    1299
  * Dislikes: 0
- * Total Accepted:    223.5K
- * Total Submissions: 308.3K
+ * Total Accepted:    440K
+ * Total Submissions: 605.6K
  * Testcase Example:  '[9,3,15,20,7]\n[9,15,7,20,3]'
  *
  * 给定两个整数数组 inorder 和 postorder ，其中 inorder 是二叉树的中序遍历， postorder
@@ -20,13 +21,11 @@
  *
  * 示例 1:
  *
- *
  * 输入：inorder = [9,3,15,20,7], postorder = [9,15,7,20,3]
  * 输出：[3,9,20,null,null,15,7]
  *
  *
  * 示例 2:
- *
  *
  * 输入：inorder = [-1], postorder = [-1]
  * 输出：[-1]
@@ -49,10 +48,15 @@
  */
 package lc106
 
-import "github.com/fakeyanss/leetcode-golang/helper"
+// @lcpr-template-start
 
-type TreeNode = helper.TreeNode
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
 
+// @lcpr-template-end
 // @lc code=start
 /**
  * Definition for a binary tree node.
@@ -62,29 +66,35 @@ type TreeNode = helper.TreeNode
  *     Right *TreeNode
  * }
  */
-var valToIndex map[int]int = make(map[int]int)
-
 func buildTree(inorder []int, postorder []int) *TreeNode {
+	n := len(inorder)
+	valToIndex := make(map[int]int, n)
 	for i, val := range inorder {
 		valToIndex[val] = i
 	}
-	return doBuildTree(inorder, 0, len(inorder)-1, postorder, 0, len(postorder)-1)
-}
-
-func doBuildTree(inorder []int, inStart, inEnd int, postorder []int, postStart, postEnd int) *TreeNode {
-	if postStart > postEnd {
-		return nil
+	var dfs func(postStart, postEnd, inStart, inEnd int) *TreeNode
+	dfs = func(postStart, postEnd, inStart, inEnd int) *TreeNode {
+		if postStart == postEnd {
+			return nil
+		}
+		rootVal := postorder[postEnd-1]
+		leftSize := valToIndex[rootVal] - inStart
+		left := dfs(postStart, postStart+leftSize, inStart, inStart+leftSize)
+		right := dfs(postStart+leftSize, postEnd-1, inStart+leftSize+1, inEnd)
+		return &TreeNode{rootVal, left, right}
 	}
-
-	rootVal := postorder[postEnd]
-	index := valToIndex[rootVal]
-
-	leftSize := index - inStart
-
-	root := &TreeNode{rootVal,
-		doBuildTree(inorder, inStart, index-1, postorder, postStart, postStart+leftSize-1),
-		doBuildTree(inorder, index+1, inEnd, postorder, postStart+leftSize, postEnd-1)}
-	return root
+	return dfs(0, n, 0, n) // 左闭右开区间
 }
 
 // @lc code=end
+
+/*
+// @lcpr case=start
+// [9,3,15,20,7]\n[9,15,7,20,3]\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [-1]\n[-1]\n
+// @lcpr case=end
+
+*/

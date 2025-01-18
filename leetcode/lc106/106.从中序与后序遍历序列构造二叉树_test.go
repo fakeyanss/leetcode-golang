@@ -3,9 +3,11 @@ package lc106
 import (
 	"reflect"
 	"testing"
-
-	"github.com/fakeyanss/leetcode-golang/helper"
 )
+
+func newTreeNode(val int, l *TreeNode, r *TreeNode) *TreeNode {
+	return &TreeNode{val, l, r}
+}
 
 func Test_buildTree106_(t *testing.T) {
 	type args struct {
@@ -23,10 +25,10 @@ func Test_buildTree106_(t *testing.T) {
 				[]int{9, 3, 15, 20, 7},
 				[]int{9, 15, 7, 20, 3},
 			},
-			helper.NewTreeNode(
+			newTreeNode(
 				3,
-				helper.NewTreeNode(9, nil, nil),
-				helper.NewTreeNode(20, helper.NewTreeNode(15, nil, nil), helper.NewTreeNode(7, nil, nil)),
+				newTreeNode(9, nil, nil),
+				newTreeNode(20, newTreeNode(15, nil, nil), newTreeNode(7, nil, nil)),
 			),
 		},
 	}

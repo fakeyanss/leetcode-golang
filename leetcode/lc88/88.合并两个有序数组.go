@@ -1,16 +1,17 @@
 /*
  * @lc app=leetcode.cn id=88 lang=golang
+ * @lcpr version=20004
  *
  * [88] 合并两个有序数组
  *
  * https://leetcode.cn/problems/merge-sorted-array/description/
  *
  * algorithms
- * Easy (52.37%)
- * Likes:    1466
+ * Easy (54.39%)
+ * Likes:    2626
  * Dislikes: 0
- * Total Accepted:    692.2K
- * Total Submissions: 1.3M
+ * Total Accepted:    1.5M
+ * Total Submissions: 2.7M
  * Testcase Example:  '[1,2,3,0,0,0]\n3\n[2,5,6]\n3'
  *
  * 给你两个按 非递减顺序 排列的整数数组 nums1 和 nums2，另有两个整数 m 和 n ，分别表示 nums1 和 nums2 中的元素数目。
@@ -24,7 +25,6 @@
  *
  * 示例 1：
  *
- *
  * 输入：nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
  * 输出：[1,2,2,3,5,6]
  * 解释：需要合并 [1,2,3] 和 [2,5,6] 。
@@ -33,7 +33,6 @@
  *
  * 示例 2：
  *
- *
  * 输入：nums1 = [1], m = 1, nums2 = [], n = 0
  * 输出：[1]
  * 解释：需要合并 [1] 和 [] 。
@@ -41,7 +40,6 @@
  *
  *
  * 示例 3：
- *
  *
  * 输入：nums1 = [0], m = 0, nums2 = [1], n = 1
  * 输出：[1]
@@ -69,27 +67,66 @@
  */
 package lc88
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 func merge(nums1 []int, m int, nums2 []int, n int) {
+	var res []int
+	i, j := 0, 0
+	for i < m && j < n {
+		if nums1[i] < nums2[j] {
+			res = append(res, nums1[i])
+			i++
+		} else {
+			res = append(res, nums2[j])
+			j++
+		}
+	}
+	for ; i < m; i++ {
+		res = append(res, nums1[i])
+	}
+	for ; j < n; j++ {
+		res = append(res, nums2[j])
+	}
+	for p := 0; p < m+n; p++ {
+		nums1[p] = res[p]
+	}
+
 	// 双指针，正序遍历会覆盖元素，如果用额外变量存储临时元素会让逻辑非常复杂
 	// 直接逆序遍历
-	i, j := m-1, n-1
-	p := m + n - 1
-	for i >= 0 && j >= 0 {
-		if nums1[i] > nums2[j] {
-			nums1[p] = nums1[i]
-			i--
-		} else {
-			nums1[p] = nums2[j]
-			j--
-		}
-		p--
-	}
-	for j >= 0 {
-		nums1[p] = nums2[j]
-		j--
-		p--
-	}
+	// i, j := m-1, n-1
+	// p := m + n - 1
+	// for i >= 0 && j >= 0 {
+	// 	if nums1[i] > nums2[j] {
+	// 		nums1[p] = nums1[i]
+	// 		i--
+	// 	} else {
+	// 		nums1[p] = nums2[j]
+	// 		j--
+	// 	}
+	// 	p--
+	// }
+	// for j >= 0 {
+	// 	nums1[p] = nums2[j]
+	// 	j--
+	// 	p--
+	// }
 }
 
 // @lc code=end
+
+/*
+// @lcpr case=start
+// [1,2,3,0,0,0]\n3\n[2,5,6]\n3\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [1]\n1\n[]\n0\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [0]\n0\n[1]\n1\n
+// @lcpr case=end
+
+*/

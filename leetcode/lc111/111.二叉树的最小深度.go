@@ -1,16 +1,17 @@
 /*
  * @lc app=leetcode.cn id=111 lang=golang
+ * @lcpr version=20004
  *
  * [111] 二叉树的最小深度
  *
  * https://leetcode.cn/problems/minimum-depth-of-binary-tree/description/
  *
  * algorithms
- * Easy (51.07%)
- * Likes:    847
+ * Easy (55.22%)
+ * Likes:    1251
  * Dislikes: 0
- * Total Accepted:    459.8K
- * Total Submissions: 900.2K
+ * Total Accepted:    767K
+ * Total Submissions: 1.4M
  * Testcase Example:  '[3,9,20,null,null,15,7]'
  *
  * 给定一个二叉树，找出其最小深度。
@@ -23,13 +24,11 @@
  *
  * 示例 1：
  *
- *
  * 输入：root = [3,9,20,null,null,15,7]
  * 输出：2
  *
  *
  * 示例 2：
- *
  *
  * 输入：root = [2,null,3,null,4,null,5,null,6]
  * 输出：5
@@ -41,16 +40,21 @@
  *
  *
  * 树中节点数的范围在 [0, 10^5] 内
- * -1000
+ * -1000 <= Node.val <= 1000
  *
  *
  */
 package lc111
 
-import "github.com/fakeyanss/leetcode-golang/helper"
+// @lcpr-template-start
 
-type TreeNode = helper.TreeNode
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
 
+// @lcpr-template-end
 // @lc code=start
 /**
  * Definition for a binary tree node.
@@ -60,13 +64,24 @@ type TreeNode = helper.TreeNode
  *     Right *TreeNode
  * }
  */
-// bfs 遍历直到第一个叶子节点
 func minDepth(root *TreeNode) int {
+	// if root == nil {
+	// 	return 0
+	// }
+	// leftDepth := minDepth(root.Left)
+	// rightDepth := minDepth(root.Right)
+	// if leftDepth == 0 {
+	// 	return rightDepth + 1
+	// }
+	// if rightDepth == 0 {
+	// 	return leftDepth + 1
+	// }
+	// return min(leftDepth, rightDepth) + 1
+
 	if root == nil {
 		return 0
 	}
-	queue := make([]*TreeNode, 0)
-	queue = append(queue, root)
+	queue := []*TreeNode{root}
 	depth := 1
 
 	// 这一层向下遍历
@@ -96,3 +111,14 @@ func minDepth(root *TreeNode) int {
 }
 
 // @lc code=end
+
+/*
+// @lcpr case=start
+// [3,9,20,null,null,15,7]\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [2,null,3,null,4,null,5,null,6]\n
+// @lcpr case=end
+
+*/

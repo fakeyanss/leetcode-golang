@@ -1,42 +1,61 @@
 /*
  * @lc app=leetcode.cn id=104 lang=golang
+ * @lcpr version=20004
  *
  * [104] 二叉树的最大深度
  *
  * https://leetcode.cn/problems/maximum-depth-of-binary-tree/description/
  *
  * algorithms
- * Easy (77.11%)
- * Likes:    1337
+ * Easy (78.17%)
+ * Likes:    1911
  * Dislikes: 0
- * Total Accepted:    816.3K
- * Total Submissions: 1.1M
+ * Total Accepted:    1.5M
+ * Total Submissions: 1.9M
  * Testcase Example:  '[3,9,20,null,null,15,7]'
  *
- * 给定一个二叉树，找出其最大深度。
+ * 给定一个二叉树 root ，返回其最大深度。
  *
- * 二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+ * 二叉树的 最大深度 是指从根节点到最远叶子节点的最长路径上的节点数。
  *
- * 说明: 叶子节点是指没有子节点的节点。
  *
- * 示例：
- * 给定二叉树 [3,9,20,null,null,15,7]，
  *
- * ⁠   3
- * ⁠  / \
- * ⁠ 9  20
- * ⁠   /  \
- * ⁠  15   7
+ * 示例 1：
  *
- * 返回它的最大深度 3 。
+ *
+ *
+ *
+ *
+ * 输入：root = [3,9,20,null,null,15,7]
+ * 输出：3
+ *
+ *
+ * 示例 2：
+ *
+ * 输入：root = [1,null,2]
+ * 输出：2
+ *
+ *
+ *
+ *
+ * 提示：
+ *
+ *
+ * 树中节点的数量在 [0, 10^4] 区间内。
+ * -100 <= Node.val <= 100
+ *
  *
  */
 package lc104
 
-import "github.com/fakeyanss/leetcode-golang/helper"
+// @lcpr-template-start
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
 
-type TreeNode = helper.TreeNode
-
+// @lcpr-template-end
 // @lc code=start
 /**
  * Definition for a binary tree node.
@@ -47,34 +66,23 @@ type TreeNode = helper.TreeNode
  * }
  */
 func maxDepth(root *TreeNode) int {
-	// var res, depth int
-	// var traverse func(node *TreeNode)
-	// traverse = func(node *TreeNode) {
-	// 	if node == nil {
-	// 		return
-	// 	}
-	// 	depth++
-	// 	if node.Left == nil && node.Right == nil {
-	// 		if res < depth {
-	// 			res = depth
-	// 		}
-	// 	}
-	// 	traverse(node.Left)
-	// 	traverse(node.Right)
-	// 	depth--
-	// }
-	// traverse(root)
-	// return res
-
 	if root == nil {
 		return 0
 	}
-	leftMax := maxDepth(root.Left)
-	rightMax := maxDepth(root.Right)
-	if leftMax > rightMax {
-		return leftMax + 1
-	}
-	return rightMax + 1
+	leftDepth := maxDepth(root.Left)
+	rightDepth := maxDepth(root.Right)
+	return 1 + max(leftDepth, rightDepth)
 }
 
 // @lc code=end
+
+/*
+// @lcpr case=start
+// [3,9,20,null,null,15,7]\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [1,null,2]\n
+// @lcpr case=end
+
+*/

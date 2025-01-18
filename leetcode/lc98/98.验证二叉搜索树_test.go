@@ -2,9 +2,11 @@ package lc98
 
 import (
 	"testing"
-
-	"github.com/fakeyanss/leetcode-golang/helper"
 )
+
+func newTreeNode(val int, l *TreeNode, r *TreeNode) *TreeNode {
+	return &TreeNode{val, l, r}
+}
 
 func Test_isValidBST(t *testing.T) {
 	type args struct {
@@ -18,28 +20,28 @@ func Test_isValidBST(t *testing.T) {
 		{
 			"case1",
 			args{
-				helper.NewTreeNode(2, helper.NewTreeNode(1, nil, nil), helper.NewTreeNode(3, nil, nil)),
+				newTreeNode(2, newTreeNode(1, nil, nil), newTreeNode(3, nil, nil)),
 			},
 			true,
 		},
 		{
 			"case2",
 			args{
-				helper.NewTreeNode(
+				newTreeNode(
 					5,
-					helper.NewTreeNode(
+					newTreeNode(
 						1,
 						nil,
 						nil,
 					),
-					helper.NewTreeNode(
+					newTreeNode(
 						4,
-						helper.NewTreeNode(
+						newTreeNode(
 							3,
 							nil,
 							nil,
 						),
-						helper.NewTreeNode(
+						newTreeNode(
 							5,
 							nil,
 							nil,
@@ -52,21 +54,21 @@ func Test_isValidBST(t *testing.T) {
 		{
 			"case3",
 			args{
-				helper.NewTreeNode(
+				newTreeNode(
 					5,
-					helper.NewTreeNode(
+					newTreeNode(
 						6,
 						nil,
 						nil,
 					),
-					helper.NewTreeNode(
+					newTreeNode(
 						4,
-						helper.NewTreeNode(
+						newTreeNode(
 							3,
 							nil,
 							nil,
 						),
-						helper.NewTreeNode(
+						newTreeNode(
 							5,
 							nil,
 							nil,

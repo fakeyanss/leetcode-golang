@@ -81,6 +81,8 @@ func removeDuplicates(nums []int) int {
 			nums[slow] = nums[fast]
 		} else if slow < fast && count < 2 {
 			slow++
+			// 防止末尾的重复数字没有写入
+			// input=[0,0,1,1,1,1,2,3,3], output=[0,0,1,1,2,3,3]
 			nums[slow] = nums[fast]
 		}
 		fast++
