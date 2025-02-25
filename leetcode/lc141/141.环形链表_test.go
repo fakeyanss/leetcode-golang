@@ -2,9 +2,11 @@ package lc141
 
 import (
 	"testing"
-
-	"github.com/fakeyanss/leetcode-golang/helper"
 )
+
+func newListNode(val int, next *ListNode) *ListNode {
+	return &ListNode{val, next}
+}
 
 func Test_hasCycle(t *testing.T) {
 	type args struct {
@@ -12,11 +14,11 @@ func Test_hasCycle(t *testing.T) {
 	}
 
 	var h1, h2, h3 *ListNode
-	h1 = helper.NewListNode(3, helper.NewListNode(2, helper.NewListNode(0, helper.NewListNode(-4, nil))))
+	h1 = newListNode(3, newListNode(2, newListNode(0, newListNode(-4, nil))))
 	h1.Next.Next.Next.Next = h1
-	h2 = helper.NewListNode(1, helper.NewListNode(2, nil))
+	h2 = newListNode(1, newListNode(2, nil))
 	h2.Next.Next = h2
-	h3 = helper.NewListNode(1, nil)
+	h3 = newListNode(1, nil)
 
 	tests := []struct {
 		name string

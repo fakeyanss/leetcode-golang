@@ -4,7 +4,7 @@ import "testing"
 
 func Test_hammingWeight(t *testing.T) {
 	type args struct {
-		num uint32
+		num int
 	}
 	tests := []struct {
 		name string

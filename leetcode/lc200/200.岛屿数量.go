@@ -1,16 +1,17 @@
 /*
  * @lc app=leetcode.cn id=200 lang=golang
+ * @lcpr version=20004
  *
  * [200] 岛屿数量
  *
  * https://leetcode.cn/problems/number-of-islands/description/
  *
  * algorithms
- * Medium (58.63%)
- * Likes:    1916
+ * Medium (61.77%)
+ * Likes:    2676
  * Dislikes: 0
- * Total Accepted:    558.2K
- * Total Submissions: 951.8K
+ * Total Accepted:    982.1K
+ * Total Submissions: 1.6M
  * Testcase Example:  '[["1","1","1","1","0"],["1","1","0","1","0"],["1","1","0","0","0"],["0","0","0","0","0"]]'
  *
  * 给你一个由 '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。
@@ -23,7 +24,6 @@
  *
  * 示例 1：
  *
- *
  * 输入：grid = [
  * ⁠ ["1","1","1","1","0"],
  * ⁠ ["1","1","0","1","0"],
@@ -34,7 +34,6 @@
  *
  *
  * 示例 2：
- *
  *
  * 输入：grid = [
  * ⁠ ["1","1","0","0","0"],
@@ -52,44 +51,57 @@
  *
  * m == grid.length
  * n == grid[i].length
- * 1
+ * 1 <= m, n <= 300
  * grid[i][j] 的值为 '0' 或 '1'
  *
  *
  */
 package lc200
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 func numIslands(grid [][]byte) int {
-	res := 0
 	m, n := len(grid), len(grid[0])
+
+	var dfs func(row, col int)
+	dfs = func(row, col int) {
+		if row < 0 || row >= m || col < 0 || col >= n {
+			return
+		}
+		if grid[row][col] == '0' {
+			return
+		}
+		grid[row][col] = '0'
+
+		dfs(row-1, col)
+		dfs(row+1, col)
+		dfs(row, col-1)
+		dfs(row, col+1)
+	}
+
+	var res int
 	for i := 0; i < m; i++ {
 		for j := 0; j < n; j++ {
 			if grid[i][j] == '1' {
 				res++
-				dfs(grid, i, j)
 			}
+			dfs(i, j)
 		}
 	}
 	return res
 }
 
-func dfs(grid [][]byte, row, col int) {
-	m, n := len(grid), len(grid[0])
-	if row >= m || row < 0 || col >= n || col < 0 {
-		return
-	}
-
-	if grid[row][col] == '0' {
-		return
-	}
-
-	grid[row][col] = '0'
-
-	dfs(grid, row-1, col)
-	dfs(grid, row+1, col)
-	dfs(grid, row, col-1)
-	dfs(grid, row, col+1)
-}
-
 // @lc code=end
+
+/*
+// @lcpr case=start
+// [["1","1","1","1","0"],["1","1","0","1","0"],["1","1","0","0","0"],["0","0","0","0","0"]]\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [["1","1","0","0","0"],["1","1","0","0","0"],["0","0","1","0","0"],["0","0","0","1","1"]]\n
+// @lcpr case=end
+
+*/

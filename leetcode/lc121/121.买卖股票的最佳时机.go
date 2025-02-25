@@ -1,16 +1,17 @@
 /*
  * @lc app=leetcode.cn id=121 lang=golang
+ * @lcpr version=20004
  *
  * [121] 买卖股票的最佳时机
  *
  * https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/description/
  *
  * algorithms
- * Easy (57.96%)
- * Likes:    2429
+ * Easy (58.22%)
+ * Likes:    3676
  * Dislikes: 0
- * Total Accepted:    837.8K
- * Total Submissions: 1.4M
+ * Total Accepted:    1.6M
+ * Total Submissions: 2.8M
  * Testcase Example:  '[7,1,5,3,6,4]'
  *
  * 给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。
@@ -23,7 +24,6 @@
  *
  * 示例 1：
  *
- *
  * 输入：[7,1,5,3,6,4]
  * 输出：5
  * 解释：在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
@@ -31,7 +31,6 @@
  *
  *
  * 示例 2：
- *
  *
  * 输入：prices = [7,6,4,3,1]
  * 输出：0
@@ -43,67 +42,58 @@
  * 提示：
  *
  *
- * 1
- * 0
+ * 1 <= prices.length <= 10^5
+ * 0 <= prices[i] <= 10^4
  *
  *
  */
 package lc121
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 func maxProfit(prices []int) int {
-	// min := math.MaxInt
-	// max := 0
-	// for i := 0; i < len(prices); i++ {
-	// 	sub := prices[i] - min
-	// 	if min > prices[i] {
-	// 		min = prices[i]
-	// 	} else if sub > max {
-	// 		max = sub
-	// 	}
-	// }
-	// return max
+	// leetcode 188
+	// dp[i][k][0 or 1], 0<=i<=n-1, 1<=k<=K, i为天数，k为交易次数，0和1代表是否持有股票，value为这些状态组合下的最大利润，这里k恒定为1
+	// dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1]+price[i])
+	// dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0]-price[i])
+	// 答案为求dp[n-1][K][0]，最后一天，做了K次交易，股票已经卖出，当前最大收益
 
-	return dp(prices)
-}
-
-// dp[i][k][0 or 1]
-// 0 <= i <= n - 1, 1 <= k <= K
-// n 为天数，大 K 为交易数的上限，0 和 1 代表是否持有股票。
-// 此问题共 n × K × 2 种状态，全部穷举就能搞定。
-
-// base case：
-// dp[-1][...][0] = dp[...][0][0] = 0
-// dp[-1][...][1] = dp[...][0][1] = -infinity
-
-// 状态转移方程：
-// dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
-// dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])
-
-func dp(prices []int) int {
-	// 相当于k=1
 	n := len(prices)
 	dp := make([][]int, n)
 	for i := range dp {
 		dp[i] = make([]int, 2)
 	}
-	for i := 0; i < n; i++ {
-		if i-1 == -1 {
-			dp[i][0] = 0
-			dp[i][1] = -prices[i]
-			continue
-		}
-		dp[i][0] = maxInt(dp[i-1][0], dp[i-1][1]+prices[i])
-		dp[i][1] = maxInt(dp[i-1][1], -prices[i])
+	dp[0][0] = 0
+	dp[0][1] = -prices[0]
+	for i := 1; i < n; i++ {
+		dp[i][0] = max(dp[i-1][0], dp[i-1][1]+prices[i])
+		dp[i][1] = max(dp[i-1][1], -prices[i]) // 无法重复买卖
 	}
 	return dp[n-1][0]
-}
 
-func maxInt(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
+	// minium, maximum := math.MaxInt, 0
+	// for i := 0; i < len(prices); i++ {
+	// 	sub := prices[i] - minium
+	// 	if minium > prices[i] {
+	// 		minium = prices[i]
+	// 	} else if sub > maximum {
+	// 		maximum = sub
+	// 	}
+	// }
+	// return maximum
 }
 
 // @lc code=end
+
+/*
+// @lcpr case=start
+// [7,1,5,3,6,4]\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [7,6,4,3,1]\n
+// @lcpr case=end
+
+*/

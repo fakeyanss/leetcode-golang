@@ -1,29 +1,29 @@
 /*
  * @lc app=leetcode.cn id=134 lang=golang
+ * @lcpr version=20004
  *
  * [134] 加油站
  *
  * https://leetcode.cn/problems/gas-station/description/
  *
  * algorithms
- * Medium (52.88%)
- * Likes:    1054
+ * Medium (47.39%)
+ * Likes:    1783
  * Dislikes: 0
- * Total Accepted:    209.2K
- * Total Submissions: 395.5K
+ * Total Accepted:    456.3K
+ * Total Submissions: 963.2K
  * Testcase Example:  '[1,2,3,4,5]\n[3,4,5,1,2]'
  *
  * 在一条环路上有 n 个加油站，其中第 i 个加油站有汽油 gas[i] 升。
  *
  * 你有一辆油箱容量无限的的汽车，从第 i 个加油站开往第 i+1 个加油站需要消耗汽油 cost[i] 升。你从其中的一个加油站出发，开始时油箱为空。
  *
- * 给定两个整数数组 gas 和 cost ，如果你可以绕环路行驶一周，则返回出发时加油站的编号，否则返回 -1 。如果存在解，则 保证 它是 唯一
+ * 给定两个整数数组 gas 和 cost ，如果你可以按顺序绕环路行驶一周，则返回出发时加油站的编号，否则返回 -1 。如果存在解，则 保证 它是 唯一
  * 的。
  *
  *
  *
  * 示例 1:
- *
  *
  * 输入: gas = [1,2,3,4,5], cost = [3,4,5,1,2]
  * 输出: 3
@@ -37,7 +37,6 @@
  * 因此，3 可为起始索引。
  *
  * 示例 2:
- *
  *
  * 输入: gas = [2,3,4], cost = [3,4,3]
  * 输出: -1
@@ -63,35 +62,38 @@
  */
 package lc134
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 func canCompleteCircuit(gas []int, cost []int) int {
-	// 如果选择站点 i 作为起点「恰好」无法走到站点 j，那么 i 和 j 中间的任意站点 k 都不可能作为起点。
-	// 解释：
-	// 假设 tank 记录当前油箱中的油量，如果从站点 i 出发（tank = 0），走到 j 时恰好出现 tank < 0 的情况，
-	// 那说明走到 i, j 之间的任意站点 k 时都满足 tank > 0。如果把 k 作为起点的话，相当于在站点 k 时 tank = 0，
-	// 那走到 j 时必然有 tank < 0，也就是说 k 肯定不能是起点。
-	n, sum := len(gas), 0
-	for i := 0; i < n; i++ {
-		sum += gas[i] - cost[i]
-	}
-	// 总油量小于总的消耗，无解
-	if sum < 0 {
-		return -1
-	}
+	// 贪心，画油量的行进过程折线图可以直观分析
+	// https://leetcode.cn/problems/gas-station/solutions/2933132/yong-zhe-xian-tu-zhi-guan-li-jie-pythonj-qccr/
 
-	// 如果有解，一定存在一个起点start满足需求
-	start := 0
-	// tank 记录油箱的油量
-	tank := 0
-	for i := 0; i < n; i++ {
-		tank += gas[i] - cost[i]
-		if tank < 0 {
-			// 无法从 start 到达 i + 1，所以站点 i + 1 可能是起点
-			start = i + 1
-			tank = 0
+	var res, s, minS int // s为当前油量，minS表示最小油量
+	for i, g := range gas {
+		s += g - cost[i] // 在 i 处加油，然后从 i 到 i+1
+		if s < minS {
+			minS = s    // 更新最小油量
+			res = i + 1 // 注意 s 减去 cost[i] 之后，汽车在 i+1 而不是 i
 		}
 	}
-	return start
+	// 循环结束后，s 即为 gas 之和减去 cost 之和
+	if s < 0 {
+		return -1
+	}
+	return res
 }
 
 // @lc code=end
+
+/*
+// @lcpr case=start
+// [1,2,3,4,5]\n[3,4,5,1,2]\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [2,3,4]\n[3,4,3]\n
+// @lcpr case=end
+
+*/

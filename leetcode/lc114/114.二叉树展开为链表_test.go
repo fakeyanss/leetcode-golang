@@ -3,9 +3,11 @@ package lc114
 import (
 	"reflect"
 	"testing"
-
-	"github.com/fakeyanss/leetcode-golang/helper"
 )
+
+func newTreeNode(val int, l *TreeNode, r *TreeNode) *TreeNode {
+	return &TreeNode{val, l, r}
+}
 
 func Test_flatten(t *testing.T) {
 	type args struct {
@@ -19,18 +21,18 @@ func Test_flatten(t *testing.T) {
 		{
 			"case1",
 			args{
-				helper.NewTreeNode(1,
-					helper.NewTreeNode(2,
-						helper.NewTreeNode(3, nil, nil),
-						helper.NewTreeNode(4, nil, nil),
+				newTreeNode(1,
+					newTreeNode(2,
+						newTreeNode(3, nil, nil),
+						newTreeNode(4, nil, nil),
 					),
-					helper.NewTreeNode(5,
+					newTreeNode(5,
 						nil,
-						helper.NewTreeNode(6, nil, nil),
+						newTreeNode(6, nil, nil),
 					),
 				),
 			},
-			helper.NewTreeNode(1, nil, helper.NewTreeNode(2, nil, helper.NewTreeNode(3, nil, helper.NewTreeNode(4, nil, helper.NewTreeNode(5, nil, helper.NewTreeNode(6, nil, nil)))))),
+			newTreeNode(1, nil, newTreeNode(2, nil, newTreeNode(3, nil, newTreeNode(4, nil, newTreeNode(5, nil, newTreeNode(6, nil, nil)))))),
 		},
 	}
 	for _, tt := range tests {

@@ -1,16 +1,17 @@
 /*
  * @lc app=leetcode.cn id=167 lang=golang
+ * @lcpr version=20004
  *
  * [167] 两数之和 II - 输入有序数组
  *
  * https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/description/
  *
  * algorithms
- * Medium (58.75%)
- * Likes:    849
+ * Medium (60.44%)
+ * Likes:    1276
  * Dislikes: 0
- * Total Accepted:    457.6K
- * Total Submissions: 778.8K
+ * Total Accepted:    771.8K
+ * Total Submissions: 1.3M
  * Testcase Example:  '[2,7,11,15]\n9'
  *
  * 给你一个下标从 1 开始的整数数组 numbers ，该数组已按 非递减顺序排列  ，请你从数组中找出满足相加之和等于目标数 target
@@ -26,20 +27,17 @@
  *
  * 示例 1：
  *
- *
  * 输入：numbers = [2,7,11,15], target = 9
  * 输出：[1,2]
  * 解释：2 与 7 之和等于目标数 9 。因此 index1 = 1, index2 = 2 。返回 [1, 2] 。
  *
  * 示例 2：
  *
- *
  * 输入：numbers = [2,3,4], target = 6
  * 输出：[1,3]
  * 解释：2 与 4 之和等于目标数 6 。因此 index1 = 1, index2 = 3 。返回 [1, 3] 。
  *
  * 示例 3：
- *
  *
  * 输入：numbers = [-1,0], target = -1
  * 输出：[1,2]
@@ -61,9 +59,11 @@
  */
 package lc167
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
-func twoSumII(numbers []int, target int) []int {
-	// 类似二分查找的框架，左右两个指针向中心移动
+func twoSum(numbers []int, target int) []int {
 	l, r := 0, len(numbers)-1
 	for l < r {
 		sum := numbers[l] + numbers[r]
@@ -79,3 +79,18 @@ func twoSumII(numbers []int, target int) []int {
 }
 
 // @lc code=end
+
+/*
+// @lcpr case=start
+// [2,7,11,15]\n9\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [2,3,4]\n6\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [-1,0]\n-1\n
+// @lcpr case=end
+
+*/

@@ -1,6 +1,6 @@
 /*
  * @lc app=leetcode.cn id=128 lang=golang
- * @lcpr version=20003
+ * @lcpr version=20004
  *
  * [128] 最长连续序列
  *
@@ -49,27 +49,23 @@ package lc128
 // @lcpr-template-end
 // @lc code=start
 func longestConsecutive(nums []int) int {
-	numSet := make(map[int]struct{})
-	for _, num := range nums {
-		numSet[num] = struct{}{}
+	res := 0
+	numsMap := make(map[int]bool, len(nums))
+	for _, v := range nums {
+		numsMap[v] = true
 	}
-	longest := 0
-	for num := range numSet {
-		if _, ok := numSet[num-1]; ok {
+	for v := range numsMap {
+		if numsMap[v-1] {
 			continue
 		}
-		cur, curLen := num, 1
-		for {
-			if _, ok := numSet[cur+1]; !ok {
-				break
-			}
-			cur++
+		curNum, curLen := v, 1
+		for numsMap[curNum+1] {
+			curNum++
 			curLen++
 		}
-		longest = max(longest, curLen)
-
+		res = max(res, curLen)
 	}
-	return longest
+	return res
 }
 
 // @lc code=end

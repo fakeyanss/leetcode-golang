@@ -1,16 +1,17 @@
 /*
  * @lc app=leetcode.cn id=123 lang=golang
+ * @lcpr version=20004
  *
  * [123] 买卖股票的最佳时机 III
  *
  * https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/description/
  *
  * algorithms
- * Hard (57.55%)
- * Likes:    1233
+ * Hard (61.51%)
+ * Likes:    1786
  * Dislikes: 0
- * Total Accepted:    215.5K
- * Total Submissions: 374.4K
+ * Total Accepted:    384.3K
+ * Total Submissions: 624.2K
  * Testcase Example:  '[3,3,5,0,0,3,1,4]'
  *
  * 给定一个数组，它的第 i 个元素是一支给定的股票在第 i 天的价格。
@@ -23,14 +24,12 @@
  *
  * 示例 1:
  *
- *
  * 输入：prices = [3,3,5,0,0,3,1,4]
  * 输出：6
  * 解释：在第 4 天（股票价格 = 0）的时候买入，在第 6 天（股票价格 = 3）的时候卖出，这笔交易所能获得利润 = 3-0 = 3 。
  * 随后，在第 7 天（股票价格 = 1）的时候买入，在第 8 天 （股票价格 = 4）的时候卖出，这笔交易所能获得利润 = 4-1 = 3 。
  *
  * 示例 2：
- *
  *
  * 输入：prices = [1,2,3,4,5]
  * 输出：4
@@ -42,13 +41,11 @@
  *
  * 示例 3：
  *
- *
  * 输入：prices = [7,6,4,3,1]
  * 输出：0
  * 解释：在这个情况下, 没有交易完成, 所以最大利润为 0。
  *
  * 示例 4：
- *
  *
  * 输入：prices = [1]
  * 输出：0
@@ -59,76 +56,72 @@
  * 提示：
  *
  *
- * 1
- * 0
+ * 1 <= prices.length <= 10^5
+ * 0 <= prices[i] <= 10^5
  *
  *
  */
 package lc123
 
-import "math"
+// @lcpr-template-start
 
+// @lcpr-template-end
 // @lc code=start
 func maxProfit(prices []int) int {
-	// return dp(prices)
-	return dpWithOptimize(prices)
-}
+	// dp[i][k][0 or 1], 0<=i<n, 1<=k<=K, i表示天数，k表示交易次数，0或1表示是否持有股票，value为这些状态组合下的最大利润，当前的K=2
+	// dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1]+prices[i])
+	// dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0]-prices[i])
+	// 答案为dp[n-1][K][0]，最后一天，交易了K次，股票已经卖出，当前最大利润
 
-// dp[i][k][0 or 1]
-// 0 <= i <= n-1, 1 <= k <= K
-// n 为天数，K 为交易数的上限，0 和 1 代表是否持有股票
-// 此问题共有 n*K*2 种状态
-
-// base case：
-// dp[-1][...][0] = dp[...][0][0] = 0
-// dp[-1][...][1] = dp[...][0][1] = -infifity
-
-// 状态转移
-// dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
-// dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])
-func dp(prices []int) int {
-	// k=2
 	maxK, n := 2, len(prices)
 	dp := make([][][]int, n)
 	for i := range dp {
 		dp[i] = make([][]int, maxK+1)
 		for k := range dp[i] {
 			dp[i][k] = make([]int, 2)
-		}
-	}
-
-	for i := 0; i < n; i++ {
-		for k := maxK; k > 0; k-- {
-			if i-1 == -1 {
-				dp[i][k][0] = 0
-				dp[i][k][1] = -prices[i]
-				continue
+			if i == 0 {
+				dp[0][k][0] = 0
+				dp[0][k][1] = -prices[0]
 			}
-			dp[i][k][0] = maxInt(dp[i-1][k][0], dp[i-1][k][1]+prices[i])
-			dp[i][k][1] = maxInt(dp[i-1][k][1], dp[i-1][k-1][0]-prices[i])
 		}
 	}
-	return dp[n-1][2][0]
-}
-
-func maxInt(a, b int) int {
-	if a > b {
-		return a
+	for i := 1; i < n; i++ {
+		for k := maxK; k >= 1; k-- {
+			dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1]+prices[i])
+			dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0]-prices[i])
+		}
 	}
-	return b
-}
+	return dp[n-1][maxK][0]
 
-// 空间复杂度优化版本
-func dpWithOptimize(prices []int) int {
-	dpI10, dpI11 := 0, math.MinInt
-	dpI20, dpI21 := 0, math.MinInt
-	for _, price := range prices {
-		dpI20 = maxInt(dpI20, dpI21+price)
-		dpI21 = maxInt(dpI21, dpI10-price)
-		dpI10 = maxInt(dpI10, dpI11+price)
-		dpI11 = maxInt(dpI11, -price)
-	}
-	return dpI20
+	// // 空间复杂度优化
+	// dpI10, dpI11 := 0, math.MinInt
+	// dpI20, dpI21 := 0, math.MinInt
+	// for _, price := range prices {
+	// 	dpI20 = maxInt(dpI20, dpI21+price)
+	// 	dpI21 = maxInt(dpI21, dpI10-price)
+	// 	dpI10 = maxInt(dpI10, dpI11+price)
+	// 	dpI11 = maxInt(dpI11, -price)
+	// }
+	// return dpI20
 }
 
 // @lc code=end
+
+/*
+// @lcpr case=start
+// [3,3,5,0,0,3,1,4]\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [1,2,3,4,5]\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [7,6,4,3,1]\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [1]\n
+// @lcpr case=end
+
+*/

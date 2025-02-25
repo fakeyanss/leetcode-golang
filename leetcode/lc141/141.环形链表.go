@@ -1,16 +1,17 @@
 /*
  * @lc app=leetcode.cn id=141 lang=golang
+ * @lcpr version=20004
  *
  * [141] 环形链表
  *
  * https://leetcode.cn/problems/linked-list-cycle/description/
  *
  * algorithms
- * Easy (51.46%)
- * Likes:    1538
+ * Easy (53.03%)
+ * Likes:    2257
  * Dislikes: 0
- * Total Accepted:    781.3K
- * Total Submissions: 1.5M
+ * Total Accepted:    1.4M
+ * Total Submissions: 2.7M
  * Testcase Example:  '[3,2,0,-4]\n1'
  *
  * 给你一个链表的头节点 head ，判断链表中是否有环。
@@ -26,7 +27,6 @@
  *
  *
  *
- *
  * 输入：head = [3,2,0,-4], pos = 1
  * 输出：true
  * 解释：链表中有一个环，其尾部连接到第二个节点。
@@ -36,14 +36,12 @@
  *
  *
  *
- *
  * 输入：head = [1,2], pos = 0
  * 输出：true
  * 解释：链表中有一个环，其尾部连接到第一个节点。
  *
  *
  * 示例 3：
- *
  *
  *
  *
@@ -69,10 +67,14 @@
  */
 package lc141
 
-import "github.com/fakeyanss/leetcode-golang/helper"
+// @lcpr-template-start
 
-type ListNode = helper.ListNode
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
 
+// @lcpr-template-end
 // @lc code=start
 /**
  * Definition for singly-linked list.
@@ -82,9 +84,6 @@ type ListNode = helper.ListNode
  * }
  */
 func hasCycle(head *ListNode) bool {
-	if head == nil {
-		return false
-	}
 	for slow, fast := head, head; fast != nil && fast.Next != nil; {
 		slow, fast = slow.Next, fast.Next.Next
 		if slow == fast {
@@ -95,3 +94,18 @@ func hasCycle(head *ListNode) bool {
 }
 
 // @lc code=end
+
+/*
+// @lcpr case=start
+// [3,2,0,-4]\n1\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [1,2]\n0\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [1]\n-1\n
+// @lcpr case=end
+
+*/

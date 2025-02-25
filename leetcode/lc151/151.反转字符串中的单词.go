@@ -1,19 +1,20 @@
 /*
  * @lc app=leetcode.cn id=151 lang=golang
+ * @lcpr version=20004
  *
- * [151] 颠倒字符串中的单词
+ * [151] 反转字符串中的单词
  *
  * https://leetcode.cn/problems/reverse-words-in-a-string/description/
  *
  * algorithms
- * Medium (50.70%)
- * Likes:    610
+ * Medium (57.32%)
+ * Likes:    1256
  * Dislikes: 0
- * Total Accepted:    282.4K
- * Total Submissions: 556.9K
+ * Total Accepted:    687.9K
+ * Total Submissions: 1.2M
  * Testcase Example:  '"the sky is blue"'
  *
- * 给你一个字符串 s ，颠倒字符串中 单词 的顺序。
+ * 给你一个字符串 s ，请你反转字符串中 单词 的顺序。
  *
  * 单词 是由非空格字符组成的字符串。s 中使用至少一个空格将字符串中的 单词 分隔开。
  *
@@ -25,25 +26,22 @@
  *
  * 示例 1：
  *
- *
  * 输入：s = "the sky is blue"
  * 输出："blue is sky the"
  *
  *
  * 示例 2：
  *
- *
  * 输入：s = "  hello world  "
  * 输出："world hello"
- * 解释：颠倒后的字符串中不能存在前导空格和尾随空格。
+ * 解释：反转后的字符串中不能存在前导空格和尾随空格。
  *
  *
  * 示例 3：
  *
- *
  * 输入：s = "a good   example"
  * 输出："example good a"
- * 解释：如果两个单词间有多余的空格，颠倒后的字符串需要将单词间的空格减少到仅有一个。
+ * 解释：如果两个单词间有多余的空格，反转后的字符串需要将单词间的空格减少到仅有一个。
  *
  *
  *
@@ -66,51 +64,53 @@
  */
 package lc151
 
+// @lcpr-template-start
+
+// @lcpr-template-end
 // @lc code=start
 func reverseWords(s string) string {
-	sb := []byte{}
-	// 删除两头空格
-	for i := range s {
-		if s[i] != ' ' {
-			// 单词中的非空格
-			sb = append(sb, s[i])
-		} else if len(sb) > 0 && sb[len(sb)-1] != ' ' {
-			// 单词间填补空格
-			sb = append(sb, ' ')
+	// 倒序遍历s，栈存储每个单词，遇到空格出栈
+	n := len(s)
+	var stack []byte
+	var res []byte
+	for i := n - 1; i >= 0; i-- {
+		if s[i] == ' ' && len(stack) == 0 {
+			continue
 		}
-	}
-
-	// 如果末尾还有空格，删除掉
-	if sb[len(sb)-1] == ' ' {
-		sb = sb[:len(sb)-1]
-	}
-
-	// 整体反转
-	reverse151(sb, 0, len(sb)-1)
-
-	// 每个单词反转
-	for i := 0; i < len(sb); {
-		for j := i; j < len(sb); j++ {
-			// 注意j不要越界
-			if j+1 == len(sb) || sb[j+1] == ' ' {
-				// sb[i..j] 是一个单词，反转
-				reverse151(sb, i, j)
-				// i 移动到下一个单词的首字母
-				i = j + 2
-				break
+		if s[i] == ' ' || i == 0 {
+			if i == 0 && s[i] != ' ' {
+				stack = append(stack, s[i])
 			}
+			// 出栈
+			for len(stack) > 0 {
+				v := stack[len(stack)-1]
+				stack = stack[:len(stack)-1]
+				res = append(res, v)
+			}
+			res = append(res, ' ')
+		} else {
+			stack = append(stack, s[i])
 		}
 	}
 
-	return string(sb)
-}
+	return string(res[:len(res)-1]) // 去除末尾的空格
 
-func reverse151(arr []byte, i, j int) {
-	for i < j {
-		arr[i], arr[j] = arr[j], arr[i]
-		i++
-		j--
-	}
+	// 如果要原地修改，就反转字符串s，再挨个反转单词
 }
 
 // @lc code=end
+
+/*
+// @lcpr case=start
+// "the sky is blue"\n
+// @lcpr case=end
+
+// @lcpr case=start
+// "  hello world  "\n
+// @lcpr case=end
+
+// @lcpr case=start
+// "a good   example"\n
+// @lcpr case=end
+
+*/

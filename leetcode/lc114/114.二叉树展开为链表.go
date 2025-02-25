@@ -1,16 +1,17 @@
 /*
  * @lc app=leetcode.cn id=114 lang=golang
+ * @lcpr version=20004
  *
  * [114] 二叉树展开为链表
  *
  * https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/description/
  *
  * algorithms
- * Medium (72.95%)
- * Likes:    1278
+ * Medium (74.72%)
+ * Likes:    1773
  * Dislikes: 0
- * Total Accepted:    294.3K
- * Total Submissions: 403.4K
+ * Total Accepted:    565.3K
+ * Total Submissions: 755.6K
  * Testcase Example:  '[1,2,5,3,4,null,6]'
  *
  * 给你二叉树的根结点 root ，请你将它展开为一个单链表：
@@ -24,20 +25,17 @@
  *
  * 示例 1：
  *
- *
  * 输入：root = [1,2,5,3,4,null,6]
  * 输出：[1,null,2,null,3,null,4,null,5,null,6]
  *
  *
  * 示例 2：
  *
- *
  * 输入：root = []
  * 输出：[]
  *
  *
  * 示例 3：
- *
  *
  * 输入：root = [0]
  * 输出：[0]
@@ -49,7 +47,7 @@
  *
  *
  * 树中结点数在范围 [0, 2000] 内
- * -100
+ * -100 <= Node.val <= 100
  *
  *
  *
@@ -59,10 +57,15 @@
  */
 package lc114
 
-import "github.com/fakeyanss/leetcode-golang/helper"
+// @lcpr-template-start
 
-type TreeNode = helper.TreeNode
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
 
+// @lcpr-template-end
 // @lc code=start
 /**
  * Definition for a binary tree node.
@@ -77,24 +80,37 @@ func flatten(root *TreeNode) {
 	if root == nil {
 		return
 	}
-
 	// 根据函数定义，已经拉平左右子树
 	flatten(root.Left)
 	flatten(root.Right)
 
-	// 后序遍历位置
-	l, r := root.Left, root.Right
-
-	// 左子树换到右子树位置
+	// 1、左右子树已经被拉平成一条链表
+	left, right := root.Left, root.Right
+	// 2、将左子树作为右子树
 	root.Left = nil
-	root.Right = l
-
-	// 左子树（当前的右子树）末端接上右子树（之前的右子树）
+	root.Right = left
+	// 3、将原先的右子树接到当前右子树的末端
 	p := root
 	for p.Right != nil {
 		p = p.Right
 	}
-	p.Right = r
+	p.Right = right
+
 }
 
 // @lc code=end
+
+/*
+// @lcpr case=start
+// [1,2,5,3,4,null,6]\n
+// @lcpr case=end
+
+// @lcpr case=start
+// []\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [0]\n
+// @lcpr case=end
+
+*/

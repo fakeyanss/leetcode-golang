@@ -13,6 +13,7 @@ func Test_reverseWords(t *testing.T) {
 	}{
 		{"case1", args{"the sky is blue"}, "blue is sky the"},
 		{"case2", args{"the sky is blue "}, "blue is sky the"},
+		{"case3", args{" asdasd df f"}, "f df asdasd"},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
