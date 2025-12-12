@@ -75,54 +75,96 @@ import "sort"
 // 排序+双指针问题
 func threeSum(nums []int) [][]int {
 	sort.Ints(nums)
-	return nSumTarget(nums, 3, 0, 0)
-}
-
-func nSumTarget(nums []int, n, start, target int) [][]int {
 	var res [][]int
-
-	// 基本边界条件
-	if n < 2 || len(nums)-start < n {
-		return res
-	}
-
-	// Base case: 2Sum
-	if n == 2 {
-		l, r := start, len(nums)-1
+	n := len(nums)
+	for i, x := range nums[:n-2] {
+		if i>0 && x == nums[i-1] { // 跳过重复值
+			continue
+		}
+		if x > 0 { // 剪枝
+			break
+		}
+		if x+nums[i+1]+nums[i+2] > 0 { // 剪枝
+			break
+		}
+		if x + nums[n-2] + nums[n-1] < 0 { // 剪枝
+			continue
+		}
+		target := -x
+		l,r := i+1, n-1
 		for l < r {
 			sum := nums[l] + nums[r]
 			if sum == target {
-				res = append(res, []int{nums[l], nums[r]})
+				res = append(res, []int{x, nums[l], nums[r]})
+				for l < r && nums[l] == nums[l+1] {
+					l++
+				}
+				for l < r && nums[r] == nums[r-1] {
+					r--
+				}
 				l++
 				r--
-				// 跳过重复元素
-				for ; l < r && nums[l] == nums[l-1]; l++ {
-				}
-				for ; l < r && nums[r] == nums[r+1]; r-- {
-				}
 			} else if sum < target {
 				l++
 			} else {
 				r--
 			}
 		}
-		return res
 	}
-
-	// Recursive case: n > 2
-	for i := start; i < len(nums); i++ {
-		// 跳过重复元素
-		if i > start && nums[i] == nums[i-1] {
-			continue
-		}
-		subRes := nSumTarget(nums, n-1, i+1, target-nums[i])
-		for _, subset := range subRes {
-			// 将当前数字加入 (n-1) 的结果中
-			res = append(res, append(subset, nums[i]))
-		}
-	}
-
 	return res
 }
+
+// 通用解法
+// func threeSum(nums []int) [][]int {
+// 	sort.Ints(nums)
+// 	return nSumTarget(nums, 3, 0, 0)
+// }
+
+// func nSumTarget(nums []int, n, start, target int) [][]int {
+// 	var res [][]int
+
+// 	// 基本边界条件
+// 	if n < 2 || len(nums)-start < n {
+// 		return res
+// 	}
+
+// 	// Base case: 2Sum
+// 	if n == 2 {
+// 		l, r := start, len(nums)-1
+// 		for l < r {
+// 			sum := nums[l] + nums[r]
+// 			if sum == target {
+// 				res = append(res, []int{nums[l], nums[r]})
+// 				l++
+// 				r--
+// 				// 跳过重复元素
+// 				for ; l < r && nums[l] == nums[l-1]; l++ {
+// 				}
+// 				for ; l < r && nums[r] == nums[r+1]; r-- {
+// 				}
+// 			} else if sum < target {
+// 				l++
+// 			} else {
+// 				r--
+// 			}
+// 		}
+// 		return res
+// 	}
+
+// 	// Recursive case: n > 2
+// 	for i := start; i < len(nums); i++ {
+// 		// 跳过重复元素
+// 		if i > start && nums[i] == nums[i-1] {
+// 			continue
+// 		}
+// 		subRes := nSumTarget(nums, n-1, i+1, target-nums[i])
+// 		for _, subset := range subRes {
+// 			// 将当前数字加入 (n-1) 的结果中
+// 			res = append(res, append(subset, nums[i]))
+// 		}
+// 	}
+
+// 	return res
+// }
 
 // @lc code=end

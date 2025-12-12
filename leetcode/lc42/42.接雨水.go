@@ -46,28 +46,43 @@
  */
 package lc42
 
-import "math"
-
 // @lcpr-template-start
 
 // @lcpr-template-end
 // @lc code=start
 // 对于下标 i，下雨后水能到达的最大高度等于下标 i 两边的最大高度的最小值，下标 i 处能接的雨水量等于下标 i 处的水能到达的最大高度减去 height[i]。
 func trap(height []int) int {
-	res, n := 0, len(height)
-	leftMax := make([]int, n)
-	rightMax := make([]int, n)
+	// res, n := 0, len(height)
+	// leftMax := make([]int, n)
+	// rightMax := make([]int, n)
 
-	leftMax[0] = height[0]
-	rightMax[n-1] = height[n-1]
-	for i := 1; i < n; i++ {
-		leftMax[i] = int(math.Max(float64(leftMax[i-1]), float64(height[i])))
-	}
-	for i := n - 2; i >= 0; i-- {
-		rightMax[i] = int(math.Max(float64(rightMax[i+1]), float64(height[i])))
-	}
-	for i := 1; i < n-1; i++ {
-		res += int(math.Min(float64(leftMax[i]), float64(rightMax[i]))) - height[i]
+	// leftMax[0] = height[0]
+	// rightMax[n-1] = height[n-1]
+	// for i := 1; i < n; i++ {
+	// 	leftMax[i] = max(leftMax[i-1], height[i])
+	// }
+	// for i := n - 2; i >= 0; i-- {
+	// 	rightMax[i] = max(rightMax[i+1], height[i])
+	// }
+	// for i := 1; i < n-1; i++ {
+	// 	res += min(leftMax[i], rightMax[i]) - height[i]
+	// }
+	// return res
+
+	// 一轮遍历
+	res, n := 0, len(height)
+	leftMax, rightMax := 0, 0
+	l, r := 0, n-1
+	for l < r {
+		leftMax = max(leftMax, height[l])
+		rightMax = max(rightMax, height[r])
+		if height[l] < height[r] {
+			res += leftMax-height[l]
+			l++
+		} else {
+			res += rightMax-height[r]
+			r--
+		}
 	}
 	return res
 }

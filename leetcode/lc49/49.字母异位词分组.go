@@ -49,30 +49,24 @@
  */
 package lc49
 
+import (
+	"maps"
+	"slices"
+)
+
 // @lcpr-template-start
 
 // @lcpr-template-end
 // @lc code=start
 func groupAnagrams(strs []string) [][]string {
-	encode := func(str string) string {
-		count := make([]byte, 26)
-		for _, c := range str {
-			count[c-'a']++
-		}
-		return string(count)
-	}
-
-	codeToGroup := make(map[string][]string)
+	hash := make(map[string][]string)
 	for _, s := range strs {
-		code := encode(s)
-		codeToGroup[code] = append(codeToGroup[code], s)
+		tmp := []byte(s)
+		slices.Sort(tmp)
+		key := string(tmp)
+		hash[key] = append(hash[key], s)
 	}
-
-	res := make([][]string, 0, len(codeToGroup))
-	for _, group := range codeToGroup {
-		res = append(res, group)
-	}
-	return res
+	return slices.Collect(maps.Values(hash))
 }
 
 // @lc code=end

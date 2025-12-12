@@ -65,50 +65,43 @@
  */
 package lc0076
 
-import "math"
-
 // @lcpr-template-start
 
 // @lcpr-template-end
 // @lc code=start
 func minWindow(s string, t string) string {
-	need := make(map[byte]int)
-	for i := range t {
-		need[t[i]]++
-	}
-	left, right := 0, 0
-	window := make(map[byte]int)    // 存储窗口中字符出现个数
-	valid := 0                      // 记录窗口中满足need条件的字符个数
-	start, length := 0, math.MaxInt // 记录最小子串的起始索引和长度
-	for right < len(s) {
-		c := s[right]
-		right++
-		if _, ok := need[c]; ok {
-			window[c]++
-			if window[c] == need[c] {
-				valid++
-			}
+	win := [128]int{}
+	diff := 0
+	for _, c := range t {
+		if win[c] == 0 {
+			diff++
 		}
+		win[c]++
+	}
 
-		// 开始收缩窗口
-		for valid == len(need) {
-			if right-left < length {
-				start, length = left, right-left
+	l, r := -1, len(s)
+	i := 0
+	for j, c := range s {
+		win[c]--
+		if win[c] == 0 {
+			diff--
+		}
+		for diff == 0 {
+			if r-l > j-i {
+				l, r = i, j
 			}
-			d := s[left]
-			left++
-			if _, ok := need[d]; ok {
-				if window[d] == need[d] {
-					valid--
-				}
-				window[d]--
+			d := s[i]
+			if win[d] == 0 {
+				diff++
 			}
+			win[d]++
+			i++
 		}
 	}
-	if length == math.MaxInt {
+	if l < 0 {
 		return ""
 	}
-	return s[start : start+length]
+	return s[l : r+1]
 }
 
 // @lc code=end
