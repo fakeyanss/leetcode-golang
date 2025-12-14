@@ -62,19 +62,27 @@ import "math"
 // @lcpr-template-end
 // @lc code=start
 func maxSubArray(nums []int) int {
-	// o(n)解法，双指针遍历，r向右移动到末尾后，再l向右移动到末尾
+	// // o(n)解法，双指针遍历，r向右移动到末尾后，再l向右移动到末尾
 
-	// 优化：dp(n)=max(dp(n-1)+nums[n], nums[n]), dp(n)为以nums[i]为结尾的「最大子数组和」
-	dp := make([]int, len(nums))
-	dp[0] = nums[0]
-	for i := 1; i < len(nums); i++ {
-		dp[i] = max(nums[i], dp[i-1]+nums[i])
+	// // 优化：dp(n)=max(dp(n-1)+nums[n], nums[n]), dp(n)为以nums[i]为结尾的「最大子数组和」
+	// dp := make([]int, len(nums))
+	// dp[0] = nums[0]
+	// for i := 1; i < len(nums); i++ {
+	// 	dp[i] = max(nums[i], dp[i-1]+nums[i])
+	// }
+	// res := math.MinInt
+	// for i := 0; i < len(nums); i++ {
+	// 	res = max(res, dp[i])
+	// }
+	// return res
+
+	// 优化：空间复杂度o(1)
+	curSum, maxSum := 0, math.MinInt
+	for _, v := range nums {
+		curSum = max(v, curSum+v)
+		maxSum = max(maxSum, curSum)
 	}
-	res := math.MinInt
-	for i := 0; i < len(nums); i++ {
-		res = max(res, dp[i])
-	}
-	return res
+	return maxSum
 }
 
 // @lc code=end

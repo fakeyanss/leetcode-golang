@@ -52,19 +52,15 @@ import "sort"
 // @lcpr-template-end
 // @lc code=start
 func merge(intervals [][]int) [][]int {
-	sort.Slice(intervals, func(i, j int) bool {
-		return intervals[i][0] < intervals[j][0]
-	})
+	sort.Slice(intervals, func(i, j int) bool { return intervals[i][0] < intervals[j][0] })
 
-	var res [][]int
-	res = append(res, intervals[0])
-	for i := 1; i < len(intervals); i++ {
-		cur := intervals[i]
+	res := [][]int{intervals[0]}
+	for _, interval := range intervals[1:] {
 		last := res[len(res)-1]
-		if cur[0] <= last[1] {
-			last[1] = max(cur[1], last[1])
+		if last[1] >= interval[0] {
+			last[1] = max(last[1], interval[1])
 		} else {
-			res = append(res, cur)
+			res = append(res, interval)
 		}
 	}
 	return res
