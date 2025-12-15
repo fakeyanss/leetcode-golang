@@ -57,29 +57,26 @@
  */
 package lc73
 
+import "slices"
+
 // @lcpr-template-start
 
 // @lcpr-template-end
 // @lc code=start
 func setZeroes(matrix [][]int) {
 	m, n := len(matrix), len(matrix[0])
-	rowZero, colZero := false, false
 
-	// 1. 检查第一行和第一列是否需要置零
-	for i := 0; i < m; i++ {
-		if matrix[i][0] == 0 {
+	// 标记第0行和第0列是否有0
+	var rowZero, colZero bool
+	rowZero = slices.Contains(matrix[0], 0)
+	for _, row := range matrix {
+		if row[0] == 0 {
 			colZero = true
 			break
 		}
 	}
-	for j := 0; j < n; j++ {
-		if matrix[0][j] == 0 {
-			rowZero = true
-			break
-		}
-	}
 
-	// 2. 用第一行和第一列标记需要置零的行和列
+	// 用第0行和第0列来存储剩余的行列是否有0
 	for i := 1; i < m; i++ {
 		for j := 1; j < n; j++ {
 			if matrix[i][j] == 0 {
@@ -89,31 +86,21 @@ func setZeroes(matrix [][]int) {
 		}
 	}
 
-	// 3. 根据标记清零对应行和列
+	// 设置0
 	for i := 1; i < m; i++ {
-		if matrix[i][0] == 0 {
-			for j := 1; j < n; j++ {
-				matrix[i][j] = 0
-			}
-		}
-	}
-	for j := 1; j < n; j++ {
-		if matrix[0][j] == 0 {
-			for i := 1; i < m; i++ {
+		for j := 1; j < n; j++ {
+			if matrix[i][0] == 0 || matrix[0][j] == 0 {
 				matrix[i][j] = 0
 			}
 		}
 	}
 
-	// 4. 处理第一行和第一列
 	if rowZero {
-		for j := 0; j < n; j++ {
-			matrix[0][j] = 0
-		}
+		clear(matrix[0])
 	}
 	if colZero {
-		for i := 0; i < m; i++ {
-			matrix[i][0] = 0
+		for _, row := range matrix {
+			row[0] = 0
 		}
 	}
 }
