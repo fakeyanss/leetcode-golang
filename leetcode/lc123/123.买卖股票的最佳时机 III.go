@@ -68,41 +68,31 @@ package lc123
 // @lcpr-template-end
 // @lc code=start
 func maxProfit(prices []int) int {
-	// dp[i][k][0 or 1], 0<=i<n, 1<=k<=K, i表示天数，k表示交易次数，0或1表示是否持有股票，value为这些状态组合下的最大利润，当前的K=2
-	// dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1]+prices[i])
-	// dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0]-prices[i])
-	// 答案为dp[n-1][K][0]，最后一天，交易了K次，股票已经卖出，当前最大利润
-
-	maxK, n := 2, len(prices)
+	// dp[i][j][0|1] 表示第i天当前最大j笔交易且(0未持有|1持有)股票情况下的最大利润
+	n, k := len(prices), 2
 	dp := make([][][]int, n)
 	for i := range dp {
-		dp[i] = make([][]int, maxK+1)
-		for k := range dp[i] {
-			dp[i][k] = make([]int, 2)
-			if i == 0 {
-				dp[0][k][0] = 0
-				dp[0][k][1] = -prices[0]
-			}
+		dp[i] = make([][]int, k+1)
+		for j := range dp[i] {
+			dp[i][j] = make([]int, 2)
 		}
 	}
-	for i := 1; i < n; i++ {
-		for k := maxK; k >= 1; k-- {
-			dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1]+prices[i])
-			dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0]-prices[i])
-		}
+	for j := range k + 1 {
+		dp[0][j][0] = 0
+		dp[0][j][1] = -prices[0]
 	}
-	return dp[n-1][maxK][0]
 
-	// // 空间复杂度优化
-	// dpI10, dpI11 := 0, math.MinInt
-	// dpI20, dpI21 := 0, math.MinInt
-	// for _, price := range prices {
-	// 	dpI20 = maxInt(dpI20, dpI21+price)
-	// 	dpI21 = maxInt(dpI21, dpI10-price)
-	// 	dpI10 = maxInt(dpI10, dpI11+price)
-	// 	dpI11 = maxInt(dpI11, -price)
-	// }
-	// return dpI20
+	for i := 1; i < n; i++ {
+		// for j := 1; j <= k; j++ {
+		// dp[i][j][..] 不会依赖 dp[i][j-1][..]，而是依赖 dp[i-1][j-1][..]，
+		// 而 dp[i-1][..][..]，都是已经计算出来的，所以不管你是j = k, j--，还是 j = 1, j++，都是正确的
+		// 因为j的语义是最大j笔交易，所以倒序遍历更自然
+		for j := k; j >= 1; j-- {
+			dp[i][j][0] = max(dp[i-1][j][0], dp[i-1][j][1]+prices[i])
+			dp[i][j][1] = max(dp[i-1][j][1], dp[i-1][j-1][0]-prices[i])
+		}
+	}
+	return dp[n-1][k][0]
 }
 
 // @lc code=end

@@ -50,37 +50,34 @@ package lc0054
 // @lc code=start
 func spiralOrder(matrix [][]int) []int {
 	m, n := len(matrix), len(matrix[0])
-	res := make([]int, 0, m*n)
-	left, right, top, bottom := 0, n-1, 0, m-1 // 左右上下边界
-	for cnt := 0; cnt < m*n; {
+	top, bottom, left, right := 0, m-1, 0, n-1
+
+	var res []int
+	for top <= bottom && left <= right {
 		if top <= bottom {
-			for i := left; i <= right; i++ {
-				res = append(res, matrix[top][i])
-				cnt++
+			for col := left; col <= right; col++ {
+				res = append(res, matrix[top][col])
 			}
 			top++
 		}
 
 		if left <= right {
-			for i := top; i <= bottom; i++ {
-				res = append(res, matrix[i][right])
-				cnt++
+			for row := top; row <= bottom; row++ {
+				res = append(res, matrix[row][right])
 			}
 			right--
 		}
 
 		if top <= bottom {
-			for i := right; i >= left; i-- {
-				res = append(res, matrix[bottom][i])
-				cnt++
+			for col := right; col >= left; col-- {
+				res = append(res, matrix[bottom][col])
 			}
 			bottom--
 		}
 
 		if left <= right {
-			for i := bottom; i >= top; i-- {
-				res = append(res, matrix[i][left])
-				cnt++
+			for row := bottom; row >= top; row-- {
+				res = append(res, matrix[row][left])
 			}
 			left++
 		}

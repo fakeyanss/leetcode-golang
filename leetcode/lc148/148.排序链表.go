@@ -76,25 +76,24 @@ func sortList(head *ListNode) *ListNode {
 		return head
 	}
 	// 归并排序
-	head2 := findMiddleNode(head) // 找到中间节点，拆成2个链表
-	head = sortList(head)         // 分治
+	head2 := findMiddle(head)
+	head = sortList(head)
 	head2 = sortList(head2)
-	return mergeTwoList(head, head2) // 合并
+	return merge(head, head2)
 }
 
-func findMiddleNode(head *ListNode) *ListNode {
-	slow, fast := head, head
-	for fast.Next != nil && fast.Next.Next != nil {
+func findMiddle(head *ListNode) *ListNode {
+	pre, slow, fast := head, head, head
+	for fast != nil && fast.Next != nil {
+		pre = slow
 		slow = slow.Next
 		fast = fast.Next.Next
 	}
-	mid := slow.Next // 下一个节点就是链表的中间结点 mid
-	slow.Next = nil  // 断开 mid 的前一个节点和 mid 的连接
-	return mid
+	pre.Next = nil
+	return slow
 }
 
-// leetcode 21，合并两个有序链表
-func mergeTwoList(head1, head2 *ListNode) *ListNode {
+func merge(head1, head2 *ListNode) *ListNode {
 	dummy := &ListNode{}
 	cur := dummy
 	for head1 != nil && head2 != nil {
@@ -107,11 +106,11 @@ func mergeTwoList(head1, head2 *ListNode) *ListNode {
 		}
 		cur = cur.Next
 	}
-
-	if head1 != nil {
-		cur.Next = head1
-	} else {
+	if head1 == nil {
 		cur.Next = head2
+	}
+	if head2 == nil {
+		cur.Next = head1
 	}
 	return dummy.Next
 }

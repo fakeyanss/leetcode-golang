@@ -60,23 +60,26 @@ package lc122
 // @lcpr-template-end
 // @lc code=start
 func maxProfit(prices []int) int {
-	// dp[i][k][0 or 1], 0<=i<=n, 1<=k<=K, i为天数，k为交易次数，0or1表示当前是否持有股票，value为这些状态组合下的最大利润，这里k可以无限次数
-	// dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1]+prices[n])
-	// dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0]-prices[n])
-	// 答案为dp[n-1][K][0]，最后一天，交易次数用完，股票已经卖出，当前最大收益
+	// // dp[i][0|1] 表示第i天(0未持有|1持有)股票状态下的最大利润
+	// n := len(prices)
+	// dp := make([][]int, n)
+	// for i := range dp {
+	// 	dp[i] = make([]int, 2)
+	// }
+	// dp[0][0] = 0
+	// dp[0][1] = -prices[0]
+	// for i := 1; i < n; i++ {
+	// 	dp[i][0] = max(dp[i-1][0], dp[i-1][1]+prices[i])
+	// 	dp[i][1] = max(dp[i-1][1], dp[i-1][0]-prices[i])
+	// }
+	// return dp[n-1][0]
 
-	n := len(prices)
-	dp := make([][]int, n)
-	for i := range dp {
-		dp[i] = make([]int, 2)
+	// 贪心
+	maxProfit := 0
+	for i := 1; i < len(prices); i++ {
+		maxProfit += max(0, prices[i]-prices[i-1])
 	}
-	dp[0][0] = 0
-	dp[0][1] = -prices[0]
-	for i := 1; i < n; i++ {
-		dp[i][0] = max(dp[i-1][0], dp[i-1][1]+prices[i])
-		dp[i][1] = max(dp[i-1][1], dp[i-1][0]-prices[i])
-	}
-	return dp[n-1][0]
+	return maxProfit
 }
 
 // @lc code=end

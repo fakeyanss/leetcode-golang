@@ -1,17 +1,18 @@
 /*
  * @lc app=leetcode.cn id=234 lang=golang
+ * @lcpr version=30305
  *
  * [234] 回文链表
  *
  * https://leetcode.cn/problems/palindrome-linked-list/description/
  *
  * algorithms
- * Easy (52.13%)
- * Likes:    1452
+ * Easy (57.73%)
+ * Likes:    2169
  * Dislikes: 0
- * Total Accepted:    472.5K
- * Total Submissions: 906.4K
- * Testcase Example:  '[1,2,2,1]'
+ * Total Accepted:    1.1M
+ * Total Submissions: 2M
+ * Testcase Example:  '[1,2,2,1]\n[1,2]'
  *
  * 给你一个单链表的头节点 head ，请你判断该链表是否为回文链表。如果是，返回 true ；否则，返回 false 。
  *
@@ -19,13 +20,11 @@
  *
  * 示例 1：
  *
- *
  * 输入：head = [1,2,2,1]
  * 输出：true
  *
  *
  * 示例 2：
- *
  *
  * 输入：head = [1,2]
  * 输出：false
@@ -47,9 +46,10 @@
  */
 package lc234
 
-import "github.com/fakeyanss/leetcode-golang/helper"
-
-type ListNode = helper.ListNode
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
 
 // @lc code=start
 /**
@@ -59,42 +59,47 @@ type ListNode = helper.ListNode
  *     Next *ListNode
  * }
  */
-func isPalindrome234(head *ListNode) bool {
-	// func isPalindrome(head *ListNode) bool {
-	// 先找倒中间节点
+func isPalindrome(head *ListNode) bool {
+	// 找到中间点
 	slow, fast := head, head
 	for fast != nil && fast.Next != nil {
 		slow = slow.Next
 		fast = fast.Next.Next
 	}
-
-	// 如果是长度是奇数，将slow后移一位
+	newHead := slow
 	if fast != nil {
-		slow = slow.Next
+		newHead = slow.Next
 	}
 
-	// 反转后半段
-	tail := reverseLinkedList(slow)
-	for tail != nil {
-		if tail.Val != head.Val {
+	// 翻转后半段
+	var pre *ListNode
+	for newHead != nil {
+		nxt := newHead.Next
+		newHead.Next = pre
+		pre = newHead
+		newHead = nxt
+	}
+	newHead = pre
+
+	// 挨个比较
+	for newHead != nil { // 奇数个数时，head链表比newHead长度多1
+		if head.Val != newHead.Val {
 			return false
 		}
-		head = head.Next
-		tail = tail.Next
+		head, newHead = head.Next, newHead.Next
 	}
 	return true
 }
 
-func reverseLinkedList(node *ListNode) *ListNode {
-	var pre *ListNode
-	cur := node
-	for cur != nil {
-		next := cur.Next
-		cur.Next = pre
-		pre = cur
-		cur = next
-	}
-	return pre
-}
-
 // @lc code=end
+
+/*
+// @lcpr case=start
+// [1,2,2,1]\n
+// @lcpr case=end
+
+// @lcpr case=start
+// [1,2]\n
+// @lcpr case=end
+
+*/

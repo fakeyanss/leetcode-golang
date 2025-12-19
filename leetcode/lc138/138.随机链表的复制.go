@@ -94,32 +94,23 @@ type Node struct {
  */
 
 func copyRandomList(head *Node) *Node {
-	// 通用方法，类似克隆树、图
-	visited := make(map[*Node]bool)
-	originToClone := make(map[*Node]*Node)
-	var traverse func(node *Node)
-	traverse = func(node *Node) {
-		if node == nil {
-			return
+	cachedNode := make(map[*Node]*Node)
+
+	var deepCopy func(n *Node) *Node
+	deepCopy = func(n *Node) *Node {
+		if n == nil {
+			return nil
 		}
-		if visited[node] {
-			return
+		if cn, ok := cachedNode[n]; ok {
+			return cn
 		}
-		// 前序位置，标记为已访问
-		visited[node] = true
-		// 前序位置，克隆节点
-		if _, ok := originToClone[node]; !ok {
-			originToClone[node] = &Node{Val: node.Val}
-		}
-		cloneNode := originToClone[node]
-		// 递归相邻节点，构建图
-		traverse(node.Next)
-		cloneNode.Next = originToClone[node.Next]
-		traverse(node.Random)
-		cloneNode.Random = originToClone[node.Random]
+		cloneNode := &Node{Val: n.Val}
+		cachedNode[n] = cloneNode
+		cloneNode.Next = deepCopy(n.Next)
+		cloneNode.Random = deepCopy(n.Random)
+		return cloneNode
 	}
-	traverse(head)
-	return originToClone[head]
+	return deepCopy(head)
 }
 
 // @lc code=end

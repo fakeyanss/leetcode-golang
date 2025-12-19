@@ -54,23 +54,18 @@ package lc188
 // @lcpr-template-end
 // @lc code=start
 func maxProfit(k int, prices []int) int {
-	// leetcode 188
-	// dp[i][k][0 or 1], 0<=i<=n-1, 1<=k<=K, i为天数，k为交易次数，0和1代表是否持有股票，value为这些状态组合下的最大利润
-	// dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1]+price[i])
-	// dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0]-price[i])
-	// 答案为求dp[n-1][K][0]，最后一天，做了K次交易，股票已经卖出，当前最大收益
-
+	// dp[i][j][0|1]表示第i天最大j笔交易时(0未持有|1持有)股票的最大利润
 	n := len(prices)
 	dp := make([][][]int, n)
 	for i := range dp {
 		dp[i] = make([][]int, k+1)
 		for j := range dp[i] {
 			dp[i][j] = make([]int, 2)
-			if i == 0 {
-				dp[0][j][0] = 0
-				dp[0][j][1] = -prices[0]
-			}
 		}
+	}
+	for j := range k + 1 {
+		dp[0][j][0] = 0
+		dp[0][j][1] = -prices[0]
 	}
 	for i := 1; i < n; i++ {
 		for j := k; j >= 1; j-- {

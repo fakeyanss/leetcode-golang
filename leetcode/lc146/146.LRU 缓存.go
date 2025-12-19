@@ -74,112 +74,77 @@ package lc146
 
 // @lcpr-template-end
 // @lc code=start
-
 type LRUCache struct {
 	capacity int
-	dummy    *Node // 哨兵节点
+	dummy    *Node
 	cache    map[int]*Node
 }
 
 type Node struct {
-	prev, next *Node
 	key, val   int
+	prev, next *Node
 }
 
 func Constructor(capacity int) LRUCache {
 	return LRUCache{
 		capacity: capacity,
-		dummy: func() *Node {
-			dummy := &Node{}
-			dummy.prev, dummy.next = dummy, dummy
-			return dummy
-		}(),
-		cache: make(map[int]*Node, capacity),
+		dummy:    func() *Node { d := &Node{}; d.prev, d.next = d, d; return d }(),
+		cache:    make(map[int]*Node),
 	}
 }
 
 func (c *LRUCache) Get(key int) int {
-	if node := c.getNode(key); node == nil {
-		return -1
+	if n := c.getNode(key); n != nil {
+		return n.val
 	} else {
-		return node.val
+		return -1
 	}
 }
 
 func (c *LRUCache) Put(key int, value int) {
-	node := c.getNode(key)
-	if node != nil {
-		node.val = value // 更新
-		return
+	if n := c.getNode(key); n != nil {
+		n.val = value
+	} else {
+		newNode := &Node{key: key, val: value}
+		for len(c.cache) >= c.capacity {
+			last := c.dummy.prev
+			c.removeLink(last)
+			delete(c.cache, last.key)
+		}
+		c.pushToFront(newNode)
+		c.cache[key] = newNode
 	}
-	node = &Node{key: key, val: value} // 插入
-	c.cache[key] = node
-	c.pushFront(node)
-	if len(c.cache) > c.capacity {
-		tailNode := c.dummy.prev
-		delete(c.cache, tailNode.key)
-		c.remove(tailNode)
-	}
-
-}
-
-func (c *LRUCache) remove(node *Node) {
-	node.prev.next = node.next
-	node.next.prev = node.prev
-}
-
-func (c *LRUCache) pushFront(node *Node) {
-	node.prev = c.dummy
-	node.next = c.dummy.next
-	node.prev.next = node
-	node.next.prev = node
 }
 
 func (c *LRUCache) getNode(key int) *Node {
-	if node, ok := c.cache[key]; !ok {
-		return nil
+	if n, ok := c.cache[key]; ok {
+		c.removeLink(n)
+		c.pushToFront(n)
+		return n
 	} else {
-		// 先删除再移动到链表头
-		c.remove(node)
-		c.pushFront(node)
-		return node
+		return nil
 	}
 }
 
-// type LRUCache struct {
-// 	capacity  int
-// 	list      *list.List // 双向链表
-// 	keyToNode map[int]*list.Element
-// }
+func (c *LRUCache) pushToFront(n *Node) {
+	n.prev = c.dummy
+	n.next = c.dummy.next
+	n.prev.next = n
+	n.next.prev = n
+}
 
-// type entry struct {
-// 	key, value int
-// }
+func (c *LRUCache) removeLink(n *Node) {
+	n.prev.next = n.next
+	n.next.prev = n.prev
+	n.prev, n.next = nil, nil
+}
 
-// func Constructor(capacity int) LRUCache {
-// 	return LRUCache{capacity, list.New(), map[int]*list.Element{}}
-// }
-
-// func (c *LRUCache) Get(key int) int {
-// 	node := c.keyToNode[key]
-// 	if node == nil {
-// 		return -1
-// 	}
-// 	c.list.MoveToFront(node) // 移动到双链表头部
-// 	return node.Value.(entry).value
-// }
-
-// func (c *LRUCache) Put(key int, value int) {
-// 	if node := c.keyToNode[key]; node != nil {
-// 		node.Value = entry{key, value} // 更新
-// 		c.list.MoveToFront(node)       // 移动到双链表头部
-// 		return
-// 	}
-// 	c.keyToNode[key] = c.list.PushFront(entry{key, value})
-// 	if len(c.keyToNode) > c.capacity {
-// 		delete(c.keyToNode, c.list.Remove(c.list.Back()).(entry).key) // 去掉双调表尾部的节点
-// 	}
-// }
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * obj := Constructor(capacity);
+ * param_1 := obj.Get(key);
+ * obj.Put(key,value);
+ */
 
 /**
  * Your LRUCache object will be instantiated and called as such:

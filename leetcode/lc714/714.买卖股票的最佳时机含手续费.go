@@ -57,46 +57,18 @@ package lc714
 
 // @lc code=start
 func maxProfit(prices []int, fee int) int {
-	return dp(prices, fee)
-}
-
-// dp[i][k][0 or 1]
-// 0 <= i <= n-1, 1 <= k <= K
-// n 为天数，K 为交易数的上限，0 和 1 代表是否持有股票
-// 此问题共 n*K*2 种状态
-
-// base case：
-// dp[-1][...][0] = dp[...][0][0] = 0
-// dp[-1][...][1] = dp[...][0][1] = -infinity
-
-// 状态转移：
-// dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
-// dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])
-func dp(prices []int, fee int) int {
-	// k正无穷，且状态转移，每次买入加上手续费
+	// dp[i][0|1]表示第i天(0未持有|1持有)股票状态下的最大利润
 	n := len(prices)
 	dp := make([][]int, n)
 	for i := range dp {
 		dp[i] = make([]int, 2)
 	}
-
-	for i := 0; i < n; i++ {
-		if i-1 == -1 {
-			dp[i][0] = 0
-			dp[i][1] = -prices[i] - fee
-			continue
-		}
-		dp[i][0] = maxInt(dp[i-1][0], dp[i-1][1]+prices[i])
-		dp[i][1] = maxInt(dp[i-1][1], dp[i-1][0]-prices[i]-fee)
+	dp[0][1] = -prices[0]
+	for i := 1; i < n; i++ {
+		dp[i][0] = max(dp[i-1][0], dp[i-1][1]+prices[i]-fee)
+		dp[i][1] = max(dp[i-1][1], dp[i-1][0]-prices[i])
 	}
 	return dp[n-1][0]
-}
-
-func maxInt(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
 }
 
 // @lc code=end

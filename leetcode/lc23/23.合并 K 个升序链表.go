@@ -62,6 +62,8 @@
  */
 package lc23
 
+import "container/heap"
+
 // @lcpr-template-start
 type ListNode struct {
 	Val  int
@@ -77,35 +79,72 @@ type ListNode struct {
  *     Next *ListNode
  * }
  */
-func mergeKLists(lists []*ListNode) *ListNode {
-	var merge func([]*ListNode, int, int) *ListNode
-	merge = func(lists []*ListNode, l, r int) *ListNode {
-		if l == r {
-			return lists[l]
-		}
-		if l > r {
-			return nil
-		}
-		mid := l + (r-l)>>1
-		return mergeTwoLists(merge(lists, l, mid), merge(lists, mid+1, r))
-	}
-	return merge(lists, 0, len(lists)-1)
-}
 
-func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
-	if list1 == nil {
-		return list2
+//  分治
+// func mergeKLists(lists []*ListNode) *ListNode {
+// 	n := len(lists)
+// 	if n == 0 {
+// 		return nil
+// 	}
+// 	if n == 1 {
+// 		return lists[0]
+// 	}
+// 	left := mergeKLists(lists[:n/2])
+// 	right := mergeKLists(lists[n/2:])
+// 	return mergeTwoLists(left, right)
+// }
+
+// func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+// 	dummy := &ListNode{}
+// 	cur := dummy
+// 	for list1 != nil && list2 != nil {
+// 		if list1.Val < list2.Val {
+// 			cur.Next = list1
+// 			list1 = list1.Next
+// 		} else {
+// 			cur.Next = list2
+// 			list2 = list2.Next
+// 		}
+// 		cur = cur.Next
+// 	}
+// 	if list1 == nil {
+// 		cur.Next = list2
+// 	}
+// 	if list2 == nil {
+// 		cur.Next = list1
+// 	}
+// 	return dummy.Next
+// }
+
+// 最小堆
+type hp []*ListNode
+
+func (h hp) Len() int           { return len(h) }
+func (h hp) Less(i, j int) bool { return h[i].Val < h[j].Val }
+func (h hp) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
+func (h *hp) Push(x any)        { *h = append(*h, x.(*ListNode)) }
+func (h *hp) Pop() any          { a := *h; x := a[len(a)-1]; *h = a[:len(a)-1]; return x }
+
+func mergeKLists(lists []*ListNode) *ListNode {
+	h := hp{}
+	for _, head := range lists {
+		if head != nil {
+			h = append(h, head)
+		}
 	}
-	if list2 == nil {
-		return list1
+	heap.Init(&h)
+
+	dummy := &ListNode{}
+	cur := dummy
+	for h.Len() > 0 {
+		n := heap.Pop(&h).(*ListNode)
+		if n.Next != nil {
+			heap.Push(&h, n.Next)
+		}
+		cur.Next = n
+		cur = cur.Next
 	}
-	if list1.Val <= list2.Val {
-		list1.Next = mergeTwoLists(list1.Next, list2)
-		return list1
-	} else {
-		list2.Next = mergeTwoLists(list1, list2.Next)
-		return list2
-	}
+	return dummy.Next
 }
 
 // @lc code=end

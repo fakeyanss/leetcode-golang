@@ -65,25 +65,25 @@ type ListNode struct {
  * }
  */
 func reverseBetween(head *ListNode, left int, right int) *ListNode {
-	var reverseK func(head *ListNode, k int) *ListNode // 翻转前k个节点
-	reverseK = func(head *ListNode, k int) *ListNode {
-		if k == 1 {
-			return head
-		}
-		newHead := reverseK(head.Next, k-1)
-		// 此时 head.Next.Next 指向第k+1个节点, 应该将 head.Next 指向它
-		// 1-2-3-4-5, k=4 --> 1-2, 4-3-2-5  --> 4-3-2-1-5
-		head.Next.Next, head.Next = head, head.Next.Next
-		return newHead
+	dummy := &ListNode{Next: head}
+	p0 := dummy
+	for i := 0; i < left-1; i++ {
+		p0 = p0.Next
 	}
 
-	// base case
-	if left == 1 {
-		return reverseK(head, right)
+	var pre *ListNode
+	cur := p0.Next
+	for i := 0; i < right-left+1; i++ {
+		nxt := cur.Next
+		cur.Next = pre
+		pre = cur
+		cur = nxt
 	}
-	// 前进到反转的起点触发base case
-	head.Next = reverseBetween(head.Next, left-1, right-1)
-	return head
+	// 现在的p0.Next指向left位置的节点，所以要把p0.Next.Next指向right+1位置的节点
+	p0.Next.Next = cur
+	// 再把p0.Next指向right节点
+	p0.Next = pre
+	return dummy.Next
 }
 
 // @lc code=end

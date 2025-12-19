@@ -54,35 +54,28 @@ package lc121
 // @lcpr-template-end
 // @lc code=start
 func maxProfit(prices []int) int {
-	// leetcode 188
-	// dp[i][k][0 or 1], 0<=i<=n-1, 1<=k<=K, i为天数，k为交易次数，0和1代表是否持有股票，value为这些状态组合下的最大利润，这里k恒定为1
-	// dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1]+price[i])
-	// dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0]-price[i])
-	// 答案为求dp[n-1][K][0]，最后一天，做了K次交易，股票已经卖出，当前最大收益
-
-	n := len(prices)
-	dp := make([][]int, n)
-	for i := range dp {
-		dp[i] = make([]int, 2)
-	}
-	dp[0][0] = 0
-	dp[0][1] = -prices[0]
-	for i := 1; i < n; i++ {
-		dp[i][0] = max(dp[i-1][0], dp[i-1][1]+prices[i])
-		dp[i][1] = max(dp[i-1][1], -prices[i]) // 无法重复买卖
-	}
-	return dp[n-1][0]
-
-	// minium, maximum := math.MaxInt, 0
-	// for i := 0; i < len(prices); i++ {
-	// 	sub := prices[i] - minium
-	// 	if minium > prices[i] {
-	// 		minium = prices[i]
-	// 	} else if sub > maximum {
-	// 		maximum = sub
-	// 	}
+	// // dp[i][0|1] 表示第i天(0未持有|1持有)股票状态的最大利润值
+	// n := len(prices)
+	// dp := make([][]int, n)
+	// for i := range dp {
+	// 	dp[i] = make([]int, 2)
 	// }
-	// return maximum
+	// dp[0][0] = 0
+	// dp[0][1] = -prices[0]
+	// for i := 1; i < n; i++ {
+	// 	dp[i][0] = max(dp[i-1][0], dp[i-1][1]+prices[i])
+	// 	dp[i][1] = max(dp[i-1][1], -prices[i])
+	// }
+	// return dp[n-1][0]
+
+	// 贪心
+	curMin := prices[0]
+	maxProfit := 0
+	for i := 1; i < len(prices); i++ {
+		maxProfit = max(maxProfit, prices[i]-curMin)
+		curMin = min(curMin, prices[i])
+	}
+	return maxProfit
 }
 
 // @lc code=end

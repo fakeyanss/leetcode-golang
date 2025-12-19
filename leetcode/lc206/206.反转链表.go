@@ -70,26 +70,14 @@ type ListNode = helper.ListNode
  * }
  */
 func reverseList(head *ListNode) *ListNode {
-	// 迭代
-	// var prev *ListNode
-	// for head != nil {
-	// 	next := head.Next
-	// 	head.Next = prev
-	// 	prev = head
-	// 	head = next
-	// }
-	// return prev
-
-	// 递归
-	if head == nil || head.Next == nil {
-		return head
+	var prev *ListNode
+	for head != nil {
+		next := head.Next
+		head.Next = prev
+		prev = head
+		head = next
 	}
-
-	last := reverseList(head.Next)
-	head.Next.Next = head
-	head.Next = nil
-
-	return last
+	return prev
 }
 
 // @lc code=end

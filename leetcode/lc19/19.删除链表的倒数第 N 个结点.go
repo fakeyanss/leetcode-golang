@@ -72,18 +72,16 @@ type ListNode struct {
  */
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
 	// 双指针，找正数第len+1-n个
-	dummy := &ListNode{0, head}
-	p, q := head, dummy
-	// p先走n步
+	dummy := &ListNode{Next: head}
+	p, q := dummy, dummy
+	// p前进n步
 	for i := 0; i < n; i++ {
 		p = p.Next
 	}
-	// p和q同时走len-n步
-	for p != nil {
-		p = p.Next
-		q = q.Next
+	// p，q一起前进len-n步
+	for p.Next != nil {
+		p, q = p.Next, q.Next
 	}
-	// q现在指向第len-n 个节点，即倒数第n+1个节点, 删除q.next
 	q.Next = q.Next.Next
 	return dummy.Next
 }

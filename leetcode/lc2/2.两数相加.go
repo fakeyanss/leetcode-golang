@@ -73,19 +73,39 @@ type ListNode struct {
  * }
  */
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-	if l1 == nil {
-		return l2
+	// 递归
+	// if l1 == nil {
+	// 	return l2
+	// }
+	// if l2 == nil {
+	// 	return l1
+	// }
+	// sum := l1.Val + l2.Val
+	// head := &ListNode{Val: sum % 10}
+	// head.Next = addTwoNumbers(l1.Next, l2.Next)
+	// if sum >= 10 {
+	// 	head.Next = addTwoNumbers(head.Next, &ListNode{Val: 1})
+	// }
+	// return head
+
+	// 迭代
+	dummy := &ListNode{}
+	p := dummy
+	carry := 0
+	for l1 != nil || l2 != nil || carry > 0 {
+		if l1 != nil {
+			carry += l1.Val
+			l1 = l1.Next
+		}
+		if l2 != nil {
+			carry += l2.Val
+			l2 = l2.Next
+		}
+		p.Next = &ListNode{Val: carry % 10}
+		carry /= 10
+		p = p.Next
 	}
-	if l2 == nil {
-		return l1
-	}
-	sum := l1.Val + l2.Val
-	head := &ListNode{Val: sum % 10}
-	head.Next = addTwoNumbers(l1.Next, l2.Next)
-	if sum >= 10 {
-		head.Next = addTwoNumbers(head.Next, &ListNode{Val: 1})
-	}
-	return head
+	return dummy.Next
 }
 
 // @lc code=end

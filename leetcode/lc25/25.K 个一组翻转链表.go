@@ -71,29 +71,56 @@ type ListNode struct {
  * }
  */
 func reverseKGroup(head *ListNode, k int) *ListNode {
-	start, end := head, head
-	for i := 0; i < k; i++ {
-		if end == nil {
-			return start
-		}
-		end = end.Next
+	// // 递归思路
+	// start, end := head, head
+	// for i := 0; i < k; i++ {
+	// 	if end == nil {
+	// 		return start
+	// 	}
+	// 	end = end.Next
+	// }
+
+	// reverseBetween := func(s, e *ListNode) *ListNode {
+	// 	var prev *ListNode
+	// 	for s != e {
+	// 		nxt := s.Next
+	// 		s.Next = prev
+	// 		prev = s
+	// 		s = nxt
+	// 	}
+	// 	return prev
+	// }
+
+	// newHead := reverseBetween(start, end)
+	// start.Next = reverseKGroup(end, k)
+	// return newHead
+
+	// 迭代思路
+	n := 0
+	for cur := head; cur != nil; cur = cur.Next {
+		n++
 	}
 
-	reverseBetween := func(start, end *ListNode) *ListNode {
-		var prev *ListNode
-		cur, next := start, start
-		for cur != end {
-			next = cur.Next
-			cur.Next = prev
-			prev = cur
-			cur = next
-		}
-		return prev
-	}
+	dummy := &ListNode{Next: head}
+	p0 := dummy
+	var pre *ListNode
+	cur := p0.Next
 
-	newHead := reverseBetween(start, end)
-	start.Next = reverseKGroup(end, k)
-	return newHead
+	// k个一组处理
+	for ; n >= k; n -= k {
+		for i := 0; i < k; i++ {
+			nxt := cur.Next
+			cur.Next = pre
+			pre = cur
+			cur = nxt
+		}
+
+		nxt := p0.Next
+		p0.Next.Next = cur
+		p0.Next = pre
+		p0 = nxt
+	}
+	return dummy.Next
 }
 
 // @lc code=end
