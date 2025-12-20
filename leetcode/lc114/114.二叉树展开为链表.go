@@ -75,27 +75,23 @@ type TreeNode struct {
  *     Right *TreeNode
  * }
  */
-// 定义：输入节点 root，然后 root 为根的二叉树就会被拉平为一条链表
+// 分治，flatten定义：输入节点 root，然后 root 为根的二叉树就会被拉平为一条链表
 func flatten(root *TreeNode) {
 	if root == nil {
 		return
 	}
-	// 根据函数定义，已经拉平左右子树
 	flatten(root.Left)
 	flatten(root.Right)
+	// 根据函数定义，root的左右子树已经被拉平成链表
 
-	// 1、左右子树已经被拉平成一条链表
-	left, right := root.Left, root.Right
-	// 2、将左子树作为右子树
-	root.Left = nil
-	root.Right = left
-	// 3、将原先的右子树接到当前右子树的末端
+	// 再把左子树插在root右侧
+	l, r := root.Left, root.Right
+	root.Left, root.Right = nil, l
 	p := root
 	for p.Right != nil {
 		p = p.Right
 	}
-	p.Right = right
-
+	p.Right = r
 }
 
 // @lc code=end

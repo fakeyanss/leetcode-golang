@@ -69,59 +69,32 @@ type TreeNode = helper.TreeNode
  */
 func inorderTraversal(root *TreeNode) []int {
 	// 递归
-	// var inorder func(cur *TreeNode, arr *[]int)
-	// inorder = func(cur *TreeNode, arr *[]int) {
-	// 	if cur == nil {
+	// var res []int
+	// var traverse func(*TreeNode)
+	// traverse = func(node *TreeNode) {
+	// 	if node == nil {
 	// 		return
 	// 	}
-	// 	inorder(cur.Left, arr)
-	// 	*arr = append(*arr, cur.Val)
-	// 	inorder(cur.Right, arr)
+	// 	traverse(node.Left)
+	// 	res = append(res, node.Val)
+	// 	traverse(node.Right)
 	// }
-
-	// res := []int{}
-	// inorder(root, &res)
+	// traverse(root)
 	// return res
 
 	// 迭代
-	// stack := []*TreeNode{}
-	// res := []int{}
-	// for root != nil || len(stack) > 0 {
-	// 	for root != nil {
-	// 		stack = append(stack, root)
-	// 		root = root.Left
-	// 	}
-	// 	root = stack[len(stack)-1]
-	// 	stack = stack[:len(stack)-1]
-	// 	res = append(res, root.Val)
-	// 	root = root.Right
-	// }
-	// return res
-
-	// 迭代&颜色标记
-
-	WHITE, GRAY := 0, 1
-	res := []int{}
-	type Ele struct {
-		color int
-		node  *TreeNode
-	}
-	stack := []Ele{
-		{WHITE, root},
-	}
-	for len(stack) > 0 {
-		ele := stack[len(stack)-1]
-		stack = stack[:len(stack)-1]
-		if ele.node == nil {
-			continue
+	var res []int
+	cur := root
+	stk := []*TreeNode{}
+	for cur != nil || len(stk) > 0 {
+		for cur != nil {
+			stk = append(stk, cur)
+			cur = cur.Left
 		}
-		if ele.color == WHITE {
-			stack = append(stack, Ele{WHITE, ele.node.Right})
-			stack = append(stack, Ele{GRAY, ele.node})
-			stack = append(stack, Ele{WHITE, ele.node.Left})
-		} else {
-			res = append(res, ele.node.Val)
-		}
+		cur = stk[len(stk)-1]
+		stk = stk[:len(stk)-1]
+		res = append(res, cur.Val)
+		cur = cur.Right
 	}
 	return res
 }

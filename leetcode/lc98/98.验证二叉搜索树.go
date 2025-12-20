@@ -51,6 +51,8 @@
  */
 package lc98
 
+import "math"
+
 // @lcpr-template-start
 type TreeNode struct {
 	Val   int
@@ -69,20 +71,17 @@ type TreeNode struct {
  * }
  */
 func isValidBST(root *TreeNode) bool {
-	var isValid func(root, min, max *TreeNode) bool
-	isValid = func(root, min, max *TreeNode) bool { // 定义root树是否满足所有节点值小于max且大于min
-		if root == nil {
+	var isValid func(node *TreeNode, minV, maxV int) bool
+	isValid = func(node *TreeNode, minV, maxV int) bool {
+		if node == nil {
 			return true
 		}
-		if min != nil && root.Val <= min.Val {
+		if node.Val <= minV || node.Val >= maxV {
 			return false
 		}
-		if max != nil && root.Val >= max.Val {
-			return false
-		}
-		return isValid(root.Left, min, root) && isValid(root.Right, root, max)
+		return isValid(node.Left, minV, node.Val) && isValid(node.Right, node.Val, maxV)
 	}
-	return isValid(root, nil, nil)
+	return isValid(root, math.MinInt, math.MaxInt)
 }
 
 // @lc code=end

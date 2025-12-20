@@ -69,24 +69,23 @@ type TreeNode struct {
  * }
  */
 func maxPathSum(root *TreeNode) int {
-	maxSum := math.MinInt
-	// dp[root]即单边的树节点路径和最大值
-	// dp[root] = max(max(dp[root.left], 0), max(dp[root.right], 0)) + root.val
-	var dp func(node *TreeNode) int
-	dp = func(node *TreeNode) int {
+	maxsum := math.MinInt
+
+	// dfs获取以当前节点的起点的最大路径和
+	// maxsum可以在遍历过程更新
+	var dfs func(*TreeNode) int
+	dfs = func(node *TreeNode) int {
 		if node == nil {
 			return 0
 		}
-		// 后序遍历
-		leftMax := max(dp(node.Left), 0)
-		rightMax := max(dp(node.Right), 0)
-		maxSum = max(maxSum, leftMax+rightMax+node.Val)
-
-		// 在遍历每一个顶点的过程中，对比其中的路径最大值
-		return node.Val + max(leftMax, rightMax)
+		// 获取左右子树最大路径和，丢弃负数
+		lMax := max(dfs(node.Left), 0)
+		rMax := max(dfs(node.Right), 0)
+		maxsum = max(maxsum, lMax+rMax+node.Val)
+		return node.Val + max(lMax, rMax)
 	}
-	dp(root)
-	return maxSum
+	dfs(root)
+	return maxsum
 }
 
 // @lc code=end

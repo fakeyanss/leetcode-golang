@@ -67,18 +67,11 @@ type TreeNode = helper.TreeNode
  *     Right *TreeNode
  * }
  */
-// 定义：将以 root 为根的这棵二叉树翻转，返回翻转后的二叉树的根节点
 func invertTree(root *TreeNode) *TreeNode {
 	if root == nil {
 		return nil
 	}
-	// 先翻转左右子树，完成后返回左右孩子节点
-	left := invertTree(root.Left)
-	right := invertTree(root.Right)
-
-	root.Left = right
-	root.Right = left
-
+	root.Left, root.Right = invertTree(root.Right), invertTree(root.Left)
 	return root
 }
 

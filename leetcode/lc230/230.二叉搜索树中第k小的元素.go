@@ -64,23 +64,40 @@ type TreeNode = helper.TreeNode
  * }
  */
 func kthSmallest(root *TreeNode, k int) int {
-	rank, res := 0, 0
-	var traverse func(root *TreeNode)
-	traverse = func(root *TreeNode) {
-		if root == nil {
-			return
+	// // 中序遍历，递归
+	// var traverse func(*TreeNode) int
+	// traverse = func(node *TreeNode) int {
+	//     if node == nil {
+	//         return -1
+	//     }
+	//     leftRes := traverse(node.Left)
+	//     if leftRes != -1 {
+	//         return leftRes // 拿到结果提前返回
+	//     }
+	//     k--
+	//     if k == 0 {
+	//         return node.Val
+	//     }
+	//     return traverse(node.Right)
+	// }
+	// return traverse(root)
+	// 迭代也可以提前结束
+	stk := []*TreeNode{}
+	cur := root
+	for len(stk) > 0 || cur != nil {
+		for cur != nil {
+			stk = append(stk, cur)
+			cur = cur.Left
 		}
-		traverse(root.Left)
-		// 中序遍历二叉搜索树，从小到大排序
-		rank++
-		if rank == k {
-			res = root.Val
-			return
+		cur = stk[len(stk)-1]
+		stk = stk[:len(stk)-1]
+		k--
+		if k == 0 {
+			return cur.Val
 		}
-		traverse(root.Right)
+		cur = cur.Right
 	}
-	traverse(root)
-	return res
+	return -1
 }
 
 // @lc code=end

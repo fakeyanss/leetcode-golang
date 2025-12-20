@@ -61,42 +61,37 @@ type TreeNode = helper.TreeNode
  * }
  */
 func isSymmetric(root *TreeNode) bool {
-	// 递归
-	// if root == nil {
-	// 	return true
-	// }
-	// var checkRecursive func(left *TreeNode, right *TreeNode) bool
-	// checkRecursive = func(left *TreeNode, right *TreeNode) bool {
-	// 	if left == nil || right == nil {
-	// 		return left == right
+	// // 递归
+	// var isSameTree func(l, r *TreeNode) bool
+	// isSameTree = func(l, r *TreeNode) bool {
+	// 	if l == nil && r == nil {
+	// 		return true
 	// 	}
-	// 	if left.Val != right.Val {
+	// 	if l == nil || r == nil {
 	// 		return false
 	// 	}
-	// 	return checkRecursive(left.Right, right.Left) && checkRecursive(left.Left, right.Right)
+	// 	if l.Val != r.Val {
+	// 		return false
+	// 	}
+	// 	return isSameTree(l.Left, r.Right) && isSameTree(l.Right, r.Left)
 	// }
-	// return checkRecursive(root.Left, root.Right)
+	// return isSameTree(root.Left, root.Right)
 
 	// 迭代
-	q := []*TreeNode{}
-	q = append(q, root)
-	q = append(q, root)
+	q := []*TreeNode{root, root}
 	for len(q) > 0 {
-		a, b := q[0], q[1]
+		l, r := q[0], q[1]
 		q = q[2:]
-		if a == nil && b == nil {
+		if l == nil && r == nil {
 			continue
 		}
-		if a == nil || b == nil {
+		if l == nil || r == nil {
 			return false
 		}
-		if a.Val != b.Val {
+		if l.Val != r.Val {
 			return false
 		}
-		q = append(q, a.Left)
-		q = append(q, b.Right)
-		q = append(q, a.Right)
-		q = append(q, b.Left)
+		q = append(q, l.Left, r.Right, l.Right, r.Left)
 	}
 	return true
 }

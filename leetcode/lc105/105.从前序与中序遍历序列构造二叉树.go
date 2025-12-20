@@ -67,45 +67,41 @@ type TreeNode struct {
  * }
  */
 func buildTree(preorder []int, inorder []int) *TreeNode {
-	// prestart                                      preEnd
-	//┌───────┬──────────────────────────┬─────────────────┐    preorder
-	//└───────┴──────────────────────────┼─────────────────┘
-	// index       preStart+1+leftSize ◄─┘
-	//
-	// inStart                                        inEnd
-	//┌──────────────────────────┬───────┬─────────────────┐    inorder
-	//└──────────────────────────┴───────┴─────────────────┘
-	//├─────►   leftSize  ◄──────┤ index
-
-	// // 递归解法 O(n^2)，每次需要找preorder[0]在inorder中的位置
 	// n := len(preorder)
-	// if n == 0 { // 空节点
+	// if n == 0 {
 	// 	return nil
 	// }
-	// leftSize := slices.Index(inorder, preorder[0]) // 左子树的大小
+	// leftSize := slices.Index(inorder, preorder[0])
 	// left := buildTree(preorder[1:1+leftSize], inorder[:leftSize])
-	// right := buildTree(preorder[1+leftSize:], inorder[1+leftSize:])
-	// return &TreeNode{preorder[0], left, right}
+	// right := buildTree(preorder[1+leftSize:], inorder[leftSize+1:])
+	// return &TreeNode{
+	// 	Val:   preorder[0],
+	// 	Left:  left,
+	// 	Right: right,
+	// }
 
-	// 优化 O(n)，先预存inorder中每个值的下标位置
+	// 优化slices.Index耗时
 	n := len(preorder)
-	valToIndex := make(map[int]int, n)
-	for i, val := range inorder {
-		valToIndex[val] = i
+	valToIndex := make(map[int]int, n) // 全局索引
+	for i, v := range inorder {
+		valToIndex[v] = i
 	}
-
-	var dfs func(preStart, preEnd, inStart, inEnd int) *TreeNode
-	dfs = func(preStart, preEnd, inStart, inEnd int) *TreeNode {
-		if preStart == preEnd {
+	var dfs func([]int, []int, int) *TreeNode
+	dfs = func(preorder []int, inorder []int, inStart int) *TreeNode {
+		n := len(preorder)
+		if n == 0 {
 			return nil
 		}
-		rootVal := preorder[preStart]
-		leftSize := valToIndex[rootVal] - inStart
-		left := dfs(preStart+1, preStart+1+leftSize, inStart, inStart+leftSize)
-		right := dfs(preStart+1+leftSize, preEnd, inStart+leftSize+1, inEnd)
-		return &TreeNode{rootVal, left, right}
+		leftSize := valToIndex[preorder[0]] - inStart // 每次递归后需要减去偏移
+		left := dfs(preorder[1:1+leftSize], inorder[:leftSize], inStart)
+		right := dfs(preorder[1+leftSize:], inorder[leftSize+1:], inStart+leftSize+1)
+		return &TreeNode{
+			Val:   preorder[0],
+			Left:  left,
+			Right: right,
+		}
 	}
-	return dfs(0, n, 0, n) // 左闭右开
+	return dfs(preorder, inorder, 0)
 }
 
 // @lc code=end

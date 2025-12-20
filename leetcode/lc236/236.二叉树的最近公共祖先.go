@@ -72,24 +72,24 @@ type TreeNode = helper.TreeNode
  * }
  */
 func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
-	if root == nil {
-		return nil
-	}
-
-	if root.Val == p.Val || root.Val == q.Val {
+	// base case: 如果root空，或者是p or q，直接返回
+	if root == nil || root == p || root == q {
 		return root
 	}
+	// 在左右子树找p或q
+	// 此时lowestCommonAncestor返回的是最近公共祖先的候选项
+	l := lowestCommonAncestor(root.Left, p, q)
+	r := lowestCommonAncestor(root.Right, p, q)
 
-	left := lowestCommonAncestor(root.Left, p, q)
-	right := lowestCommonAncestor(root.Right, p, q)
-
-	if left != nil && right != nil {
+	// case1: 左右都找到，当前root就是lca
+	if l != nil && r != nil {
 		return root
-	} else if left != nil {
-		return left
-	} else {
-		return right
 	}
+	// case2: p或q只找到1个，把这个向上返回，等待上层找到lca
+	if l != nil {
+		return l
+	}
+	return r
 }
 
 // @lc code=end

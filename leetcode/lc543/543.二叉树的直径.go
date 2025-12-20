@@ -36,11 +36,11 @@
  */
 package lc543
 
-import "github.com/fakeyanss/leetcode-golang/helper"
-
-type TreeNode = helper.TreeNode
-
-// @lc code=start
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+} // @lc code=start
 /**
  * Definition for a binary tree node.
  * type TreeNode struct {
@@ -50,28 +50,19 @@ type TreeNode = helper.TreeNode
  * }
  */
 func diameterOfBinaryTree(root *TreeNode) int {
-	res := 0
-	var postOrder func(root *TreeNode) int
-	postOrder = func(root *TreeNode) int {
-		if root == nil {
+	var res int
+	var traverse func(*TreeNode) int // 返回树的最大高度
+	traverse = func(node *TreeNode) int {
+		if node == nil {
 			return 0
 		}
-
-		left := postOrder(root.Left)
-		right := postOrder(root.Right)
-
-		if res < left+right {
-			res = left + right
-		}
-
-		if left > right {
-			return left + 1
-		} else {
-			return right + 1
-		}
+		leftSideLen := traverse(node.Left)
+		rightSideLen := traverse(node.Right)
+		res = max(res, leftSideLen+rightSideLen)
+		return max(leftSideLen, rightSideLen) + 1
 	}
 
-	postOrder(root)
+	traverse(root)
 
 	return res
 }

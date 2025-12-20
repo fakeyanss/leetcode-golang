@@ -66,12 +66,32 @@ type TreeNode struct {
  * }
  */
 func maxDepth(root *TreeNode) int {
+	// // 递归
+	// if root == nil {
+	// 	return 0
+	// }
+	// return 1 + max(maxDepth(root.Left), maxDepth(root.Right))
+	// 迭代
+	var res int // 最大深度即二叉树层数
 	if root == nil {
-		return 0
+		return res
 	}
-	leftDepth := maxDepth(root.Left)
-	rightDepth := maxDepth(root.Right)
-	return 1 + max(leftDepth, rightDepth)
+	q := []*TreeNode{root}
+	for len(q) > 0 {
+		sz := len(q)
+		for range sz {
+			cur := q[0]
+			q = q[1:]
+			if cur.Left != nil {
+				q = append(q, cur.Left)
+			}
+			if cur.Right != nil {
+				q = append(q, cur.Right)
+			}
+		}
+		res++
+	}
+	return res
 }
 
 // @lc code=end

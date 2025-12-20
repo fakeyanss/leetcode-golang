@@ -88,18 +88,20 @@ type TreeNode struct {
  * }
  */
 func rightSideView(root *TreeNode) []int {
-	if root == nil {
-		return []int{}
-	}
-	q := []*TreeNode{root}
 	var res []int
+	if root == nil {
+		return res
+	}
+
+	q := []*TreeNode{root}
 	for len(q) > 0 {
-		levelSize := len(q)
-		curLevel := []int{}
-		for i := 0; i < levelSize; i++ {
+		sz := len(q)
+		for i := range sz {
 			cur := q[0]
 			q = q[1:]
-			curLevel = append(curLevel, cur.Val)
+			if i == sz-1 {
+				res = append(res, cur.Val)
+			}
 			if cur.Left != nil {
 				q = append(q, cur.Left)
 			}
@@ -107,7 +109,6 @@ func rightSideView(root *TreeNode) []int {
 				q = append(q, cur.Right)
 			}
 		}
-		res = append(res, curLevel[len(curLevel)-1])
 	}
 	return res
 }
