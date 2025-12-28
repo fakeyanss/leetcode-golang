@@ -68,54 +68,60 @@ package lc208
 // @lcpr-template-end
 // @lc code=start
 type Trie struct {
-	Children [26]*Trie
-	Val      *struct{}
+	root *Node
+}
+
+type Node struct {
+	son [26]*Node
+	end bool
 }
 
 func Constructor() Trie {
-	return Trie{}
-}
-
-func (t *Trie) getNode(node *Trie, key string) *Trie {
-	p, n := node, len(key)
-	for i := 0; i < n; i++ {
-		if p == nil {
-			return nil
-		}
-		c := key[i] - 'a'
-		p = p.Children[c]
-	}
-	return p
+	return Trie{root: &Node{}}
 }
 
 func (t *Trie) Insert(word string) {
-	t.insert(t, word, 0)
+	cur := t.root
+	for _, c := range word {
+		c -= 'a'
+		if cur.son[c] == nil {
+			cur.son[c] = &Node{}
+		}
+		cur = cur.son[c]
+	}
+	cur.end = true
 }
 
-func (t *Trie) insert(node *Trie, key string, i int) *Trie {
-	if node == nil {
-		node = new(Trie)
+func (t *Trie) find(word string) int {
+	cur := t.root
+	for _, c := range word {
+		c -= 'a'
+		if cur.son[c] == nil {
+			return 0 // 未找到
+		}
+		cur = cur.son[c]
 	}
-	if i == len(key) {
-		node.Val = &struct{}{}
-		return node
+	if cur.end {
+		return 2 // 完全匹配
 	}
-	c := key[i] - 'a'
-	node.Children[c] = t.insert(node.Children[c], key, i+1)
-	return node
+	return 1 // 前缀匹配
 }
 
 func (t *Trie) Search(word string) bool {
-	x := t.getNode(t, word)
-	if x == nil || x.Val == nil {
-		return false
-	}
-	return true
+	return t.find(word) == 2
 }
 
 func (t *Trie) StartsWith(prefix string) bool {
-	return t.getNode(t, prefix) != nil
+	return t.find(prefix) != 0
 }
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * obj := Constructor();
+ * obj.Insert(word);
+ * param_2 := obj.Search(word);
+ * param_3 := obj.StartsWith(prefix);
+ */
 
 /**
  * Your Trie object will be instantiated and called as such:

@@ -47,28 +47,27 @@
 package lc78
 
 // @lc code=start
-var res [][]int
-var track []int
-
 func subsets(nums []int) [][]int {
-	res = make([][]int, 0)
-	track = make([]int, 0)
-	backtrack(nums, 0)
-	return res
-}
+	// 对每个nums[i]，都考虑选或不选
+	n := len(nums)
+	var res [][]int
+	track := make([]int, 0, n)
 
-func backtrack(nums []int, start int) {
-	// 前序位置
-	t := make([]int, len(track))
-	copy(t, track)
-	res = append(res, t)
+	var dfs func(int)
+	dfs = func(i int) {
+		if i == n {
+			res = append(res, append([]int{}, track...))
+			return
+		}
 
-	// 回溯
-	for i := start; i < len(nums); i++ {
-		track = append(track, nums[i])
-		backtrack(nums, i+1)
+		dfs(i + 1) // 不选nums[i]
+
+		track = append(track, nums[i]) // 选nums[i]
+		dfs(i + 1)
 		track = track[:len(track)-1]
 	}
+	dfs(0)
+	return res
 }
 
 // @lc code=end

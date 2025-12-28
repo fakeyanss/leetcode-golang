@@ -54,28 +54,30 @@ package lc46
 // @lcpr-template-end
 // @lc code=start
 func permute(nums []int) [][]int {
+	n := len(nums)
+	track := make([]int, 0, n)
+	used := make([]bool, n)
 	var res [][]int
-	var track []int
-	used := make([]bool, len(nums))
-	var backtrack func()
-	backtrack = func() {
-		if len(track) == len(nums) {
-			tmp := []int{}
-			res = append(res, append(tmp, track...))
+
+	var dfs func()
+	dfs = func() {
+		if len(track) == n {
+			res = append(res, append([]int{}, track...))
 			return
 		}
-		for i := 0; i < len(nums); i++ {
+		for i := range n {
 			if used[i] {
 				continue
 			}
 			track = append(track, nums[i])
 			used[i] = true
-			backtrack()
+			dfs()
 			used[i] = false
 			track = track[:len(track)-1]
 		}
 	}
-	backtrack()
+
+	dfs()
 	return res
 }
 
