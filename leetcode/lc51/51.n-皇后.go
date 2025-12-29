@@ -53,76 +53,41 @@
  */
 package lc51
 
+import "strings"
+
 // @lc code=start
-var res [][]string
 
 func solveNQueens(n int) [][]string {
-	res = make([][]string, 0)
+	var res [][]string
+	queens := make([]int, n)     // 皇后放在[idx,val], idx即row，val即col
+	col := make([]bool, n)       // 记录每列是否可以放置
+	diag1 := make([]bool, n*2-1) // 记录左上角方向是否已经放置，同一斜线上的row-col不变
+	diag2 := make([]bool, n*2-1) // 记录右上角方向是否已经放置，同一斜线上的row+col不变
 
-	// 初始化棋盘
-	board := make([][]byte, n)
-	for i := range board {
-		board[i] = make([]byte, n)
-		for j := range board[i] {
-			board[i][j] = '.'
+	var dfs func(int)
+	dfs = func(row int) {
+		if row == n {
+			board := make([]string, n)
+			for i, c := range queens {
+				board[i] = strings.Repeat(".", c) + "Q" + strings.Repeat(".", n-1-c)
+			}
+			res = append(res, board)
+		}
+
+		for c, ok := range col {
+			rc := row - c + n - 1 // 偏移量n-1，避免负数
+			if !ok && !diag1[rc] && !diag2[row+c] {
+				// 可以放置皇后
+				queens[row] = c // 直接覆盖
+				col[c], diag1[rc], diag2[row+c] = true, true, true
+				dfs(row + 1)                                          // 深入下一行
+				col[c], diag1[rc], diag2[row+c] = false, false, false // 恢复
+			}
 		}
 	}
-	backtrack(board, 0)
+
+	dfs(0)
 	return res
-}
-
-// 路径：board 中小于 row 的行，都已经成功放置了皇后
-// 选择列表：第 row  行的所有列都是放置皇后的选择
-// 结束条件：row 超过 board 的最后一行
-func backtrack(board [][]byte, row int) {
-	if row == len(board) {
-		b := make([]string, 0)
-		for i := range board {
-			b = append(b, string(board[i]))
-		}
-		res = append(res, b)
-		return
-	}
-
-	n := len(board[row])
-	for col := 0; col < n; col++ {
-		if !isValid(board, row, col) {
-			continue
-		}
-
-		// 做选择
-		board[row][col] = 'Q'
-		// 下一行
-		backtrack(board, row+1)
-		// 撤销选择
-		board[row][col] = '.'
-	}
-}
-
-// 是否可以在 board[i][j] 放置皇后
-func isValid(board [][]byte, row, col int) bool {
-	n := len(board)
-	// 检查列是否有皇后
-	for i := 0; i <= row; i++ {
-		if board[i][col] == 'Q' {
-			return false
-		}
-	}
-	// 检查右上方是否有皇后
-	for i, j := row-1, col+1; i >= 0 && j < n; i-- {
-		if board[i][j] == 'Q' {
-			return false
-		}
-		j++
-	}
-	// 检查左上方是否有皇后
-	for i, j := row-1, col-1; i >= 0 && j >= 0; i-- {
-		if board[i][j] == 'Q' {
-			return false
-		}
-		j--
-	}
-	return true
 }
 
 // @lc code=end

@@ -58,47 +58,25 @@ package lc0034
 // @lcpr-template-end
 // @lc code=start
 func searchRange(nums []int, target int) []int {
-	return []int{binaryLeft(nums, target), binaryRight(nums, target)}
+	start := lowerBound(nums, target)
+	if start >= len(nums) || nums[start] != target {
+		return []int{-1, -1}
+	}
+	end := lowerBound(nums, target+1) - 1
+	return []int{start, end}
 }
 
-func binaryLeft(nums []int, target int) int {
-	left, right := 0, len(nums)-1
-	for left <= right {
-		mid := left + (right-left)/2
-		if nums[mid] == target {
-			// 找到值，开始找左边界
-			right = mid - 1
-		} else if nums[mid] < target {
-			left = mid + 1
-		} else if nums[mid] > target {
-			right = mid - 1
+func lowerBound(nums []int, target int) int {
+	l, r := 0, len(nums)-1
+	for l <= r {
+		mid := l + (r-l)/2
+		if nums[mid] >= target {
+			r = mid - 1
+		} else {
+			l = mid + 1
 		}
 	}
-	// 检查left越界情况
-	if left >= len(nums) || nums[left] != target {
-		return -1
-	}
-	return left
-}
-
-func binaryRight(nums []int, target int) int {
-	left, right := 0, len(nums)-1
-	for left <= right {
-		mid := left + (right-left)/2
-		if nums[mid] == target {
-			// 找到值，开始找右边界
-			left = mid + 1
-		} else if nums[mid] < target {
-			left = mid + 1
-		} else if nums[mid] > target {
-			right = mid - 1
-		}
-	}
-	// 检查right越界情况
-	if right < 0 || nums[right] != target {
-		return -1
-	}
-	return right
+	return l
 }
 
 // @lc code=end

@@ -62,44 +62,50 @@ package lc39
 // @lcpr-template-end
 // @lc code=start
 func combinationSum(candidates []int, target int) [][]int {
-	var res [][]int
-	var track []int
-	var trackSum int
-	var backtrack func(start int)
-	backtrack = func(start int) {
-		if trackSum > target {
-			return
+	// 回溯
+	// var res [][]int
+	// var track []int
+
+	// slices.Sort(candidates) // 排序，为了剪枝优化
+
+	// var dfs func(int, int)
+	// dfs = func(i int, left int) {
+	// 	if left == 0 {
+	// 		res = append(res, append([]int{}, track...))
+	// 		return
+	// 	}
+	// 	if i == len(candidates) || left < 0 || left < candidates[i] {
+	// 		return
+	// 	}
+
+	// 	// 不选
+	// 	dfs(i+1, left)
+	// 	// 选
+	// 	track = append(track, candidates[i])
+	// 	dfs(i, left-candidates[i])
+	// 	track = track[:len(track)-1]
+	// }
+
+	// dfs(0, target)
+	// return res
+
+	// 完全背包，dp[i]的含义从凑出容量为i的背包有几种装法变成具体装什么
+	dp := make([][][]int, target+1)
+	dp[0] = [][]int{{}} // 初始凑出容量0的组合是空
+
+	for _, num := range candidates { // 遍历每个物品
+		for i := num; i <= target; i++ { // 正序遍历所有容量
+			// dp[i] = dp[i] + (dp[i-num] 每个组合添加num)
+			for _, comb := range dp[i-num] { // 遍历所有凑出dp[i-num]的组合，添加num成为dp[i]的新组合
+				newComb := append([]int{}, comb...) // 复制原有组合
+				newComb = append(newComb, num)
+				dp[i] = append(dp[i], newComb) // 加入dp[i]
+			}
 		}
-		if trackSum == target {
-			tmp := append([]int{}, track...)
-			res = append(res, tmp)
-		}
-		for i := start; i < len(candidates); i++ {
-			trackSum += candidates[i]
-			track = append(track, candidates[i])
-			backtrack(i) // 元素可重复选，回溯下一个仍然是当前下标
-			track = track[:len(track)-1]
-			trackSum -= candidates[i]
-		}
+
 	}
 
-	backtrack(0)
-
-	return res
-
-	// 完全背包，dp[i]的含义从容量为i的背包有几种装法变成具体装什么
-	// dp := make([][][]int, target+1)
-	// dp[0] = [][]int{{}}
-	// for i := 0; i < len(candidates); i++ {
-	// 	for j := candidates[i]; j < len(dp); j++ {
-	// 		for _, group := range dp[j-candidates[i]] {
-	// 			newGroup := append([]int{}, group...)
-	// 			newGroup = append(newGroup, candidates[i])
-	// 			dp[j] = append(dp[j], newGroup)
-	// 		}
-	// 	}
-	// }
-	// return dp[target]
+	return dp[target]
 }
 
 // @lc code=end

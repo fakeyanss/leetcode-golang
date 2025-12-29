@@ -57,34 +57,29 @@ package lc17
 // @lcpr-template-end
 // @lc code=start
 func letterCombinations(digits string) []string {
-	numToletter := [10]string{"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"}
-	var ans []string
-	if len(digits) == 0 {
-		return ans
+	mapping := [10]string{"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"}
+
+	var res []string
+	n := len(digits)
+	if n == 0 {
+		return res
 	}
 
-	var used []byte
+	track := make([]byte, n)
 
-	var backtrack func(string, int)
-	// 回溯法
-	backtrack = func(digits string, start int) {
-		// 到达回溯树底部
-		if len(used) == len(digits) {
-			ans = append(ans, string(used))
+	var dfs func(int)
+	dfs = func(i int) {
+		if i == n {
+			res = append(res, string(track))
 			return
 		}
-		for i := start; i < len(digits); i++ {
-			digit := digits[i] - '0'
-			letters := numToletter[digit]
-			for j := 0; j < len(letters); j++ {
-				used = append(used, letters[j])
-				backtrack(digits, i+1)
-				used = used[:len(used)-1]
-			}
+		for _, c := range mapping[digits[i]-'0'] {
+			track[i] = byte(c) // 直接覆盖
+			dfs(i + 1)
 		}
 	}
-	backtrack(digits, 0)
-	return ans
+	dfs(0)
+	return res
 }
 
 // @lc code=end

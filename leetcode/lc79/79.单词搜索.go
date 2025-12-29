@@ -61,40 +61,62 @@
  */
 package lc79
 
+import "slices"
+
 // @lcpr-template-start
 
 // @lcpr-template-end
 // @lc code=start
 func exist(board [][]byte, word string) bool {
 	m, n := len(board), len(board[0])
-	var found bool
-	var backtrack func(i, j, p int)
-	backtrack = func(i, j, p int) {
-		if found { // 已有答案，跳过
-			return
+	directions := [][]int{{1, 0}, {-1, 0}, {0, 1}, {0, -1}}
+
+	// 优化，预处理字母计数
+	cnt := map[byte]int{}
+	for i := range m {
+		for j := range n {
+			cnt[board[i][j]]++
 		}
-		if p == len(word) { // 找到答案
-			found = true
-			return
-		}
-		if i < 0 || j < 0 || i >= m || j >= n {
-			return
-		}
-		if board[i][j] != word[p] {
-			return
-		}
-		board[i][j] = -board[i][j] // 标记走过的位置
-		backtrack(i+1, j, p+1)
-		backtrack(i-1, j, p+1)
-		backtrack(i, j+1, p+1)
-		backtrack(i, j-1, p+1)
-		board[i][j] = -board[i][j]
 	}
 
-	for i := 0; i < m; i++ {
-		for j := 0; j < n; j++ {
-			backtrack(i, j, 0)
-			if found {
+	// 剪枝1: word字母计数大于board中的字母计数
+	w := []byte(word)
+	wordCnt := map[byte]int{}
+	for _, c := range w {
+		wordCnt[c]++
+		if wordCnt[c] > cnt[c] {
+			return false
+		}
+	}
+
+	// 剪枝2: word可以从左往右搜索或者从右往左搜索，选字母计数小的一端开始
+	if wordCnt[w[0]] > wordCnt[w[len(w)-1]] {
+		slices.Reverse(w)
+	}
+
+	var dfs func(int, int, int) bool
+	dfs = func(i, j, k int) bool {
+		if w[k] != board[i][j] {
+			return false
+		}
+		if k == len(w)-1 {
+			return true
+		}
+
+		board[i][j] = '0' // 访问过标记
+		for _, dir := range directions {
+			x, y := i+dir[0], j+dir[1]
+			if x >= 0 && x < m && y >= 0 && y < n && dfs(x, y, k+1) {
+				return true
+			}
+		}
+		board[i][j] = w[k]
+		return false
+	}
+
+	for i := range m {
+		for j := range n {
+			if dfs(i, j, 0) {
 				return true
 			}
 		}

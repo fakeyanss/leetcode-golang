@@ -57,28 +57,15 @@ package lc74
 // @lc code=start
 func searchMatrix(matrix [][]int, target int) bool {
 	m, n := len(matrix), len(matrix[0])
-	upper, bottom := 0, m-1
-	for upper <= bottom {
-		mid := upper + (bottom-upper)/2
-		if matrix[mid][0] > target {
-			bottom = mid - 1
-			continue
-		} else if matrix[mid][n-1] < target {
-			upper = mid + 1
-			continue
+	i, j := 0, n-1 // 从右上角开始查找
+	for i < m && j >= 0 {
+		if matrix[i][j] == target {
+			return true
+		}
+		if matrix[i][j] < target {
+			i++ // 第i行所有元素都排除，下移
 		} else {
-			l, r := 0, n-1
-			for l <= r {
-				midCol := l + (r-l)/2
-				if target == matrix[mid][midCol] {
-					return true
-				} else if target > matrix[mid][midCol] {
-					l = midCol + 1
-				} else {
-					r = midCol - 1
-				}
-			}
-			return false
+			j-- // 第j列所有元素都排除，左移
 		}
 	}
 	return false

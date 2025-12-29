@@ -49,32 +49,24 @@ package lc22
 
 func generateParenthesis(n int) []string {
 	var res []string
-	var track []byte
-	if n == 0 {
-		return res
-	}
-	var backtrack func(int, int)
-	backtrack = func(left, right int) {
-		if left > right {
-			return
-		}
-		if left < 0 || right < 0 {
-			return
-		}
-		if left == 0 && right == 0 {
+	track := make([]byte, 2*n)
+	var dfs func(int, int)
+	dfs = func(left, right int) {
+		if right == n {
 			res = append(res, string(track))
 			return
 		}
 
-		track = append(track, '(')
-		backtrack(left-1, right)
-		track = track[:len(track)-1]
-
-		track = append(track, ')')
-		backtrack(left, right-1)
-		track = track[:len(track)-1]
+		if left < n {
+			track[left+right] = '(' // 直接覆盖
+			dfs(left+1, right)
+		}
+		if right < left {
+			track[left+right] = ')' // 直接覆盖
+			dfs(left, right+1)
+		}
 	}
-	backtrack(n, n)
+	dfs(0, 0)
 	return res
 }
 
