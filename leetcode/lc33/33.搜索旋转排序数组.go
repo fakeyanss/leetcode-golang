@@ -66,21 +66,21 @@ func search(nums []int, target int) int {
 	l, r := 0, len(nums)-1
 	for l <= r {
 		mid := l + (r-l)/2
-		if nums[mid] == target {
+		x := nums[mid]
+		if x == target {
 			return mid
 		}
-		// 至少一边是有序的
-		if nums[l] <= nums[mid] {
-			if nums[l] <= target && target < nums[mid] {
+		if nums[l] <= x { // 左侧有序
+			if nums[l] <= target && target < x {
 				r = mid - 1
 			} else {
-				l = mid + 1
+				l = mid + 1 // target不在左侧
 			}
-		} else {
-			if nums[mid] < target && target <= nums[r] {
+		} else { // 右侧有序
+			if x < target && target <= nums[r] {
 				l = mid + 1
 			} else {
-				r = mid - 1
+				r = mid - 1 // target不在右侧
 			}
 		}
 	}

@@ -75,23 +75,24 @@ package lc0020
 // @lcpr-template-end
 // @lc code=start
 func isValid(s string) bool {
-	if len(s)%2 != 0 {
+	if len(s)&1 == 1 {
 		return false
 	}
-	pairs := map[byte]byte{
+	pair := map[byte]byte{
 		')': '(',
 		']': '[',
 		'}': '{',
 	}
 	var stack []byte
-	for i := 0; i < len(s); i++ {
-		if _, ok := pairs[s[i]]; ok {
-			if len(stack) == 0 || pairs[s[i]] != stack[len(stack)-1] {
+	for i := range s {
+		c := s[i]
+		if left, ok := pair[c]; ok {
+			if len(stack) == 0 || stack[len(stack)-1] != left {
 				return false
 			}
 			stack = stack[:len(stack)-1]
 		} else {
-			stack = append(stack, s[i])
+			stack = append(stack, c)
 		}
 	}
 	return len(stack) == 0

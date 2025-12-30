@@ -47,63 +47,63 @@
  */
 package lc347
 
-import "container/heap"
-
 // @lc code=start
+// 堆排序
+// type Entry struct {
+// 	val  int
+// 	freq int
+// }
 
-// 二叉堆基本应用
-type Entry struct {
-	val  int
-	freq int
-}
+// type EntryHeap []Entry
 
-type EntryHeap []Entry
+// func (h EntryHeap) Len() int           { return len(h) }
+// func (h EntryHeap) Less(i, j int) bool { return h[i].freq < h[j].freq }
+// func (h EntryHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
+// func (h *EntryHeap) Push(x any)        { *h = append(*h, x.(Entry)) }
+// func (h *EntryHeap) Pop() any          { old := *h; x := old[len(old)-1]; *h = old[:len(old)-1]; return x }
 
-func (h EntryHeap) Len() int {
-	return len(h)
-}
+// func topKFrequent(nums []int, k int) []int {
+// 	cnt := make(map[int]int)
+// 	for _, val := range nums {
+// 		cnt[val]++
+// 	}
 
-func (h EntryHeap) Less(i, j int) bool {
-	return h[i].freq < h[j].freq
-}
+// 	h := &EntryHeap{}
+// 	heap.Init(h)
+// 	for key, val := range cnt {
+// 		heap.Push(h, Entry{val: key, freq: val})
+// 		if h.Len() > k {
+// 			heap.Pop(h) // 只需要前k大
+// 		}
+// 	}
 
-func (h EntryHeap) Swap(i, j int) {
-	h[i], h[j] = h[j], h[i]
-}
+// 	res := make([]int, k)
+// 	for i := range k {
+// 		res[k-i-1] = heap.Pop(h).(Entry).val
+// 	}
+// 	return res
+// }
 
-func (h *EntryHeap) Push(x interface{}) {
-	*h = append(*h, x.(Entry))
-}
-
-func (h *EntryHeap) Pop() interface{} {
-	old := *h
-	x := old[len(old)-1]
-	*h = old[:len(old)-1]
-	return x
-}
-
-// 题目数据保证前k个高频元素的频次不会相同
+// 桶排序
 func topKFrequent(nums []int, k int) []int {
-	occurrences := make(map[int]int)
+	cnt := make(map[int]int)
+	maxCnt := 0
 	for _, val := range nums {
-		occurrences[val]++
-	}
-	h := &EntryHeap{}
-	heap.Init(h)
-
-	for key, val := range occurrences {
-		heap.Push(h, Entry{val: key, freq: val})
-		if h.Len() > k {
-			// 只需要前k大
-			heap.Pop(h)
-		}
+		cnt[val]++
+		maxCnt = max(maxCnt, cnt[val])
 	}
 
-	res := make([]int, k)
-	for i := 0; i < k; i++ {
-		res[k-i-1] = heap.Pop(h).(Entry).val
+	bucket := make([][]int, maxCnt+1)
+	for x, c := range cnt {
+		bucket[c] = append(bucket[c], x)
 	}
-	return res
+
+	// 倒序遍历 buckets，把出现次数前 k 大的元素加入答案
+	res := make([]int, 0, k)
+	for i := maxCnt; i >= 0 && len(res) < k; i-- {
+		res = append(res, bucket[i]...)
+	}
+	return res[:k]
 }
 
 // @lc code=end

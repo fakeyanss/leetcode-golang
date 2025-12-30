@@ -54,16 +54,16 @@ package lc739
 func dailyTemperatures(temperatures []int) []int {
 	n := len(temperatures)
 	res := make([]int, n)
-	stack := make([]int, 0)
-	for i := n - 1; i >= 0; i-- {
-		for len(stack) > 0 && temperatures[stack[len(stack)-1]] <= temperatures[i] {
-			stack = stack[:len(stack)-1]
+	var stk []int // 存储温度的idx
+	for i := range n {
+		temp := temperatures[i]
+		// 弹出栈顶所以比当前小的天数，弹出的值都可以更新结果
+		for len(stk) > 0 && temp > temperatures[stk[len(stk)-1]] {
+			prevIdx := stk[len(stk)-1]
+			stk = stk[:len(stk)-1]
+			res[prevIdx] = i - prevIdx
 		}
-		res[i] = 0
-		if len(stack) > 0 {
-			res[i] = stack[len(stack)-1] - i
-		}
-		stack = append(stack, i)
+		stk = append(stk, i)
 	}
 	return res
 }

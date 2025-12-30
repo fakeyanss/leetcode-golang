@@ -72,17 +72,31 @@ package lc153
 // @lc code=start
 func findMin(nums []int) int {
 	// 二分，每次查找到mid，观察左右是否有序，至少有一侧是有序的
-	// 和最右侧比较即可
+	// l, r := 0, len(nums)-1
+	// res := nums[0]
+	// for l <= r {
+	// 	mid := l + (r-l)/2
+	// 	if nums[l] <= nums[mid] { // 左侧有序
+	// 		res = min(res, nums[l])
+	// 		l = mid + 1
+	// 	} else {
+	// 		res = min(res, nums[mid])
+	// 		r = mid - 1
+	// 	}
+	// }
+	// return res
+
+	// 每次和nums[r]比较更简单
 	l, r := 0, len(nums)-1
 	for l < r {
 		mid := l + (r-l)/2
 		if nums[mid] < nums[r] {
-			r = mid
+			r = mid // 此时不知道mid是不是最小，所以要保留mid，丢掉右半边
 		} else {
-			l = mid + 1
+			l = mid + 1 // 此时mid已经不是最小，所以丢掉mid和左半边
 		}
 	}
-	return nums[l]
+	return nums[l] // 最后l和r相等
 }
 
 // @lc code=end

@@ -63,39 +63,41 @@
 */
 package lc155
 
+import "math"
+
 // @lcpr-template-start
 
 // @lcpr-template-end
 // @lc code=start
 type MinStack struct {
-	data   []int
-	minVal []int
+	data []pair
+}
+
+type pair struct {
+	val    int
+	curMin int
 }
 
 func Constructor() MinStack {
-	return MinStack{}
+	return MinStack{
+		data: []pair{{val: 0, curMin: math.MaxInt}},
+	}
 }
 
 func (ms *MinStack) Push(val int) {
-	ms.data = append(ms.data, val)
-	if len(ms.minVal) == 0 || val < ms.minVal[len(ms.minVal)-1] {
-		ms.minVal = append(ms.minVal, val)
-	} else {
-		ms.minVal = append(ms.minVal, ms.minVal[len(ms.minVal)-1])
-	}
+	ms.data = append(ms.data, pair{val: val, curMin: min(val, ms.GetMin())})
 }
 
 func (ms *MinStack) Pop() {
 	ms.data = ms.data[:len(ms.data)-1]
-	ms.minVal = ms.minVal[:len(ms.minVal)-1]
 }
 
 func (ms *MinStack) Top() int {
-	return ms.data[len(ms.data)-1]
+	return ms.data[len(ms.data)-1].val
 }
 
 func (ms *MinStack) GetMin() int {
-	return ms.minVal[len(ms.minVal)-1]
+	return ms.data[len(ms.data)-1].curMin
 }
 
 /**
