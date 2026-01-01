@@ -24,25 +24,3 @@ func Test_longestPalindrome(t *testing.T) {
 		})
 	}
 }
-
-func Test_palindrome(t *testing.T) {
-	type args struct {
-		s string
-		l int
-		r int
-	}
-	tests := []struct {
-		name string
-		args args
-		want string
-	}{
-		{"case1", args{"abba", 1, 2}, "abba"},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := palindrome(tt.args.s, tt.args.l, tt.args.r); got != tt.want {
-				t.Errorf("palindrome() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}

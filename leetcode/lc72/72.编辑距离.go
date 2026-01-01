@@ -65,36 +65,30 @@ package lc72
 // @lcpr-template-end
 // @lc code=start
 func minDistance(word1 string, word2 string) int {
+	// dp[i][j] 表示 word1[:i]到word2[:j]的最小编辑距离
 	m, n := len(word1), len(word2)
-	memo := make([][]int, m+1)
-	for i := 0; i < m+1; i++ {
-		memo[i] = make([]int, n+1)
+	dp := make([][]int, m+1)
+	for i := range dp {
+		dp[i] = make([]int, n+1)
+		dp[i][0] = i
 	}
-	// dp[i,j]表示word1[0..i]到word2[0..j]的最小编辑距离
-	var dp func(i, j int) int
-	dp = func(i, j int) int {
-		if i < 0 {
-			return j + 1
-		}
-		if j < 0 {
-			return i + 1
-		}
-		if memo[i][j] != 0 {
-			return memo[i][j]
-		}
-		if word1[i] == word2[j] {
-			memo[i][j] = dp(i-1, j-1)
-		} else {
-			memo[i][j] = min(
-				dp(i, j-1),   // 插入
-				dp(i-1, j-1), // 替换
-				dp(i-1, j),   // 删除
-			) + 1
-		}
-		return memo[i][j]
+	for j := range dp[0] {
+		dp[0][j] = j
 	}
 
-	return dp(m-1, n-1)
+	for i := range m {
+		for j := range n {
+			if word1[i] == word2[j] {
+				dp[i+1][j+1] = dp[i][j]
+			} else {
+				// dp[i][j+1] <- dp[i+1][j+1] : 删除
+				// dp[i+1][j] <- dp[i+1][j+1] : 插入
+				// dp[i][j] <- dp[i+1][j+1] : 替换
+				dp[i+1][j+1] = 1 + min(dp[i][j+1], dp[i+1][j], dp[i][j])
+			}
+		}
+	}
+	return dp[m][n]
 }
 
 // @lc code=end

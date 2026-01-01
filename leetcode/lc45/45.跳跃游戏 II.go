@@ -60,43 +60,19 @@ package lc45
 // @lcpr-template-end
 // @lc code=start
 func jump(nums []int) int {
-	// return dp(nums)
-	// 贪心优化
-	end, farthest, steps := 0, 0, 0
-	// i 和 end 标记了可以选择的跳跃步数，
-	// farthest 标记了所有选择 [i..end] 中能够跳到的最远距离，
-	// steps 记录了跳跃次数
+	// 贪心，每次都尝试往最远的位置跳
+	// farthest表示能到达的最远位置
+	// end表示当前这一跳能到达的最远位置，到达终点前在[j,end]中一定需要加一跳继续向后
+	farthest, end := 0, 0
+	step := 0
 	for i := 0; i < len(nums)-1; i++ {
 		farthest = max(farthest, i+nums[i])
-		if end == i {
-			steps++
+		if i == end {
+			step++
 			end = farthest
 		}
 	}
-	return steps
-}
-
-func dp(nums []int) int {
-	memo := make([]int, len(nums))
-	for i := range memo {
-		memo[i] = len(nums) //预填充
-	}
-	// f(start) 表示从nums[start]到nums[len(nums)-1]的最小步数
-	var f func(start int) int
-	f = func(start int) int {
-		if start >= len(nums)-1 { // base case
-			return 0
-		}
-		if memo[start] != len(nums) {
-			return memo[start] // 剪枝
-		}
-		for i := 1; i <= nums[start]; i++ { // 遍历每个可能
-			subProblem := f(start + i)
-			memo[start] = min(memo[start], subProblem+1)
-		}
-		return memo[start]
-	}
-	return f(0)
+	return step
 }
 
 // @lc code=end

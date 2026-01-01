@@ -52,13 +52,13 @@ package lc55
 // @lc code=start
 func canJump(nums []int) bool {
 	farthest := 0
-	for i := 0; i < len(nums)-1; i++ {
-		farthest = max(i+nums[i], farthest)
-		if farthest <= i {
+	for i, jump := range nums {
+		if farthest < i {
 			return false
 		}
+		farthest = max(farthest, i+jump)
 	}
-	return farthest >= len(nums)-1
+	return true
 }
 
 // @lc code=end

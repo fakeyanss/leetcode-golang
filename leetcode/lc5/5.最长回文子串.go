@@ -49,66 +49,41 @@ package lc5
 // @lcpr-template-end
 // @lc code=start
 func longestPalindrome(s string) string {
-	// return longestPalindrome1(s)
-	return longestPalindrome2(s)
-}
-
-// 动态规划
-func longestPalindrome1(s string) string {
 	n := len(s)
-	if n <= 1 {
+	if n < 2 {
 		return s
 	}
-	// dp[i][j] 表示 s[i...j] 是否是回文子串
+
+	// dp[i][j] 表示s[i..j]是否是回文串
 	dp := make([][]bool, n)
-	for i := 0; i < n; i++ {
+	for i := range dp {
 		dp[i] = make([]bool, n)
-		dp[i][i] = true
+		dp[i][i] = true // 长度1的串都是回文串
 	}
+
 	begin, maxLen := 0, 1
-	for l := 2; l <= n; l++ {
-		for i := 0; i <= n-l; i++ {
-			j := i + l - 1
+	for l := 2; l <= n; l++ { // 枚举所有的子串长度
+		for i := 0; i <= n-l; i++ { // 枚举子串的左边界
+			j := i + l - 1 // 子串右边界
+			if j >= n {
+				break
+			}
+
 			if s[i] == s[j] {
 				if j-i < 3 {
 					dp[i][j] = true
 				} else {
+					// 因为l的遍历顺序是从小到大，计算长的子串时，短的子串一定都计算过
 					dp[i][j] = dp[i+1][j-1]
 				}
 			}
 
-			if dp[i][j] && l > maxLen {
+			if dp[i][j] && l > maxLen { // 更新最长回文串的位置
 				begin, maxLen = i, l
 			}
 		}
 	}
 	return s[begin : begin+maxLen]
-}
-
-// 中心扩散
-func longestPalindrome2(s string) string {
-	res := ""
-	for i := 0; i < len(s); i++ {
-		// 以 s[i] 为中心的最长回文子串
-		s1 := palindrome(s, i, i)
-		// 以 s[i] 和 s[i+1] 为中心的最长回文子串
-		s2 := palindrome(s, i, i+1)
-		if len(s1) > len(res) {
-			res = s1
-		}
-		if len(s2) > len(res) {
-			res = s2
-		}
-	}
-	return res
-}
-
-func palindrome(s string, l int, r int) string {
-	for l >= 0 && r < len(s) && s[l] == s[r] {
-		l--
-		r++
-	}
-	return s[l+1 : r]
 }
 
 // @lc code=end

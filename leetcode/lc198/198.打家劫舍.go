@@ -53,19 +53,13 @@ package lc198
 // @lcpr-template-end
 // @lc code=start
 func rob(nums []int) int {
-	// dp(n)=max(dp(n-1), dp(n-2)+nums[n])，dp(n)表示在nums[0:n]下的可偷窃最大金额
-	// dp(0)=0, dp(1)=nums[1]
+	// dp[i] = max(dp[i-1], dp[i-2]+nums[i]), dp[i]表示nums[:i+1]下能偷窃的最大金额
 	n := len(nums)
-	if n == 1 {
-		return nums[0]
+	dp := make([]int, n+2) // 向右偏移2位简化base case
+	for i, x := range nums {
+		dp[i+2] = max(dp[i+1], dp[i]+x)
 	}
-	dp := make([]int, n)
-	dp[0] = nums[0]
-	dp[1] = max(nums[0], nums[1])
-	for i := 2; i < n; i++ {
-		dp[i] = max(dp[i-1], dp[i-2]+nums[i])
-	}
-	return dp[n-1]
+	return dp[n+1]
 }
 
 // @lc code=end

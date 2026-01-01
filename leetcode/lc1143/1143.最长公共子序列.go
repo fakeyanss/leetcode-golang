@@ -64,65 +64,23 @@ package lc1143
 
 // @lc code=start
 func longestCommonSubsequence(text1 string, text2 string) int {
-	// m, n := len(text1), len(text2)
-	// memo := make([][]int, m)
-	// for i := range memo {
-	// 	memo[i] = make([]int, n)
-	// 	for j := range memo[i] {
-	// 		memo[i][j] = 999
-	// 	}
-	// }
-	// return dpMemo(memo, text1, 0, text2, 0)
-	return dpTable(text1, text2)
-}
-
-// dp(text1, i, text2, j) 表示 text1[i...m-1] 和 text2[j...n-1] 的 LCS 长度
-func dpMemo(memo [][]int, text1 string, i int, text2 string, j int) int {
-	// base case
-	if i == len(text1) || j == len(text2) {
-		return 0
-	}
-
-	if memo[i][j] != 999 {
-		return memo[i][j]
-	}
-
-	if text1[i] == text2[j] {
-		memo[i][j] = 1 + dpMemo(memo, text1, i+1, text2, j+1)
-	} else {
-		memo[i][j] = maxInt(
-			dpMemo(memo, text1, i+1, text2, j),
-			dpMemo(memo, text1, i, text2, j+1),
-		)
-	}
-	return memo[i][j]
-}
-
-func dpTable(text1, text2 string) int {
+	// dp[i][j] 表示text1[:i]和text2[:j]的LCS长度
 	m, n := len(text1), len(text2)
-	// 定义：s1[0..i-1] 和 s2[0..j-1] 的 lcs 长度为 dp[i][j]
 	dp := make([][]int, m+1)
 	for i := range dp {
 		dp[i] = make([]int, n+1)
 	}
-
-	for i := 1; i <= m; i++ {
-		for j := 1; j <= n; j++ {
-			if text1[i-1] == text2[j-1] {
-				dp[i][j] = 1 + dp[i-1][j-1]
+	for i := range m {
+		for j := range n {
+			if text1[i] == text2[j] {
+				dp[i+1][j+1] = 1 + dp[i][j]
 			} else {
-				dp[i][j] = maxInt(dp[i][j-1], dp[i-1][j])
+				dp[i+1][j+1] = max(dp[i][j+1], dp[i+1][j])
 			}
 		}
 	}
-	return dp[m][n]
-}
 
-func maxInt(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
+	return dp[m][n]
 }
 
 // @lc code=end

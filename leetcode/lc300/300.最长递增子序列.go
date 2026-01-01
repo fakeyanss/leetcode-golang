@@ -61,113 +61,26 @@
  */
 package lc300
 
+import "slices"
+
 // @lcpr-template-start
 
 // @lcpr-template-end
 // @lc code=start
 func lengthOfLIS(nums []int) int {
-	// return dp(nums)
-	// return binarySearch(nums)
-	return patienceSort(nums)
-}
-
-func dp(nums []int) int {
-	// dp[i]表示以第i个元素结尾的最长子序列长度
-	// dp[i] = max(dp[i], dp[j]+1), j < i, nums[j] < nums[i]
+	// dp[i]表示nums[0:i+1]的最大递增子序列长度
+	// dp[i]=max(dp[i], dp[j]+1), 满足 j<i && nums[j]<nums[i]
 	n := len(nums)
-	dp := make([]int, n+1)
-	for i := 0; i < n; i++ {
+	dp := make([]int, n)
+	for i := range n {
 		dp[i] = 1
 		for j := 0; j < i; j++ {
-			if nums[i] > nums[j] {
-				dp[i] = maxInt(dp[i], dp[j]+1)
+			if nums[j] < nums[i] {
+				dp[i] = max(dp[i], 1+dp[j])
 			}
 		}
 	}
-
-	// 选出最大的dp[i]
-	res := 0
-	for _, v := range dp {
-		res = maxInt(res, v)
-	}
-	return res
-}
-
-func maxInt(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
-func binarySearch(nums []int) int {
-	maxLen, n := 1, len(nums)
-	if n == 0 {
-		return 0
-	}
-	// tail[i] 表示长度为i的最长上升子序列的末尾元素的最小值
-	tail := make([]int, n+1)
-	tail[1] = nums[0]
-	// 设当前已求出的最长上升子序列的长度为 len（初始时为 11），从前往后遍历数组 nums，并始终维护单调递增。
-	// 在遍历到 nums[i] 时：
-	// 如果 nums[i]>d[len] ，则直接加入到 tail 数组末尾，并更新 len=len+1；
-	// 否则，在 tail 数组中二分查找，找到第一个比 nums[i] 小的数 tail[k] ，并更新 d[k+1]=nums[i]。
-	for i := 1; i < n; i++ {
-		if nums[i] > tail[maxLen] {
-			maxLen++
-			tail[maxLen] = nums[i]
-		} else {
-			l, r := 1, maxLen-1
-			pos := 0 // 找不到时，直接更新tail[1]
-			for l <= r {
-				mid := l + (r-l)/2
-				if tail[mid] < nums[i] {
-					pos = mid
-					l = mid + 1
-				} else {
-					r = mid - 1
-				}
-			}
-			tail[pos+1] = nums[i]
-		}
-	}
-	return maxLen
-}
-
-// https://labuladong.github.io/algo/3/26/76/
-// 扑克牌排序：只能把点数小的牌压到点数比它大的牌上；如果当前牌点数较大没有可以放置的堆，则新建一个堆，把这张牌放进去；如果当前牌有多个堆可供选择，则选择最左边的那一堆放置。
-// 最终堆的个数，就是LIS的长度
-func patienceSort(nums []int) int {
-	top := make([]int, len(nums))
-	// 牌堆数初始为0
-	piles := 0
-	for i := 0; i < len(nums); i++ {
-		// 要处理的牌
-		poker := nums[i]
-
-		// 二分搜索左侧边界
-		l, r := 0, piles
-		for l < r {
-			mid := l + (r-l)/2
-			if top[mid] > poker {
-				r = mid
-			} else if top[mid] < poker {
-				l = mid + 1
-			} else {
-				r = mid
-			}
-		}
-
-		// 没找到合适的牌堆，新建
-		if l == piles {
-			piles++
-		}
-		// 这张牌放到堆顶
-		top[l] = poker
-	}
-
-	// 牌堆数就是LIS长度
-	return piles
+	return slices.Max(dp)
 }
 
 // @lc code=end

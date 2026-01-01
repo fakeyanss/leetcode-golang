@@ -46,42 +46,28 @@ package lc416
 
 // @lc code=start
 func canPartition(nums []int) bool {
-	// dp[i][j] = x, 表示对于前 i 个物品，当前背包容量为 j 时，
-	// 若 x 为 true，则说明可以恰好将背包装满，
-	// 若 x 为 false，则说明不能恰好将背包装满
+	// 01背包问题
 	sum := 0
 	for _, v := range nums {
 		sum += v
 	}
-	if sum%2 != 0 {
+	if sum&1 == 1 {
 		return false
 	}
+	target := sum / 2
 
-	n := len(nums)
-	sum = sum / 2
-	dp := make([][]bool, n+1)
-	for i := range dp {
-		dp[i] = make([]bool, sum+1)
-	}
-
-	// base case
-	for i := 0; i <= n; i++ {
-		dp[i][0] = true
-	}
-
-	for i := 1; i <= n; i++ {
-		for j := 1; j <= sum; j++ {
-			if j-nums[i-1] < 0 {
-				// 背包容量不足
-				dp[i][j] = dp[i-1][j]
-			} else {
-				// 装入或不装入背包
-				dp[i][j] = dp[i-1][j] || dp[i-1][j-nums[i-1]]
-			}
+	// dp[j]表示是否可以从nums中选择物品，正好凑出容量j的背包
+	dp := make([]bool, target+1)
+	dp[0] = true
+	for _, v := range nums {
+		for j := target; j >= v; j-- {
+			dp[j] = dp[j] || dp[j-v]
+		}
+		if dp[target] {
+			return true
 		}
 	}
-
-	return dp[n][sum]
+	return false
 }
 
 // @lc code=end

@@ -54,27 +54,26 @@ import "math"
 // @lcpr-template-end
 // @lc code=start
 func minPathSum(grid [][]int) int {
+	// dp[i][j] 表示从(0,0)到(i,j)的最小路径和
 	m, n := len(grid), len(grid[0])
-	memo := make([][]int, m)
-	for i := range memo {
-		memo[i] = make([]int, n)
+	dp := make([][]int, m+1)
+	for i := range dp {
+		dp[i] = make([]int, n+1)
+		dp[i][0] = math.MaxInt
 	}
-	// dp(i,j)表示从(0,0)到(i,j)的最小路径和
-	var dp func(i, j int) int
-	dp = func(i, j int) int {
-		if i == 0 && j == 0 {
-			return grid[0][0]
-		}
-		if i < 0 || j < 0 {
-			return math.MaxInt
-		}
-		if memo[i][j] != 0 {
-			return memo[i][j]
-		}
-		memo[i][j] = min(dp(i-1, j), dp(i, j-1)) + grid[i][j]
-		return memo[i][j]
+	for j := range dp[0] {
+		dp[0][j] = math.MaxInt
 	}
-	return dp(m-1, n-1)
+	dp[1][1] = grid[0][0]
+	for i := range m {
+		for j := range n {
+			if i == 0 && j == 0 {
+				continue
+			}
+			dp[i+1][j+1] = grid[i][j] + min(dp[i+1][j], dp[i][j+1])
+		}
+	}
+	return dp[m][n]
 }
 
 // @lc code=end

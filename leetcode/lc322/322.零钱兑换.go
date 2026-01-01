@@ -54,72 +54,27 @@
  */
 package lc322
 
-import "sort"
-
 // @lc code=start
 func coinChange(coins []int, amount int) int {
-	if amount < 1 {
-		return 0
-	}
-	// dp 备忘录, 备忘录长度大于最大硬币个数
-	// memo := make([]int, amount+1)
-	// for i := 0; i <= amount; i++ {
-	// 	memo[i] = -2
-	// }
-
-	// var dp func(amount int) int
-	// dp = func(amount int) int {
-	// 	if amount == 0 {
-	// 		return 0
-	// 	}
-	// 	if amount < 0 {
-	// 		return -1
-	// 	}
-	// 	if memo[amount] != -2 {
-	// 		return memo[amount]
-	// 	}
-
-	// 	res := math.MaxInt
-	// 	for _, v := range coins {
-	// 		sub := dp(amount - v)
-	// 		if sub >= 0 && res > sub {
-	// 			res = sub + 1
-	// 		}
-	// 	}
-
-	// 	if res == math.MaxInt {
-	// 		memo[amount] = -1
-	// 	} else {
-	// 		memo[amount] = res
-	// 	}
-	// 	return memo[amount]
-	// }
-
-	// return dp(amount)
-
-	// dp table
-	// 定义：要凑出金额 n，至少要 dp[n] 个硬币
+	// dp[n] 表示要凑出金额n，最少需要的硬币个数
+	// dp[n] = min(dp[i], 1+dp[n-v])，v为硬币面值
 	dp := make([]int, amount+1)
+	for i := range dp {
+		dp[i] = amount + 1
+	}
 	dp[0] = 0
-	sort.Ints(coins)
-	// 计算所有取值
-	for i := 0; i <= amount; i++ {
-		if i != 0 {
-			dp[i] = amount + 1
-		}
+	for i := 1; i <= amount; i++ {
 		for _, v := range coins {
-			// 子问题无解，跳过
-			if i-v < 0 {
+			if v > i { // 硬币面值过大
 				continue
 			}
-			if dp[i] > dp[i-v] {
-				dp[i] = 1 + dp[i-v]
-			}
+			dp[i] = min(dp[i], 1+dp[i-v])
 		}
 	}
 	if dp[amount] == amount+1 {
 		return -1
 	}
+
 	return dp[amount]
 }
 

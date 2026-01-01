@@ -50,42 +50,51 @@ package lc295
 
 import (
     "container/heap"
-    "sort"
 )
 
 // @lc code=start
 type MedianFinder struct {
-    left  hp // 入堆元素取相反数，即最大堆
-    right hp // 最小堆
-    // 保证 left 的大小和 right 的大小最多相差1
-    // 保证 left 的所有元素都小于等于 right 的所有元素
+    minHeap hp
+    maxHeap hp
 }
+
+type hp []int
+
+func (h hp) Len() int           { return len(h) }
+func (h hp) Less(i, j int) bool { return h[i] < h[j] }
+func (h hp) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
+func (h *hp) Push(x any)        { *h = append(*h, x.(int)) }
+func (h *hp) Pop() any          { x := (*h)[len(*h)-1]; *h = (*h)[:len(*h)-1]; return x }
 
 func Constructor() MedianFinder {
     return MedianFinder{}
 }
 
 func (mf *MedianFinder) AddNum(num int) {
-    if mf.left.Len() == mf.right.Len() {
-        heap.Push(&mf.right, num)
-        heap.Push(&mf.left, -heap.Pop(&mf.right).(int))
+    // 保证minHeap和maxHeap的元素个数最多相差1，且minHeap的所有元素大于等于maxHeap的所有元素
+    if mf.minHeap.Len() == mf.maxHeap.Len() {
+        heap.Push(&mf.minHeap, num)
+        heap.Push(&mf.maxHeap, -(heap.Pop(&mf.minHeap).(int)))
     } else {
-        heap.Push(&mf.left, -num)
-        heap.Push(&mf.right, -heap.Pop(&mf.left).(int))
+        heap.Push(&mf.maxHeap, -num)
+        heap.Push(&mf.minHeap, -(heap.Pop(&mf.maxHeap).(int)))
     }
 }
 
 func (mf *MedianFinder) FindMedian() float64 {
-    if mf.left.Len() > mf.right.Len() {
-        return float64(-mf.left.IntSlice[0])
+    if mf.minHeap.Len() == mf.maxHeap.Len() {
+        return float64(mf.minHeap[0]-mf.maxHeap[0]) / 2.0
+    } else {
+        return float64(-mf.maxHeap[0])
     }
-    return float64(mf.right.IntSlice[0]-mf.left.IntSlice[0]) / 2.0
 }
 
-type hp struct{ sort.IntSlice }
-
-func (h *hp) Push(x any) { h.IntSlice = append(h.IntSlice, x.(int)) }
-func (h *hp) Pop() any   { x := h.IntSlice[h.Len()-1]; h.IntSlice = h.IntSlice[:h.Len()-1]; return x }
+/**
+ * Your MedianFinder object will be instantiated and called as such:
+ * obj := Constructor();
+ * obj.AddNum(num);
+ * param_2 := obj.FindMedian();
+ */
 
 /**
  * Your MedianFinder object will be instantiated and called as such:

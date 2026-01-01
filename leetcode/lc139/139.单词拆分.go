@@ -61,27 +61,28 @@ package lc139
 // @lcpr-template-end
 // @lc code=start
 func wordBreak(s string, wordDict []string) bool {
-	// 把字典存入 map，方便快速查找
-	words := make(map[string]bool, len(wordDict))
-	for _, w := range wordDict {
-		words[w] = true
+	// dp[i] 表示s[:i+1]是否可以被拆分
+	// dp[i] = word && dp[j], word为j到i之间的单词
+	n := len(s)
+	dp := make([]bool, n+1)
+	dp[0] = true
+
+	wordMap := make(map[string]bool, len(wordDict)) // 方便查找word
+	for _, v := range wordDict {
+		wordMap[v] = true
 	}
 
-	n := len(s)
-	dp := make([]bool, n+1) // dp[i] 表示前 i 个字符可以被拆分
-	dp[0] = true            // 空字符串可以被拆分
-
-	// 遍历字符串
 	for i := 1; i <= n; i++ {
-		for j := 0; j < i; j++ {
-			if dp[j] && words[s[j:i]] { // 如果前 j 个字符可以被拆分，且 s[j:i] 在字典中
+		// 遍历j正序倒序皆可，倒序更快
+		for j := i - 1; j >= 0; j-- { // j到i之间存在任一个单词满足拆分条件即可
+			if dp[j] && wordMap[s[j:i]] {
+				// 如果前 j 个字符可以被拆分，且 s[j:i] 在字典中
 				dp[i] = true
 				break
 			}
 		}
 	}
-
-	return dp[n] // 返回整个字符串是否可以被拆分
+	return dp[n]
 }
 
 // @lc code=end

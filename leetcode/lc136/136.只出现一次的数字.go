@@ -66,9 +66,9 @@ package lc136
 // @lcpr-template-end
 // @lc code=start
 func singleNumber(nums []int) int {
-	res := nums[0]
-	for i := 1; i < len(nums); i++ {
-		res = res ^ nums[i]
+	var res int
+	for _, x := range nums {
+		res ^= x
 	}
 	return res
 }
