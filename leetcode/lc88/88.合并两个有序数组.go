@@ -72,46 +72,24 @@ package lc88
 // @lcpr-template-end
 // @lc code=start
 func merge(nums1 []int, m int, nums2 []int, n int) {
-	var res []int
-	i, j := 0, 0
-	for i < m && j < n {
-		if nums1[i] < nums2[j] {
-			res = append(res, nums1[i])
-			i++
+	// 从右往左遍历
+	i, j := m-1, n-1
+	p := m + n - 1
+	for i >= 0 && j >= 0 {
+		if i >= 0 && nums1[i] > nums2[j] {
+			nums1[p] = nums1[i]
+			i--
 		} else {
-			res = append(res, nums2[j])
-			j++
+			nums1[p] = nums2[j]
+			j--
 		}
+		p--
 	}
-	for ; i < m; i++ {
-		res = append(res, nums1[i])
+	for j >= 0 {
+		nums1[p] = nums2[j]
+		p--
+		j--
 	}
-	for ; j < n; j++ {
-		res = append(res, nums2[j])
-	}
-	for p := 0; p < m+n; p++ {
-		nums1[p] = res[p]
-	}
-
-	// 双指针，正序遍历会覆盖元素，如果用额外变量存储临时元素会让逻辑非常复杂
-	// 直接逆序遍历
-	// i, j := m-1, n-1
-	// p := m + n - 1
-	// for i >= 0 && j >= 0 {
-	// 	if nums1[i] > nums2[j] {
-	// 		nums1[p] = nums1[i]
-	// 		i--
-	// 	} else {
-	// 		nums1[p] = nums2[j]
-	// 		j--
-	// 	}
-	// 	p--
-	// }
-	// for j >= 0 {
-	// 	nums1[p] = nums2[j]
-	// 	j--
-	// 	p--
-	// }
 }
 
 // @lc code=end

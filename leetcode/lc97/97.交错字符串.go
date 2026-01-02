@@ -70,60 +70,27 @@ package lc97
 // @lcpr-template-end
 // @lc code=start
 func isInterleave(s1 string, s2 string, s3 string) bool {
-	// if len(s1)+len(s3) != len(s3) {
-	// 	return false
-	// }
-	// i, j, k := 0, 0, 0
-	// for k < len(s3) {
-	// 	if s1[i] == s3[k] {
-	// 		i++
-	// 		k++
-	// 	} else if s2[j] == s3[k] {
-	// 		j++
-	// 		k++
-	// 	} else {
-	// 		return false
-	// 	}
-	// }
-	// return true
-	// 不能双指针遍历，至少要有回退的逻辑
-	m, n := len(s1), len(s2)
-	if m+n != len(s3) {
+	// dp[i][j] 表示s3[:i+j]能否被s1[:i]和s2[:j]交错组成
+	// dp[i][j] = (dp[i][j-1] && s2[j-1]==s3[i+j-1]) || (dp[i-1][j] && s1[i-1]==s3[i+j-1])
+	m, n, t := len(s1), len(s2), len(s3)
+	if m+n != t {
 		return false
 	}
-
-	memo := make([][]int, m+1)
-	for i := range memo {
-		memo[i] = make([]int, n+1)
-		for j := range memo[i] {
-			memo[i][j] = -1
+	dp := make([][]bool, m+1)
+	for i := range dp {
+		dp[i] = make([]bool, n+1)
+	}
+	dp[0][0] = true
+	for j := 1; j <= n; j++ {
+		dp[0][j] = dp[0][j-1] && s2[j-1] == s3[j-1]
+	}
+	for i := 1; i <= m; i++ {
+		dp[i][0] = dp[i-1][0] && s1[i-1] == s3[i-1]
+		for j := 1; j <= n; j++ {
+			dp[i][j] = (dp[i-1][j] && s1[i-1] == s3[i+j-1]) || (dp[i][j-1] && s2[j-1] == s3[i+j-1])
 		}
 	}
-
-	var dp func(i, j int) bool // dp(i,j)表示s1[0..i-1]和s2[0..j-1]判断的结果
-	dp = func(i, j int) bool {
-		if i == 0 && j == 0 {
-			return true
-		}
-		if memo[i][j] != -1 {
-			return memo[i][j] == 1
-		}
-		valid := false
-		if i > 0 && s1[i-1] == s3[i+j-1] {
-			valid = dp(i-1, j)
-		}
-		if j > 0 && s2[j-1] == s3[i+j-1] {
-			valid = valid || dp(i, j-1)
-		}
-		if valid {
-			memo[i][j] = 1
-		} else {
-			memo[i][j] = 0
-		}
-		return valid
-	}
-
-	return dp(m, n)
+	return dp[m][n]
 }
 
 // @lc code=end

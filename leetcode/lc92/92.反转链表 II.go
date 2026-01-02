@@ -66,23 +66,34 @@ type ListNode struct {
  */
 func reverseBetween(head *ListNode, left int, right int) *ListNode {
 	dummy := &ListNode{Next: head}
-	p0 := dummy
-	for i := 0; i < left-1; i++ {
-		p0 = p0.Next
+	// 1. 将p移动到left的前一个节点
+	p := dummy
+	for range left - 1 {
+		p = p.Next
 	}
+	// 1-2-3-4-5
+	// |
+	// p
+	// 找到p的位置
 
+	// 2. 反转[left,right]的节点
+	cur := p.Next
 	var pre *ListNode
-	cur := p0.Next
-	for i := 0; i < right-left+1; i++ {
+	for range right - left + 1 {
 		nxt := cur.Next
 		cur.Next = pre
 		pre = cur
 		cur = nxt
 	}
-	// 现在的p0.Next指向left位置的节点，所以要把p0.Next.Next指向right+1位置的节点
-	p0.Next.Next = cur
-	// 再把p0.Next指向right节点
-	p0.Next = pre
+	// 1-2 4-3-2 5
+	// |   |     |
+	// p  pre    cur
+	// 反转后节点的指向有变化
+
+	// 3. 调整节点指向
+	p.Next.Next = cur
+	p.Next = pre
+
 	return dummy.Next
 }
 

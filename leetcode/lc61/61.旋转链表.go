@@ -59,35 +59,30 @@ type ListNode struct {
  * }
  */
 func rotateRight(head *ListNode, k int) *ListNode {
-	if head == nil || head.Next == nil {
+	if head == nil || head.Next == nil || k == 0 {
 		return head
 	}
-	tmp := head
-	n := 0
-	for tmp != nil {
+
+	iter := head
+	n := 1
+	for ; iter.Next != nil; iter = iter.Next {
 		n++
-		tmp = tmp.Next
 	}
-	k = k % n // 获取长度，k取余
-	if k == 0 {
+	// 链表长度n，iter移动到末尾
+
+	move := n - k%n
+	if move == n {
 		return head
 	}
 
-	newHead := head
-	for i := 0; i < n-1-k; i++ {
-		newHead = newHead.Next
+	iter.Next = head // 连接成环
+	for ; move > 0; move-- {
+		iter = iter.Next
 	}
-	tmp = newHead
-	newHead = newHead.Next
-	tmp.Next = nil
+	res := iter.Next
+	iter.Next = nil // 断开环
 
-	tmp = newHead
-	for tmp.Next != nil {
-		tmp = tmp.Next
-	}
-	tmp.Next = head
-
-	return newHead
+	return res
 }
 
 // @lc code=end

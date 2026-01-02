@@ -61,8 +61,6 @@
  */
 package lc300
 
-import "slices"
-
 // @lcpr-template-start
 
 // @lcpr-template-end
@@ -72,15 +70,17 @@ func lengthOfLIS(nums []int) int {
 	// dp[i]=max(dp[i], dp[j]+1), 满足 j<i && nums[j]<nums[i]
 	n := len(nums)
 	dp := make([]int, n)
+	var res int
 	for i := range n {
 		dp[i] = 1
-		for j := 0; j < i; j++ {
+		for j := range i {
 			if nums[j] < nums[i] {
 				dp[i] = max(dp[i], 1+dp[j])
 			}
 		}
+		res = max(res, dp[i])
 	}
-	return slices.Max(dp)
+	return res
 }
 
 // @lc code=end

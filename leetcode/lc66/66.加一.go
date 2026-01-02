@@ -57,37 +57,24 @@
  */
 package lc66
 
+import "slices"
+
 // @lcpr-template-start
 
 // @lcpr-template-end
 // @lc code=start
 func plusOne(digits []int) []int {
-	if digits[len(digits)-1] < 9 {
-		digits[len(digits)-1]++
-		return digits
-	}
-	res := make([]int, len(digits)+1)
-	res[len(res)-1] = 0
-	flag := 1
-	for i := len(digits) - 2; i >= 0; i-- {
-		if flag == 1 {
-			if digits[i] == 9 {
-				res[i+1] = 0
-				flag = 1
-			} else {
-				res[i+1] = digits[i] + 1
-				flag = 0
-			}
-		} else {
-			res[i+1] = digits[i]
+	for i, d := range slices.Backward(digits) {
+		if d < 9 {
+			digits[i]++ // 找到右侧第一个小于9的数，进位
+			return digits
 		}
+		digits[i] = 0 // 将进位数字右边的9都变成0
 	}
-	if flag == 1 && res[1] == 0 {
-		res[0] = 1
-	} else {
-		res = res[1:]
-	}
-	return res
+	// 如果digits全是9，加1后多了1位，首位是0后面全是0
+	digits = append(digits, 0)
+	digits[0] = 1
+	return digits
 }
 
 // @lc code=end

@@ -65,9 +65,6 @@ func longestPalindrome(s string) string {
 	for l := 2; l <= n; l++ { // 枚举所有的子串长度
 		for i := 0; i <= n-l; i++ { // 枚举子串的左边界
 			j := i + l - 1 // 子串右边界
-			if j >= n {
-				break
-			}
 
 			if s[i] == s[j] {
 				if j-i < 3 {

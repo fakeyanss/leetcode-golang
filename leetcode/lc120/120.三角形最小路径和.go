@@ -66,37 +66,37 @@ package lc120
 // @lcpr-template-end
 // @lc code=start
 func minimumTotal(triangle [][]int) int {
-	// n := len(triangle)
-	// var dp func(i, j int) int // dp(i,j)表示triangle[i][j]出发到最后一行的的最小路径和
-	// memo := make([][]int, n)
-	// for i := range memo {
-	// 	memo[i] = make([]int, i+1)
-	// 	for j := range memo[i] {
-	// 		memo[i][j] = 10001
+	// // dp[i][j] 从(0,0)出发到(i,j)的最小路径和
+	// // 答案为求到达最后一行所有位置的dp[m][j]的最小值
+	// m := len(triangle)
+	// dp := make([][]int, m)
+	// for i := range dp {
+	// 	dp[i] = make([]int, i+1)
+	// }
+	// dp[0][0] = triangle[0][0]
+	// for i := 1; i < m; i++ {
+	// 	dp[i][0] = dp[i-1][0] + triangle[i][0]
+	// 	dp[i][i] = dp[i-1][i-1] + triangle[i][i]
+	// 	for j := 1; j < i; j++ {
+	// 		dp[i][j] = min(dp[i-1][j], dp[i-1][j-1]) + triangle[i][j]
 	// 	}
 	// }
-	// dp = func(i, j int) int {
-	// 	if i == n-1 {
-	// 		return triangle[i][j]
-	// 	}
-	// 	p := &memo[i][j]
-	// 	if *p != 10001 {
-	// 		return *p
-	// 	}
-	// 	*p = min(dp(i+1, j), dp(i+1, j+1)) + triangle[i][j]
-	// 	return *p
+	// res := math.MaxInt
+	// for j := range dp[m-1] {
+	// 	res = min(res, dp[m-1][j])
 	// }
-	// return dp(0, 0)
+	// return res
 
-	n := len(triangle)
-	dp := make([][]int, n)
+	// dp[i][j]表示从(i,j)到最后一行的最小路径和
+	m := len(triangle)
+	dp := make([][]int, m)
 	for i := range dp {
 		dp[i] = make([]int, i+1)
 	}
-	dp[n-1] = triangle[n-1]
-	for i := n - 2; i >= 0; i-- {
-		for j, x := range triangle[i] {
-			dp[i][j] = min(dp[i+1][j], dp[i+1][j+1]) + x
+	dp[m-1] = triangle[m-1]
+	for i := m - 2; i >= 0; i-- {
+		for j := 0; j <= i; j++ {
+			dp[i][j] = min(dp[i+1][j], dp[i+1][j+1]) + triangle[i][j]
 		}
 	}
 	return dp[0][0]

@@ -61,96 +61,71 @@
  */
 package lc887
 
-import (
-	"math"
-	"strconv"
-)
-
 // @lc code=start
 func superEggDrop(k int, n int) int {
-	// return solution1(k, n)
-	return solution2(k, n)
-}
+	// // dp[k][n] 表示k个鸡蛋n层楼，确定临界楼层的最坏情况的最小扔鸡蛋次数
+	// // dp[k][n] = min(1 + max(dp[k][n-x], dp[k-1][x-1])), x是扔鸡蛋的楼层, 1<=x<=n
+	// // 需要枚举所有可能的扔鸡蛋楼层，枚举加速可以用二分
+	// dp := make([][]int, k+1)
+	// for i := range dp {
+	// 	dp[i] = make([]int, n+1)
+	// 	dp[i][1] = 1
+	// }
+	// for j := range dp[1] {
+	// 	dp[1][j] = j // 1个鸡蛋，n层楼得扔n次
+	// }
+	// for i := 2; i <= k; i++ {
+	// 	for j := 2; j <= n; j++ {
+	// 		dp[i][j] = j // 初始化最坏情况j层楼需要j次
+	// 		// // 枚举所有楼层
+	// 		// for x := 1; x <= j; x++ {
+	// 		// 	broken := dp[i-1][x-1]
+	// 		// 	notBroken := dp[i][j-x]
+	// 		// 	dp[i][j] = min(dp[i][j], 1+max(broken, notBroken))
+	// 		// }
+	// 		// 二分加速
+	// 		lo, hi := 1, j
+	// 		for lo <= hi {
+	// 			mid := lo + (hi-lo)/2
+	// 			broken := dp[i-1][mid-1]
+	// 			notBroken := dp[i][j-mid]
+	// 			if broken < notBroken {
+	// 				lo = mid + 1
+	// 				dp[i][j] = min(dp[i][j], 1+notBroken)
+	// 			} else {
+	// 				hi = mid - 1
+	// 				dp[i][j] = min(dp[i][j], 1+broken)
+	// 			}
+	// 		}
+	// 	}
+	// }
+	// return dp[k][n]
 
-// dp(k, n) = min(max(dp(k-1, i-1), dp(k, n-i)), ...) + 1, i<=i<=n
-// dp(k, n) 表示当前k个鸡蛋，有n层楼时，确定楼层f的最小操作次数
-func solution1(k, n int) int {
-	memo := make(map[string]int)
-	var dp func(int, int) int
-	dp = func(k, n int) int {
-		// base case
-		if k == 1 {
-			return n
-		}
-		if n == 0 {
-			return 0
-		}
-
-		key := strconv.Itoa(k) + "," + strconv.Itoa(n)
-		if val, ok := memo[key]; ok {
-			return val
-		}
-
-		res := math.MaxInt
-		// // 穷举所有的可能性，在每一层楼都尝试扔鸡蛋一次
-		// for i := 1; i <= n; i++ {
-		// 	res = minInt(res,
-		// 		1+maxInt(
-		// 			dp(k-1, i-1), // 鸡蛋在i层碎了, 说明目标楼层 0<f<=i-1
-		// 			dp(k, n-i),   // 鸡蛋在i层没碎, 说明目标楼层 i<=f<n-1, 且鸡蛋可以继续使用
-		// 		))
-		// }
-
-		// 二分法代替穷举
-		lo, hi := 1, n
-		for lo <= hi {
-			mid := lo + (hi-lo)/2
-			broken := dp(k-1, mid-1)  // 碎了
-			notBroken := dp(k, n-mid) // 没碎
-			if broken > notBroken {
-				hi = mid - 1
-				res = minInt(res, broken+1)
-			} else {
-				lo = mid + 1
-				res = minInt(res, notBroken+1)
-			}
-		}
-
-		memo[key] = res
-		return res
-	}
-	return dp(k, n)
-}
-
-func minInt(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
-
-func maxInt(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
-// dp[k][m] = n 表示，当前有 k 个鸡蛋，可以尝试扔 m 次鸡蛋，这个条件下最坏情况下最多能确切测试一栋 n 层的楼
-func solution2(k, n int) int {
-	dp := make([][]int, k+1)
+	// dp[m][k]=n，表示k个鸡蛋扔m次，可以确定的最大的楼层数为n。
+	// 转换问题为1<=m<=n，已知k，n，求m.
+	// 也就是在递推计算过程中，当dp>=n时，就可以得到扔鸡蛋的次数为m。
+	// 解释：扔出1枚鸡蛋，如果碎了，那么下面的楼层个数为dp[m-1][k-1]；
+	// 如果没碎，那么上面的楼层个数位dp[m-1][k]，
+	// 所以dp[k][m] = 1 + dp[k-1][m-1] + dp[k][m-1]
+	dp := make([][]int, n+1)
 	for i := range dp {
-		dp[i] = make([]int, n+1)
+		dp[i] = make([]int, k+1)
+		dp[i][1] = i
+	}
+	for j := range dp[1] {
+		dp[1][j] = 1
 	}
 
-	m := 0
-	for dp[k][m] < n {
-		m++
-		for i := 1; i <= k; i++ {
-			dp[i][m] = dp[i][m-1] + dp[i-1][m-1] + 1
+	var m int
+	for m = 2; m <= n; m++ { // 遍历所有的扔鸡蛋次数
+		for j := 2; j <= k; j++ {
+			dp[m][j] = 1 + dp[m-1][j] + dp[m-1][j-1]
+		}
+		if dp[m][k] >= n {
+			return m
 		}
 	}
-	return m
+	return n // 包含边界n=1 or k=1的情况
 }
 
 // @lc code=end

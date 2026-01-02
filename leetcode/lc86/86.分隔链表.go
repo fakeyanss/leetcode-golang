@@ -61,25 +61,20 @@ type ListNode struct {
  * }
  */
 func partition(head *ListNode, x int) *ListNode {
-	l1, l2 := &ListNode{}, &ListNode{}
-	dummy := l1
-	tmp := l2
-	cur := head
-	for cur != nil {
-		if cur.Val < x {
-			l1.Next = cur
-			l1 = l1.Next
+	d1, d2 := &ListNode{}, &ListNode{}
+	p1, p2 := d1, d2
+	for ; head != nil; head = head.Next {
+		if head.Val < x {
+			p1.Next = head
+			p1 = p1.Next
 		} else {
-			l2.Next = cur
-			l2 = l2.Next
+			p2.Next = head
+			p2 = p2.Next
 		}
-		// next := cur.Next
-		// cur.Next = nil
-		// cur = next
-		cur, cur.Next = cur.Next, nil
 	}
-	l1.Next = tmp.Next
-	return dummy.Next
+	p2.Next = nil
+	p1.Next = d2.Next
+	return d1.Next
 }
 
 // @lc code=end
