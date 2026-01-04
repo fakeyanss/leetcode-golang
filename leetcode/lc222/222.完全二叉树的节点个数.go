@@ -76,13 +76,11 @@ func countNodes(root *TreeNode) int {
 	l, r := root, root
 	hl, hr := 0, 0
 	// 计算左侧最大高度
-	for l != nil {
-		l = l.Left
+	for ; l != nil; l = l.Left {
 		hl++
 	}
 	// 计算右侧最大高度
-	for r != nil {
-		r = r.Right
+	for ; r != nil; r = r.Right {
 		hr++
 	}
 	// 如果左右高度一致，说明是满二叉树

@@ -50,102 +50,42 @@ import "math/rand"
 
 // @lc code=start
 func sortArray(nums []int) []int {
-	return quickSort(nums)
+	if len(nums) <= 1 {
+		return nums
+	}
+	i := partition(nums)
+	sortArray(nums[:i])
+	sortArray(nums[i+1:])
+	return nums
 }
 
-func mergeSort(nums []int) []int {
+func partition(nums []int) int {
+	// 1. 随机基准pivot
 	n := len(nums)
-	temp := make([]int, n)
+	i := rand.Intn(n)
+	pivot := nums[i]
+	nums[i], nums[0] = nums[0], nums[i]
 
-	var merge func([]int, int, int, int)
-	merge = func(nums []int, lo, mid, hi int) {
-		for i := lo; i <= hi; i++ {
-			temp[i] = nums[i]
+	// 2. 双指针遍历，小的放左边，大的放右边
+	i, j := 1, n-1
+	for {
+		for i <= j && nums[i] < pivot { // 找到比pivot大的nums[i]
+			i++
 		}
-		i, j := lo, mid+1
-		for p := lo; p <= hi; p++ {
-			if i == mid+1 {
-				// 左半边数组已全部被合并
-				nums[p] = temp[j]
-				j++
-			} else if j == hi+1 {
-				// 右半边数组已全部被合并
-				nums[p] = temp[i]
-				i++
-			} else if temp[i] > temp[j] {
-				nums[p] = temp[j]
-				j++
-			} else {
-				nums[p] = temp[i]
-				i++
-			}
+		for i <= j && nums[j] > pivot { // 找到比pivot小的nums[j]
+			j--
 		}
+		if i >= j { // 如果i，j相遇则已经交换完
+			break
+		}
+		nums[i], nums[j] = nums[j], nums[i] // 交换
+		i++
+		j--
 	}
-
-	var sort func([]int, int, int)
-	sort = func(nums []int, lo, hi int) {
-		if lo == hi {
-			// 单个元素不用排序
-			return
-		}
-		mid := lo + (hi-lo)/2
-		sort(nums, lo, mid)
-		sort(nums, mid+1, hi)
-		merge(nums, lo, mid, hi)
-	}
-
-	sort(nums, 0, n-1)
-	return nums
-}
-
-func quickSort(nums []int) []int {
-	var shuffle = func(nums []int) {
-		n := len(nums)
-		for i := 0; i < n; i++ {
-			r := rand.Intn(n)
-			nums[i], nums[r] = nums[r], nums[i]
-		}
-	}
-	// 为了避免出现耗时的极端情况，先随机打乱
-	shuffle(nums)
-
-	var partition = func(nums []int, lo, hi int) int {
-		pivot := nums[lo]
-		// i, j 定义为开区间，同时定义：[lo, i) <= pivot；(j, hi] > pivot
-		i, j := lo+1, hi
-		for i <= j {
-			for i < hi && nums[i] <= pivot {
-				// 结束时恰好 nums[i] > pivot
-				i++
-			}
-			for j > lo && nums[j] > pivot {
-				// 结束时恰好 nums[j] <= pivot
-				j--
-			}
-			// 此时 [lo, i) <= pivot && (j, hi] > pivot
-
-			if i >= j {
-				break
-			}
-			nums[i], nums[j] = nums[j], nums[i]
-		}
-		// 将 pivot 放到合适的位置，即 pivot 左边元素较小，右边元素较大
-		nums[lo], nums[j] = nums[j], nums[lo]
-		return j
-	}
-
-	var sort func([]int, int, int)
-	sort = func(nums []int, lo, hi int) {
-		if lo >= hi {
-			return
-		}
-
-		p := partition(nums, lo, hi)
-		sort(nums, lo, p-1)
-		sort(nums, p+1, hi)
-	}
-	sort(nums, 0, len(nums)-1)
-	return nums
+	// 临界情况j可能为0，i可能为n
+	// 此时j的位置是小于等于pivot的元素下标
+	nums[0], nums[j] = nums[j], nums[0]
+	return j
 }
 
 // @lc code=end

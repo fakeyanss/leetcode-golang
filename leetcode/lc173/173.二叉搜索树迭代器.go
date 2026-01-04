@@ -96,31 +96,27 @@ type TreeNode struct {
  * }
  */
 type BSTIterator struct {
-	stack []*TreeNode
+	stk []*TreeNode
+	cur *TreeNode
 }
 
 func Constructor(root *TreeNode) BSTIterator {
-	b := BSTIterator{}
-	for root != nil {
-		b.stack = append(b.stack, root)
-		root = root.Left
-	}
-	return b
+	return BSTIterator{cur: root}
 }
 
-func (b *BSTIterator) Next() int {
-	cur := b.stack[len(b.stack)-1]
-	b.stack = b.stack[:len(b.stack)-1]
-	node := cur.Right
-	for node != nil {
-		b.stack = append(b.stack, node)
-		node = node.Left
+func (bst *BSTIterator) Next() int {
+	for node := bst.cur; node != nil; node = node.Left {
+		bst.stk = append(bst.stk, node)
 	}
-	return cur.Val
+	bst.cur = bst.stk[len(bst.stk)-1]
+	bst.stk = bst.stk[:len(bst.stk)-1]
+	val := bst.cur.Val
+	bst.cur = bst.cur.Right
+	return val
 }
 
-func (b *BSTIterator) HasNext() bool {
-	return len(b.stack) > 0
+func (bst *BSTIterator) HasNext() bool {
+	return bst.cur != nil || len(bst.stk) > 0
 }
 
 /**

@@ -95,21 +95,20 @@ func connect(root *Node) *Node {
 	if root == nil {
 		return nil
 	}
-	queue := []*Node{root}
-	for len(queue) > 0 {
-		sz := len(queue)
-		for i := 0; i < sz; i++ {
-			cur := queue[0]
-			queue = queue[1:]
+	q := []*Node{root}
+	for len(q) > 0 {
+		sz := len(q)
+		for i := range sz {
+			cur := q[0]
+			q = q[1:]
 			if i+1 < sz {
-				cur.Next = queue[0] // 当前队头是下一个元素
+				cur.Next = q[0]
 			}
-
 			if cur.Left != nil {
-				queue = append(queue, cur.Left)
+				q = append(q, cur.Left)
 			}
 			if cur.Right != nil {
-				queue = append(queue, cur.Right)
+				q = append(q, cur.Right)
 			}
 		}
 	}

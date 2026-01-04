@@ -61,24 +61,22 @@ func rob(nums []int) int {
 	if n == 1 {
 		return nums[0]
 	}
-	return maxInt(robRange(nums, 0, n-2), robRange(nums, 1, n-1))
-}
 
-func robRange(nums []int, start, end int) int {
-	n := len(nums)
-	// dp[i]=x 表示 抢劫nums[i..end]的房子，获取的最大金额为x
-	dp := make([]int, n+2)
-	for i := end; i >= start; i-- {
-		dp[i] = maxInt(dp[i+1], nums[i]+dp[i+2])
+	// 与leetcode 198相似
+	// 取nums[:n-1]和nums[1:]两次dp计算的较大值，表示
+	// 不偷nums[n-1]，即nums[0]到nums[n-2]的非环形房屋的状态
+	// 不偷nums[0]，即nums[1]到nums[n-1]的非环形房屋状态
+	f1 := make([]int, n+1)
+	for i, v := range nums[:n-1] {
+		f1[i+2] = max(f1[i+1], v+f1[i])
 	}
-	return dp[start]
-}
 
-func maxInt(a, b int) int {
-	if a > b {
-		return a
+	f2 := make([]int, n+1)
+	for i, v := range nums[1:] {
+		f2[i+2] = max(f2[i+1], v+f2[i])
 	}
-	return b
+
+	return max(f1[n], f2[n])
 }
 
 // @lc code=end

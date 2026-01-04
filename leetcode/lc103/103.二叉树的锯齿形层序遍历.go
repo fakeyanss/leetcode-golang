@@ -70,30 +70,30 @@ func zigzagLevelOrder(root *TreeNode) [][]int {
 		return [][]int{}
 	}
 	var res [][]int
-	queue := []*TreeNode{root}
+	q := []*TreeNode{root}
 	odd := true
 
-	for len(queue) > 0 {
-		var level []int
-		levelSize := len(queue)
-		for i := 0; i < levelSize; i++ {
-			node := queue[0]
-			queue = queue[1:]
+	for len(q) > 0 {
+		sz := len(q)
+		curLevelNodes := make([]int, sz)
+		for i := range sz {
+			node := q[0]
+			q = q[1:]
 			if odd {
-				level = append(level, node.Val)
+				curLevelNodes[i] = node.Val
 			} else {
-				level = append([]int{node.Val}, level...)
+				curLevelNodes[sz-1-i] = node.Val
 			}
 
 			if node.Left != nil {
-				queue = append(queue, node.Left)
+				q = append(q, node.Left)
 			}
 			if node.Right != nil {
-				queue = append(queue, node.Right)
+				q = append(q, node.Right)
 			}
 		}
 		odd = !odd
-		res = append(res, level)
+		res = append(res, curLevelNodes)
 	}
 	return res
 }

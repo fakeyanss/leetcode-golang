@@ -86,22 +86,19 @@ func buildTree(preorder []int, inorder []int) *TreeNode {
 	for i, v := range inorder {
 		valToIndex[v] = i
 	}
-	var dfs func([]int, []int, int) *TreeNode
-	dfs = func(preorder []int, inorder []int, inStart int) *TreeNode {
-		n := len(preorder)
-		if n == 0 {
+	var dfs func(prestart, preend, instart, inend int) *TreeNode
+	dfs = func(prestart, preend, instart, inend int) *TreeNode {
+		if prestart == preend {
 			return nil
 		}
-		leftSize := valToIndex[preorder[0]] - inStart // 每次递归后需要减去偏移
-		left := dfs(preorder[1:1+leftSize], inorder[:leftSize], inStart)
-		right := dfs(preorder[1+leftSize:], inorder[leftSize+1:], inStart+leftSize+1)
-		return &TreeNode{
-			Val:   preorder[0],
-			Left:  left,
-			Right: right,
-		}
+		rootVal := preorder[prestart]
+		leftSize := valToIndex[rootVal] - instart
+		node := &TreeNode{Val: rootVal}
+		node.Left = dfs(prestart+1, prestart+1+leftSize, instart, instart+leftSize)
+		node.Right = dfs(prestart+1+leftSize, preend, instart+leftSize+1, inend)
+		return node
 	}
-	return dfs(preorder, inorder, 0)
+	return dfs(0, n, 0, n)
 }
 
 // @lc code=end

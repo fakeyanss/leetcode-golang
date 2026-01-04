@@ -68,11 +68,10 @@ type TreeNode struct {
  * }
  */
 func pathSum(root *TreeNode, targetSum int) int {
+    // 前缀和记录根节点到当前节点的路径和
     // key为和，value为和为key的路径个数
-    presum := make(map[int]int)
-    presum[0] = 1
-    res := 0
-
+    presum := map[int]int{0: 1}
+    var res int
     var dfs func(*TreeNode, int)
     dfs = func(node *TreeNode, sum int) {
         if node == nil {
@@ -85,6 +84,7 @@ func pathSum(root *TreeNode, targetSum int) int {
         dfs(node.Left, sum)
         dfs(node.Right, sum)
         presum[sum]--
+
     }
     dfs(root, 0)
     return res

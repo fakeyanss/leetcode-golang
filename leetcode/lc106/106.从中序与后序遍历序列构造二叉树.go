@@ -69,19 +69,21 @@ type TreeNode struct {
 func buildTree(inorder []int, postorder []int) *TreeNode {
 	n := len(inorder)
 	valToIndex := make(map[int]int, n)
-	for i, val := range inorder {
-		valToIndex[val] = i
+	for i, x := range inorder {
+		valToIndex[x] = i
 	}
-	var dfs func(postStart, postEnd, inStart, inEnd int) *TreeNode
-	dfs = func(postStart, postEnd, inStart, inEnd int) *TreeNode {
-		if postStart == postEnd {
+
+	var dfs func(poststart, postend, instart, inend int) *TreeNode
+	dfs = func(poststart, postend, instart, inend int) *TreeNode {
+		if poststart == postend {
 			return nil
 		}
-		rootVal := postorder[postEnd-1]
-		leftSize := valToIndex[rootVal] - inStart
-		left := dfs(postStart, postStart+leftSize, inStart, inStart+leftSize)
-		right := dfs(postStart+leftSize, postEnd-1, inStart+leftSize+1, inEnd)
-		return &TreeNode{rootVal, left, right}
+		rootVal := postorder[postend-1]
+		leftSize := valToIndex[rootVal] - instart
+		node := &TreeNode{Val: rootVal}
+		node.Left = dfs(poststart, poststart+leftSize, instart, instart+leftSize)
+		node.Right = dfs(poststart+leftSize, postend-1, instart+leftSize+1, inend)
+		return node
 	}
 	return dfs(0, n, 0, n) // 左闭右开区间
 }

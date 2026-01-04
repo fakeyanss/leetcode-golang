@@ -66,39 +66,28 @@ type TreeNode struct {
  * }
  */
 func levelOrder(root *TreeNode) [][]int {
+	var res [][]int
 	if root == nil {
-		return [][]int{}
+		return res
 	}
-
-	var result [][]int
-	queue := []*TreeNode{root}
-
-	for len(queue) > 0 {
-		var level []int
-		levelSize := len(queue) // 当前层的节点数
-
-		for i := 0; i < levelSize; i++ {
-			// 弹出队列的第一个节点
-			node := queue[0]
-			queue = queue[1:]
-
-			// 将当前节点的值加入当前层
-			level = append(level, node.Val)
-
-			// 将左右子节点加入队列
+	q := []*TreeNode{root}
+	for len(q) > 0 {
+		sz := len(q)
+		curLevelNodes := make([]int, sz)
+		for i := range sz {
+			node := q[0]
+			q = q[1:]
+			curLevelNodes[i] = node.Val
 			if node.Left != nil {
-				queue = append(queue, node.Left)
+				q = append(q, node.Left)
 			}
 			if node.Right != nil {
-				queue = append(queue, node.Right)
+				q = append(q, node.Right)
 			}
 		}
-
-		// 将当前层结果加入最终结果
-		result = append(result, level)
+		res = append(res, curLevelNodes)
 	}
-
-	return result
+	return res
 }
 
 // @lc code=end
