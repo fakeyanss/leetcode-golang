@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"net/url"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -244,7 +245,10 @@ func generateMarkdownTable(problems []LeetCodeProblem) string {
 
 		// 处理题目链接
 		titleCell := fmt.Sprintf("[%s](%s)", p.Title, p.URL)
-		// 处理文件链接
+		// 兼容含空格的路径
+		if strings.Contains(p.FilePath, " ") {
+			p.FilePath = url.PathEscape(p.FilePath)
+		}
 		fileCell := fmt.Sprintf("[Link](%s)", p.FilePath)
 
 		// 拼接行
