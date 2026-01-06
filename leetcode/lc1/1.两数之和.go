@@ -65,6 +65,7 @@ import "sort"
 
 // @lcpr-template-end
 // @lc code=start
+// 思路：哈希，排序+双指针
 func twoSum(nums []int, target int) []int {
 	return hash(nums, target)
 }

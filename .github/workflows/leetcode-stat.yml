@@ -1,49 +1,32 @@
 name: 'GitHub LeetCode Bot'
 
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: '2 20 * * 1'
+  push:
+    paths:
+      - "leetcode-golang/leetcode/**/*.go"  # 代码文件变更触发
+      - "leetcode-golang/build/leetcode.go" # 脚本变更触发
+  workflow_dispatch:  # 手动触发
 
 jobs:
   bot:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout codes'
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Set up Golang
+        uses: actions/setup-go@v5
         with:
-          python-version: '3.10' 
-          
-      - name: Configure pip cache
-        uses: actions/cache@v1
-        id: pip-cache
+          go-version: "1.22"  
+          cache-dependency-path: "leetcode-golang/go.sum"
+      
+      - name: Run script
+        working-directory: ./leetcode-golang/build
+        run: go run leetcode.go
+
+      - name: 提交并推送变更
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          path: venv
-          key: pip-1-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            pip-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r build/requirements.txt
-        if: steps.pip-cache.outputs.cache-hit != 'true'
-
-
-      - name: Get LeetCode Data
-        run: python build/leetcode.py "${{ secrets.LEETCODE_COOKIE }}"
-
-      - name: commit
-        run: |
-          git config --global user.email bot
-          git config --global user.name bot
-          git add .
-          git commit -m "update leetcode stat" -a
-        continue-on-error: true
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.TOKEN}}
-        continue-on-error: true
+          commit_message: "chore: update leetcode table via go script"
+          file_pattern: "README.md"
+          branch: ${{ github.ref }}
