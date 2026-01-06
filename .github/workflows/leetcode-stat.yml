@@ -21,8 +21,7 @@ jobs:
           cache-dependency-path: "leetcode-golang/go.sum"
       
       - name: Run script
-        working-directory: ./leetcode-golang/build
-        run: go run leetcode.go
+        run: go run build/leetcode.go
 
       - name: 提交并推送变更
         uses: stefanzweifel/git-auto-commit-action@v5
