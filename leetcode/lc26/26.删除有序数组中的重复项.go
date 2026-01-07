@@ -77,17 +77,14 @@ package lc0026
 // @lcpr-template-end
 // @lc code=start
 func removeDuplicates(nums []int) int {
-	slow, fast := 0, 0
-	for fast < len(nums) {
-		if nums[fast] != nums[slow] {
-			slow++
-			// 维护 nums[0..slow] 无重复
-			nums[slow] = nums[fast]
+	k := 1
+	for i := 1; i < len(nums); i++ {
+		if nums[i] != nums[i-1] {
+			nums[k] = nums[i]
+			k++
 		}
-		fast++
 	}
-	// 数组长度为索引 + 1
-	return slow + 1
+	return k
 }
 
 // @lc code=end

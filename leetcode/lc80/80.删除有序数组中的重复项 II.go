@@ -73,25 +73,18 @@ package lc80
 // @lcpr-template-end
 // @lc code=start
 func removeDuplicates(nums []int) int {
-	slow, fast := 0, 0
-	count := 0
-	for fast < len(nums) {
-		if nums[slow] != nums[fast] {
-			slow++
-			nums[slow] = nums[fast]
-		} else if slow < fast && count < 2 {
-			slow++
-			// 防止末尾的重复数字没有写入
-			// input=[0,0,1,1,1,1,2,3,3], output=[0,0,1,1,2,3,3]
-			nums[slow] = nums[fast]
-		}
-		fast++
-		count++
-		if fast < len(nums) && nums[fast] != nums[fast-1] {
-			count = 0
+	n := len(nums)
+	if n < 2 {
+		return n
+	}
+	k := 2
+	for i := 2; i < n; i++ {
+		if nums[i] != nums[k-2] {
+			nums[k] = nums[i]
+			k++
 		}
 	}
-	return slow + 1
+	return k
 }
 
 // @lc code=end
