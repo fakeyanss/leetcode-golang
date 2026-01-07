@@ -3,8 +3,8 @@ name: 'GitHub LeetCode Bot'
 on:
   push:
     paths:
-      - "leetcode-golang/leetcode/**/*.go"  # 代码文件变更触发
-      - "leetcode-golang/build/leetcode.go" # 脚本变更触发
+      - "leetcode/**/*.go"  # 代码文件变更触发
+      - "build/leetcode.go" # 脚本变更触发
   workflow_dispatch:  # 手动触发
 
 jobs:
