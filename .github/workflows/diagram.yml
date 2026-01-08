@@ -1,0 +1,18 @@
+name: Create diagram
+on:
+  workflow_dispatch:
+  # schedule:
+    # - cron: '2 21 * * *'
+
+jobs:
+  get_data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+      - name: Update diagram
+        uses: githubocto/repo-visualizer@main
+        with:
+          excluded_paths: "ignore,.github"
+          file_colors: '{"go": "#00ADD8", "sh": "#89e051", "yml": "#cb171e", "md": "#083fa1"}'
+          max_depth: 3
