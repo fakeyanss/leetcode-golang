@@ -56,19 +56,28 @@ package lc50
 
 // @lcpr-template-end
 // @lc code=start
+// 思路：快速幂
+// 数学原理：
+// 1. 任何正整数n可唯一分解为2的幂次之和（二进制）：
+// n = a0×2^0 + a1×2^1 + ... + ak×2^k（ai∈{0,1}）
+// 2. 幂的乘法法则：
+// x^n = x^(a0×2^0 + a1×2^1 + ... + ak×2^k) = x^(a0×2^0) × x^(a1×2^1) × ... × x^(ak×2^k)
+// 3. 当ai=0时，x^(ai×2^i)=x^0=1（乘1不影响结果，可忽略）
+// 4. 当ai=1时，x^(ai×2^i)=x^(2^i)（需乘入结果）
 func myPow(x float64, n int) float64 {
-	if n == 0 {
-		return 1
+	res := 1.0
+	if n < 0 { // x^-n=(1/x)^n
+		n = -n
+		x = 1 / x
 	}
-	if n < 0 {
-		return 1 / myPow(x, -n)
+	for n > 0 { // 从低到高枚举n的每个比特位，即找到ai是0还是1
+		if n&1 == 1 {
+			res *= x // 这个比特位是1，把累积的x乘到res中
+		}
+		x *= x  // x累积
+		n >>= 1 // n右移除以2
 	}
-	sub := myPow(x, n/2)
-	if n%2 == 0 {
-		return sub * sub
-	} else {
-		return x * sub * sub
-	}
+	return res
 }
 
 // @lc code=end

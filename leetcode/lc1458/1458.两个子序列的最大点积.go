@@ -70,6 +70,7 @@ package lc1458
 import "math"
 
 // @lc code=start
+// 思路：DP
 func maxDotProduct(nums1 []int, nums2 []int) int {
 	// dp[i][j]表示nums[:i+1]和nums2[:j+1]的子序列最大点积
 	// 需要选择的两个子序列长度相等，所以对每个元素需要枚举需要选或不选

@@ -51,57 +51,32 @@
 package lc712
 
 // @lc code=start
+// 思路：DP
 func minimumDeleteSum(s1 string, s2 string) int {
+	// dp[i][j]表示使s1[:i+1]和s2[:j+1]相同的最小ASCII删除和
 	m, n := len(s1), len(s2)
-	memo := make([][]int, m)
-	for i := range memo {
-		memo[i] = make([]int, n)
-		for j := range memo[i] {
-			memo[i][j] = -1
+	dp := make([][]int, m+1)
+	for i := range dp {
+		dp[i] = make([]int, n+1)
+		if i > 0 {
+			dp[i][0] = dp[i-1][0] + int(s1[i-1])
 		}
 	}
-	return dp(memo, s1, 0, s2, 0)
-}
-
-// 定义：将 s1[i..] 和 s2[j..] 删除成相同字符串，最小的 ASCII 码之和为 dp(s1, i, s2, j)
-func dp(memo [][]int, s1 string, i int, s2 string, j int) int {
-	res := 0
-	// base case
-	if i == len(s1) {
-		// s1遍历到头了，s2剩下的都得删除
-		for ; j < len(s2); j++ {
-			res += int(s2[j])
+	for j := range dp[0] {
+		if j > 0 {
+			dp[0][j] = dp[0][j-1] + int(s2[j-1])
 		}
-		return res
 	}
-	if j == len(s2) {
-		for ; i < len(s1); i++ {
-			res += int(s1[i])
+	for i, x := range s1 {
+		for j, y := range s2 {
+			if x == y {
+				dp[i+1][j+1] = dp[i][j]
+			} else {
+				dp[i+1][j+1] = min(dp[i][j+1]+int(x), dp[i+1][j]+int(y))
+			}
 		}
-		return res
 	}
-
-	if memo[i][j] != -1 {
-		return memo[i][j]
-	}
-
-	if s1[i] == s2[j] {
-		memo[i][j] = dp(memo, s1, i+1, s2, j+1)
-	} else {
-		memo[i][j] = minInt(
-			int(s1[i])+dp(memo, s1, i+1, s2, j),
-			int(s2[j])+dp(memo, s1, i, s2, j+1),
-		)
-	}
-
-	return memo[i][j]
-}
-
-func minInt(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
+	return dp[m][n]
 }
 
 // @lc code=end
