@@ -62,7 +62,7 @@ See [Algo Overview](Algo.md)
 | 47 | [全排列 II](https://leetcode.cn/problems/permutations-ii/description/) | [Link](leetcode/lc47/47.全排列-ii.go) | Medium |  |
 | 48 | [旋转图像](https://leetcode.cn/problems/rotate-image/description/) | [Link](leetcode/lc48/48.旋转图像.go) | Medium |  |
 | 49 | [字母异位词分组](https://leetcode.cn/problems/group-anagrams/description/) | [Link](leetcode/lc49/49.字母异位词分组.go) | Medium |  |
-| 50 | [Pow(x, n)](https://leetcode.cn/problems/powx-n/description/) | [Link](leetcode%2Flc50%2F50.Pow%28x%2C%20n%29.go) | Medium |  |
+| 50 | [Pow(x, n)](https://leetcode.cn/problems/powx-n/description/) | [Link](leetcode%2Flc50%2F50.Pow%28x%2C%20n%29.go) | Medium | 快速幂 |
 | 51 | [N 皇后](https://leetcode.cn/problems/n-queens/description/) | [Link](leetcode/lc51/51.n-皇后.go) | Hard |  |
 | 52 | [N 皇后 II](https://leetcode.cn/problems/n-queens-ii/description/) | [Link](leetcode%2Flc52%2F52.N%20%E7%9A%87%E5%90%8E%20II.go) | Hard |  |
 | 53 | [最大子数组和](https://leetcode.cn/problems/maximum-subarray/description/) | [Link](leetcode/lc53/53.最大子数组和.go) | Medium |  |
@@ -183,6 +183,7 @@ See [Algo Overview](Algo.md)
 | 235 | [二叉搜索树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/description/) | [Link](leetcode/lc235/235.二叉搜索树的最近公共祖先.go) | Easy |  |
 | 236 | [二叉树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/description/) | [Link](leetcode/lc236/236.二叉树的最近公共祖先.go) | Medium |  |
 | 237 | [删除链表中的节点](https://leetcode.cn/problems/delete-node-in-a-linked-list/description/) | [Link](leetcode/lc237/237.删除链表中的节点.go) | Easy |  |
+| 238 | [除自身以外数组的乘积](https://leetcode.cn/problems/product-of-array-except-self/description/) | [Link](leetcode/lc238/238.除自身以外数组的乘积.go) | Medium | 前缀和 |
 | 239 | [滑动窗口最大值](https://leetcode.cn/problems/sliding-window-maximum/description/) | [Link](leetcode/lc239/239.滑动窗口最大值.go) | Hard |  |
 | 240 | [搜索二维矩阵 II](https://leetcode.cn/problems/search-a-2d-matrix-ii/description/) | [Link](leetcode%2Flc240%2F240.%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5%20II.go) | Medium |  |
 | 258 | [各位相加](https://leetcode.cn/problems/add-digits/description/) | [Link](leetcode/lc258/258.各位相加.go) | Easy |  |
@@ -251,7 +252,7 @@ See [Algo Overview](Algo.md)
 | 703 | [数据流中的第 K 大元素](https://leetcode.cn/problems/kth-largest-element-in-a-stream/description/) | [Link](leetcode/lc703/703.数据流中的第-k-大元素.go) | Easy |  |
 | 704 | [二分查找](https://leetcode.cn/problems/binary-search/description/) | [Link](leetcode/lc704/704.二分查找.go) | Easy |  |
 | 710 | [黑名单中的随机数](https://leetcode.cn/problems/random-pick-with-blacklist/description/) | [Link](leetcode/lc710/710.黑名单中的随机数.go) | Hard |  |
-| 712 | [两个字符串的最小ASCII删除和](https://leetcode.cn/problems/minimum-ascii-delete-sum-for-two-strings/description/) | [Link](leetcode/lc712/712.两个字符串的最小ascii删除和.go) | Medium |  |
+| 712 | [两个字符串的最小ASCII删除和](https://leetcode.cn/problems/minimum-ascii-delete-sum-for-two-strings/description/) | [Link](leetcode/lc712/712.两个字符串的最小ascii删除和.go) | Medium | DP |
 | 714 | [买卖股票的最佳时机含手续费](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/description/) | [Link](leetcode/lc714/714.买卖股票的最佳时机含手续费.go) | Medium |  |
 | 739 | [每日温度](https://leetcode.cn/problems/daily-temperatures/description/) | [Link](leetcode/lc739/739.每日温度.go) | Medium |  |
 | 752 | [打开转盘锁](https://leetcode.cn/problems/open-the-lock/description/) | [Link](leetcode/lc752/752.打开转盘锁.go) | Medium |  |
@@ -265,7 +266,9 @@ See [Algo Overview](Algo.md)
 | 811 | [子域名访问计数](https://leetcode.cn/problems/subdomain-visit-count/description/) | [Link](leetcode/lc811/811.子域名访问计数.go) | Medium |  |
 | 817 | [链表组件](https://leetcode.cn/problems/linked-list-components/description/) | [Link](leetcode/lc817/817.链表组件.go) | Medium |  |
 | 823 | [带因子的二叉树](https://leetcode.cn/problems/binary-trees-with-factors/description/) | [Link](leetcode/lc823/823.带因子的二叉树.go) | Medium |  |
+| 852 | [山脉数组的峰顶索引](https://leetcode.cn/problems/peak-index-in-a-mountain-array/description/) | [Link](leetcode/lc852/852.山脉数组的峰顶索引.go) | Medium | 二分 |
 | 856 | [括号的分数](https://leetcode.cn/problems/score-of-parentheses/description/) | [Link](leetcode/lc856/856.括号的分数.go) | Medium |  |
+| 865 | [具有所有最深节点的最小子树](https://leetcode.cn/problems/smallest-subtree-with-all-the-deepest-nodes/description/) | [Link](leetcode/lc865/865.具有所有最深节点的最小子树.go) | Medium | 递归 |
 | 870 | [优势洗牌](https://leetcode.cn/problems/advantage-shuffle/description/) | [Link](leetcode/lc870/870.优势洗牌.go) | Medium |  |
 | 876 | [链表的中间结点](https://leetcode.cn/problems/middle-of-the-linked-list/description/) | [Link](leetcode/lc876/876.链表的中间结点.go) | Easy |  |
 | 877 | [石子游戏](https://leetcode.cn/problems/stone-game/description/) | [Link](leetcode/lc877/877.石子游戏.go) | Medium |  |
@@ -304,8 +307,9 @@ See [Algo Overview](Algo.md)
 | 1312 | [让字符串成为回文串的最少插入次数](https://leetcode.cn/problems/minimum-insertion-steps-to-make-a-string-palindrome/description/) | [Link](leetcode/lc1312/1312.让字符串成为回文串的最少插入次数.go) | Hard |  |
 | 1339 | [分裂二叉树的最大乘积](https://leetcode.cn/problems/maximum-product-of-splitted-binary-tree/description/) | [Link](leetcode/lc1339/1339.分裂二叉树的最大乘积.go) | Medium | dfs |
 | 1390 | [四因数](https://leetcode.cn/problems/four-divisors/description/) | [Link](leetcode/lc1390/1390.四因数.go) | Medium |  |
+| 1411 | [给 N x 3 网格图涂色的方案数](https://leetcode.cn/problems/number-of-ways-to-paint-n-3-grid/description/) | [Link](leetcode%2Flc1411%2F1411.%E7%BB%99%20N%20x%203%20%E7%BD%91%E6%A0%BC%E5%9B%BE%E6%B6%82%E8%89%B2%E7%9A%84%E6%96%B9%E6%A1%88%E6%95%B0.go) | Hard | DP |
 | 1441 | [用栈操作构建数组](https://leetcode.cn/problems/build-an-array-with-stack-operations/description/) | [Link](leetcode/lc1441/1441.用栈操作构建数组.go) | Medium |  |
-| 1458 | [两个子序列的最大点积](https://leetcode.cn/problems/max-dot-product-of-two-subsequences/description/) | [Link](leetcode/lc1458/1458.两个子序列的最大点积.go) | Hard |  |
+| 1458 | [两个子序列的最大点积](https://leetcode.cn/problems/max-dot-product-of-two-subsequences/description/) | [Link](leetcode/lc1458/1458.两个子序列的最大点积.go) | Hard | DP |
 | 1547 | [切棍子的最小成本](https://leetcode.cn/problems/minimum-cost-to-cut-a-stick/description/) | [Link](leetcode/lc1547/1547.minimum-cost-to-cut-a-stick.go) | Hard |  |
 | 1616 | [分割两个字符串得到回文串](https://leetcode.cn/problems/split-two-strings-to-make-palindrome/description/) | [Link](leetcode/lc1616/1616.分割两个字符串得到回文串.go) | Medium |  |
 | 1625 | [执行操作后字典序最小的字符串](https://leetcode.cn/problems/lexicographically-smallest-string-after-applying-operations/description/) | [Link](leetcode/lc1625/1625.执行操作后字典序最小的字符串.go) | Medium | BFS |
