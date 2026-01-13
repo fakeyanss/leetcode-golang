@@ -56,7 +56,7 @@ See [Algo Overview](Algo.md)
 | 39 | [组合总和](https://leetcode.cn/problems/combination-sum/description/) | [Link](leetcode/lc39/39.组合总和.go) | Medium |  |
 | 40 | [组合总和 II](https://leetcode.cn/problems/combination-sum-ii/description/) | [Link](leetcode/lc40/40.组合总和-ii.go) | Medium |  |
 | 41 | [缺失的第一个正数](https://leetcode.cn/problems/first-missing-positive/description/) | [Link](leetcode/lc41/41.缺失的第一个正数.go) | Hard |  |
-| 42 | [接雨水](https://leetcode.cn/problems/trapping-rain-water/description/) | [Link](leetcode/lc42/42.接雨水.go) | Hard |  |
+| 42 | [接雨水](https://leetcode.cn/problems/trapping-rain-water/description/) | [Link](leetcode/lc42/42.接雨水.go) | Hard | DP |
 | 45 | [跳跃游戏 II](https://leetcode.cn/problems/jump-game-ii/description/) | [Link](leetcode%2Flc45%2F45.%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F%20II.go) | Medium | 贪心 |
 | 46 | [全排列](https://leetcode.cn/problems/permutations/description/) | [Link](leetcode/lc46/46.全排列.go) | Medium |  |
 | 47 | [全排列 II](https://leetcode.cn/problems/permutations-ii/description/) | [Link](leetcode/lc47/47.全排列-ii.go) | Medium |  |
@@ -95,6 +95,7 @@ See [Algo Overview](Algo.md)
 | 82 | [删除排序链表中的重复元素 II](https://leetcode.cn/problems/remove-duplicates-from-sorted-list-ii/description/) | [Link](leetcode%2Flc82%2F82.%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%20II.go) | Medium |  |
 | 83 | [删除排序链表中的重复元素](https://leetcode.cn/problems/remove-duplicates-from-sorted-list/description/) | [Link](leetcode/lc83/83.删除排序链表中的重复元素.go) | Easy |  |
 | 84 | [柱状图中最大的矩形](https://leetcode.cn/problems/largest-rectangle-in-histogram/description/) | [Link](leetcode/lc84/84.柱状图中最大的矩形.go) | Hard |  |
+| 85 | [最大矩形](https://leetcode.cn/problems/maximal-rectangle/description/) | [Link](leetcode/lc85/85.最大矩形.go) | Hard | 单调栈 |
 | 86 | [分隔链表](https://leetcode.cn/problems/partition-list/description/) | [Link](leetcode/lc86/86.分隔链表.go) | Medium |  |
 | 88 | [合并两个有序数组](https://leetcode.cn/problems/merge-sorted-array/description/) | [Link](leetcode/lc88/88.合并两个有序数组.go) | Easy |  |
 | 90 | [子集 II](https://leetcode.cn/problems/subsets-ii/description/) | [Link](leetcode/lc90/90.子集-ii.go) | Medium |  |
@@ -302,6 +303,7 @@ See [Algo Overview](Algo.md)
 | 1175 | [质数排列](https://leetcode.cn/problems/prime-arrangements/description/) | [Link](leetcode/lc1175/1175.质数排列.go) | Easy |  |
 | 1235 | [规划兼职工作](https://leetcode.cn/problems/maximum-profit-in-job-scheduling/description/) | [Link](leetcode/lc1235/1235.规划兼职工作.go) | Hard | 动态规划 |
 | 1254 | [统计封闭岛屿的数目](https://leetcode.cn/problems/number-of-closed-islands/description/) | [Link](leetcode/lc1254/1254.统计封闭岛屿的数目.go) | Medium |  |
+| 1266 | [访问所有点的最小时间](https://leetcode.cn/problems/minimum-time-visiting-all-points/description/) | [Link](leetcode/lc1266/1266.访问所有点的最小时间.go) | Easy | 数学 |
 | 1267 | [统计参与通信的服务器](https://leetcode.cn/problems/count-servers-that-communicate/description/) | [Link](leetcode/lc1267/1267.统计参与通信的服务器.go) | Medium |  |
 | 1290 | [二进制链表转整数](https://leetcode.cn/problems/convert-binary-number-in-a-linked-list-to-integer/description/) | [Link](leetcode/lc1290/1290.二进制链表转整数.go) | Easy |  |
 | 1312 | [让字符串成为回文串的最少插入次数](https://leetcode.cn/problems/minimum-insertion-steps-to-make-a-string-palindrome/description/) | [Link](leetcode/lc1312/1312.让字符串成为回文串的最少插入次数.go) | Hard |  |
@@ -351,6 +353,7 @@ See [Algo Overview](Algo.md)
 | 3258 | [统计满足 K 约束的子字符串数量 I](https://leetcode.cn/problems/count-substrings-that-satisfy-k-constraint-i/description/) | [Link](leetcode%2Flc3258%2F3258.%E7%BB%9F%E8%AE%A1%E6%BB%A1%E8%B6%B3%20K%20%E7%BA%A6%E6%9D%9F%E7%9A%84%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E9%87%8F%20I.go) | Easy |  |
 | 3264 | [K 次乘运算后的最终数组 I](https://leetcode.cn/problems/final-array-state-after-k-multiplication-operations-i/description/) | [Link](leetcode%2Flc3264%2F3264.K%20%E6%AC%A1%E4%B9%98%E8%BF%90%E7%AE%97%E5%90%8E%E7%9A%84%E6%9C%80%E7%BB%88%E6%95%B0%E7%BB%84%20I.go) | Easy |  |
 | 3266 | [K 次乘运算后的最终数组 II](https://leetcode.cn/problems/final-array-state-after-k-multiplication-operations-ii/description/) | [Link](leetcode%2Flc3266%2F3266.K%20%E6%AC%A1%E4%B9%98%E8%BF%90%E7%AE%97%E5%90%8E%E7%9A%84%E6%9C%80%E7%BB%88%E6%95%B0%E7%BB%84%20II.go) | Hard |  |
+| 3453 | [分割正方形 I](https://leetcode.cn/problems/separate-squares-i/description/) | [Link](leetcode%2Flc3453%2F3453.%E5%88%86%E5%89%B2%E6%AD%A3%E6%96%B9%E5%BD%A2%20I.go) | Medium |  |
 | 3573 | [买卖股票的最佳时机 V](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-v/description/) | [Link](leetcode%2Flc3573%2F3573.%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%20V.go) | Medium |  |
 | 3652 | [按策略买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-using-strategy/description/) | [Link](leetcode/lc3652/3652.按策略买卖股票的最佳时机.go) | Medium |  |
 | LCP 20 | [快速公交](https://leetcode.cn/problems/meChtZ/description/) | [Link](leetcode%2FlcLCP%2020%2FLCP%2020.%E5%BF%AB%E9%80%9F%E5%85%AC%E4%BA%A4.go) | Hard |  |
