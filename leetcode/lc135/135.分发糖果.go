@@ -58,10 +58,10 @@ package lc135
 
 // @lcpr-template-end
 // @lc code=start
+// 思路：贪心
 func candy(ratings []int) int {
-	// 贪心，遍历两轮
 	n := len(ratings)
-	left := make([]int, n)
+	left := make([]int, n) // left存储从左遍历的每个位置应该分发的糖果数
 	for i := 0; i < n; i++ {
 		if i > 0 && ratings[i] > ratings[i-1] {
 			left[i] = left[i-1] + 1
@@ -69,17 +69,15 @@ func candy(ratings []int) int {
 			left[i] = 1
 		}
 	}
-	right := make([]int, n)
+	var res int
+	right := 0 // right与left作用相同，省略一轮遍历
 	for i := n - 1; i >= 0; i-- {
 		if i < n-1 && ratings[i] > ratings[i+1] {
-			right[i] = right[i+1] + 1
+			right += 1
 		} else {
-			right[i] = 1
+			right = 1
 		}
-	}
-	var res int
-	for i := 0; i < n; i++ {
-		res += max(left[i], right[i])
+		res += max(left[i], right)
 	}
 	return res
 }

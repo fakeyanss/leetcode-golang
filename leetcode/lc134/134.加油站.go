@@ -66,20 +66,20 @@ package lc134
 
 // @lcpr-template-end
 // @lc code=start
+// 思路：贪心
 func canCompleteCircuit(gas []int, cost []int) int {
-	// 贪心，画油量的行进过程折线图可以直观分析
-	// https://leetcode.cn/problems/gas-station/solutions/2933132/yong-zhe-xian-tu-zhi-guan-li-jie-pythonj-qccr/
-
-	var res, s, minS int // s为当前油量，minS表示最小油量
+	// 找到行驶过程的最小油量，如果同时满足剩余油量大于0，则行驶过程最小
+	// 油量对应的下标就是答案
+	var res int
+	var curS, minS int // curS当前剩余油量，行驶过程minS最小油量
 	for i, g := range gas {
-		s += g - cost[i] // 在 i 处加油，然后从 i 到 i+1
-		if s < minS {
-			minS = s    // 更新最小油量
-			res = i + 1 // 注意 s 减去 cost[i] 之后，汽车在 i+1 而不是 i
+		curS += g - cost[i] // 从i到i+1，先加油再蚝油
+		if curS < minS {
+			minS = curS
+			res = i + 1
 		}
 	}
-	// 循环结束后，s 即为 gas 之和减去 cost 之和
-	if s < 0 {
+	if curS < 0 { // 如果gas之和小于cost之和，则不可能完成行驶
 		return -1
 	}
 	return res

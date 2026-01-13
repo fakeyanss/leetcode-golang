@@ -59,20 +59,17 @@ package lc58
 // @lcpr-template-end
 // @lc code=start
 func lengthOfLastWord(s string) int {
-	length := 0
-	flag := false
-	for _, c := range s {
-		if c == ' ' {
-			flag = true
-		} else {
-			if flag {
-				length = 0
-				flag = false
-			}
-			length++
+	var res int
+	for i := len(s) - 1; i >= 0; i-- {
+		if s[i] == ' ' && res == 0 {
+			continue
 		}
+		if s[i] == ' ' {
+			break
+		}
+		res++
 	}
-	return length
+	return res
 }
 
 // @lc code=end

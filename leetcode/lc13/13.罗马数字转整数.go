@@ -94,7 +94,6 @@ package lc0013
 
 // @lcpr-template-end
 // @lc code=start
-
 func romanToInt(s string) (ans int) {
 	dict := map[byte]int{
 		'I': 1,
@@ -105,16 +104,16 @@ func romanToInt(s string) (ans int) {
 		'D': 500,
 		'M': 1000,
 	}
-	n := len(s)
+	var res int
 	for i := range s {
-		value := dict[s[i]]
-		if i < n-1 && value < dict[s[i+1]] {
-			ans -= value
+		num := dict[s[i]]
+		if i < len(s)-1 && dict[s[i+1]] > num {
+			res -= num
 		} else {
-			ans += value
+			res += num
 		}
 	}
-	return ans
+	return res
 }
 
 // @lc code=end
