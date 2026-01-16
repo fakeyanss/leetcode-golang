@@ -79,6 +79,7 @@ package lc3453
 import "math/bits"
 
 // @lc code=start
+// 思路：二分
 func separateSquares(squares [][]int) float64 {
 	totalArea, maxY := 0, 0
 	for _, sq := range squares {
