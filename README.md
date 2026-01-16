@@ -349,11 +349,13 @@ See [Algo Overview](Algo.md)
 | 2679 | [矩阵中的和](https://leetcode.cn/problems/sum-in-a-matrix/description/) | [Link](leetcode/lc2679/2679.矩阵中的和.go) | Medium |  |
 | 2828 | [判别首字母缩略词](https://leetcode.cn/problems/check-if-a-string-is-an-acronym-of-words/description/) | [Link](leetcode/lc2828/2828.判别首字母缩略词.go) | Easy |  |
 | 2931 | [购买物品的最大开销](https://leetcode.cn/problems/maximum-spending-after-buying-items/description/) | [Link](leetcode/lc2931/2931.购买物品的最大开销.go) | Hard |  |
+| 2943 | [最大化网格图中正方形空洞的面积](https://leetcode.cn/problems/maximize-area-of-square-hole-in-grid/description/) | [Link](leetcode/lc2943/2943.最大化网格图中正方形空洞的面积.go) | Medium | 贪心 |
+| 2975 | [移除栅栏得到的正方形田地的最大面积](https://leetcode.cn/problems/maximum-square-area-by-removing-fences-from-a-field/description/) | [Link](leetcode/lc2975/2975.移除栅栏得到的正方形田地的最大面积.go) | Medium | 枚举 |
 | 2998 | [使 X 和 Y 相等的最少操作次数](https://leetcode.cn/problems/minimum-number-of-operations-to-make-x-and-y-equal/description/) | [Link](leetcode%2Flc2998%2F2998.%E4%BD%BF%20X%20%E5%92%8C%20Y%20%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0.go) | Medium |  |
 | 3258 | [统计满足 K 约束的子字符串数量 I](https://leetcode.cn/problems/count-substrings-that-satisfy-k-constraint-i/description/) | [Link](leetcode%2Flc3258%2F3258.%E7%BB%9F%E8%AE%A1%E6%BB%A1%E8%B6%B3%20K%20%E7%BA%A6%E6%9D%9F%E7%9A%84%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E9%87%8F%20I.go) | Easy |  |
 | 3264 | [K 次乘运算后的最终数组 I](https://leetcode.cn/problems/final-array-state-after-k-multiplication-operations-i/description/) | [Link](leetcode%2Flc3264%2F3264.K%20%E6%AC%A1%E4%B9%98%E8%BF%90%E7%AE%97%E5%90%8E%E7%9A%84%E6%9C%80%E7%BB%88%E6%95%B0%E7%BB%84%20I.go) | Easy |  |
 | 3266 | [K 次乘运算后的最终数组 II](https://leetcode.cn/problems/final-array-state-after-k-multiplication-operations-ii/description/) | [Link](leetcode%2Flc3266%2F3266.K%20%E6%AC%A1%E4%B9%98%E8%BF%90%E7%AE%97%E5%90%8E%E7%9A%84%E6%9C%80%E7%BB%88%E6%95%B0%E7%BB%84%20II.go) | Hard |  |
-| 3453 | [分割正方形 I](https://leetcode.cn/problems/separate-squares-i/description/) | [Link](leetcode%2Flc3453%2F3453.%E5%88%86%E5%89%B2%E6%AD%A3%E6%96%B9%E5%BD%A2%20I.go) | Medium |  |
+| 3453 | [分割正方形 I](https://leetcode.cn/problems/separate-squares-i/description/) | [Link](leetcode%2Flc3453%2F3453.%E5%88%86%E5%89%B2%E6%AD%A3%E6%96%B9%E5%BD%A2%20I.go) | Medium | 二分 |
 | 3573 | [买卖股票的最佳时机 V](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-v/description/) | [Link](leetcode%2Flc3573%2F3573.%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%20V.go) | Medium |  |
 | 3652 | [按策略买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-using-strategy/description/) | [Link](leetcode/lc3652/3652.按策略买卖股票的最佳时机.go) | Medium |  |
 | LCP 20 | [快速公交](https://leetcode.cn/problems/meChtZ/description/) | [Link](leetcode%2FlcLCP%2020%2FLCP%2020.%E5%BF%AB%E9%80%9F%E5%85%AC%E4%BA%A4.go) | Hard |  |
