@@ -326,6 +326,7 @@ See [Algo Overview](Algo.md)
 | 1803 | [统计异或值在范围内的数对有多少](https://leetcode.cn/problems/count-pairs-with-xor-in-a-range/description/) | [Link](leetcode/lc1803/1803.统计异或值在范围内的数对有多少.go) | Hard |  |
 | 1845 | [座位预约管理系统](https://leetcode.cn/problems/seat-reservation-manager/description/) | [Link](leetcode/lc1845/1845.座位预约管理系统.go) | Medium |  |
 | 1884 | [鸡蛋掉落-两枚鸡蛋](https://leetcode.cn/problems/egg-drop-with-2-eggs-and-n-floors/description/) | [Link](leetcode/lc1884/1884.鸡蛋掉落-两枚鸡蛋.go) | Medium |  |
+| 1895 | [最大的幻方](https://leetcode.cn/problems/largest-magic-square/description/) | [Link](leetcode/lc1895/1895.最大的幻方.go) | Medium | 枚举，前缀和 |
 | 1905 | [统计子岛屿](https://leetcode.cn/problems/count-sub-islands/description/) | [Link](leetcode/lc1905/1905.统计子岛屿.go) | Medium |  |
 | 1975 | [最大方阵和](https://leetcode.cn/problems/maximum-matrix-sum/description/) | [Link](leetcode/lc1975/1975.最大方阵和.go) | Medium |  |
 | 2037 | [使每位学生都有座位的最少移动次数](https://leetcode.cn/problems/minimum-number-of-moves-to-seat-everyone/description/) | [Link](leetcode/lc2037/2037.使每位学生都有座位的最少移动次数.go) | Easy |  |
@@ -352,6 +353,7 @@ See [Algo Overview](Algo.md)
 | 2943 | [最大化网格图中正方形空洞的面积](https://leetcode.cn/problems/maximize-area-of-square-hole-in-grid/description/) | [Link](leetcode/lc2943/2943.最大化网格图中正方形空洞的面积.go) | Medium | 贪心 |
 | 2975 | [移除栅栏得到的正方形田地的最大面积](https://leetcode.cn/problems/maximum-square-area-by-removing-fences-from-a-field/description/) | [Link](leetcode/lc2975/2975.移除栅栏得到的正方形田地的最大面积.go) | Medium | 枚举 |
 | 2998 | [使 X 和 Y 相等的最少操作次数](https://leetcode.cn/problems/minimum-number-of-operations-to-make-x-and-y-equal/description/) | [Link](leetcode%2Flc2998%2F2998.%E4%BD%BF%20X%20%E5%92%8C%20Y%20%E7%9B%B8%E7%AD%89%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%AC%A1%E6%95%B0.go) | Medium |  |
+| 3047 | [求交集区域内的最大正方形面积](https://leetcode.cn/problems/find-the-largest-area-of-square-inside-two-rectangles/description/) | [Link](leetcode/lc3047/3047.求交集区域内的最大正方形面积.go) | Medium | 枚举 |
 | 3258 | [统计满足 K 约束的子字符串数量 I](https://leetcode.cn/problems/count-substrings-that-satisfy-k-constraint-i/description/) | [Link](leetcode%2Flc3258%2F3258.%E7%BB%9F%E8%AE%A1%E6%BB%A1%E8%B6%B3%20K%20%E7%BA%A6%E6%9D%9F%E7%9A%84%E5%AD%90%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E9%87%8F%20I.go) | Easy |  |
 | 3264 | [K 次乘运算后的最终数组 I](https://leetcode.cn/problems/final-array-state-after-k-multiplication-operations-i/description/) | [Link](leetcode%2Flc3264%2F3264.K%20%E6%AC%A1%E4%B9%98%E8%BF%90%E7%AE%97%E5%90%8E%E7%9A%84%E6%9C%80%E7%BB%88%E6%95%B0%E7%BB%84%20I.go) | Easy |  |
 | 3266 | [K 次乘运算后的最终数组 II](https://leetcode.cn/problems/final-array-state-after-k-multiplication-operations-ii/description/) | [Link](leetcode%2Flc3266%2F3266.K%20%E6%AC%A1%E4%B9%98%E8%BF%90%E7%AE%97%E5%90%8E%E7%9A%84%E6%9C%80%E7%BB%88%E6%95%B0%E7%BB%84%20II.go) | Hard |  |
